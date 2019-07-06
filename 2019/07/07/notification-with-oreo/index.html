@@ -102,13 +102,13 @@
 <meta property="og:site_name" content="기록은 기억을 지배한다">
 <meta property="og:description" content="들어가며안드로이드에서 제공하는 알림(Notification) 은 강력한 기능들을 제공하고 있다. 그리고 매번 API 버전이 올라갈 때마다 빈번하게 Update 가 되는 녀석이기 때문에 계속해서 주시하고 있어야하는 놈이기도 하다. 그동안 아무생각없이 copy &amp;amp; paste 만 하면서 사용하고 있던 스스로를 돌아보며 다시한번 알림의 전반적인 사용방법에">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://vagabond95.github.io/source/images/notification_channel/notification.jpg">
 <meta property="og:image" content="https://user-images.githubusercontent.com/27072782/60758428-7c512a80-a051-11e9-9fa2-ed4b67fbb7f8.jpg">
-<meta property="og:updated_time" content="2019-07-06T15:58:20.049Z">
+<meta property="og:image" content="https://user-images.githubusercontent.com/27072782/60758428-7c512a80-a051-11e9-9fa2-ed4b67fbb7f8.jpg">
+<meta property="og:updated_time" content="2019-07-06T16:03:32.130Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Oreo Notication 대응기">
 <meta name="twitter:description" content="들어가며안드로이드에서 제공하는 알림(Notification) 은 강력한 기능들을 제공하고 있다. 그리고 매번 API 버전이 올라갈 때마다 빈번하게 Update 가 되는 녀석이기 때문에 계속해서 주시하고 있어야하는 놈이기도 하다. 그동안 아무생각없이 copy &amp;amp; paste 만 하면서 사용하고 있던 스스로를 돌아보며 다시한번 알림의 전반적인 사용방법에">
-<meta name="twitter:image" content="https://vagabond95.github.io/source/images/notification_channel/notification.jpg">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/27072782/60758428-7c512a80-a051-11e9-9fa2-ed4b67fbb7f8.jpg">
 
 
 
@@ -355,7 +355,7 @@
                 
               
 
-              <time title="Created: 2019-07-07 00:45:35 / Modified: 00:58:20" itemprop="dateCreated datePublished" datetime="2019-07-07T00:45:35+09:00">2019-07-07</time>
+              <time title="Created: 2019-07-07 00:45:35 / Modified: 01:03:32" itemprop="dateCreated datePublished" datetime="2019-07-07T00:45:35+09:00">2019-07-07</time>
             </span>
           
 
@@ -415,7 +415,7 @@
 <li>complileSDK Version - 26</li>
 <li>targetSDK Version - 26</li>
 </ul>
-<h2 id="TL-DR"><a href="#TL-DR" class="headerlink" title="TL; DR"></a><strong>TL; DR</strong></h2><p>오레오를 대응하지 않으면 알림이 동작하지 않는다. 😱</p>
+<h2 id="TL-DR"><a href="#TL-DR" class="headerlink" title="TL; DR"></a><strong>TL; DR</strong></h2><p>오레오에서 알림 대응은 피할 수 없다. 미대응시 작동 X 😱</p>
 <h2 id="오레오대응-더이상은-피할-수-없다"><a href="#오레오대응-더이상은-피할-수-없다" class="headerlink" title="오레오대응.. 더이상은 피할 수 없다?"></a><strong>오레오대응.. 더이상은 피할 수 없다?</strong></h2><p>아직 비교적 최신 버전인 오레오 대응을 굳이 처음부터 다르는 이유는 다음과 같다.</p>
 <ol>
 <li><p><a href="https://developers-kr.googleblog.com/2018/01/improving-app-security-and-performance-on-google-play.html" target="_blank" rel="noopener">새로운 Google Play 방침</a> 에 따르면  play store 에 등록되어 있는 앱을 업데이트 하거나, 새로 앱을 등록 할 경우 <code>targetSdkVersion &gt;= 26</code> 을 만족해야 한다. 따라서 오레오(8.0) 대응을 피할 수 없게 되었다.</p>
@@ -427,7 +427,7 @@
 <h2 id="NotifcationChannel-의-등장"><a href="#NotifcationChannel-의-등장" class="headerlink" title="NotifcationChannel 의 등장"></a><strong>NotifcationChannel 의 등장</strong></h2><p>우리가 처리해줘야하는 부분은 오레오에서 새롭게 등장한 <a href="https://developer.android.com/training/notify-user/channels" target="_blank" rel="noopener">NotificationChannel</a> 과 관련되어있다. 왜 google 은 이 녀석에 대한 처리를 강제했을까? 다음 상황을 살펴보면 그 이유를 짐작할 수 있다.</p>
 <p>나는 스마트폰에 알림이 쌓여있는 걸 좋아하지 않아서, 보통 대부분 앱의 알림을 꺼놓는다. 하지만 그때 아쉬운 점이 하나 있었는데, 확인하고 싶은 일부 알림 역시 받을 수 없다는 것이었다.</p>
 <p>Android 7.1 (API level 25) 이하 버전에서는 모든 알림이 하나로 묶여 관리됐기 때문에 위의 아쉬운 점을 해결할 수 없었고 이에 대한 대안으로 오레오에서 NotificationChannel 이 새롭게 추가되었다.</p>
-<img src="/source/images/notification_channel/notification.jpg" class="[notification_channel]" title="[400] [200]">
+<img src="https://user-images.githubusercontent.com/27072782/60758428-7c512a80-a051-11e9-9fa2-ed4b67fbb7f8.jpg" class="notification_channel" width="400" height="200" title="notification_channel">
 <p><img src="https://user-images.githubusercontent.com/27072782/60758428-7c512a80-a051-11e9-9fa2-ed4b67fbb7f8.jpg" alt="notification_channel"></p>
 <p>NotificationChannel 을 적용할 경우 더이상 각 알림이 하나로 묶이지 않고, channel 별로 분리되어 유저가 유연하게 알림을 설정할 수 있다. 위와 같이 notification_practice 앱에는 각각 <code>확인하고싶은 알림</code> 과 <code>보고싶지 않은 알림</code> 채널이 있으며 각 채널별로 수신여부, 잠금화면 표시여부, 소리 &amp; 진동 설정 등 여러 옵션을 세밀하게 설정할 수 있다. 👏👏👏</p>
 <h2 id="NotificationChannel-적용하기"><a href="#NotificationChannel-적용하기" class="headerlink" title="NotificationChannel 적용하기"></a><strong>NotificationChannel 적용하기</strong></h2><p>적용과정은 다음과 같다.</p>
