@@ -97,14 +97,14 @@
   <meta name="description" content="구글은 점점 더 안드로이드 아키텍처를 리엑티브하게 구조화 하려는 움직임을 보이고 있고, Databinding, LiveData 그리고 RxJava 는 그러한 구조화 작업의 핵심 토대를 담당하고 있다. 또한 주력으로 사용되는 Retroift 부터 AAC 의 Room, Paging 에 이르기까지 많은 안드로이드 라이브러리가 RxJava 를 지원하고 있다.  시">
 <meta name="keywords" content="Android">
 <meta property="og:type" content="article">
-<meta property="og:title" content="그런 Rx Java 로 괜찮은가  1 - subsibeOn, observeOn">
+<meta property="og:title" content="그런 Rx Java 로 괜찮은가  1 - subscribeOn, observeOn">
 <meta property="og:url" content="https://vagabond95.github.io/2019/07/20/is-this-rxjava-1/index.html">
 <meta property="og:site_name" content="기록은 기억을 지배한다">
 <meta property="og:description" content="구글은 점점 더 안드로이드 아키텍처를 리엑티브하게 구조화 하려는 움직임을 보이고 있고, Databinding, LiveData 그리고 RxJava 는 그러한 구조화 작업의 핵심 토대를 담당하고 있다. 또한 주력으로 사용되는 Retroift 부터 AAC 의 Room, Paging 에 이르기까지 많은 안드로이드 라이브러리가 RxJava 를 지원하고 있다.  시">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-07-20T14:36:28.066Z">
+<meta property="og:updated_time" content="2019-07-20T14:45:03.925Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="그런 Rx Java 로 괜찮은가  1 - subsibeOn, observeOn">
+<meta name="twitter:title" content="그런 Rx Java 로 괜찮은가  1 - subscribeOn, observeOn">
 <meta name="twitter:description" content="구글은 점점 더 안드로이드 아키텍처를 리엑티브하게 구조화 하려는 움직임을 보이고 있고, Databinding, LiveData 그리고 RxJava 는 그러한 구조화 작업의 핵심 토대를 담당하고 있다. 또한 주력으로 사용되는 Retroift 부터 AAC 의 Room, Paging 에 이르기까지 많은 안드로이드 라이브러리가 RxJava 를 지원하고 있다.  시">
 
 
@@ -123,7 +123,7 @@
   };
 </script>
 
-  <title>그런 Rx Java 로 괜찮은가  1 - subsibeOn, observeOn | 기록은 기억을 지배한다</title>
+  <title>그런 Rx Java 로 괜찮은가  1 - subscribeOn, observeOn | 기록은 기억을 지배한다</title>
   
 
 
@@ -321,7 +321,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">그런 Rx Java 로 괜찮은가  1 - subsibeOn, observeOn
+          <h2 class="post-title" itemprop="name headline">그런 Rx Java 로 괜찮은가  1 - subscribeOn, observeOn
 
               
             
@@ -347,7 +347,7 @@
                 
               
 
-              <time title="Created: 2019-07-20 23:13:09 / Modified: 23:36:28" itemprop="dateCreated datePublished" datetime="2019-07-20T23:13:09+09:00">2019-07-20</time>
+              <time title="Created: 2019-07-20 23:13:09 / Modified: 23:45:03" itemprop="dateCreated datePublished" datetime="2019-07-20T23:13:09+09:00">2019-07-20</time>
             </span>
           
 
@@ -402,8 +402,8 @@
 
       
         <p>구글은 점점 더 안드로이드 아키텍처를 리엑티브하게 구조화 하려는 움직임을 보이고 있고, Databinding, LiveData 그리고 RxJava 는 그러한 구조화 작업의 핵심 토대를 담당하고 있다. 또한 주력으로 사용되는 Retroift 부터 AAC 의 Room, Paging 에 이르기까지 많은 안드로이드 라이브러리가 RxJava 를 지원하고 있다. </p>
-<p>시대의 흐름에 따라 이제는 거의 필수가 되어버린 RxJava 이기에 더이상 미루지 못하고 활용 방법을 익히기 시작했으나 워낙 제공되는 operation 이 많고 사람들이 사용하는 스타일도 제각각 달라서 스스로 사용법을 익히기까지 많은 시행착오를 겪어야 했다. 위 시리즈는 그동안 RxJava 를 사용하면서 겪었던 경험을 바탕으로 놓치기 쉽거나, 이런 방식으로 활용했을 때 좋았던 점을 적어 나가는 포스트가 될 것 같다. 깊은 수준의 내용은 아니지만, 이 글들을 통해 조금이나마 삽질의 시간을 줄이고 적절하게 RxJava 를 활용하는데 도움이 되었으면 좋겠다. </p>
-<h1 id="subsribeOn-observeOn-잘-사용하고-있나"><a href="#subsribeOn-observeOn-잘-사용하고-있나" class="headerlink" title="subsribeOn, observeOn 잘 사용하고 있나?"></a>subsribeOn, observeOn 잘 사용하고 있나?</h1><h2 id="Schedular-퀴즈"><a href="#Schedular-퀴즈" class="headerlink" title="Schedular 퀴즈"></a>Schedular 퀴즈</h2><pre><code>// # 1
+<p>시대의 흐름에 따라 이제는 거의 필수가 되어버린 RxJava 이기에 더이상 미루지 못하고 활용 방법을 익히기 시작했으나 워낙 제공되는 operation 이 많고 사람들이 사용하는 스타일도 제각각 달라서 스스로 사용법을 익히기까지 많은 시행착오를 겪어야 했다. 위 시리즈는 그동안 RxJava 를 사용하면서 겪었던 경험을 바탕으로 놓치기 쉽거나, 활용했을 때 좋았던 방식들을 적어 나가는 포스트가 될 것 같다. 깊은 수준의 내용은 아니지만, 이 글들을 통해 조금이나마 삽질의 시간을 줄이고 적절하게 RxJava 를 활용하는데 도움이 되었으면 좋겠다. </p>
+<h1 id="subscribeOn-observeOn-잘-사용하고-있나"><a href="#subscribeOn-observeOn-잘-사용하고-있나" class="headerlink" title="subscribeOn, observeOn 잘 사용하고 있나?"></a>subscribeOn, observeOn 잘 사용하고 있나?</h1><h2 id="Schedular-퀴즈"><a href="#Schedular-퀴즈" class="headerlink" title="Schedular 퀴즈"></a>Schedular 퀴즈</h2><pre><code>// # 1
 myService.getUsers()
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
@@ -429,13 +429,11 @@ myService.getUsers()
                 users -&gt; {
         // Do UI action
     });</code></pre><p>위 두 케이스는 user 리스트를 요청하는 API 를 호출한 후 필요한 비즈니스 로직을 수행하는 코드이다.</p>
-<p>위 두 케이스는 user 리스트를 요청하는 API 를 호출한 후 필요한 비즈니스 로직을 수행하는 코드이다.</p>
-<p>각 케이스의 차이점은 observerOn, subsribeOn 의 호출 순서가 다르다는 점이다. 2개의 코드에서 각각의 스트림 연산이 어느 쓰레드에서 수행되는지 잠시 예상해보자. </p>
+<p>각 케이스의 차이점은 observerOn, subscribeOn 의 호출 순서가 다르다는 점이다. 2개의 코드에서 각각의 스트림 연산이 어느 쓰레드에서 수행되는지 잠시 예상해보자. </p>
 <p>만약 정확히 얘기할 수 있다면 이미 subscribeOn, observeOn 에 대한 이해가 충분할 것이라 예상되어 해당 글은 리마인드 차원에서 가볍게 보고 넘어가면 될 것 같다. 👏</p>
 <p>위 문제의 답은 다음과 같다.<br>첫번째 케이스는 getUsers() 에 대한 연산만 io Schedular 쓰레드 위에서 수행되며, <strong>나머지 모든 하위 스트림 연산은 메인쓰레드에서 수행된다.</strong><br>두번째 케이스는 getUsers() ~ toList 연산까지 io Schedular 위에서 수행되며, subscribe 내에서 콜백으로 <strong>최종 데이터를 전달받는 연산만 메인쓰레드에서 수행된다</strong>.</p>
 <p>따라서 첫번째 케이스는 굳이 메인 쓰레드에서 수행하지 않아도 될 비즈니스 로직을 수행하고 있는 것 이므로 <strong>자원의 낭비가 있는 코드</strong>라고 볼 수 있다. (만약 엄청나게 많은 리소스가 요구되는 비즈니스 로직이라면…😭)</p>
-<p>그럼 결과가 나오게 된 원리를 알아보도록 하자. 사실 각 케이스에서 subsribeOn 은 어느 순서에 호출하든 결과는 변하지 않는다. 위 결과의 차이를 만드는 것은 <strong>observeOn 의 호출 위치</strong>이다.</p>
-<h2 id="정의와-올바른-활용법"><a href="#정의와-올바른-활용법" class="headerlink" title="정의와 올바른 활용법"></a>정의와 올바른 활용법</h2><p>subscribeOn, observeOn 의 정의를 한번 살펴보자.</p>
+<h2 id="정의와-올바른-활용법"><a href="#정의와-올바른-활용법" class="headerlink" title="정의와 올바른 활용법"></a>정의와 올바른 활용법</h2><p>사실 각 케이스에서 subscribeOn 은 어느 순서에 호출하든 결과는 변하지 않는다. 위 결과의 차이를 만드는 것은 <strong>observeOn 의 호출 위치</strong>이다.<br>호출위치라고? subscribeOn, observeOn 의 정의를 한번 살펴보자.</p>
 <blockquote>
 <p>subscribeOn </p>
 <ul>
@@ -451,9 +449,9 @@ myService.getUsers()
 <p>간단히 얘기하면 </p>
 <ul>
 <li>subscribeOn 는 [첫번째 스트림 ~ observeOn 호출 전 까지의 스트림] 의 쓰레드를 지정 </li>
-<li>observeOn 은 [observeOn 호출 이후의 스트림]의 쓰레드를 지정한다.</li>
+<li>observeOn 은 [해당 observeOn 호출 이후의 스트림] 의 쓰레드를 지정한다.</li>
 </ul>
-<p>위 정의에 따르면 observeOn 은 <strong>호출하는 순서에 따라</strong> 영향을 받는 스트림이 달라지게 된다. 따라서 첫번째 케이스는 getUsers() 이후 바로 observeOn 이 호출 됐으므로 이후 스트림의 연산이 메인쓰레드에서 수행되게 되는 것이다.</p>
+<p>위 정의에 따르면 observeOn 은 <strong>어느 순서에 호출되느냐에 따라</strong> 영향을 받는 스트림이 달라지게 된다. 따라서 첫번째 케이스는 getUsers() 이후 바로 observeOn 이 호출 됐으므로 이후 스트림의 연산이 메인쓰레드에서 수행되게 되는 것이다.</p>
 <p>만약 이러한 특성을 고려하지 않고 기계적으로 코드를 작성하게 될 경우, 첫번째 케이스 처럼 작성하게 될 가능성이 있고 이는 RxJava 가 의도한 특성을 제대로 활용하지 못하고 있는 것이라고 볼 수 있다. (내가 그랬다..)</p>
 <p>위 정의와 본래 의도에 맞게 다시 코드를 작성하면 아래와 같다.</p>
 <pre><code>myService.getUsers()
@@ -470,19 +468,19 @@ myService.getUsers()
     });</code></pre><ul>
 <li>computation 쓰레드로 바꾸지 않고, io 쓰레드 위에서 그대로 진행되어도 상관은 없으나, 각 schedualars 가 본래 역할에 맞게 사용될 수 있도록 하기위해 바꾸었다.</li>
 </ul>
-<h2 id="subscribeOn-observeOn-활용시-도움이-될만한-사실들"><a href="#subscribeOn-observeOn-활용시-도움이-될만한-사실들" class="headerlink" title="subscribeOn, observeOn 활용시 도움이 될만한 사실들"></a>subscribeOn, observeOn 활용시 도움이 될만한 사실들</h2><ul>
+<h2 id="그외-subscribeOn-observeOn-활용시-도움이-될만한-사실들"><a href="#그외-subscribeOn-observeOn-활용시-도움이-될만한-사실들" class="headerlink" title="그외 subscribeOn, observeOn 활용시 도움이 될만한 사실들"></a>그외 subscribeOn, observeOn 활용시 도움이 될만한 사실들</h2><ul>
 <li>subscribeOn, observeOn 호출은 필수가 아닌 옵션이다.</li>
-<li>subscribeOn, observeOn 모두 호출하지 않았을 경우 subsribe() 를 호출한 thread 에서 스트림연산이 수행된다. (일반적으로는 메인쓰레드 일 것이다.)</li>
+<li>subscribeOn, observeOn 모두 호출하지 않았을 경우 subscribe() 를 호출한 thread 에서 스트림연산이 수행된다. (일반적으로는 메인쓰레드 일 것이다.)</li>
 <li>subscribeOn 은 최초 1회 호출만 적용되며, 그 이후 다시 호출하는 것은 무시된다.</li>
 <li>observeOn 은 호출 횟수에 제한이 없다.</li>
-<li>subsribeOn 만 호출할 수 있다. 따라서 subscribeOn 정의에 따라 모든 스트림 연산은 subsribeOn 에서 지정한 쓰레드 위에서 수행된다.<ul>
+<li>subscribeOn 만 호출할 수 있다. 따라서 subscribeOn 정의에 따라 모든 스트림 연산은 subscribeOn 에서 지정한 쓰레드 위에서 수행된다.<ul>
 <li>observeOn(AndroidSchedulars.mainThread()) 를 기계적으로 호출하지 말자. 백그라운드 상에서 수행될 작업만 있는 스트림일 경우 subscribeOn(Schedulars.xx) 호출만으로 충분하다.</li>
 </ul>
 </li>
 <li>observeOn 만 호출할 수 있다. (하지만 활용한 케이스 X)</li>
-<li>subsribeOn 의 호출 순서는 결과에 영향을 주지 않지만, 되도록 첫번째 혹은 마지막에 호출하는 것이 가독성 측면에서 좋다고 느낀다. 특히 메소드 체이닝이 길어질 수록 더더욱 흐름 파악에 도움이 된다.</li>
+<li>subscribeOn 의 호출 순서는 결과에 영향을 주지 않지만, 되도록 첫번째 혹은 마지막에 호출하는 것이 가독성 측면에서 좋다고 느낀다. 특히 메소드 체이닝이 길어질 수록 더더욱 흐름 파악에 도움이 된다.</li>
 </ul>
-<h2 id="결론"><a href="#결론" class="headerlink" title="결론"></a>결론</h2><p><strong>subscribeOn, observeOn 를 상황에 맞게 활용하고, 특히 observeOn 은 호출 순서에 주의하자.</strong></p>
+<h2 id="결론"><a href="#결론" class="headerlink" title="결론"></a>결론</h2><p><strong>subscribeOn / observeOn 를 상황에 맞게 활용하고, 특히 observeOn 은 호출 순서에 주의하자.</strong></p>
 
       
     </div>
@@ -663,7 +661,7 @@ myService.getUsers()
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#subsribeOn-observeOn-잘-사용하고-있나"><span class="nav-number">1.</span> <span class="nav-text">subsribeOn, observeOn 잘 사용하고 있나?</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Schedular-퀴즈"><span class="nav-number">1.1.</span> <span class="nav-text">Schedular 퀴즈</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#정의와-올바른-활용법"><span class="nav-number">1.2.</span> <span class="nav-text">정의와 올바른 활용법</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#subscribeOn-observeOn-활용시-도움이-될만한-사실들"><span class="nav-number">1.3.</span> <span class="nav-text">subscribeOn, observeOn 활용시 도움이 될만한 사실들</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#결론"><span class="nav-number">1.4.</span> <span class="nav-text">결론</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#subscribeOn-observeOn-잘-사용하고-있나"><span class="nav-number">1.</span> <span class="nav-text">subscribeOn, observeOn 잘 사용하고 있나?</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Schedular-퀴즈"><span class="nav-number">1.1.</span> <span class="nav-text">Schedular 퀴즈</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#정의와-올바른-활용법"><span class="nav-number">1.2.</span> <span class="nav-text">정의와 올바른 활용법</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#그외-subscribeOn-observeOn-활용시-도움이-될만한-사실들"><span class="nav-number">1.3.</span> <span class="nav-text">그외 subscribeOn, observeOn 활용시 도움이 될만한 사실들</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#결론"><span class="nav-number">1.4.</span> <span class="nav-text">결론</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -833,7 +831,7 @@ myService.getUsers()
   var disqus_config = function() {
     this.page.url = "https://vagabond95.github.io/2019/07/20/is-this-rxjava-1/";
     this.page.identifier = "2019/07/20/is-this-rxjava-1/";
-    this.page.title = '그런 Rx Java 로 괜찮은가  1 - subsibeOn, observeOn';
+    this.page.title = '그런 Rx Java 로 괜찮은가  1 - subscribeOn, observeOn';
     };
   function loadComments() {
     var d = document, s = d.createElement('script');
