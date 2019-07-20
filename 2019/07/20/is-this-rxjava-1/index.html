@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="기록은 기억을 지배한다">
 <meta property="og:description" content="구글은 점점 더 안드로이드 아키텍처를 리엑티브하게 구조화 하려는 움직임을 보이고 있고, Databinding, LiveData 그리고 RxJava 는 그러한 구조화 작업의 핵심 토대를 담당하고 있다. 또한 주력으로 사용되는 Retroift 부터 AAC 의 Room, Paging 에 이르기까지 많은 안드로이드 라이브러리가 RxJava 를 지원하고 있다.  시">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-07-20T14:30:45.327Z">
+<meta property="og:updated_time" content="2019-07-20T14:32:30.062Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="그런 Rx Java 로 괜찮은가  1 - subsibeOn, observeOn">
 <meta name="twitter:description" content="구글은 점점 더 안드로이드 아키텍처를 리엑티브하게 구조화 하려는 움직임을 보이고 있고, Databinding, LiveData 그리고 RxJava 는 그러한 구조화 작업의 핵심 토대를 담당하고 있다. 또한 주력으로 사용되는 Retroift 부터 AAC 의 Room, Paging 에 이르기까지 많은 안드로이드 라이브러리가 RxJava 를 지원하고 있다.  시">
@@ -347,7 +347,7 @@
                 
               
 
-              <time title="Created: 2019-07-20 23:13:09 / Modified: 23:30:45" itemprop="dateCreated datePublished" datetime="2019-07-20T23:13:09+09:00">2019-07-20</time>
+              <time title="Created: 2019-07-20 23:13:09 / Modified: 23:32:30" itemprop="dateCreated datePublished" datetime="2019-07-20T23:13:09+09:00">2019-07-20</time>
             </span>
           
 
@@ -424,7 +424,11 @@
 <li><strong>observerOn 이후 수행되는 스트림의 액션</strong>을 수행하는 스케쥴러를 지정</li>
 </ul>
 </blockquote>
-<p>간단히 얘기하면 subscribeOn 는 [첫번째 스트림 ~ observeOn 호출 전 까지의 스트림] 의 쓰레드를 지정, observeOn 은 [observeOn 호출 이후의 스트림]의 쓰레드를 지정한다.</p>
+<p>간단히 얘기하면 </p>
+<ul>
+<li>subscribeOn 는 [첫번째 스트림 ~ observeOn 호출 전 까지의 스트림] 의 쓰레드를 지정 </li>
+<li>observeOn 은 [observeOn 호출 이후의 스트림]의 쓰레드를 지정한다.</li>
+</ul>
 <p>위 정의에 따르면 observeOn 은 <strong>호출하는 순서에 따라</strong> 영향을 받는 스트림이 달라지게 된다. 따라서 첫번째 케이스는 getUsers() 이후 바로 observeOn 이 호출 됐으므로 이후 스트림의 연산이 메인쓰레드에서 수행되게 되는 것이다.</p>
 <p>만약 이러한 특성을 고려하지 않고 기계적으로 코드를 작성하게 될 경우, 첫번째 케이스 처럼 작성하게 될 가능성이 있고 이는 RxJava 가 의도한 특성을 제대로 활용하지 못하고 있는 것이라고 볼 수 있다. (내가 그랬다..)</p>
 <p>위 정의와 본래 의도에 맞게 다시 코드를 작성하면 아래와 같다.</p>
