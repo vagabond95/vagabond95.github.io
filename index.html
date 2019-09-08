@@ -348,7 +348,7 @@
                 
               
 
-              <time title="Created: 2019-09-08 15:57:53 / Modified: 22:35:09" itemprop="dateCreated datePublished" datetime="2019-09-08T15:57:53+09:00">2019-09-08</time>
+              <time title="Created: 2019-09-08 15:57:53 / Modified: 22:36:03" itemprop="dateCreated datePublished" datetime="2019-09-08T15:57:53+09:00">2019-09-08</time>
             </span>
           
 
@@ -417,7 +417,7 @@
 <p>따라서 정확한 View 의 높이 값을 알기 위해서는 View 가 자신의 크기가 결정된 타이밍 이후에 요청을 해야 한다. 그리고 이 과정은 <a href="https://developer.android.com/reference/android/view/ViewTreeObserver.OnGlobalLayoutListener" target="_blank" rel="noopener">ViewTreeObserver.OnGlobalLayoutListener</a> 를 활용하여 진행할 수 있다.</p>
 <p>OnGlobalLayoutListener 는 해당 View에 변경점이 생겼을 때, 이를 콜백형태로 감지할 수 있다. 변경점의 내용중에는 View 의 크기가 결정되는 것도 포함되므로 우리는 해당 콜백이 호출되었을 때 View.getHeight() 를 호출할 경우 우리가 원하는 높이 값을 얻어낼 수 있다.</p>
 <p>코드로는 다음과 같이 구할 수 있다.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> viewHeight = -<span class="number">13</span>;</span><br><span class="line">    </span><br><span class="line">rootView.getViewTreeObserver().addOnGlobalLayoutListener(() -&gt; &#123;</span><br><span class="line">    <span class="keyword">int</span> currentViewHeight = rootView.getHeight();</span><br><span class="line"><span class="keyword">if</span> (currentViewHeight &gt; viewHeight) &#123;</span><br><span class="line">    viewHeight = currentViewHeight;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> viewHeight = -<span class="number">10</span>;</span><br><span class="line">    </span><br><span class="line">rootView.getViewTreeObserver().addOnGlobalLayoutListener(() -&gt; &#123;</span><br><span class="line">    <span class="keyword">int</span> currentViewHeight = rootView.getHeight();</span><br><span class="line">    <span class="keyword">if</span> (currentViewHeight &gt; viewHeight) &#123;</span><br><span class="line">        viewHeight = currentViewHeight;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 
 <h2 id="2-키보드가-올라왔을-때-키보드가-가리고-있는-부분을-제외한-화면의-높이를-구한다"><a href="#2-키보드가-올라왔을-때-키보드가-가리고-있는-부분을-제외한-화면의-높이를-구한다" class="headerlink" title="2. 키보드가 올라왔을 때, 키보드가 가리고 있는 부분을 제외한 화면의 높이를 구한다."></a>2. 키보드가 올라왔을 때, 키보드가 가리고 있는 부분을 제외한 화면의 높이를 구한다.</h2><p>이 부분은 두가지 단계로 나누어 생각해보자.</p>
