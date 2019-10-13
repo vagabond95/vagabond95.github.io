@@ -8,6 +8,30 @@
     </url>
 
     <url>
+        <loc>https://vagabond95.github.io/2019/07/20/is-this-rxjava-1/</loc>
+        <lastmod>2019-10-13T12:46:44.783Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://vagabond95.github.io/2019/08/10/is-this-rxjava-2/</loc>
+        <lastmod>2019-10-13T12:46:37.215Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://vagabond95.github.io/2019/10/13/object-book-1-3/</loc>
+        <lastmod>2019-10-13T12:46:27.237Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://vagabond95.github.io/2018/06/13/text_is_selectable_issue/</loc>
         <lastmod>2019-10-13T10:14:26.570Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -32,14 +56,6 @@
     </url>
 
     <url>
-        <loc>https://vagabond95.github.io/2019/10/13/object-book-1-3/</loc>
-        <lastmod>2019-10-13T10:11:24.709Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>https://vagabond95.github.io/2019/07/07/2019-harf-review/</loc>
         <lastmod>2019-10-13T10:11:05.833Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -58,22 +74,6 @@
     <url>
         <loc>https://vagabond95.github.io/2018/04/19/notification-with-oreo/</loc>
         <lastmod>2019-10-13T10:10:39.054Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://vagabond95.github.io/2019/08/10/is-this-rxjava-2/</loc>
-        <lastmod>2019-10-13T10:10:30.834Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://vagabond95.github.io/2019/07/20/is-this-rxjava-1/</loc>
-        <lastmod>2019-10-13T10:10:22.862Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
