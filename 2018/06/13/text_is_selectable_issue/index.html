@@ -97,14 +97,14 @@
   <meta name="description" content="발단며칠 전부터 이슈트래킹 대시보드에서 아래 에러가 빈번하게 리포트되는 일을 겪었다. Fatal Exception: java.lang.IndexOutOfBoundsException: setSpan (-1 ... -1) starts before 0        at android.text.SpannableStringInternal.checkRange(Span">
 <meta name="keywords" content="Android">
 <meta property="og:type" content="article">
-<meta property="og:title" content="TextView 에서 &quot;textIsSelectable&quot;와 &quot;LinkMovementMethod&quot;를 같이 사용할때 발생하는 이슈">
+<meta property="og:title" content="[안드로이드] TextView 에서 textIsSelectable와 LinkMovementMethod를 같이 사용할때 발생하는 이슈">
 <meta property="og:url" content="https://vagabond95.github.io/2018/06/13/text_is_selectable_issue/index.html">
 <meta property="og:site_name" content="기록은 기억을 지배한다">
 <meta property="og:description" content="발단며칠 전부터 이슈트래킹 대시보드에서 아래 에러가 빈번하게 리포트되는 일을 겪었다. Fatal Exception: java.lang.IndexOutOfBoundsException: setSpan (-1 ... -1) starts before 0        at android.text.SpannableStringInternal.checkRange(Span">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-07-06T16:12:05.749Z">
+<meta property="og:updated_time" content="2019-10-13T10:14:26.570Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="TextView 에서 &quot;textIsSelectable&quot;와 &quot;LinkMovementMethod&quot;를 같이 사용할때 발생하는 이슈">
+<meta name="twitter:title" content="[안드로이드] TextView 에서 textIsSelectable와 LinkMovementMethod를 같이 사용할때 발생하는 이슈">
 <meta name="twitter:description" content="발단며칠 전부터 이슈트래킹 대시보드에서 아래 에러가 빈번하게 리포트되는 일을 겪었다. Fatal Exception: java.lang.IndexOutOfBoundsException: setSpan (-1 ... -1) starts before 0        at android.text.SpannableStringInternal.checkRange(Span">
 
 
@@ -125,7 +125,7 @@
   };
 </script>
 
-  <title>TextView 에서 "textIsSelectable"와 "LinkMovementMethod"를 같이 사용할때 발생하는 이슈 | 기록은 기억을 지배한다</title>
+  <title>[안드로이드] TextView 에서 textIsSelectable와 LinkMovementMethod를 같이 사용할때 발생하는 이슈 | 기록은 기억을 지배한다</title>
   
 
 
@@ -323,7 +323,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">TextView 에서 "textIsSelectable"와 "LinkMovementMethod"를 같이 사용할때 발생하는 이슈
+          <h2 class="post-title" itemprop="name headline">[안드로이드] TextView 에서 textIsSelectable와 LinkMovementMethod를 같이 사용할때 발생하는 이슈
 
               
             
@@ -364,7 +364,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-07-07 01:12:05" itemprop="dateModified" datetime="2019-07-07T01:12:05+09:00">2019-07-07</time>
+                <time title="Modified: 2019-10-13 19:14:26" itemprop="dateModified" datetime="2019-10-13T19:14:26+09:00">2019-10-13</time>
               </span>
             
           
@@ -421,7 +421,7 @@
        at android.text.SpannableString.setSpan(SpannableString.java:46)
        at android.text.Selection.setSelection(Selection.java:76)
        at android.widget.TextView.semSetSelection(TextView.java:13203)</code></pre><p>코딩을 할 때 신경써서 범위를 지정하지 않을 경우 종종 겪는 에러였는데, 디버깅을 해도 해당 부분은 모두 예외처리가 잘 되어있어 원인을 쉽게 찾을 수 없었다.</p>
-<h2 id="해결"><a href="#해결" class="headerlink" title="해결"></a><strong>해결</strong></h2><p>그러던 중 우연히 재현 조건을 찾게 되었고, 조건은 TextView 에서 특정 텍스트를 복사하려고 드래그를 시도할 때 랜덤하게 크래시가 발생했다. 복사 기능은 TextView 의 <code>textIsSelectable</code> 옵션을 활용하여 제공하고 있었기 때문에, ‘textIsSelectable’ 과 ‘IndexOutOfBoundsException’ 키워드를 엮어 내용을 찾아보니 <a href="https://stackoverflow.com/questions/15836306/can-a-textview-be-selectable-and-contain-links" target="_blank" rel="noopener">힌트가 될만한 정보</a> 를 얻을 수 있었다.</p>
+<h2 id="해결"><a href="#해결" class="headerlink" title="해결"></a><strong>해결</strong></h2><p>그러던 중 우연히 재현 조건을 찾게 되었고, 조건은 TextView 에서 특정 텍스트를 복사하려고 드래그를 시도할 때 랜덤하게 크래시가 발생했다. 복사 기능은 TextView 의 <code>textIsSelectable</code> 옵션을 활용하여 제공하고 있었기 때문에, ‘textIsSelectable’ 과 ‘IndexOutOfBoundsException’ 키워드를 엮어 내용을 찾아보니 <span class="exturl" data-url="aHR0cHM6Ly9zdGFja292ZXJmbG93LmNvbS9xdWVzdGlvbnMvMTU4MzYzMDYvY2FuLWEtdGV4dHZpZXctYmUtc2VsZWN0YWJsZS1hbmQtY29udGFpbi1saW5rcw==" title="https://stackoverflow.com/questions/15836306/can-a-textview-be-selectable-and-contain-links">힌트가 될만한 정보<i class="fa fa-external-link"></i></span> 를 얻을 수 있었다.</p>
 <p>내용인즉, <code>textIsSelectable</code> 옵션과 <code>LinkMovementMethod</code> 를 같이 사용했을 때 의도하지 않은 결과가 나올 수 있다는 것이었다. <strong><code>LinkMovementMethod</code> 는 안드로이드에서 제공하는 녀석이어서 원인이 될 것이라고 생각하지 못했다.</strong> 우리 프로젝트에서도 <code>textIsSelectable</code> 옵션이 적용된 TextView 에서 <code>LinkMovementMethod</code> 를 같이 사용하고 있었기에, 혹시나 하는 마음으로 위 내용을 참고하여 CustomMovementMethod 만든 후 적용시켜봤다. 그리고 다시 테스트를 반복하여 시도해본 결과 더이상 크래시가 발생하지 않았다.</p>
 <h2 id="정확한-원인은"><a href="#정확한-원인은" class="headerlink" title="정확한 원인은?"></a><strong>정확한 원인은?</strong></h2><p>버그를 해결하고 나서 위 문제가 발생한 원인을 다시 생각해 봤다.</p>
 <ol>
@@ -479,8 +479,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/19/notification-with-oreo/" rel="next" title="Oreo Notification 대응기">
-                <i class="fa fa-chevron-left"></i> Oreo Notification 대응기
+              <a href="/2018/04/19/notification-with-oreo/" rel="next" title="[안드로이드] API 26, Oreo Notification 대응기">
+                <i class="fa fa-chevron-left"></i> [안드로이드] API 26, Oreo Notification 대응기
               </a>
             
           </div>
@@ -489,8 +489,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/09/21/what-is-nullaway/" rel="prev" title="Nullaway 를 활용하여 NullPointerException 예방하기">
-                Nullaway 를 활용하여 NullPointerException 예방하기 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/09/21/what-is-nullaway/" rel="prev" title="[안드로이드] Nullaway 를 활용하여 NullPointerException 예방하기">
+                [안드로이드] Nullaway 를 활용하여 NullPointerException 예방하기 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -590,7 +590,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">4</span>
+                      
+                    
+                    <span class="site-state-item-count">5</span>
                     <span class="site-state-item-name">tags</span>
                   
                 </div>
@@ -807,7 +809,7 @@
   var disqus_config = function() {
     this.page.url = "https://vagabond95.github.io/2018/06/13/text_is_selectable_issue/";
     this.page.identifier = "2018/06/13/text_is_selectable_issue/";
-    this.page.title = 'TextView 에서 \"textIsSelectable\"와 \"LinkMovementMethod\"를 같이 사용할때 발생하는 이슈';
+    this.page.title = '[안드로이드] TextView 에서 textIsSelectable와 LinkMovementMethod를 같이 사용할때 발생하는 이슈';
     };
   function loadComments() {
     var d = document, s = d.createElement('script');
