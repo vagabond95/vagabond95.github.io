@@ -16,6 +16,14 @@
     </url>
 
     <url>
+        <loc>https://vagabond95.github.io/2019/09/20/android-api-version-manage/</loc>
+        <lastmod>2019-10-13T10:13:13.382Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://vagabond95.github.io/2018/09/21/what-is-nullaway/</loc>
         <lastmod>2019-10-13T10:11:37.747Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -66,14 +74,6 @@
     <url>
         <loc>https://vagabond95.github.io/2019/07/20/is-this-rxjava-1/</loc>
         <lastmod>2019-10-13T10:10:22.862Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://vagabond95.github.io/2019/09/20/android-api-version-manage/</loc>
-        <lastmod>2019-10-13T10:10:06.901Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
