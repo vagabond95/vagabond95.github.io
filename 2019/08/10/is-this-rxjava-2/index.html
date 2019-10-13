@@ -95,16 +95,16 @@
 
 
   <meta name="description" content="RxJava 의 큰 장점 중 하나는 무엇이든 Observable 소스로 추상화하고, 이를 제공되는 Operation을 이용하여 손쉽게 가공할 수 있다는 점이다. 안드로이드 개발 중 가장 흔하게 접할 수 있는 케이스로는 Retrofit - RxJava 조합을 이용한 API 통신이 있다.  기본적인 API 콜 코드 MyService.fetchUserData()">
-<meta name="keywords" content="Android">
+<meta name="keywords" content="Android, RxJava">
 <meta property="og:type" content="article">
-<meta property="og:title" content="그런 Rx Java 로 괜찮은가  2 - Mulitple API, 병렬 처리">
+<meta property="og:title" content="[안드로이드] 그런 Rx Java 로 괜찮은가  2 - Mulitple API, 병렬 처리 (flatMap, merge, zip)">
 <meta property="og:url" content="https://vagabond95.github.io/2019/08/10/is-this-rxjava-2/index.html">
 <meta property="og:site_name" content="기록은 기억을 지배한다">
 <meta property="og:description" content="RxJava 의 큰 장점 중 하나는 무엇이든 Observable 소스로 추상화하고, 이를 제공되는 Operation을 이용하여 손쉽게 가공할 수 있다는 점이다. 안드로이드 개발 중 가장 흔하게 접할 수 있는 케이스로는 Retrofit - RxJava 조합을 이용한 API 통신이 있다.  기본적인 API 콜 코드 MyService.fetchUserData()">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-08-10T11:40:30.175Z">
+<meta property="og:updated_time" content="2019-10-13T10:10:30.834Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="그런 Rx Java 로 괜찮은가  2 - Mulitple API, 병렬 처리">
+<meta name="twitter:title" content="[안드로이드] 그런 Rx Java 로 괜찮은가  2 - Mulitple API, 병렬 처리 (flatMap, merge, zip)">
 <meta name="twitter:description" content="RxJava 의 큰 장점 중 하나는 무엇이든 Observable 소스로 추상화하고, 이를 제공되는 Operation을 이용하여 손쉽게 가공할 수 있다는 점이다. 안드로이드 개발 중 가장 흔하게 접할 수 있는 케이스로는 Retrofit - RxJava 조합을 이용한 API 통신이 있다.  기본적인 API 콜 코드 MyService.fetchUserData()">
 
 
@@ -125,7 +125,7 @@
   };
 </script>
 
-  <title>그런 Rx Java 로 괜찮은가  2 - Mulitple API, 병렬 처리 | 기록은 기억을 지배한다</title>
+  <title>[안드로이드] 그런 Rx Java 로 괜찮은가  2 - Mulitple API, 병렬 처리 (flatMap, merge, zip) | 기록은 기억을 지배한다</title>
   
 
 
@@ -323,7 +323,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">그런 Rx Java 로 괜찮은가  2 - Mulitple API, 병렬 처리
+          <h2 class="post-title" itemprop="name headline">[안드로이드] 그런 Rx Java 로 괜찮은가  2 - Mulitple API, 병렬 처리 (flatMap, merge, zip)
 
               
             
@@ -349,13 +349,23 @@
                 
               
 
-              <time title="Created: 2019-08-10 20:37:01 / Modified: 20:40:30" itemprop="dateCreated datePublished" datetime="2019-08-10T20:37:01+09:00">2019-08-10</time>
+              <time title="Created: 2019-08-10 20:37:01" itemprop="dateCreated datePublished" datetime="2019-08-10T20:37:01+09:00">2019-08-10</time>
             </span>
           
 
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-10-13 19:10:30" itemprop="dateModified" datetime="2019-10-13T19:10:30+09:00">2019-10-13</time>
+              </span>
             
           
 
@@ -491,7 +501,7 @@
         
         <div class="post-tags">
           
-            <a href="/tags/Android/" rel="tag"># Android</a>
+            <a href="/tags/Android-RxJava/" rel="tag"># Android, RxJava</a>
           
         </div>
       
@@ -504,8 +514,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/07/20/is-this-rxjava-1/" rel="next" title="그런 Rx Java 로 괜찮은가  1 - subscribeOn, observeOn">
-                <i class="fa fa-chevron-left"></i> 그런 Rx Java 로 괜찮은가  1 - subscribeOn, observeOn
+              <a href="/2019/07/20/is-this-rxjava-1/" rel="next" title="[안드로이드] 그런 Rx Java 로 괜찮은가  1 - subscribeOn, observeOn">
+                <i class="fa fa-chevron-left"></i> [안드로이드] 그런 Rx Java 로 괜찮은가  1 - subscribeOn, observeOn
               </a>
             
           </div>
@@ -514,8 +524,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/09/08/android-keyboard-height/" rel="prev" title="안드로이드 키보드 높이 구하기">
-                안드로이드 키보드 높이 구하기 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/09/08/android-keyboard-height/" rel="prev" title="[안드로이드] 키보드 높이 구하기">
+                [안드로이드] 키보드 높이 구하기 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -592,7 +602,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-count">8</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -615,7 +625,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">4</span>
+                      
+                    
+                    <span class="site-state-item-count">5</span>
                     <span class="site-state-item-name">tags</span>
                   
                 </div>
@@ -832,7 +844,7 @@
   var disqus_config = function() {
     this.page.url = "https://vagabond95.github.io/2019/08/10/is-this-rxjava-2/";
     this.page.identifier = "2019/08/10/is-this-rxjava-2/";
-    this.page.title = '그런 Rx Java 로 괜찮은가  2 - Mulitple API, 병렬 처리';
+    this.page.title = '[안드로이드] 그런 Rx Java 로 괜찮은가  2 - Mulitple API, 병렬 처리 (flatMap, merge, zip)';
     };
   function loadComments() {
     var d = document, s = d.createElement('script');

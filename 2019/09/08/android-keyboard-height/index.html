@@ -97,14 +97,14 @@
   <meta name="description" content="앱 개발을 진행하다보면 Keyboard 높이를 알고싶은 상황을 마주할 때가 있다. 하지만 안타깝게도 안드로이드에서 키보드 높이를 알 수 있는 native API 는 제공되지 않는다.  따라서 약간의 편법(?)을 통해 값을 알아내야 하는데, 오늘 포스팅에서는 그 과정을 다뤄보려 한다. 원리키보드 높이를 구하는 방법에 대한 다양한 접근법이 제시되고 있으나, 결">
 <meta name="keywords" content="Android">
 <meta property="og:type" content="article">
-<meta property="og:title" content="안드로이드 키보드 높이 구하기">
+<meta property="og:title" content="[안드로이드] 키보드 높이 구하기">
 <meta property="og:url" content="https://vagabond95.github.io/2019/09/08/android-keyboard-height/index.html">
 <meta property="og:site_name" content="기록은 기억을 지배한다">
 <meta property="og:description" content="앱 개발을 진행하다보면 Keyboard 높이를 알고싶은 상황을 마주할 때가 있다. 하지만 안타깝게도 안드로이드에서 키보드 높이를 알 수 있는 native API 는 제공되지 않는다.  따라서 약간의 편법(?)을 통해 값을 알아내야 하는데, 오늘 포스팅에서는 그 과정을 다뤄보려 한다. 원리키보드 높이를 구하는 방법에 대한 다양한 접근법이 제시되고 있으나, 결">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-09-08T13:36:38.366Z">
+<meta property="og:updated_time" content="2019-10-13T10:10:45.686Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="안드로이드 키보드 높이 구하기">
+<meta name="twitter:title" content="[안드로이드] 키보드 높이 구하기">
 <meta name="twitter:description" content="앱 개발을 진행하다보면 Keyboard 높이를 알고싶은 상황을 마주할 때가 있다. 하지만 안타깝게도 안드로이드에서 키보드 높이를 알 수 있는 native API 는 제공되지 않는다.  따라서 약간의 편법(?)을 통해 값을 알아내야 하는데, 오늘 포스팅에서는 그 과정을 다뤄보려 한다. 원리키보드 높이를 구하는 방법에 대한 다양한 접근법이 제시되고 있으나, 결">
 
 
@@ -125,7 +125,7 @@
   };
 </script>
 
-  <title>안드로이드 키보드 높이 구하기 | 기록은 기억을 지배한다</title>
+  <title>[안드로이드] 키보드 높이 구하기 | 기록은 기억을 지배한다</title>
   
 
 
@@ -323,7 +323,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">안드로이드 키보드 높이 구하기
+          <h2 class="post-title" itemprop="name headline">[안드로이드] 키보드 높이 구하기
 
               
             
@@ -349,13 +349,23 @@
                 
               
 
-              <time title="Created: 2019-09-08 15:57:53 / Modified: 22:36:38" itemprop="dateCreated datePublished" datetime="2019-09-08T15:57:53+09:00">2019-09-08</time>
+              <time title="Created: 2019-09-08 15:57:53" itemprop="dateCreated datePublished" datetime="2019-09-08T15:57:53+09:00">2019-09-08</time>
             </span>
           
 
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-10-13 19:10:45" itemprop="dateModified" datetime="2019-10-13T19:10:45+09:00">2019-10-13</time>
+              </span>
             
           
 
@@ -413,7 +423,7 @@
 <h1 id="구현"><a href="#구현" class="headerlink" title="구현"></a>구현</h1><p>위 원리를 바탕으로 실제 구현 레벨에 들어가기 전에 화면이라는 주체를 어떤 개념으로 명확히 정할지 생각해보자. 화면이라는 단어 자체는 매우 추상적이다. 우리는 그것을 스크린 전체로, Activity 로, 하나의 View 로 생각할 수도 있다. </p>
 <p>이번 주제에서는 화면을 View 라고 정하고 진행할 것이다. 그 이유는 우리가 진행하는 과정에서 활용할 수 있는 API 가 모두 View 레벨에서 제공되는 것이기 때문이다. 이 부분을 참고하면서 포스팅을 읽어주길 바란다.</p>
 <h2 id="1-화면의-높이를-구한다"><a href="#1-화면의-높이를-구한다" class="headerlink" title="1. 화면의 높이를 구한다."></a>1. 화면의 높이를 구한다.</h2><p>일반적으로 안드로이드는 View.getHeight() 를 호출하는 타이밍에 우리가 원하는 높이값을 얻을 수 있다고 보장하지 않는다. 왜냐하면 View 는 여러 과정을 거쳐 자신의 크기를 결정하고 그것이 결정되는 타이밍이 우리가 크기를 요청하는 타이밍과 일치하지 않을 수 있기 때문이다.</p>
-<p>따라서 정확한 View 의 높이 값을 알기 위해서는 View 가 자신의 크기가 결정된 타이밍 이후에 요청을 해야 한다. 그리고 이 과정은 <a href="https://developer.android.com/reference/android/view/ViewTreeObserver.OnGlobalLayoutListener" target="_blank" rel="noopener">ViewTreeObserver.OnGlobalLayoutListener</a> 를 활용하여 진행할 수 있다.</p>
+<p>따라서 정확한 View 의 높이 값을 알기 위해서는 View 가 자신의 크기가 결정된 타이밍 이후에 요청을 해야 한다. 그리고 이 과정은 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5jb20vcmVmZXJlbmNlL2FuZHJvaWQvdmlldy9WaWV3VHJlZU9ic2VydmVyLk9uR2xvYmFsTGF5b3V0TGlzdGVuZXI=" title="https://developer.android.com/reference/android/view/ViewTreeObserver.OnGlobalLayoutListener">ViewTreeObserver.OnGlobalLayoutListener<i class="fa fa-external-link"></i></span> 를 활용하여 진행할 수 있다.</p>
 <p>OnGlobalLayoutListener 는 해당 View에 변경점이 생겼을 때, 이를 콜백형태로 감지할 수 있다. 변경점의 내용중에는 View 의 크기가 결정되는 것도 포함되므로 우리는 해당 콜백이 호출되었을 때 View.getHeight() 를 호출할 경우 우리가 원하는 높이 값을 얻어낼 수 있다.</p>
 <p>코드로는 다음과 같이 구할 수 있다.</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> viewHeight = -<span class="number">1</span>;</span><br><span class="line">    </span><br><span class="line">rootView.getViewTreeObserver().addOnGlobalLayoutListener(() -&gt; &#123;</span><br><span class="line">    <span class="keyword">int</span> currentViewHeight = rootView.getHeight();</span><br><span class="line">    <span class="keyword">if</span> (currentViewHeight &gt; viewHeight) &#123;</span><br><span class="line">        viewHeight = currentViewHeight;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
@@ -424,12 +434,12 @@
 <li>현재 화면상에 보여지고 있는 영역의 크기를 구하는 것</li>
 <li>키보드가 언제 올라왔는지 감지할 수 있는 것</li>
 </ol>
-<p><strong>첫번째단계</strong>는 안드로이드에서 제공하는 <a href="https://developer.android.com/reference/android/view/View.html#getWindowVisibleDisplayFrame(android.graphics.Rect)" target="_blank" rel="noopener">View.getWindowVisibleDisplayFrame()</a> 를 활용하여 해결할 수 있다.</p>
+<p><strong>첫번째단계</strong>는 안드로이드에서 제공하는 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5jb20vcmVmZXJlbmNlL2FuZHJvaWQvdmlldy9WaWV3Lmh0bWwjZ2V0V2luZG93VmlzaWJsZURpc3BsYXlGcmFtZShhbmRyb2lkLmdyYXBoaWNzLlJlY3Qp" title="https://developer.android.com/reference/android/view/View.html#getWindowVisibleDisplayFrame(android.graphics.Rect)">View.getWindowVisibleDisplayFrame()<i class="fa fa-external-link"></i></span> 를 활용하여 해결할 수 있다.</p>
 <p>getWindowVisibleDisplayFrame(Rect rect) 메소드는<br>해당 View 를 그리고 있는 <strong>window를 기준으로, 현재 보여지고 있는 영역의 크기를 반환한다</strong>.  따라서, 키보드가 올라왔을 때 해당 메소드를 호출해 값을 얻어내면 된다.</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Rect visibleFrameSize = <span class="keyword">new</span> Rect();</span><br><span class="line">view.getWindowVisibleDisplayFrame(visibleFrameSize);</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> visibleFrameHeight = visibleFrameSize.bottom - visibleFrameSize.top;</span><br></pre></td></tr></table></figure>
 
 
-<p><strong>두번째 단계</strong> 는 이전에 활용했던 <a href="https://developer.android.com/reference/android/view/ViewTreeObserver.OnGlobalLayoutListener" target="_blank" rel="noopener">ViewTreeObserver.OnGlobalLayoutListener</a> 를 다시 이용하여 해결할 수 있다.</p>
+<p><strong>두번째 단계</strong> 는 이전에 활용했던 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5jb20vcmVmZXJlbmNlL2FuZHJvaWQvdmlldy9WaWV3VHJlZU9ic2VydmVyLk9uR2xvYmFsTGF5b3V0TGlzdGVuZXI=" title="https://developer.android.com/reference/android/view/ViewTreeObserver.OnGlobalLayoutListener">ViewTreeObserver.OnGlobalLayoutListener<i class="fa fa-external-link"></i></span> 를 다시 이용하여 해결할 수 있다.</p>
 <p>키보드 활성화/ 비활성화를 감지하는 아이디어는 다음과 같다.</p>
 <ol>
 <li>(SoftInputMode 값에 따라 다르지만) 일반적으로 키보드가 올라오면 키보드의 크기만큼 화면의 높이가 줄어들게 된다.</li>
@@ -438,7 +448,7 @@
 </ol>
 <p>그럼 우리는 <strong>어떤 View 를 이용하여 위 과정을 진행해야할까?</strong></p>
 <h3 id="1-Activity-의-RootLayout-을-이용한다"><a href="#1-Activity-의-RootLayout-을-이용한다" class="headerlink" title="1) Activity 의 RootLayout 을 이용한다."></a>1) Activity 의 RootLayout 을 이용한다.</h3><p>가장 무난하고 쉬운 선택이다. Acitivity 의 Xml 에서 root level 에 있는 layout 을 View 로 이용하는 방법이다. 실제로도 대부분의 케이스에서는 잘 동작한다.</p>
-<p>하지만 이 방법은 치명적인 단점이 존재한다.  Activity 의 <a href="https://developer.android.com/guide/topics/manifest/activity-element#wsoft" target="_blank" rel="noopener">windowSoftInputMode</a> 옵션 값에따라 정상적으로 동작하지 않을 수 있다는 점이다.</p>
+<p>하지만 이 방법은 치명적인 단점이 존재한다.  Activity 의 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5jb20vZ3VpZGUvdG9waWNzL21hbmlmZXN0L2FjdGl2aXR5LWVsZW1lbnQjd3NvZnQ=" title="https://developer.android.com/guide/topics/manifest/activity-element#wsoft">windowSoftInputMode<i class="fa fa-external-link"></i></span> 옵션 값에따라 정상적으로 동작하지 않을 수 있다는 점이다.</p>
 <p>windowSoftInputMode 옵션은 가상 키보드와 Activity 의 상호작용을 지정하는 옵션인데, 일부 옵션값은 <strong>키보드가 올라와도 Activity 높이의 변화가 없기 때문에</strong> 두번째 단계를 수행할 수 없다. 따라서 Acitivity 의 windowSoftInputMode 값에 의존성이 걸리게되어, 범용성 측면에서 좋은 선택이라고 하기는 어렵다.</p>
 <h3 id="2-PopupWindow-를-이용한다"><a href="#2-PopupWindow-를-이용한다" class="headerlink" title="2) PopupWindow 를 이용한다."></a>2) PopupWindow 를 이용한다.</h3><p>실제 프로젝트에서 선택하여 이용하고 있다. 이 방법은 RootLayout 방식의 단점을 다음과 같이 커버할 수 있다. </p>
 <p>PopupWindow 는 고유의 SoftInputMode 을 별도로 지정할 수 있다. 따라서 Acitivity windowSoftInputMode 옵션이 무엇이든 영향을 받지 않고, 독립적으로 활용이 가능하다. 따라서 GlobalLayoutListener 을 활용한 두번째 단계에서 이슈가 발생하지 않는다.</p>
@@ -494,8 +504,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/10/is-this-rxjava-2/" rel="next" title="그런 Rx Java 로 괜찮은가  2 - Mulitple API, 병렬 처리">
-                <i class="fa fa-chevron-left"></i> 그런 Rx Java 로 괜찮은가  2 - Mulitple API, 병렬 처리
+              <a href="/2019/08/10/is-this-rxjava-2/" rel="next" title="[안드로이드] 그런 Rx Java 로 괜찮은가  2 - Mulitple API, 병렬 처리 (flatMap, merge, zip)">
+                <i class="fa fa-chevron-left"></i> [안드로이드] 그런 Rx Java 로 괜찮은가  2 - Mulitple API, 병렬 처리 (flatMap, merge, zip)
               </a>
             
           </div>
@@ -504,8 +514,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/09/20/android-api-version-manage/" rel="prev" title="Android API 버전 정책 이해하기 (targetSdkVersion, compileSdkVersion, minSdkVersion)">
-                Android API 버전 정책 이해하기 (targetSdkVersion, compileSdkVersion, minSdkVersion) <i class="fa fa-chevron-right"></i>
+              <a href="/2019/09/20/android-api-version-manage/" rel="prev" title="[안드로이드] targetSdkVersion, compileSdkVersion, minSdkVersion 이란 무엇인가?">
+                [안드로이드] targetSdkVersion, compileSdkVersion, minSdkVersion 이란 무엇인가? <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -582,7 +592,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-count">8</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -605,7 +615,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">4</span>
+                      
+                    
+                    <span class="site-state-item-count">5</span>
                     <span class="site-state-item-name">tags</span>
                   
                 </div>
@@ -822,7 +834,7 @@
   var disqus_config = function() {
     this.page.url = "https://vagabond95.github.io/2019/09/08/android-keyboard-height/";
     this.page.identifier = "2019/09/08/android-keyboard-height/";
-    this.page.title = '안드로이드 키보드 높이 구하기';
+    this.page.title = '[안드로이드] 키보드 높이 구하기';
     };
   function loadComments() {
     var d = document, s = d.createElement('script');

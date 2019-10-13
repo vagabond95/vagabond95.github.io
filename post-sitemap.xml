@@ -8,8 +8,16 @@
     </url>
 
     <url>
+        <loc>https://vagabond95.github.io/2018/09/21/what-is-nullaway/</loc>
+        <lastmod>2019-10-13T10:11:37.747Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://vagabond95.github.io/2019/10/13/object-book-1-3/</loc>
-        <lastmod>2019-10-13T09:58:16.240Z</lastmod>
+        <lastmod>2019-10-13T10:11:24.709Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -17,7 +25,47 @@
 
     <url>
         <loc>https://vagabond95.github.io/2019/07/07/2019-harf-review/</loc>
-        <lastmod>2019-10-13T09:57:59.482Z</lastmod>
+        <lastmod>2019-10-13T10:11:05.833Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://vagabond95.github.io/2019/09/08/android-keyboard-height/</loc>
+        <lastmod>2019-10-13T10:10:45.686Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://vagabond95.github.io/2018/04/19/notification-with-oreo/</loc>
+        <lastmod>2019-10-13T10:10:39.054Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://vagabond95.github.io/2019/08/10/is-this-rxjava-2/</loc>
+        <lastmod>2019-10-13T10:10:30.834Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://vagabond95.github.io/2019/07/20/is-this-rxjava-1/</loc>
+        <lastmod>2019-10-13T10:10:22.862Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://vagabond95.github.io/2019/09/20/android-api-version-manage/</loc>
+        <lastmod>2019-10-13T10:10:06.901Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
