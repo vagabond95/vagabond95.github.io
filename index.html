@@ -565,6 +565,231 @@ public class Movie {
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vagabond95.github.io/2019/10/20/post/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jihoon Kim">
+      <meta itemprop="description" content="내일 잊기전에 오늘 적어두는 블로그">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="기록은 기억을 지배한다">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/10/20/post/" class="post-title-link" itemprop="url">[도서] 오브젝트 정리 Chapter 4 (캡슐화, 응집도, 결합도)</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-10-20 15:09:37" itemprop="dateCreated datePublished" datetime="2019-10-20T15:09:37+09:00">2019-10-20</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-10-26 18:06:11" itemprop="dateModified" datetime="2019-10-26T18:06:11+09:00">2019-10-26</time>
+              </span>
+            
+          
+
+          
+
+          
+            
+            
+              
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">Comments: </span>
+                <a href="/2019/10/20/post/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/20/post/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>이번 글에서는 데이터 중심 클래스의 정의와 단점을 알아보고, 이를 해결하기 위한 방법으로 캡슐화와 응집도/결합도에 대한 완전한 이해를 얻어가는 것이 목적이다.</p>
+<p><a href="https://vagabond95.github.io/2019/10/13/object-book-1-3/">이전글</a> 내용을 살펴보면 객체지향 애플리케이션을 구현하는 것은 각 객체가 책임을 수행하며 서로간의 협력을 통해 공동체를 구축한다는 것을 의미한다. 즉, 중요한 것은 객체가 다른 객체와 <strong>협력하는 방법</strong>이며, 각 객체가 내부에 어떤 상태를 가지고 관리하는 지에 대한 것은 부가적인 문제일 뿐이다.  </p>
+<p>그러나, 우리가 일반적으로 클래스를 설계하는 과정은 어떨까? </p>
+<ol>
+<li>처음부터 객체간의 협력과 책임에 대해 고민하는 것은 머리아프다.</li>
+<li>따라서 우선 클래스에 어떤 데이터가 들어가야할지 결정한다.</li>
+<li>또한 어떤 상황에서도 객체가 사용될 수 있게 최대한 많은 getter/setter 를 추가한다.  </li>
+</ol>
+<p>이러한 설계방식을 <strong>데이터 중심 설계</strong> (혹자는 추측에 의한 설계전략)라고 부르며, 데이터 중심 설계는 객체의 외부가 아닌 내부에 초점을 맞추게 된다. </p>
+<p>데이터 중심 클래스의 객체는 단순한 데이터의 집합일 뿐이다. 따라서 제공되는 메소드는 과도한 접근자와 수정자 뿐이며, 이 데이터를 사용하여 로직을 수행하는 일은 별도의 객체에서 수행하게 된다. 이로 인하여 객체의 인터페이스에 내부 구현이 노출되고, 인터페이스를 이용하여 협력하는 또다른 객체 역시 데이터 중심 클래스의 내부구현에 종속되게 된다. (캡슐화가 이루어지지 않음) 문제는 <strong>객체의 내부 구현은 언제든 변화가 생길 수 있다는 점</strong>이다. 따라서 데이터 중심의 설계는 변화가 발생했을 때 협력하는 모든 객체가 영향을 받게되므로 변화에 매우 취약한  설계방식 이다. </p>
+<h1 id="캡슐화-응집도-결합도"><a href="#캡슐화-응집도-결합도" class="headerlink" title="캡슐화, 응집도, 결합도"></a>캡슐화, 응집도, 결합도</h1><p>좋은 객체지향 설계의 척도를 이야기할 때 빠지지 않고 등장하는 얘기들이 있다. 캡슐화가 잘되어야한다. 높은 응집도와 낮은 결합도를 가져야한다. 귀에 못박히도록 들었으나 해당 문장이 가지고 있는 진정한 의미를 이해하고 있었다고 단언할 수 있을까?</p>
+<h2 id="캡슐화"><a href="#캡슐화" class="headerlink" title="캡슐화"></a>캡슐화</h2><p>캡슐화가 무엇일까? 라고 질문하면 “객체 내부 구현을 외부로부터 감추는 것이다.” 라고 쉽게 얘기할 수 있다. 구현레벨에서는 접근 제한자를 이용하여 맴버변수를 숨기고 getter/setter 를 구성하며 캡슐화가 적용된 코드라고 얘기하곤 한다.</p>
+<p>안타깝게도 위 내용은 캡슐화의 본질을 온전히 이해하고 있지 못하고 있다. 캡슐화는 분명 내부구현을 외부로부터 감추는 것이 맞다. 하지만 중요한 것은 <strong>왜 감추느냐</strong>는 것이다. 위에서 얘기한 데이터 중심의 설계방식을 살펴보면 그 이유를 알 수 있다. 캡슐화를 통해 감추는 이유는 내부구현을 숨김으로 인하여 내부구현의 변화가 발생하더라도 협력하는 <strong>외부 객체에 변화의 영향이 퍼져나가지 않도록 막기 위함</strong>이다. </p>
+<p>너무 당연한 얘기일까? 그렇다면 다시 질문해보자. 접근제한자로 변수를 숨기고 getter/setter 를 통해 접근 및 조작하는 것은 캡슐화가 이루어진 것이라고 할 수 있을까? 캡슐화를 한 것은 맞다. 이러한 방식을 데이터 캡슐화라고 부른다. 그러나 데이터 캡슐화만으로는 캡슐화의 목적을 달성하지 못한다. getter 가 제공된다는 것은 필연적으로 어떤 로직을 수행하기 위해 해당 데이터가 필요하다는 의미이며, 그 로직은 또다른 객체에서 수행될 수 밖에없다. 그리고 만약 getter 의 return type 이 바뀐다면? 또다른 객체 역시 내용을 변경할 수 밖에 없다. 이러한 케이스를 <strong>객체의 내부구현이 드러난다</strong>고 표현한다.  캡슐화의 목적은 내부구현을 숨기는 것인데, 데이터 캡슐화만으로는 내부구현이 드러나게 되는 아이러니한 상황이 발생하는 것이다. (내부구현은 return type 뿐만 아니라 parameter, method 자체 로도 드러날 수 있다.)</p>
+<pre><code>// 캡슐화의 목적이 이루어지지 않은 클래스
+public class Movie {
+    private String title;
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+}</code></pre><p>자, 데이터를 숨기는 것만으로는 캡슐화의 목적이 달성될 수 없음을 알았다. 그렇다면 어떤 수준까지 해야할까? 책에서는 다음과 같이 얘기하고 있다.</p>
+<blockquote>
+<p>다시한번 강조하지만 캡슐화란 변할 수 있는 어떤 것이라도 감추는 것이다. 그것이 속성의 타입이건, 할인 정책의 종류건 상관없이 내부 구현의 변경으로 인해 외부가 객체가 영향을 받는다면 캡슐화를 위반한 것이다.</p>
+</blockquote>
+<p>변경될 수 있는 모든 것을 감추는 것, 그것만이 캡슐화의 목적에 다다를 수 있다. 그리고 이러한 규칙은 협력을 잘 구성하고 책임을 스스로 수행할 수 있도록 구성하면 자연스레 지켜지게 된다. 즉 캡슐화를 하기 위해 일련의 작업들을 수행하는 것이 아니라, 객체지향 프로그래밍의 규칙을 지키다보면 자연스럽게 캡슐화가 보장되어가는 형태가 된다.</p>
+<p>그래도 역시 이해하기에 모호한 부분이 있다. 그래서 캡슐화가 잘 되었는지 파악할 수 있는 기준들을 소개하고자 한다.</p>
+<h2 id="응집도와-결합도"><a href="#응집도와-결합도" class="headerlink" title="응집도와 결합도"></a>응집도와 결합도</h2><p>응집도와 결합도는 소프트웨어품질을 측정하기 위한 기준이지만 캡슐화의 정도를 측정할때도 유용하게 활용될 수 있다. 객체지향 관점에서 각 개념은 다음과 같이 풀어내고 있다.</p>
+<ul>
+<li><strong>응집도</strong>는 클래스/객체에 얼마나 관련 높은 책임이 할당되었는지를 나타낸다.</li>
+<li><strong>결합도</strong>는 클래스/객체가 협력에 필요한 적절한 수준의 관계만 유지하고 있는지 나타낸다.</li>
+</ul>
+<p>… 객체지향을 오해하기 쉬운 이유는 이러한 애매하고 추상적인 개념들을 명확하게 이해하기가 어렵기 때문이라고 생각한다.</p>
+<p>처음으로 돌아가 생각해보자. 좋은 설계란 무엇인가? 변경하기 쉬운 설계이다. 그리고 높은 응집도와 낮은 결합도를 가졌을 때 우리는 좋은 설계라고 부르곤한다. 따라서 각 개념은 결국 <strong>변경</strong>과 관련이 있다는 얘기가 된다. 변경의 관점에서 다시한번 각 개념을 살펴보자.</p>
+<p>어플리케이션에 여러 모듈(객체)가 있을 때</p>
+<ul>
+<li><p><strong>(변경의 관점에서) 응집도</strong>는 변경이 발생했을 때 어플리케이션내에서 변경이 발생하는 정도를 의미한다. 예를들어 특정 기능에 대한 변경이 있을때 대해 하나의 모듈만 변경된다면 응집도가 높고, 다수의 모듈이 함께 변경돼야하면 응집도가 낮다고 할 수 있다.</p>
+<p>  응집도가 낮다면 하나의 변경점에 대해 다수 모듈의 변경이 동반되기 때문에 변경에 부담이 생기기 시작한다.</p>
+</li>
+<li><p><strong>(변경의 관점에서) 결합도</strong>는 하나의 모듈에서 변경이 발생했을 때, 다른 모듈의 변경을 요구하는 정도를 의미한다. 예를들어 하나의 모듈을 수정했을 때 함께 변경해야하는 모듈의 수가 많을 수록 결합도가 높다고 할 수 있다.</p>
+<p>  결합도가 높다면 모듈의 내부구현이 변경되었을 때 영향을 받는 모듈 수가 많으므로 변경에 부담이 생기기 시작한다.</p>
+</li>
+</ul>
+<p>위 개념을 잘 이해했다면 왜 높은 응집도와 낮은 결합도가 충족된 것이 좋은 설계인것인지 알 수 있을 것이다.</p>
+<p>위에서 살펴본 데이터 중심설계는 낮은 응집도와 높은 결합도를 가진 객체를 양산하기 쉬운 방식인데 이유는 다음과 같다.</p>
+<p>응집도 개념에서 살펴보면, 객체의 클래스가 데이터를 중심으로 설계되었으므로 해당 객체의 책임은 데이터를 조작하고 내뱉는 것 그 이상도 이하도 아니다. 즉 데이터를 제공하는 객체가 스스로 일을 처리하지 못하므로, 로직을 수행하는 객체가 이를 수행하게 된다. 문제는 로직을 수행하는 객체가 또다른 데이터를 제공하는 객체를 맡기 시작할 경우 해당 객체의 책임은 점점 비대해지고 둘중 한쪽에서만 변경이 발생해도 필연적으로 같이 영향을 받게 된다. 하나의 클래스에서 변경이 발생했는데 전혀 연관이 없을 것같은 부분에서 사이드 이펙트가 발생하는 케이스가 대표적으로 각 클래스의 응집도가 낮은 상황이다.</p>
+<p>결합도 개념에서 살펴보면, 마찬가지로 데이터를 제공하는 객체가 스스로 일을 처리하지 못하므로 해당 데이터를 다른 객체에서 처리하게 된다. 만약 해당 객체의 데이터가 변경될 경우 (parameter, type) 데이터를 사용하는 모든 객체에게 변화의 영향이 퍼지게 된다.</p>
+<p>결국 내용을 돌아보면 다시 객체의 책임과 협력으로 귀결된다. 다음 글에서는 어떻게 객체에 책임을 잘 할당할 수 있는지에 대해 알아보자.</p>
+<h1 id="결론"><a href="#결론" class="headerlink" title="결론"></a>결론</h1><ul>
+<li>우리는 데이터 중심의 설계를 하고있었을 확률이 높다.</li>
+<li>캡슐화의 진정한 목적을 항상 기억하자.</li>
+<li>코드를 변경하기 어렵다면 응집도/결합도 정도를 점검해보자.</li>
+<li>결국 좋은 설계란 <strong>변경하기 쉬운</strong> 설계다.</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://vagabond95.github.io/2019/10/13/object-book-1-3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2260,285 +2485,13 @@ myService.getUsers()
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://vagabond95.github.io/2018/04/19/notification-with-oreo/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jihoon Kim">
-      <meta itemprop="description" content="내일 잊기전에 오늘 적어두는 블로그">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="기록은 기억을 지배한다">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/04/19/notification-with-oreo/" class="post-title-link" itemprop="url">[안드로이드] API 26, Oreo Notification 대응기</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-
-          
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-04-19 00:45:35" itemprop="dateCreated datePublished" datetime="2018-04-19T00:45:35+09:00">2018-04-19</time>
-            </span>
-          
-
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-10-13 19:10:39" itemprop="dateModified" datetime="2019-10-13T19:10:39+09:00">2019-10-13</time>
-              </span>
-            
-          
-
-          
-
-          
-            
-            
-              
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">Comments: </span>
-                <a href="/2018/04/19/notification-with-oreo/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/04/19/notification-with-oreo/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          <br>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="들어가며"><a href="#들어가며" class="headerlink" title="들어가며"></a><strong>들어가며</strong></h2><p>안드로이드에서 제공하는 알림(Notification) 은 강력한 기능들을 제공하고 있다. 그리고 매번 API 버전이 올라갈 때마다 빈번하게 Update 가 되는 녀석이기 때문에 계속해서 주시하고 있어야하는 놈이기도 하다. 그동안 아무생각없이 copy &amp; paste 만 하면서 사용하고 있던 스스로를 돌아보며 다시한번 알림의 전반적인 사용방법에 대해 정리하고자 포스트를 적었다.</p>
-<h3 id="개발-환경"><a href="#개발-환경" class="headerlink" title="개발 환경"></a><strong>개발 환경</strong></h3><ul>
-<li>supportLibrary Version - 26.1.0</li>
-<li>complileSDK Version - 26</li>
-<li>targetSDK Version - 26</li>
-</ul>
-<h2 id="TL-DR"><a href="#TL-DR" class="headerlink" title="TL; DR"></a><strong>TL; DR</strong></h2><p>오레오에서 알림 대응은 피할 수 없다. 미대응시 작동 X 😱</p>
-<h2 id="오레오대응-더이상은-피할-수-없다"><a href="#오레오대응-더이상은-피할-수-없다" class="headerlink" title="오레오대응.. 더이상은 피할 수 없다?"></a><strong>오레오대응.. 더이상은 피할 수 없다?</strong></h2><p>아직 비교적 최신 버전인 오레오 대응을 굳이 처음부터 다르는 이유는 다음과 같다.</p>
-<ol>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXJzLWtyLmdvb2dsZWJsb2cuY29tLzIwMTgvMDEvaW1wcm92aW5nLWFwcC1zZWN1cml0eS1hbmQtcGVyZm9ybWFuY2Utb24tZ29vZ2xlLXBsYXkuaHRtbA==" title="https://developers-kr.googleblog.com/2018/01/improving-app-security-and-performance-on-google-play.html">새로운 Google Play 방침<i class="fa fa-external-link"></i></span> 에 따르면  play store 에 등록되어 있는 앱을 업데이트 하거나, 새로 앱을 등록 할 경우 <code>targetSdkVersion &gt;= 26</code> 을 만족해야 한다. 따라서 오레오(8.0) 대응을 피할 수 없게 되었다.</p>
-<p> 2018년 하반기 부터</p>
-</li>
-<li><p>오레오 여러 변경 사항 중 특히 신경써줘야 할 부분은 알림(Notification) 에 대한 변경사항인데, 이를 반영하지 않을 경우 <strong>알림이 오지않는 치명적인 상황이 발생한다.</strong></p>
-</li>
-</ol>
-<h2 id="NotifcationChannel-의-등장"><a href="#NotifcationChannel-의-등장" class="headerlink" title="NotifcationChannel 의 등장"></a><strong>NotifcationChannel 의 등장</strong></h2><p>우리가 처리해줘야하는 부분은 오레오에서 새롭게 등장한 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5jb20vdHJhaW5pbmcvbm90aWZ5LXVzZXIvY2hhbm5lbHM=" title="https://developer.android.com/training/notify-user/channels">NotificationChannel<i class="fa fa-external-link"></i></span> 과 관련되어있다. 왜 google 은 이 녀석에 대한 처리를 강제했을까? 다음 상황을 살펴보면 그 이유를 짐작할 수 있다.</p>
-<p>나는 스마트폰에 알림이 쌓여있는 걸 좋아하지 않아서, 보통 대부분 앱의 알림을 꺼놓는다. 하지만 그때 아쉬운 점이 하나 있었는데, 확인하고 싶은 일부 알림 역시 받을 수 없다는 것이었다.</p>
-<p>Android 7.1 (API level 25) 이하 버전에서는 모든 알림이 하나로 묶여 관리됐기 때문에 위의 아쉬운 점을 해결할 수 없었고 이에 대한 대안으로 오레오에서 NotificationChannel 이 새롭게 추가되었다.</p>
-<img src="https://user-images.githubusercontent.com/27072782/60758428-7c512a80-a051-11e9-9fa2-ed4b67fbb7f8.jpg" class="notification_channel" width="200" height="120" title="notification_channel">
-
-<p>NotificationChannel 을 적용할 경우 더이상 각 알림이 하나로 묶이지 않고, channel 별로 분리되어 유저가 유연하게 알림을 설정할 수 있다. 위와 같이 notification_practice 앱에는 각각 <code>확인하고싶은 알림</code> 과 <code>보고싶지 않은 알림</code> 채널이 있으며 각 채널별로 수신여부, 잠금화면 표시여부, 소리 &amp; 진동 설정 등 여러 옵션을 세밀하게 설정할 수 있다. 👏👏👏</p>
-<h2 id="NotificationChannel-적용하기"><a href="#NotificationChannel-적용하기" class="headerlink" title="NotificationChannel 적용하기"></a><strong>NotificationChannel 적용하기</strong></h2><p>적용과정은 다음과 같다.</p>
-<ol>
-<li>NotifcationChannel 생성</li>
-<li>NotificationManager 에 만들어둔 NotifcationChannel 을 등록</li>
-<li>Notification builder 에 등록된 NotifcationChannel의 id 를 등록</li>
-</ol>
-<h3 id="NotificationChannel-생성-및-등록"><a href="#NotificationChannel-생성-및-등록" class="headerlink" title="NotificationChannel 생성 및 등록"></a><strong>NotificationChannel 생성 및 등록</strong></h3><pre><code>if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.O) {
-    String uniqueId = &quot;uniqueId&quot;;
-    String channelName = &quot;확인하고 싶은 알림&quot;;
-    String description = &quot;확인하고 싶은 알림 채널입니다.&quot;;
-    int importance = NotificationManager.IMPORTANCE_HIGH;
-
-    NotificationChannel notificationChannel = new NotificationChannel(uniqueId, channelName, importance);
-    notificationChannel.setDescription(description);
-
-    NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-    notificationManager.createNotificationChannel(notificationChannel);
-  }</code></pre><p>NotificationChannel 은 support library 에서 사용할 수 없다. 즉, 오레오 이전버전에서는 지원되지 않기 때문에 반드시 버전체크를 해줘야 한다.</p>
-<p>NotificationChannel 을 생성할 때 요구되는 id, name, importance 그리고 description 에 대해 간략히 설명하면 다음과 같다.</p>
-<ul>
-<li>id : 각 채널을 구분할 수 있는 unique 한 값</li>
-<li>name : 유저에게 표시되는 채널 이름</li>
-<li>importance : 알림에 대한 중요도이며 이 값에 따라 알림의 동작이 달라진다. API 25 이하버전에서 사용되던 notification priority 개념과 동일. 각 importance 값에 따른 동작의 차이는 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5jb20vdHJhaW5pbmcvbm90aWZ5LXVzZXIvY2hhbm5lbHMjaW1wb3J0YW5jZQ==" title="https://developer.android.com/training/notify-user/channels#importance">importance level<i class="fa fa-external-link"></i></span>에 잘 나와있다.</li>
-<li>description : 채널에 대한 설명, 특정 채널 설정 창에서 표기됨</li>
-</ul>
-<h3 id="Notification-builder-생성-및-channel-id-등록"><a href="#Notification-builder-생성-및-channel-id-등록" class="headerlink" title="Notification builder 생성 및 channel id 등록"></a><strong>Notification builder 생성 및 channel id 등록</strong></h3><pre><code>NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context, channelId);
-
-    notificationBuilder
-        .setSmallIcon(iconResource)
-        .setContentTitle(title)
-        .setContentText(content)
-        .setPriority(NotificationCompat.PRIORITY_HIGH);
-
-    // 기존 빌더에 Channel을 추가할 경우
-    notificationBuilder
-        .setSmallIcon(iconResource)
-        .setContentTitle(title)
-        .setContentText(content)
-        .setChannlId(channlId)
-        .setPriority(NotificationCompat.PRIORITY_HIGH);
-
-    // 알림 생성!
-    NotificationManagerCompat.from(context).notify(++notificationId, notificationBuilder.build());</code></pre><p>새롭게 알림 빌더를 구현할 경우 생성자에 channelId 를, 이미 사용하고 있는 빌더가 있다면 해당 빌더에 channel Id 를 추가해주면 된다. (내부 코드는 동일하다.)</p>
-<p>setChannelId 을 이용하여 채널을 등록하는 방법을 택했을 때, API 25 이하 버전에서는 <code>null</code> 이 들어가겠지만 내부에서 무시되기 때문에 안심해도 된다.</p>
-<h2 id="Notification-Channel-Tips"><a href="#Notification-Channel-Tips" class="headerlink" title="Notification Channel Tips"></a><strong>Notification Channel Tips</strong></h2><h3 id="채널은-딱-한번만-생성해주면-된다"><a href="#채널은-딱-한번만-생성해주면-된다" class="headerlink" title="채널은 딱 한번만 생성해주면 된다."></a><strong>채널은 딱 한번만 생성해주면 된다.</strong></h3><p>즉, 매번 알림을 만들때마다 채널을 다시 만들어줄 필요가 없다. 채널을 관리하는 유틸 클래스를 만들거나, application 클래스 등을 활용하여 재사용하는 방식으로 사용하면 된다.</p>
-<h3 id="채널-정보-변경하기"><a href="#채널-정보-변경하기" class="headerlink" title="채널 정보 변경하기"></a><strong>채널 정보 변경하기</strong></h3><p>이미 등록되어 있는 채널의 정보를 다시 바꿀 수 있을까? 가능하다! 하지만, 바꿀 수 있는 정보는 <code>name</code>, <code>description</code> 뿐이며, 그외의 채널정보를 바꾸고 싶을 경우 해당 채널을 삭제한 후 새로운 정보를 가지고 있는 채널을 다시 생성해줘야 한다.</p>
-<ul>
-<li><p><strong>등록된 채널의 name, description 을 변경하고 싶을 경우</strong></p>
-<p>  NotificationChannel notificationChannel = new NotificationChannel(uniqueId, newChannelName, importance);<br>  notificationChannel.setDescription(newDescription);</p>
-<p>  NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);<br>  notificationManager.createNotificationChannel(notificationChannel);</p>
-</li>
-</ul>
-<p>변경하고자 하는 name, description 을 가진 채널을 재등록해주면 된다. 이때 변경 전, 변경 후 채널 id가 동일한지 잘 확인하자.</p>
-<ul>
-<li><p><strong>등록된 채널을 삭제하고 싶을 경우</strong></p>
-<p>  NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);<br>  notificationManager.deleteNotificationChannel(channelId);</p>
-</li>
-</ul>
-<h3 id="Sound-설정도-잊지말자"><a href="#Sound-설정도-잊지말자" class="headerlink" title="Sound 설정도 잊지말자"></a><strong>Sound 설정도 잊지말자</strong></h3><ul>
-<li><p>기존에는 builder 상에서 sound 설정을 해줬지만, 오레오 부터는 알림이 채널별로 관리되므로 sound 설정도 각 채널 별로 해줘야 한다.</p>
-<p>  AudioAttributes audioAttributes = new AudioAttributes.Builder()</p>
-<pre><code>.setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-.setUsage(AudioAttributes.USAGE_NOTIFICATION_RINGTONE)
-.build();</code></pre><p>  notificationChannel.setSound(soundUri, audioAttributes);</p>
-</li>
-<li><p><code>setSound()</code> 메소드에는 2개의 인자가 들어가는데 첫번째, sound 는 기존에 사용하던 파일의 uri 를 넣어 주면된다. 두번째 <strong>AudioAttributes</strong> 가 이번에 새롭게 생긴 녀석인데, 위 코드와 같이 추가로 설정해주지 않으면 소리가 나오지 않는다.</p>
-</li>
-</ul>
-<h2 id="추가로-알게된-사실들"><a href="#추가로-알게된-사실들" class="headerlink" title="추가로 알게된 사실들"></a><strong>추가로 알게된 사실들</strong></h2><ol>
-<li><p><strong>priority 와 importance level 이 다를경우 무엇이 우선될까?</strong></p>
-<p> 알림 빌더 생성시 API 25 이하 버전을 위해 priority 값을 반드시 설정해줘야 한다. 따라서 오레오(26) 이상의 버전은 importance 값과 priorty 값 모두 가지고 있게 되는데, 이때 (매우 드물겠지만) 각각의 값이 다를 경우 어떤 값을 따라갈까?</p>
-<ul>
-<li><p>importance 는 IMPORTANCE_HIGH 설정 (가장 높은 기대값)</p>
-</li>
-<li><p>priority 는 PRIORITY_MIN 설정 (가장 낮은 기대 값)</p>
-<p>결과는 importance 를 따라감을 확인 했다.</p>
-</li>
-</ul>
-</li>
-<li><p><strong>설정한 importance / priority 값이 항상 알림의 동작을 결정한다고 보장할 수 없다.</strong></p>
-<p> 위의 importance 값에 대해 설명할 때 해당 값이 알림의 동작을 결정한다고 얘기했었다. 그런데 이제와서 보장할 수 없다니?</p>
-<p> docs 에서 이부분을 명확히 설명해주고 있다.</p>
-</li>
-</ol>
-<blockquote>
-<p>Although you must set the notification importance/priority as shown here, the system does not guarantee the alert behavior you’ll get. In some cases the system might change the importance level based other factors, and the user can always redefine what the importance level is for a given channel</p>
-</blockquote>
-<p>즉, 정리하면 importance / priority 값이 알림의 동작을 결정하는 것은 맞으나 <code>다양한 상황에서 해당 값이 바뀔 수 있으므로</code> 항상 설정해준 값대로 알림이 동작할 것이라고 판단하지 말라는 의미이다. 실제로 importance 값을 high 로 세팅한 channel 이 있어도 해당 channel 설정에서 중요도(importance) 값을 변경할 경우 high 가 아닌 가장 최근에 변경한 값으로 적용됨을 확인 할 수 있다. (사실 유저입장에서는 유저가 변경한 설정이 유지되는게 맞으므로 자연스러운 로직이다.)</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
+
 
 
           </div>
@@ -2578,7 +2531,7 @@ myService.getUsers()
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
