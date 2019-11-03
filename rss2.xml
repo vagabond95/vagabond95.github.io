@@ -8,11 +8,11 @@
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>내일 잊기전에 오늘 적어두는 블로그</description>
-    <pubDate>Sun, 03 Nov 2019 09:15:32 GMT</pubDate>
+    <pubDate>Sun, 03 Nov 2019 09:16:48 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
-      <title>squash merge 된 branch 를 rebase 할 때 생기는 이슈 (—onto 옵션)</title>
+      <title>[git] squash merge 된 branch 를 rebase 할 때 생기는 이슈 (—-onto 옵션)</title>
       <link>https://vagabond95.github.io/2019/11/03/git-rebase-onto/</link>
       <guid>https://vagabond95.github.io/2019/11/03/git-rebase-onto/</guid>
       <pubDate>Sun, 03 Nov 2019 09:12:30 GMT</pubDate>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>squash merge 된 branch 를 rebase 할 때 생기는 이슈 (—onto 옵션)</title>
+    <title>[git] squash merge 된 branch 를 rebase 할 때 생기는 이슈 (—-onto 옵션)</title>
     <url>/2019/11/03/git-rebase-onto/</url>
     <content><![CDATA[<h1 id="문제-상황"><a href="#문제-상황" class="headerlink" title="문제 상황"></a>문제 상황</h1><h2 id="1-초기-브랜치-상황"><a href="#1-초기-브랜치-상황" class="headerlink" title="1.초기 브랜치 상황"></a>1.초기 브랜치 상황</h2><pre><code>// old_feature
 A - B - C - D
