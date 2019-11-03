@@ -395,7 +395,7 @@
                 
               
 
-              <time title="Created: 2019-11-03 18:12:30 / Modified: 18:16:48" itemprop="dateCreated datePublished" datetime="2019-11-03T18:12:30+09:00">2019-11-03</time>
+              <time title="Created: 2019-11-03 18:12:30 / Modified: 18:17:53" itemprop="dateCreated datePublished" datetime="2019-11-03T18:12:30+09:00">2019-11-03</time>
             </span>
           
 
@@ -458,12 +458,12 @@ A - B - C - D
 A
 
 // new_feature (dependent old feature)
-A - B - C - D - E - F - G - H</code></pre><h2 id="2-squash-merge"><a href="#2-squash-merge" class="headerlink" title="2. squash merge"></a>2. squash merge</h2><p>이후 old_feature 이 squash merge 로 master 브랜치에 반영되었다.</p>
+A - B - C - D - E - F - G - H</code></pre><h2 id="2-squash-merge"><a href="#2-squash-merge" class="headerlink" title="2. squash merge"></a>2. squash merge</h2><p>이후 old_feature 가 squash merge 로 master 에 반영되었다.</p>
 <pre><code>// master
-A - X</code></pre><h2 id="3-conflict-발생"><a href="#3-conflict-발생" class="headerlink" title="3. conflict 발생"></a>3. conflict 발생</h2><p>new_feature 브랜치 작업이 마무리된 후, 변경된 master 브랜치를 기준으로 rebase 하여 PR 을 날리려고 시도하였다. </p>
+A - X</code></pre><h2 id="3-conflict-발생"><a href="#3-conflict-발생" class="headerlink" title="3. conflict 발생"></a>3. conflict 발생</h2><p>new_feature 작업이 마무리된 후, 변경된 master 를 기준으로 rebase 하여 PR 을 날리려고 시도하였다. </p>
 <p><strong>기대한 브랜치</strong></p>
 <pre><code>// new_feature (rebase from master)
-A - X - E - F - G - H</code></pre><p>그런데 conflict 가 발생하면서 old_feature 브랜치의 커밋 ‘A - D’ 를 순차적으로 resolve 처리해야하는 상황이 발생했다. <strong>master 의 커밋 ‘X’ 에 이미 old_feature 브랜치의 변경사항이 모두 반영되어 있는데</strong>, 왜 이런 일이 발생하는 것일까?</p>
+A - X - E - F - G - H</code></pre><p>그런데 conflict 가 발생하면서 old_feature 의 커밋 ‘A - D’ 를 순차적으로 resolve 처리해야하는 상황이 발생했다. <strong>master 의 커밋 ‘X’ 에 이미 old_feature 브랜치의 변경사항이 모두 반영되어 있는데</strong>, 왜 이런 일이 발생하는 것일까?</p>
 <h1 id="원인"><a href="#원인" class="headerlink" title="원인"></a>원인</h1><p>원인을 알아보기 위해  Rebase 가 진행되는 과정을 살펴보도록 하자. </p>
 <pre><code>git rebase master</code></pre><p>이렇게 아무런 옵션을 주지 않고 rebase 명령을 요청할 경우 다음과 같은 과정으로 진행된다.</p>
 <ol>
@@ -473,8 +473,8 @@ A - X - E - F - G - H</code></pre><p>그런데 conflict 가 발생하면서 old_
 </ol>
 <p>위 과정을 베이스로 conflict 가 난 상황을 다시 재현 해보자.</p>
 <ol>
-<li>new_feature 브랜치를 master branch 를 통해 리베이스 한다.</li>
-<li>master 브랜치와 new_feature 의 공통 커밋인 <strong>A 로 이동한다</strong>.<ul>
+<li>new_feature 를 master branch 를 통해 리베이스 한다.</li>
+<li>master 와 new_feature 의 공통 커밋인 <strong>A 로 이동한다</strong>.<ul>
 <li>old_feature 와 new_feature 의 공통 커밋은 D 이지만, 스쿼시 옵션으로 인해 <strong>old_feature 의 ‘B~D’ 커밋이 X로 통합 되었으므로</strong> 리베이스 과정에서는 D 를 찾을 수 없다.</li>
 </ul>
 </li>
