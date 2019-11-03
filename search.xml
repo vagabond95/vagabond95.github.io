@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>[git] squash merge 된 branch 를 rebase 할 때 생기는 이슈 (—-onto 옵션)</title>
+    <title>[git] squash merge 된 branch 를 rebase 할 때 생기는 이슈 (—---onto 옵션)</title>
     <url>/2019/11/03/git-rebase-onto/</url>
     <content><![CDATA[<h1 id="문제-상황"><a href="#문제-상황" class="headerlink" title="문제 상황"></a>문제 상황</h1><p><strong>1.초기 브랜치 상황</strong></p>
 <pre><code>// old_feature
@@ -38,13 +38,13 @@ A - X - E - F - G - H</code></pre><p>그런데 conflict 가 발생하면서 old_
 </ol>
 <p><strong>결론</strong><br>squash 로 인해 기존의 공통 커밋이 새로운 커밋으로 통합되어 사라지게 되면서, rebase 과정에서 conflict 가 발생</p>
 <h1 id="해결"><a href="#해결" class="headerlink" title="해결"></a>해결</h1><p>원인은 rebase 의 기본 동작을 수행했을 때 A 부터 시작되는 것이었다. 그렇다면 old_feature 가 반영된 X 커밋 이후로 rebase 를 수행하도록 하면 명령할 수 는 없을까?</p>
-<p>다행히도 rebase 에서는 <strong>–onto</strong> 옵션을 제공하여 rebase 가 동작할 범위를 지정할 수 있다.</p>
+<p>다행히도 rebase 에서는 <strong>—-onto</strong> 옵션을 제공하여 rebase 가 동작할 범위를 지정할 수 있다.</p>
 <pre><code>git rebase --onto master HEAD~4</code></pre><p>위와 같이 요청할 경우 rebase 는 HEAD 를 포함하여 최근 4개의 커밋 범위까지 rebase 를 수행한다. 즉, new_feature 기준으로 E - F - G - H 범위 내에서 rebase 가 수행된다. master 에는 E~H 에 대한 내용이 없으므로 conflict 발생없이 한줄로 예쁘게 rebase 가 완료된다.</p>
 <p><strong>rebase 가 완료된 브랜치</strong></p>
 <pre><code>// new_feature
 A - X - E&apos; - F&apos; - G&apos; - H&apos;</code></pre><p><strong>번외</strong></p>
 <p>commit 범위를 지정하는 것이 번거로울 경우 아래와 같은 방법으로 동일한 결과를 얻을 수 있다. </p>
-<pre><code>git rebase --onto master old_feature new_feature</code></pre><p>해당 명령은 old_feature 에 존재하는 커밋을 제외하고, new_feature 에 대해 rebase 를 수행한다. 따라서 new_feature 에서, B<del>D 커밋이 제외되고 E</del>H 커밋에 대해 rebase 가 진행된다.</p>
+<pre><code>git rebase --onto master old_feature new_feature</code></pre><p>해당 명령은 old_feature 에 존재하는 커밋을 제외하고, new_feature 에 대해 rebase 를 수행한다. 따라서 new_feature 에서, B-D 커밋이 제외되고 E-H 커밋에 대해 rebase 가 진행된다.</p>
 <p>단, 해당 방법은 old_feature 가 삭제 되지 않았을 경우에만 사용이 가능하다는 단점이 있다.</p>
 ]]></content>
       <tags>
