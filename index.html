@@ -395,7 +395,7 @@
                 
               
 
-              <time title="Created: 2019-11-03 18:12:30 / Modified: 18:17:53" itemprop="dateCreated datePublished" datetime="2019-11-03T18:12:30+09:00">2019-11-03</time>
+              <time title="Created: 2019-11-03 18:12:30 / Modified: 18:18:43" itemprop="dateCreated datePublished" datetime="2019-11-03T18:12:30+09:00">2019-11-03</time>
             </span>
           
 
@@ -481,7 +481,7 @@ A - X - E - F - G - H</code></pre><p>그런데 conflict 가 발생하면서 old_
 <li>A 부터 new_feature 의 HEAD 까지  순차적으로 diff 를 적용한다.</li>
 <li>B,C,D 의 diff 를 반영할 때 <strong>X 에는 B,C,D 의 내용이 이미 반영되어있으므로</strong> 중복된 내용에 대해 다시conflict 가 발생하고 과정이 꼬이게 된다.</li>
 </ol>
-<h3 id="결론"><a href="#결론" class="headerlink" title="결론"></a>결론</h3><p>squash 로 인해 기존의 공통 커밋이 새로운 커밋으로 통합되어 사라지게 되면서, rebase 과정에서 conflict 가 발생</p>
+<h2 id="결론"><a href="#결론" class="headerlink" title="결론"></a>결론</h2><p>squash 로 인해 기존의 공통 커밋이 새로운 커밋으로 통합되어 사라지게 되면서, rebase 과정에서 conflict 가 발생</p>
 <h1 id="해결"><a href="#해결" class="headerlink" title="해결"></a>해결</h1><p>원인은 rebase 의 기본 동작을 수행했을 때 A 부터 시작되는 것이었다. 그렇다면 old_feature 가 반영된 X 커밋 이후로 rebase 를 수행하도록 하면 명령할 수 는 없을까?</p>
 <p>다행히도 rebase 에서는 <strong>–onto</strong> 옵션을 제공하여 rebase 가 동작할 범위를 지정할 수 있다.</p>
 <pre><code>git rebase --onto master HEAD~4</code></pre><p>위와 같이 요청할 경우 rebase 는 HEAD 를 포함하여 최근 4개의 커밋 범위까지 rebase 를 수행한다. 즉, new_feature 기준으로 E - F - G - H 범위 내에서 rebase 가 수행된다. master 에는 E~H 에 대한 내용이 없으므로 conflict 발생없이 한줄로 예쁘게 rebase 가 완료된다.</p>
