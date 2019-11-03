@@ -94,18 +94,18 @@
 
 
 
-  <meta name="description" content="문제 상황1.초기 브랜치 상황// old_feature A - B - C - D  // master A  // new_feature (dependent old feature) A - B - C - D - E - F - G - H2. squash merge이후 old_feature 가 squash merge 로 master 에 반영되었다. // master">
+  <meta name="description" content="문제 상황1.초기 브랜치 상황 // old_feature A - B - C - D  // master A  // new_feature (dependent old feature) A - B - C - D - E - F - G - H2. squash merge 이후 old_feature 가 squash merge 로 master 에 반영되었다. // maste">
 <meta name="keywords" content="Git">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[git] squash merge 된 branch 를 rebase 할 때 생기는 이슈 (—-onto 옵션)">
 <meta property="og:url" content="https://vagabond95.github.io/2019/11/03/git-rebase-onto/index.html">
 <meta property="og:site_name" content="기록은 기억을 지배한다">
-<meta property="og:description" content="문제 상황1.초기 브랜치 상황// old_feature A - B - C - D  // master A  // new_feature (dependent old feature) A - B - C - D - E - F - G - H2. squash merge이후 old_feature 가 squash merge 로 master 에 반영되었다. // master">
+<meta property="og:description" content="문제 상황1.초기 브랜치 상황 // old_feature A - B - C - D  // master A  // new_feature (dependent old feature) A - B - C - D - E - F - G - H2. squash merge 이후 old_feature 가 squash merge 로 master 에 반영되었다. // maste">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-03T09:18:43.487Z">
+<meta property="og:updated_time" content="2019-11-03T09:19:45.540Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[git] squash merge 된 branch 를 rebase 할 때 생기는 이슈 (—-onto 옵션)">
-<meta name="twitter:description" content="문제 상황1.초기 브랜치 상황// old_feature A - B - C - D  // master A  // new_feature (dependent old feature) A - B - C - D - E - F - G - H2. squash merge이후 old_feature 가 squash merge 로 master 에 반영되었다. // master">
+<meta name="twitter:description" content="문제 상황1.초기 브랜치 상황 // old_feature A - B - C - D  // master A  // new_feature (dependent old feature) A - B - C - D - E - F - G - H2. squash merge 이후 old_feature 가 squash merge 로 master 에 반영되었다. // maste">
 
 
 
@@ -394,7 +394,7 @@
                 
               
 
-              <time title="Created: 2019-11-03 18:12:30 / Modified: 18:18:43" itemprop="dateCreated datePublished" datetime="2019-11-03T18:12:30+09:00">2019-11-03</time>
+              <time title="Created: 2019-11-03 18:12:30 / Modified: 18:19:45" itemprop="dateCreated datePublished" datetime="2019-11-03T18:12:30+09:00">2019-11-03</time>
             </span>
           
 
@@ -448,16 +448,19 @@
       
 
       
-        <h1 id="문제-상황"><a href="#문제-상황" class="headerlink" title="문제 상황"></a>문제 상황</h1><h2 id="1-초기-브랜치-상황"><a href="#1-초기-브랜치-상황" class="headerlink" title="1.초기 브랜치 상황"></a>1.초기 브랜치 상황</h2><pre><code>// old_feature
+        <h1 id="문제-상황"><a href="#문제-상황" class="headerlink" title="문제 상황"></a>문제 상황</h1><p><strong>1.초기 브랜치 상황</strong></p>
+<pre><code>// old_feature
 A - B - C - D
 
 // master
 A
 
 // new_feature (dependent old feature)
-A - B - C - D - E - F - G - H</code></pre><h2 id="2-squash-merge"><a href="#2-squash-merge" class="headerlink" title="2. squash merge"></a>2. squash merge</h2><p>이후 old_feature 가 squash merge 로 master 에 반영되었다.</p>
+A - B - C - D - E - F - G - H</code></pre><p><strong>2. squash merge</strong></p>
+<p>이후 old_feature 가 squash merge 로 master 에 반영되었다.</p>
 <pre><code>// master
-A - X</code></pre><h2 id="3-conflict-발생"><a href="#3-conflict-발생" class="headerlink" title="3. conflict 발생"></a>3. conflict 발생</h2><p>new_feature 작업이 마무리된 후, 변경된 master 를 기준으로 rebase 하여 PR 을 날리려고 시도하였다. </p>
+A - X</code></pre><p><strong>3. conflict 발생</strong></p>
+<p>new_feature 작업이 마무리된 후, 변경된 master 를 기준으로 rebase 하여 PR 을 날리려고 시도하였다. </p>
 <p><strong>기대한 브랜치</strong></p>
 <pre><code>// new_feature (rebase from master)
 A - X - E - F - G - H</code></pre><p>그런데 conflict 가 발생하면서 old_feature 의 커밋 ‘A - D’ 를 순차적으로 resolve 처리해야하는 상황이 발생했다. <strong>master 의 커밋 ‘X’ 에 이미 old_feature 브랜치의 변경사항이 모두 반영되어 있는데</strong>, 왜 이런 일이 발생하는 것일까?</p>
@@ -478,13 +481,14 @@ A - X - E - F - G - H</code></pre><p>그런데 conflict 가 발생하면서 old_
 <li>A 부터 new_feature 의 HEAD 까지  순차적으로 diff 를 적용한다.</li>
 <li>B,C,D 의 diff 를 반영할 때 <strong>X 에는 B,C,D 의 내용이 이미 반영되어있으므로</strong> 중복된 내용에 대해 다시conflict 가 발생하고 과정이 꼬이게 된다.</li>
 </ol>
-<h2 id="결론"><a href="#결론" class="headerlink" title="결론"></a>결론</h2><p>squash 로 인해 기존의 공통 커밋이 새로운 커밋으로 통합되어 사라지게 되면서, rebase 과정에서 conflict 가 발생</p>
+<p><strong>결론</strong><br>squash 로 인해 기존의 공통 커밋이 새로운 커밋으로 통합되어 사라지게 되면서, rebase 과정에서 conflict 가 발생</p>
 <h1 id="해결"><a href="#해결" class="headerlink" title="해결"></a>해결</h1><p>원인은 rebase 의 기본 동작을 수행했을 때 A 부터 시작되는 것이었다. 그렇다면 old_feature 가 반영된 X 커밋 이후로 rebase 를 수행하도록 하면 명령할 수 는 없을까?</p>
 <p>다행히도 rebase 에서는 <strong>–onto</strong> 옵션을 제공하여 rebase 가 동작할 범위를 지정할 수 있다.</p>
 <pre><code>git rebase --onto master HEAD~4</code></pre><p>위와 같이 요청할 경우 rebase 는 HEAD 를 포함하여 최근 4개의 커밋 범위까지 rebase 를 수행한다. 즉, new_feature 기준으로 E - F - G - H 범위 내에서 rebase 가 수행된다. master 에는 E~H 에 대한 내용이 없으므로 conflict 발생없이 한줄로 예쁘게 rebase 가 완료된다.</p>
 <p><strong>rebase 가 완료된 브랜치</strong></p>
 <pre><code>// new_feature
-A - X - E&apos; - F&apos; - G&apos; - H&apos;</code></pre><h2 id="번외"><a href="#번외" class="headerlink" title="번외"></a>번외</h2><p>commit 범위를 지정하는 것이 번거로울 경우 아래와 같은 방법으로 동일한 결과를 얻을 수 있다. </p>
+A - X - E&apos; - F&apos; - G&apos; - H&apos;</code></pre><p><strong>번외</strong></p>
+<p>commit 범위를 지정하는 것이 번거로울 경우 아래와 같은 방법으로 동일한 결과를 얻을 수 있다. </p>
 <pre><code>git rebase --onto master old_feature new_feature</code></pre><p>해당 명령은 old_feature 에 존재하는 커밋을 제외하고, new_feature 에 대해 rebase 를 수행한다. 따라서 new_feature 에서, B<del>D 커밋이 제외되고 E</del>H 커밋에 대해 rebase 가 진행된다.</p>
 <p>단, 해당 방법은 old_feature 가 삭제 되지 않았을 경우에만 사용이 가능하다는 단점이 있다.</p>
 
@@ -688,7 +692,7 @@ A - X - E&apos; - F&apos; - G&apos; - H&apos;</code></pre><h2 id="번외"><a hre
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#문제-상황"><span class="nav-number">1.</span> <span class="nav-text">문제 상황</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-초기-브랜치-상황"><span class="nav-number">1.1.</span> <span class="nav-text">1.초기 브랜치 상황</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-squash-merge"><span class="nav-number">1.2.</span> <span class="nav-text">2. squash merge</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-conflict-발생"><span class="nav-number">1.3.</span> <span class="nav-text">3. conflict 발생</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#원인"><span class="nav-number">2.</span> <span class="nav-text">원인</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#결론"><span class="nav-number">2.1.</span> <span class="nav-text">결론</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#해결"><span class="nav-number">3.</span> <span class="nav-text">해결</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#번외"><span class="nav-number">3.1.</span> <span class="nav-text">번외</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#문제-상황"><span class="nav-number">1.</span> <span class="nav-text">문제 상황</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#원인"><span class="nav-number">2.</span> <span class="nav-text">원인</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#해결"><span class="nav-number">3.</span> <span class="nav-text">해결</span></a></li></ol></div>
             
 
           </div>
