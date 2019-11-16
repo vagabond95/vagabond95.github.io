@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="기록은 기억을 지배한다">
 <meta property="og:description" content="Android 개발을 진행하다보면 Keyboard Height 를 알고싶은 상황을 마주할 때가 있다. 하지만 안타깝게도 Android에서 Keyboard Height 를 알 수 있는 native API 는 제공되지 않는다.  따라서 약간의 편법(?)을 통해 값을 알아내야 하는데, 오늘 포스팅에서는 그 과정을 다뤄보려 한다. 원리Keyboard height">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-16T17:38:49.800Z">
+<meta property="og:updated_time" content="2019-11-16T17:41:44.191Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[안드로이드] 키보드 높이 구하기">
 <meta name="twitter:description" content="Android 개발을 진행하다보면 Keyboard Height 를 알고싶은 상황을 마주할 때가 있다. 하지만 안타깝게도 Android에서 Keyboard Height 를 알 수 있는 native API 는 제공되지 않는다.  따라서 약간의 편법(?)을 통해 값을 알아내야 하는데, 오늘 포스팅에서는 그 과정을 다뤄보려 한다. 원리Keyboard height">
@@ -409,7 +409,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-11-17 02:38:49" itemprop="dateModified" datetime="2019-11-17T02:38:49+09:00">2019-11-17</time>
+                <time title="Modified: 2019-11-17 02:41:44" itemprop="dateModified" datetime="2019-11-17T02:41:44+09:00">2019-11-17</time>
               </span>
             
           
@@ -495,7 +495,7 @@
 <p>그럼 우리는 <strong>어떤 View 를 이용하여 위 과정을 진행해야할까?</strong></p>
 <h3 id="1-Activity-의-RootLayout-을-이용한다"><a href="#1-Activity-의-RootLayout-을-이용한다" class="headerlink" title="1) Activity 의 RootLayout 을 이용한다."></a>1) Activity 의 RootLayout 을 이용한다.</h3><p>가장 무난하고 쉬운 선택이다. Acitivity 의 Xml 에서 root level 에 있는 layout 을 View 로 이용하는 방법이다. 실제로도 대부분의 케이스에서는 잘 동작한다.</p>
 <p>하지만 이 방법은 치명적인 단점이 존재한다.  Activity 의 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5jb20vZ3VpZGUvdG9waWNzL21hbmlmZXN0L2FjdGl2aXR5LWVsZW1lbnQjd3NvZnQ=" title="https://developer.android.com/guide/topics/manifest/activity-element#wsoft">windowSoftInputMode<i class="fa fa-external-link"></i></span> 옵션 값에따라 정상적으로 동작하지 않을 수 있다는 점이다.</p>
-<p>windowSoftInputMode 옵션은 가상 Keyboard 와 Activity 의 상호작용을 지정하는 옵션인데, 일부 옵션값은 <strong>Keyboard 가 올라와도 Activity Height 의 변화가 없기 때문에</strong> 두번째 단계를 수행할 수 없다. 따라서 Acitivity 의 windowSoftInputMode 값에 따라 동일한 결과를 보장받지 못하기 때문에, 범용적으로 활용되기 어렵다.</p>
+<p>windowSoftInputMode 옵션은 가상 Keyboard 와 Activity 의 상호작용을 지정하는 옵션인데, ‘AdjustNothing’ 와 같이 일부 옵션값은 <strong>Keyboard 가 올라와도 Activity Height 의 변화가 없기 때문에</strong> 두번째 단계를 수행할 수 없다. 따라서 Acitivity 의 windowSoftInputMode 값에 따라 동일한 결과를 보장받지 못하기 때문에, 범용적으로 활용되기 어렵다.</p>
 <h3 id="2-PopupWindow-를-이용한다"><a href="#2-PopupWindow-를-이용한다" class="headerlink" title="2) PopupWindow 를 이용한다."></a>2) PopupWindow 를 이용한다.</h3><p>실제 프로젝트에서 선택하여 이용하고 있다. 이 방법은 RootLayout 방식의 단점을 다음과 같이 커버할 수 있다. </p>
 <p>PopupWindow 는 고유의 SoftInputMode 을 별도로 지정할 수 있다. 따라서 Acitivity windowSoftInputMode 옵션이 무엇이든 영향을 받지 않고, 독립적으로 활용이 가능하다. 따라서 GlobalLayoutListener 을 활용한 두번째 단계에서 이슈가 발생하지 않는다.</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">KeyboardObserver</span> <span class="keyword">extends</span> <span class="title">PopupWindow</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">initialize</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">            setSoftInputMode(SOFT_INPUT_ADJUST_RESIZE | SOFT_INPUT_STATE_ALWAYS_VISIBLE);</span><br><span class="line">            setInputMethodMode(PopupWindow.INPUT_METHOD_NEEDED);</span><br><span class="line">    </span><br><span class="line">            ...</span><br><span class="line">    </span><br><span class="line">            rootView.getViewTreeObserver().addOnGlobalLayoutListener(() -&gt; &#123;</span><br><span class="line">                ...</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
