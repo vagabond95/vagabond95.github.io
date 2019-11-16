@@ -8,6 +8,14 @@
     </url>
 
     <url>
+        <loc>https://vagabond95.github.io/2019/09/08/android-keyboard-height/</loc>
+        <lastmod>2019-11-16T17:13:41.367Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://vagabond95.github.io/2019/11/03/git-rebase-onto/</loc>
         <lastmod>2019-11-07T16:03:51.714Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -34,14 +42,6 @@
     <url>
         <loc>https://vagabond95.github.io/2019/09/20/android-api-version-manage/</loc>
         <lastmod>2019-10-13T12:49:37.512Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://vagabond95.github.io/2019/09/08/android-keyboard-height/</loc>
-        <lastmod>2019-10-13T12:49:33.902Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
