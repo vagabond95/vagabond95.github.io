@@ -428,11 +428,23 @@
                   
                 
               
-              7 tags in total
+                
+                  
+                
+              
+                
+                  
+                
+              
+                
+                  
+                
+              
+              10 tags in total
             </div>
             <div class="tag-cloud-tags">
               
-                <a href="/tags/Android/" style="font-size: 30px; color: #111">Android</a> <a href="/tags/Book/" style="font-size: 21px; color: #6f6f6f">Book</a> <a href="/tags/Git/" style="font-size: 12px; color: #ccc">Git</a> <a href="/tags/Java/" style="font-size: 12px; color: #ccc">Java</a> <a href="/tags/OOP/" style="font-size: 21px; color: #6f6f6f">OOP</a> <a href="/tags/Review/" style="font-size: 12px; color: #ccc">Review</a> <a href="/tags/RxJava/" style="font-size: 21px; color: #6f6f6f">RxJava</a>
+                <a href="/tags/Android/" style="font-size: 30px; color: #111">Android</a> <a href="/tags/Book/" style="font-size: 21px; color: #6f6f6f">Book</a> <a href="/tags/Clean-Code/" style="font-size: 12px; color: #ccc">Clean Code</a> <a href="/tags/Git/" style="font-size: 12px; color: #ccc">Git</a> <a href="/tags/Java/" style="font-size: 12px; color: #ccc">Java</a> <a href="/tags/OOP/" style="font-size: 21px; color: #6f6f6f">OOP</a> <a href="/tags/Refactoring/" style="font-size: 12px; color: #ccc">Refactoring</a> <a href="/tags/Review/" style="font-size: 21px; color: #6f6f6f">Review</a> <a href="/tags/RxJava/" style="font-size: 21px; color: #6f6f6f">RxJava</a> <a href="/tags/TDD/" style="font-size: 12px; color: #ccc">TDD</a>
               
             </div>
           </div>
@@ -489,7 +501,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-count">12</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -522,7 +534,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">7</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -697,6 +715,9 @@
 
 
   
+  <script src="/js/js.cookie.js?v=7.2.0"></script>
+  <script src="/js/scroll-cookie.js?v=7.2.0"></script>
+
 
   
   <script src="/js/exturl.js?v=7.2.0"></script>
@@ -1071,6 +1092,44 @@
   
 
   
+<script>
+  $('.highlight').not('.gist .highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('Copy').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      const selection = document.getSelection();
+      const selected = selection.rangeCount > 0 ? selection.getRangeAt(0) : false;
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+      if (selected) {
+        selection.removeAllRanges();
+        selection.addRange(selected);
+      }
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('Copy');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
 
   
 

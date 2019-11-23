@@ -566,6 +566,10 @@ A - X - E&apos; - F&apos; - G&apos; - H&apos;</code></pre><p><strong>번외</str
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2019/11/23/nextstep-class-review/" rel="prev" title="post">
+                post <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -640,7 +644,7 @@ A - X - E&apos; - F&apos; - G&apos; - H&apos;</code></pre><p><strong>번외</str
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-count">12</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -673,7 +677,13 @@ A - X - E&apos; - F&apos; - G&apos; - H&apos;</code></pre><p><strong>번외</str
                     
                       
                     
-                    <span class="site-state-item-count">7</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -865,6 +875,9 @@ A - X - E&apos; - F&apos; - G&apos; - H&apos;</code></pre><p><strong>번외</str
 
 
   
+  <script src="/js/js.cookie.js?v=7.2.0"></script>
+  <script src="/js/scroll-cookie.js?v=7.2.0"></script>
+
 
   
   <script src="/js/exturl.js?v=7.2.0"></script>
@@ -1258,6 +1271,44 @@ A - X - E&apos; - F&apos; - G&apos; - H&apos;</code></pre><p><strong>번외</str
   
 
   
+<script>
+  $('.highlight').not('.gist .highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('Copy').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      const selection = document.getSelection();
+      const selected = selection.rangeCount > 0 ? selection.getRangeAt(0) : false;
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+      if (selected) {
+        selection.removeAllRanges();
+        selection.addRange(selected);
+      }
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('Copy');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
 
   
 
