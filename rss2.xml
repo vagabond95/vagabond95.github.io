@@ -8,11 +8,11 @@
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>내일 잊기전에 오늘 적어두는 블로그</description>
-    <pubDate>Sat, 23 Nov 2019 13:22:10 GMT</pubDate>
+    <pubDate>Sat, 23 Nov 2019 13:23:11 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
-      <title>post</title>
+      <title>[후기] Next Step - TDD, Refactoring Clean Code 과정을 마무리 하며</title>
       <link>https://vagabond95.github.io/2019/11/23/nextstep-class-review/</link>
       <guid>https://vagabond95.github.io/2019/11/23/nextstep-class-review/</guid>
       <pubDate>Sat, 23 Nov 2019 13:10:53 GMT</pubDate>
