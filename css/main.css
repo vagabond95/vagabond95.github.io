@@ -1799,7 +1799,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #30cc4f;
+  background: #9eadbe;
 }
 .feed-link,
 .chat {
@@ -2483,7 +2483,7 @@ ul.breadcrumb li+li:last-child {
   padding: 40px;
   width: calc(100% - 252px);
   background: #fff;
-  min-height: 700px;
+  min-height: 701px;
   box-shadow: initial;
   border-radius: initial;
 }
@@ -2540,6 +2540,9 @@ ul.breadcrumb li+li:last-child {
 .sidebar-position-right .footer-inner {
   padding-left: 0;
   padding-right: 260px;
+}
+.utterances {
+  max-width: 100%;
 }
 .site-brand-wrapper {
   position: relative;
