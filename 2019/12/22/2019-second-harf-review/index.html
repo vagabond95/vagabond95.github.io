@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.2.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: true,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="이직 후 정신없는 하반기를 보냈다. 기대 이상의 성취를 얻은 부분도 있고, 아예 시도조차 못한 부분도 있었다. 스스로 회고하며 기억에 남을 만한 일들을 정리했다. 개발의도를 드러내는 코드 짜기우리의 기억력은 빈약하고 왜곡되기 쉽다. 복잡한 비즈니스 로직과 히스토리를 반년 뒤에도 기억할리가 없기 때문에 주섬주섬 주석을 달지만, 이마저도 나중에 보면 이해하기">
+<meta name="keywords" content="Review">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2019년 하반기 회고">
+<meta property="og:url" content="https://vagabond95.github.io/2019/12/22/2019-second-harf-review/index.html">
+<meta property="og:site_name" content="기록은 기억을 지배한다">
+<meta property="og:description" content="이직 후 정신없는 하반기를 보냈다. 기대 이상의 성취를 얻은 부분도 있고, 아예 시도조차 못한 부분도 있었다. 스스로 회고하며 기억에 남을 만한 일들을 정리했다. 개발의도를 드러내는 코드 짜기우리의 기억력은 빈약하고 왜곡되기 쉽다. 복잡한 비즈니스 로직과 히스토리를 반년 뒤에도 기억할리가 없기 때문에 주섬주섬 주석을 달지만, 이마저도 나중에 보면 이해하기">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-12-22T11:44:54.398Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2019년 하반기 회고">
+<meta name="twitter:description" content="이직 후 정신없는 하반기를 보냈다. 기대 이상의 성취를 얻은 부분도 있고, 아예 시도조차 못한 부분도 있었다. 스스로 회고하며 기억에 남을 만한 일들을 정리했다. 개발의도를 드러내는 코드 짜기우리의 기억력은 빈약하고 왜곡되기 쉽다. 복잡한 비즈니스 로직과 히스토리를 반년 뒤에도 기억할리가 없기 때문에 주섬주섬 주석을 달지만, 이마저도 나중에 보면 이해하기">
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="기록은 기억을 지배한다" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://vagabond95.github.io/2019/12/22/2019-second-harf-review/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>2019년 하반기 회고 | 기록은 기억을 지배한다</title>
+  
+
+
+
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143694036-1"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !true) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-143694036-1');
+    }
+  </script>
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head> 
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">기록은 기억을 지배한다</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">I Android you</h1>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-my-docs">
+
+    
+    
+      
+    
+
+    
+
+    <span class="exturl" data-url="aHR0cHM6Ly9wcm9namguZ2l0Ym9vay5pby9kb2NzLw=="><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>my docs</span>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+
+  
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL3ZhZ2Fib25kOTU=" title="Github!" aria-label="Github!"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></span>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://vagabond95.github.io/2019/12/22/2019-second-harf-review/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jihoon Kim">
+      <meta itemprop="description" content="내일 잊기전에 오늘 적어두는 블로그">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="기록은 기억을 지배한다">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">2019년 하반기 회고
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-12-22 20:43:22 / Modified: 20:44:54" itemprop="dateCreated datePublished" datetime="2019-12-22T20:43:22+09:00">2019-12-22</time>
+            </span>
+          
+
+          
+            
+
+            
+          
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="top_ad">
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 상단광고 -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5033331279793069" data-ad-slot="5104903083" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+    </div>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>이직 후 정신없는 하반기를 보냈다. 기대 이상의 성취를 얻은 부분도 있고, 아예 시도조차 못한 부분도 있었다. 스스로 회고하며 기억에 남을 만한 일들을 정리했다.</p>
+<h1 id="개발"><a href="#개발" class="headerlink" title="개발"></a>개발</h1><h2 id="의도를-드러내는-코드-짜기"><a href="#의도를-드러내는-코드-짜기" class="headerlink" title="의도를 드러내는 코드 짜기"></a>의도를 드러내는 코드 짜기</h2><p>우리의 기억력은 빈약하고 왜곡되기 쉽다. 복잡한 비즈니스 로직과 히스토리를 반년 뒤에도 기억할리가 없기 때문에 주섬주섬 주석을 달지만, 이마저도 나중에 보면 이해하기 어려울 때가 많다.</p>
+<p>결국은 코드 자체를 통하여 의도를 드러내는 것이 가장 이상적인 형태이다. 이를 실천하기 위해 많은 고민과 노력이 동반 되었고, 특히 하반기에 수강했던 <a href="https://vagabond95.github.io/2019/11/23/nextstep-class-review/">NextStep 과정</a>이 아주 큰 도움이 되었다.</p>
+<h2 id="예외-처리와-Stateless-한-코드-짜기"><a href="#예외-처리와-Stateless-한-코드-짜기" class="headerlink" title="예외 처리와 Stateless 한 코드 짜기"></a>예외 처리와 Stateless 한 코드 짜기</h2><p>‘설마 이 상황이 발생하겠어?’ 라는 마음가짐으로 코드를 짜면 항상 그 부분에서 문제가 발생하게 되는 것을 피부로 겪었다. 많은 사용자 수와 그에 대응되는 수많은 환경을 고려했을 때, 발생할 수 없는 상황은 없다고 생각하는 것이 옳다. 발생할 수 있는 모든 예외 상황에 대한 가드 처리가 필요하며, 너무 많은 가드 처리는 가독성을 떨어트릴 수 있으므로 언어/코드 레벨에서 사전에 방지할 수 있는 방법은 없는지 많은 고민을 했다. 최근까지 도달한 결론은 꼭 필요한 상태(State)가 아니면 사용하지 않는 방향으로 하여 관리포인트와 사이드 이펙트를 줄여나가자는 것으로 마무리 했다.</p>
+<h2 id="아무리-강조해도-지나치지-않은-커뮤니케이션"><a href="#아무리-강조해도-지나치지-않은-커뮤니케이션" class="headerlink" title="아무리 강조해도 지나치지 않은 커뮤니케이션"></a>아무리 강조해도 지나치지 않은 커뮤니케이션</h2><p>개발자라고 해서 항상 주어진 업무 시간 전부를 개발에 쓰기는 어렵다. 정기적/비정기적인 커뮤니케이션 구간이 항상 존재하기 때문이다. 피할 수 없는 일이라면 잘하고 싶다. 잘하기 위해 다음과 같은 노력을 했다.</p>
+<h3 id="커뮤니케이션-대상에-대한-공통된-합의"><a href="#커뮤니케이션-대상에-대한-공통된-합의" class="headerlink" title="커뮤니케이션 대상에 대한 공통된 합의"></a>커뮤니케이션 대상에 대한 공통된 합의</h3><p>같은 개념을 얘기하는 데 다른 언어가 사용되고, 같은 언어를 사용하는데 다른 개념(혹은 구현)으로 설명될 때가 많았다. 이러한 불일치를 보정하는 과정이 발생할 때마다 진행의 병목이 생기고 커뮤니케이션 비용이 높아지는 것이 부담되기 시작했다. 그래서 이를 내가 할 수 있는 일들을 하나씩 진행해봤다. </p>
+<p>1) 기본적으로 커뮤니케이션 시작 전에 이야기하고자 하는 목적과 대상을 한번 더 체크 했다. (ex/ 저는 A 의 B 부분에 대해 논의해야하는 것으로 알고 있는데 맞을까요~?) 이렇게 하면 초기 리소스는 조금 더 들 수 있지만 이미 커뮤니케이션이 어느정도 진행된 후 보정하는 것보다는 훨씬 나은 결과를 얻었다. 매번 이 방식을 고수하다보니, 나중에는 먼저 얘기를 꺼내주시는 분들도 생겼다!</p>
+<p>2) 팀장님에게 좀 더 정기적인 코드 리뷰 시간 확보를 요청했다. 이 일정은 개념/구현에 대한 논의를 거쳐 통일된 방향으로 나아가는 시간이 되었고, 이 이후 팀원간 커뮤니케이션 속도가 빨라졌을 뿐만아니라 구현에 대한 통일성도 얻어갈 수 있었다.</p>
+<h3 id="설득의-기술"><a href="#설득의-기술" class="headerlink" title="설득의 기술"></a>설득의 기술</h3><p>기획서에서는 한 줄 분량의 내용인데 수많은 클래스를 고쳐야 한다거나 IOS 에서는 쉽지만 Android 에서는 구현 복잡도가 큰 구현 사항이 넘어올 때가 있다. 모든 요구사항을 다 처리해주는 슈퍼 개발자가 되고 싶지만… 아직 그럴 실력도 안되고 개발 기간도 제한되어 있기 때문에 결국 설득을 위한 커뮤니케이션을 피할 수 없었다. </p>
+<p>복잡한 내부 히스토리와 예외 상황이 존재하기는 하나, 기본적으로 내 전략은 다음과 같았다.</p>
+<ul>
+<li>개발과 관련된 내용을 배제하고 최대한 이해하기 쉽게 상황과 이유를 설명한다.</li>
+<li>구현하지 못하는 내용에 대한 대체 옵션을 제시한다.</li>
+</ul>
+<p>전략을 실제 대화로 구성하면 다음과 같다.</p>
+<p>“A 스펙은 비슷한 행동을 수행하는 다른 화면에도 영향이 가기 때문에 이번 버전에 일괄적으로 적용하기는 조금 어려울 것 같아요. 다만, 범위를 B 까지만 한다면 가능할 것 같은데 이렇게 진행하는 것은 어떨 까요?”</p>
+<p>결국 개발팀에서는 할 수 없는 나름의 이유가 있고, 다른팀에서는 해야하는 나름의 이유가 있기 때문에 무조건 받아줄수도, 무조건 거절할 수 도 없기 때문에 위와 같은 절충안을 생각했다. 그리 어려운 방식은 아니였지만 설득의 성공률은 굉장했다!</p>
+<h1 id="개발-외"><a href="#개발-외" class="headerlink" title="개발 외"></a>개발 외</h1><h2 id="운동은-장기-레이스로"><a href="#운동은-장기-레이스로" class="headerlink" title="운동은 장기 레이스로"></a>운동은 장기 레이스로</h2><p>주짓수에 본격적으로 재미를 붙히기 시작했을 때, 대회에 출전하여 수상해보고 싶은 욕심이 생겼다. 준비 기간이 짧아 몸의 신호를 무시하고 무리하게 운동을 진행했는데 결국 출전 직전에 큰 부상을 겪게 되었다. 손목에 힘을 주기 어려울 만큼 통증이 심해서 주짓수는 물론이고 운동 자체를 몇 달간 쉬게 되었다. 운동을 못하니 체력이 급속도로 떨어지고, 스트레스 해소가 되지않아 멘탈에도 많은 영향을 주었다. </p>
+<p>다행히 지금은 많이 회복되어 퇴근 후 가볍게 헬스를 하고 있다. 운동을 다시 시작하니 점차 몸의 활력이 돌아옴을 느낀다. 결국 운동은 죽기 전까지 꾸준히 필요하다. 지치지 않는 장기 레이스를 잘 수행할 수 있도록 적절한 페이스 조절이 필요함을 실감했다.</p>
+<h2 id="의도적인-휴식과-충전"><a href="#의도적인-휴식과-충전" class="headerlink" title="의도적인 휴식과 충전"></a>의도적인 휴식과 충전</h2><p>학습과 성장에 대한 열망을 넘어 강박 수준까지 가다보니 기습적으로 찾아오는 무기력함과 매너리즘에 속절없이 당했던 순간이 많았다. 이를 방지하기 위해 의도적으로 쉬면서 재충전하는 시간을 만들려고 노력했는데 아, 의도적으로 쉬려고 하는 것도 참 쉽지 않음을 느꼈다. 특히, 하고싶은 것을 하면서 보내는 시간 자체가 계속해서 뒤쳐지고 있다는 느낌이 들어서 이를 떨쳐 내는 것이 쉽지 않았다.</p>
+<p>그래도 의식적으로 노력하여 시간을 제법 확보 했고, 나름 알차게 사용했다고 생각된다. 특히 올 하반기에는 경제와 관련된 많은 책을 읽으며 새로운 분야로 발을 내딛는 재미를 느꼈고, 비슷한 관심사를 가진 사람들이 모인 독서 모임을 신청하여 다양한 사람들의 삶을 엿보는 시간도 가지게 되었다. 운동도 이러한 시간의 연장선이라고 볼 수 있다. </p>
+<p>무엇을 하든 유연하게 균형을 맞추는 일이 참 중요하다고 생각한다. 너무 뻣뻣하면 부러지기 쉽다.</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <div class="bottom_ad">
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 하단광고 -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5033331279793069" data-ad-slot="9604736511" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+    </div>
+
+    <footer class="post-footer">
+
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/Review/" rel="tag"># Review</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/23/nextstep-class-review/" rel="next" title="[후기] Next Step - 클린코드를 위한 TDD, 리팩토링 with Java 과정을 마무리 하며">
+                <i class="fa fa-chevron-left"></i> [후기] Next Step - 클린코드를 위한 TDD, 리팩토링 with Java 과정을 마무리 하며
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          <script src="https://utteranc.es/client.js" repo="vagabond95/vagabond95.github.io" issue-term="pathname" theme="github-light" crossorigin="anonymous" async>
+</script>
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Jihoon Kim</p>
+              <div class="site-description motion-element" itemprop="description">내일 잊기전에 오늘 적어두는 블로그</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/rss2.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#개발"><span class="nav-number">1.</span> <span class="nav-text">개발</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#의도를-드러내는-코드-짜기"><span class="nav-number">1.1.</span> <span class="nav-text">의도를 드러내는 코드 짜기</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#예외-처리와-Stateless-한-코드-짜기"><span class="nav-number">1.2.</span> <span class="nav-text">예외 처리와 Stateless 한 코드 짜기</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#아무리-강조해도-지나치지-않은-커뮤니케이션"><span class="nav-number">1.3.</span> <span class="nav-text">아무리 강조해도 지나치지 않은 커뮤니케이션</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#커뮤니케이션-대상에-대한-공통된-합의"><span class="nav-number">1.3.1.</span> <span class="nav-text">커뮤니케이션 대상에 대한 공통된 합의</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#설득의-기술"><span class="nav-number">1.3.2.</span> <span class="nav-text">설득의 기술</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#개발-외"><span class="nav-number">2.</span> <span class="nav-text">개발 외</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#운동은-장기-레이스로"><span class="nav-number">2.1.</span> <span class="nav-text">운동은 장기 레이스로</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#의도적인-휴식과-충전"><span class="nav-number">2.2.</span> <span class="nav-text">의도적인 휴식과 충전</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jihoon Kim</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.2.0"></script>
+
+  <script src="/js/motion.js?v=7.2.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.2.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.2.0"></script>
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.2.0"></script>
+
+
+  
+
+  
+  <script src="/js/exturl.js?v=7.2.0"></script>
+
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').not('.gist .highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('Copy').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      const selection = document.getSelection();
+      const selected = selection.rangeCount > 0 ? selection.getRangeAt(0) : false;
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+      if (selected) {
+        selection.removeAllRanges();
+        selection.addRange(selected);
+      }
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('Copy');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
+
+  
+
+  
+
+  <!-- Google AdSense start -->
+  <script data-ad-client="ca-pub-5033331279793069" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+  <!-- Google AdSense end -->
+</body>
+</html>
