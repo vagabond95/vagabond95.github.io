@@ -8,8 +8,16 @@
     </url>
 
     <url>
-        <loc>https://vagabond95.github.io/2019/12/22/2019-second-harf-review/</loc>
-        <lastmod>2019-12-22T11:44:54.398Z</lastmod>
+        <loc>https://vagabond95.github.io/2019/12/22/2019-second-half-review/</loc>
+        <lastmod>2019-12-29T04:46:50.645Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://vagabond95.github.io/2019/07/07/2019-first-half-review/</loc>
+        <lastmod>2019-12-29T04:46:40.626Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -90,14 +98,6 @@
     <url>
         <loc>https://vagabond95.github.io/2019/07/20/is-this-rxjava-1/</loc>
         <lastmod>2019-10-13T12:48:19.111Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://vagabond95.github.io/2019/07/07/2019-first-harf-review/</loc>
-        <lastmod>2019-10-13T10:11:05.833Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
