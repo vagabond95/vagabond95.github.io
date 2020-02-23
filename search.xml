@@ -3,7 +3,7 @@
   <entry>
     <title>Process 재시작 과 Fragment 생명 주기</title>
     <url>/2020/02/23/fragment_lifecycle_with_restarted_process/</url>
-    <content><![CDATA[<p><img src="/images/bike_cover.png" alt></p>
+    <content><![CDATA[<p><img src="/images/bike_cover.jpg" alt></p>
 <p>최근에도 큰 규모의 리펙토링을 진행했는데, Fragment 생명주기에 대한 지식이 부족하여 많은 이슈를 발생시켰다. 😭 이번 포스팅에서는 해당 이슈의 원인과 해결법에 대해 적어보려 한다.</p>
 <h1 id="TL-DR"><a href="#TL-DR" class="headerlink" title="TL;DR"></a>TL;DR</h1><ul>
 <li>프로세스가 재 시작 될 때 Activity, Fragment 의 생명 주기 흐름이 조금 다르게 진행된다.</li>
@@ -19,19 +19,9 @@
 <p>하지만 이렇게 앱과 프로세스의 수명 주기가 일치하지 않을 경우 유저는 영문도 모른채 간헐적으로 처음부터 재시작하는 앱을 경험하게 될 것이다. 이에 onSaveInstance 메소드를 제공하여 데이터를 백업하고 사용하여 사용자에게 영향을 주지 않도록 설계되어 있다.</p>
 <p>문제는 이렇게 ‘시스템이 프로세스를 죽이고, 해당 프로세스가 재시작 됐을 경우’ Activity 와 Fragment 의 생명주기 흐름이 일반적인 상황과는 조금 다르게 진행된다.</p>
 <h1 id="일반적인-상황에서-생명-주기-흐름"><a href="#일반적인-상황에서-생명-주기-흐름" class="headerlink" title="일반적인 상황에서 생명 주기 흐름"></a>일반적인 상황에서 생명 주기 흐름</h1><p>사용자가 처음 앱을 구동하는 상황으로 가정한다.</p>
-<pre><code>// MainActivity.class
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// MainActivity.class</span></span><br><span class="line">		</span><br><span class="line">		<span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">				Log.e(<span class="string">"lifeCycle"</span>, <span class="string">"Activity onCreate"</span>);</span><br><span class="line"></span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// initialize ...</span></span><br><span class="line">        </span><br><span class="line">        addFragment();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
-        @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-                Log.e(&quot;lifeCycle&quot;, &quot;Activity onCreate&quot;);
-
-        setContentView(R.layout.activity_main);
-
-        // initialize ...
-
-        addFragment();
-    }</code></pre><p>위와 같이 onCreate 메소드 에서 Fragment 를 초기화 해준다고 했을 때, LifeCycle 은 다음과 같은 순서로 진행된다.</p>
+<p>위와 같이 onCreate 메소드 에서 Fragment 를 초기화 해준다고 했을 때, LifeCycle 은 다음과 같은 순서로 진행된다.</p>
 <pre><code>E/lifeCycle: Activity onCreate
 E/lifeCycle: Fragment onAttach
 E/lifeCycle: Fragment onCreate
