@@ -3,7 +3,8 @@
   <entry>
     <title>Process 재시작 과 Fragment 생명 주기</title>
     <url>/2020/02/23/fragment_lifecycle_with_restarted_process/</url>
-    <content><![CDATA[<p>최근에도 큰 규모의 리펙토링을 진행했는데, Fragment 생명주기에 대한 지식이 부족하여 많은 이슈를 발생시켰다. 😭 이번 포스팅에서는 해당 이슈의 원인과 해결법에 대해 적어보려 한다.</p>
+    <content><![CDATA[<p><img src="/images/bike_cover.jpg" alt></p>
+<p>최근에도 큰 규모의 리펙토링을 진행했는데, Fragment 생명주기에 대한 지식이 부족하여 많은 이슈를 발생시켰다. 😭 이번 포스팅에서는 해당 이슈의 원인과 해결법에 대해 적어보려 한다.</p>
 <h1 id="TL-DR"><a href="#TL-DR" class="headerlink" title="TL;DR"></a>TL;DR</h1><ul>
 <li>프로세스가 재 시작 될 때 Activity, Fragment 의 생명 주기 흐름이 조금 다르게 진행된다.</li>
 <li>Fragment 에서 Activity 의 데이터를 참조할 때는 onActivityCreated 메소드 내에서 진행하자.</li>
