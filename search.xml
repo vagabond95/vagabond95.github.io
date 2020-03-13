@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>MVVM 과 LiveData 조합 시 발생할 수 있는 이슈와 대안책</title>
+    <title>MVVM 과 LiveData 조합 시 겪을 수 있는 이슈와 해결책</title>
     <url>/2020/03/13/live_data_with_event_issue/</url>
     <content><![CDATA[<p><img src="/images/cover/live_data_with_event_cover.jpg" alt><br>이번 포스트에서는 MVVM 아키텍처에서 LiveData 를 사용하면서 겪었던 어려움과 여러 해결방법에 대해 적어보려한다. MVVM 에 대한 좋은 글은 많이 있으므로 해당 포스트에서는 생략하고 넘어간다! </p>
 <h1 id="TL-DR"><a href="#TL-DR" class="headerlink" title="TL;DR"></a>TL;DR</h1><ul>
