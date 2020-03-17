@@ -3,12 +3,12 @@
   <entry>
     <title>MVVM 과 LiveData 조합 시 겪을 수 있는 이슈와 해결책</title>
     <url>/2020/03/13/live_data_with_event_issue/</url>
-    <content><![CDATA[<p><img src="/images/cover/live_data_with_event_cover.jpg" alt><br>이번 포스트에서는 MVVM 아키텍처에서 LiveData 를 사용하면서 겪었던 어려움과 여러 해결방법에 대해 적어보려한다. MVVM 에 대한 좋은 글은 많이 있으므로 해당 포스트에서는 생략하고 넘어간다! </p>
+    <content><![CDATA[<p><img src="/images/cover/live_data_with_event_cover.jpg" alt><br>이번 포스트에서는 MVVM 아키텍처에서 LiveData 를 사용하면서 겪었던 어려움과 여러 해결방법에 대해 적어보려한다. MVVM 에 대한 좋은 글은 이미 많이 있으므로 해당 포스트에서는 생략하고 넘어간다! </p>
 <h1 id="TL-DR"><a href="#TL-DR" class="headerlink" title="TL;DR"></a>TL;DR</h1><ul>
 <li>LiveData 는 이벤트 전달에 적합하지 않다. 약간의 변형이 필요하다.</li>
 </ul>
-<h1 id="데이터와-이벤트-흐름"><a href="#데이터와-이벤트-흐름" class="headerlink" title="데이터와 이벤트 흐름"></a>데이터와 이벤트 흐름</h1><p>MVVM 구조내에서 개발을 할 때, ViewModel → View 의 흐름을 다음과 같이 2가지로 나누어 다루고 있다. 정확한 정의는 아닐 수 있으나, 해당 글에서 전개될 내용의 핵심이므로 잘 이해하고 가는 것이 중요하다.</p>
-<h2 id="데이터"><a href="#데이터" class="headerlink" title="데이터"></a>데이터</h2><p>데이터는 말 그대로 모델로부터 가공되거나 유저의 액션에 의해 얻어진 특정한 값을 의미한다. ObservableField 나 LiveData 형태로 래핑되어 제공되며 <strong>데이터 바인딩</strong>을 이용하여 View (XML) 에게 변경 사항이 전달된다. 대표적으로 다음과 같은 케이스가 있다.</p>
+<h1 id="데이터와-이벤트-흐름"><a href="#데이터와-이벤트-흐름" class="headerlink" title="데이터와 이벤트 흐름"></a>데이터와 이벤트 흐름</h1><p>MVVM 구조내에서 개발을 할 때, ViewModel → View 의 흐름을 다음과 같이 2가지로 나누어 다루고 있다. 일반적인 정의는 아닐 수 있으나, 해당 글에서 전개될 내용의 핵심이므로 잘 이해하고 가는 것이 중요하다.</p>
+<h2 id="데이터"><a href="#데이터" class="headerlink" title="데이터"></a>데이터</h2><p>데이터는 보통 모델로부터 가공되거나 유저의 액션에 의해 얻어진 특정한 값으로 이루어진다. ObservableField 나 LiveData 형태로 래핑되어 제공되며 <strong>데이터 바인딩</strong>을 이용하여 View (XML) 에게 변경 사항이 전달된다. 대표적으로 다음과 같은 케이스가 있다.</p>
 <ul>
 <li>model 로 부터 가공된 list</li>
 <li>visibility</li>
@@ -26,12 +26,8 @@
 
 <h1 id="LiveData-의-한계와-대안점"><a href="#LiveData-의-한계와-대안점" class="headerlink" title="LiveData 의 한계와 대안점"></a>LiveData 의 한계와 대안점</h1><p>앞서 언급했듯이 이벤트를 전달하는 것은 구현 자유도가 높은 편이다. </p>
 <p>RxJava 를 이용해도 되고, LiveData 혹은 Custom 하게 Obeserver 패턴 구현체를 써도 상관 없다.  하지만 RxJava 나 Custom Observer 를 구현하면 라이프사이클을 계속 신경써줄수 밖에 없기 때문에 보통은 LiveData 를 선택한다. </p>
-<p>그래도 애매할 때는 구글에서 진행하는 프로젝트를 참고하는 것도 좋은 방법이다. 가장 최근 개발 트렌드가 반영되고 있는 IO 레포과 여러 아키텍처 가이드를 구현해놓은 샘플 레포를 살펴보자.</p>
-<ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9pb3NjaGVk" title="https://github.com/google/iosched">Google IO 앱 공개 레포<i class="fa fa-external-link"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FuZHJvaWQvYXJjaGl0ZWN0dXJlLXNhbXBsZXM=" title="https://github.com/android/architecture-samples">Architecture sample<i class="fa fa-external-link"></i></span></li>
-</ul>
-<h2 id="변형된-형태의-LiveData"><a href="#변형된-형태의-LiveData" class="headerlink" title="변형된 형태의 LiveData"></a>변형된 형태의 LiveData</h2><p>각각의 레포에서 어렵지 않게 LiveData 를 이용하여 MVVM 의 이벤트 흐름을 처리하는 케이스를 확인할 수 있다.</p>
+<p>그래도 애매할 때는 여러 레퍼런스를 참고해보며 힌트를 얻어보자. 구글에서 운영하고 있는 공식 repo 인 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9pb3NjaGVk" title="https://github.com/google/iosched">Goolge IO app<i class="fa fa-external-link"></i></span> 과 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FuZHJvaWQvYXJjaGl0ZWN0dXJlLXNhbXBsZXM=" title="https://github.com/android/architecture-samples">Architecture Sample<i class="fa fa-external-link"></i></span> 를 살펴보자.</p>
+<h2 id="변형된-형태의-LiveData"><a href="#변형된-형태의-LiveData" class="headerlink" title="변형된 형태의 LiveData"></a>변형된 형태의 LiveData</h2><p>각 repo 는 LiveData 를 이용하여 아래와 같이 이벤트 흐름을 처리하고 있다.</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Google IO repo</span></span><br><span class="line"><span class="keyword">private</span> val _navigateToSignInDialogAction = MutableLiveData&lt;Event&lt;Unit&gt;&gt;()</span><br><span class="line">val navigateToSignInDialogAction: LiveData&lt;Event&lt;Unit&gt;&gt;</span><br><span class="line">    get() = _navigateToSignInDialogAction</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> val _navigateToSignOutDialogAction = MutableLiveData&lt;Event&lt;Unit&gt;&gt;()</span><br><span class="line">val navigateToSignOutDialogAction: LiveData&lt;Event&lt;Unit&gt;&gt;</span><br><span class="line">    get() = _navigateToSignOutDialogAction</span><br><span class="line"></span><br><span class="line"><span class="comment">// Artictecture sample repo</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> SingleLiveEvent&lt;Void&gt; mEditTaskCommand = <span class="keyword">new</span> SingleLiveEvent&lt;&gt;();</span><br></pre></td></tr></table></figure>
 
 <p>그런데 자세히 보니 LiveData 를 그대로 쓰지 않고 변형된 형태로 쓰고 있다. IO 의 경우 데이터를 Event 로 한번 더 래핑하였고, sample 에서는 아예 새로운 구현체를 만들어 사용하고 있었다.</p>
@@ -43,11 +39,11 @@
 <li>래핑된 Observer 는 <strong>onChanged 콜백이 여러번 호출되는 것을 막는다.</strong></li>
 </ol>
 <p>구글은 왜 이러한 처리를 거쳐서 LiveData 를 사용했을까? 이유는 LiveData 내부 구조에 있다.</p>
-<h2 id="LiveData-는-데이터를-위해-만들어-졌다"><a href="#LiveData-는-데이터를-위해-만들어-졌다" class="headerlink" title="LiveData 는 데이터를 위해 만들어 졌다."></a>LiveData 는 데이터를 위해 만들어 졌다.</h2><p>(docs)[<span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5jb20vdG9waWMvbGlicmFyaWVzL2FyY2hpdGVjdHVyZS9saXZlZGF0YT9obD1lbl0=" title="https://developer.android.com/topic/libraries/architecture/livedata?hl=en]">https://developer.android.com/topic/libraries/architecture/livedata?hl=en]<i class="fa fa-external-link"></i></span> 에서는 LiveData 를 다음과 같이 정의하고 있다.</p>
+<h2 id="LiveData-는-데이터를-위해-만들어-졌다"><a href="#LiveData-는-데이터를-위해-만들어-졌다" class="headerlink" title="LiveData 는 데이터를 위해 만들어 졌다."></a>LiveData 는 데이터를 위해 만들어 졌다.</h2><p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5jb20vdG9waWMvbGlicmFyaWVzL2FyY2hpdGVjdHVyZS9saXZlZGF0YT9obD1lbg==" title="https://developer.android.com/topic/libraries/architecture/livedata?hl=en">docs<i class="fa fa-external-link"></i></span> 에서는 LiveData 를 다음과 같이 정의하고 있다.</p>
 <blockquote>
 <p>LiveData is an observable data holder class</p>
 </blockquote>
-<p>즉, LiveData 는 애초에 데이터의 전달을 위해 설계됐다는 얘기이다. 다만, 리엑티브한 개념에서 데이터를 좀 더 추상적으로 생각한다면 이벤트 소스도 하나의 데이터로 생각할 수 있기에 이벤트 전달에 활용을 해도 어색하지는 않다. 다만 구조상 그대로 이벤트를 위해 사용하기에는 한계가 있어 위와 같은 변형 구조로 사용하게 되는 것이다.</p>
+<p>즉, <strong>LiveData 는 애초에 데이터의 전달을 위해 설계됐다는 얘기다.</strong> 다만, 리엑티브한 개념에서 데이터를 좀 더 추상적으로 생각한다면 이벤트 소스도 하나의 데이터로 생각할 수 있기에 이벤트 전달에 활용을 해도 어색하지는 않다. 다만 구조상 그대로 이벤트를 위해 사용하기에는 한계가 있어 위와 같은 변형 구조로 사용하게 되는 것이다.</p>
 <p>여기서 LiveData 의 모든 코드를 다 확인하고 가기는 어려우므로 핵심적인 부분만 살펴보자.</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">shouldBeActive</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> mOwner.getLifecycle().getCurrentState().isAtLeast(STARTED);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onStateChanged</span><span class="params">(LifecycleOwner source, Lifecycle.Event event)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (mOwner.getLifecycle().getCurrentState() == DESTROYED) &#123;</span><br><span class="line">        removeObserver(mObserver);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    activeStateChanged(shouldBeActive());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -72,7 +68,7 @@
 <p><img src="/images/google_search_live_twice.png" alt></p>
 <h1 id="그럼-무엇을-선택해야할까"><a href="#그럼-무엇을-선택해야할까" class="headerlink" title="그럼 무엇을 선택해야할까?"></a>그럼 무엇을 선택해야할까?</h1><p>위와 같은 이유로 인해 LiveData 를 이벤트 전달로 사용하기 위해서, onChanged 콜백이 여러번 호출되는 것을 막는 변형구조가 탄생하게 되었다. </p>
 <p>그럼 이벤트 전달을 할때는 무엇을 선택하는 것이 좋을까? 진행하고 있는 프로젝트 상황이 각자 다르기에 꼭 하나를 추천하기는 어려울 것 같다. 다만, 현재 진행하고 있는 프로젝트에서 SingleLiveData 와 커스텀 LiveEvent 를 섞어서 사용하고 있으므로 사용해보면서 느낀점을 정리해보면서 마무리하고자 한다.</p>
-<h2 id="SingleLiveEvent"><a href="#SingleLiveEvent" class="headerlink" title="SingleLiveEvent"></a>SingleLiveEvent</h2><p>구현은 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FuZHJvaWQvYXJjaGl0ZWN0dXJlLXNhbXBsZXMvYmxvYi9kZXYtdG9kby1tdnZtLWxpdmUvdG9kb2FwcC9hcHAvc3JjL21haW4vamF2YS9jb20vZXhhbXBsZS9hbmRyb2lkL2FyY2hpdGVjdHVyZS9ibHVlcHJpbnRzL3RvZG9hcHAvU2luZ2xlTGl2ZUV2ZW50LmphdmE=" title="https://github.com/android/architecture-samples/blob/dev-todo-mvvm-live/todoapp/app/src/main/java/com/example/android/architecture/blueprints/todoapp/SingleLiveEvent.java">여기서<i class="fa fa-external-link"></i></span>, 관련된 포스트는 <span class="exturl" data-url="aHR0cHM6Ly9wcm9hbmRyb2lkZGV2LmNvbS9zaW5nbGVsaXZlZXZlbnQtdG8taGVscC15b3Utd29yay13aXRoLWxpdmVkYXRhLWFuZC1ldmVudHMtNWFjNTE5OTg5Yzcw" title="https://proandroiddev.com/singleliveevent-to-help-you-work-with-livedata-and-events-5ac519989c70">여기<i class="fa fa-external-link"></i></span>를 참고하면 될 거 같다. </p>
+<h2 id="SingleLiveEvent"><a href="#SingleLiveEvent" class="headerlink" title="SingleLiveEvent"></a>SingleLiveEvent</h2><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FuZHJvaWQvYXJjaGl0ZWN0dXJlLXNhbXBsZXMvYmxvYi9kZXYtdG9kby1tdnZtLWxpdmUvdG9kb2FwcC9hcHAvc3JjL21haW4vamF2YS9jb20vZXhhbXBsZS9hbmRyb2lkL2FyY2hpdGVjdHVyZS9ibHVlcHJpbnRzL3RvZG9hcHAvU2luZ2xlTGl2ZUV2ZW50LmphdmE=" title="https://github.com/android/architecture-samples/blob/dev-todo-mvvm-live/todoapp/app/src/main/java/com/example/android/architecture/blueprints/todoapp/SingleLiveEvent.java">코드<i class="fa fa-external-link"></i></span> 및 <span class="exturl" data-url="aHR0cHM6Ly9wcm9hbmRyb2lkZGV2LmNvbS9zaW5nbGVsaXZlZXZlbnQtdG8taGVscC15b3Utd29yay13aXRoLWxpdmVkYXRhLWFuZC1ldmVudHMtNWFjNTE5OTg5Yzcw" title="https://proandroiddev.com/singleliveevent-to-help-you-work-with-livedata-and-events-5ac519989c70">관련 포스트<i class="fa fa-external-link"></i></span>를 참고하면 금방 이해할 수 있을거라 생각한다.</p>
 <p>구조는 단순하다. MutableLiveData 를 상속받아, 명시적으로 setValue 를 호출했을 때만 데이터가 전달되도록 flag 를 걸어주었다.</p>
 <ul>
 <li>장점은 MutableLiveData 를 상속받았기 때문에 기본적으로 메모리 관리나 LifeCycle 변경에 따른 처리를 따로 해줄필요가 없다. 사용방법도 기존의 LiveData 사용하듯이 쓰면 된다.</li>
