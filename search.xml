@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>MVVM 과 LiveData 조합 시 겪을 수 있는 이슈와 해결책</title>
+    <title>[안드로이드] MVVM 과 LiveData 조합 시 겪을 수 있는 이슈와 해결책</title>
     <url>/2020/03/13/live_data_with_event_issue/</url>
     <content><![CDATA[<p><img src="/images/cover/live_data_with_event_cover.jpg" alt><br>이번 포스트에서는 MVVM 아키텍처에서 LiveData 를 사용하면서 겪었던 어려움과 여러 해결방법에 대해 적어보려한다. MVVM 에 대한 좋은 글은 이미 많이 있으므로 해당 포스트에서는 생략하고 넘어간다! </p>
 <h1 id="TL-DR"><a href="#TL-DR" class="headerlink" title="TL;DR"></a>TL;DR</h1><ul>
@@ -125,7 +125,7 @@
       </tags>
   </entry>
   <entry>
-    <title>Process 재시작 과 Fragment 생명 주기</title>
+    <title>[안드로이드] Process 재시작 과 Fragment 생명 주기</title>
     <url>/2020/02/23/fragment_lifecycle_with_restarted_process/</url>
     <content><![CDATA[<p><img src="/images/bike_cover.jpg" alt></p>
 <p>최근에도 큰 규모의 리펙토링을 진행했는데, Fragment 생명주기에 대한 지식이 부족하여 많은 이슈를 발생시켰다. 😭 이번 포스팅에서는 해당 이슈의 원인과 해결법에 대해 적어보려 한다.</p>

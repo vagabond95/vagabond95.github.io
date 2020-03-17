@@ -8,11 +8,11 @@
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>내일 잊기전에 오늘 적어두는 블로그</description>
-    <pubDate>Tue, 17 Mar 2020 07:07:19 GMT</pubDate>
+    <pubDate>Tue, 17 Mar 2020 07:29:56 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
-      <title>MVVM 과 LiveData 조합 시 겪을 수 있는 이슈와 해결책</title>
+      <title>[안드로이드] MVVM 과 LiveData 조합 시 겪을 수 있는 이슈와 해결책</title>
       <link>https://vagabond95.github.io/2020/03/13/live_data_with_event_issue/</link>
       <guid>https://vagabond95.github.io/2020/03/13/live_data_with_event_issue/</guid>
       <pubDate>Fri, 13 Mar 2020 13:08:20 GMT</pubDate>
@@ -53,7 +53,7 @@
     </item>
     
     <item>
-      <title>Process 재시작 과 Fragment 생명 주기</title>
+      <title>[안드로이드] Process 재시작 과 Fragment 생명 주기</title>
       <link>https://vagabond95.github.io/2020/02/23/fragment_lifecycle_with_restarted_process/</link>
       <guid>https://vagabond95.github.io/2020/02/23/fragment_lifecycle_with_restarted_process/</guid>
       <pubDate>Sun, 23 Feb 2020 11:33:03 GMT</pubDate>
