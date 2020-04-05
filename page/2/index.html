@@ -423,7 +423,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2020-04-05 23:54:39" itemprop="dateModified" datetime="2020-04-05T23:54:39+09:00">2020-04-05</time>
+                <time title="Modified: 2020-04-05 23:56:49" itemprop="dateModified" datetime="2020-04-05T23:56:49+09:00">2020-04-05</time>
               </span>
             
           
@@ -472,7 +472,7 @@
 <h1 id="구현"><a href="#구현" class="headerlink" title="구현"></a>구현</h1><p>화면이라는 단어는 자체는 매우 추상적이다. 위 원리의 핵심은 화면의 높이를 구하는 것이므로 코드 레벨의 사전 정의가 필요해보인다.<br>해당 포스트에서는 안드로이드에서 제공하고 있는 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5jb20vcmVmZXJlbmNlL2FuZHJvaWQvdmlldy9WaWV3" title="https://developer.android.com/reference/android/view/View">View<i class="fa fa-external-link"></i></span> 클래스를 화면으로 정의했다. 그 이유는 높이를 구하는 과정에서 활용할 수 있는 API 가 모두 View 에서 제공되기 때문이다.</p>
 <hr>
 <h2 id="1-화면의-높이를-구한다"><a href="#1-화면의-높이를-구한다" class="headerlink" title="1. 화면의 높이를 구한다."></a>1. 화면의 높이를 구한다.</h2><p>일반적으로 View 는 View.getHeight() 로 리턴되는 값이 해당 View 의 정확한 높이라고 항상 보장하지는 않는다. 왜냐하면 View 는 여러 단계를 걸쳐 자신의 높이를 결정하는데, 그것이 결정되기전에 우리가 getHeight() 를 호출했을수 있기 때문이다.</p>
-<p>따라서 정확한 View 의 높이를 알기 위해서는 View 의 크기가 결정된 이후에 getHeight() 를 호출해야 한다.<br>결정되는 타이밍을 어떻게 알 수 있냐고?<br>그래서 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5jb20vcmVmZXJlbmNlL2FuZHJvaWQvdmlldy9WaWV3VHJlZU9ic2VydmVyLk9uR2xvYmFsTGF5b3V0TGlzdGVuZXI=" title="https://developer.android.com/reference/android/view/ViewTreeObserver.OnGlobalLayoutListener">ViewTreeObserver.OnGlobalLayoutListener<i class="fa fa-external-link"></i></span> 를 이용할 것이다.</p>
+<p>따라서 정확한 View 의 높이를 알기 위해서는 View 의 크기가 결정된 이후에 getHeight() 를 호출해야 한다.<br>그리고 View 에서 제공하는 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5jb20vcmVmZXJlbmNlL2FuZHJvaWQvdmlldy9WaWV3VHJlZU9ic2VydmVyLk9uR2xvYmFsTGF5b3V0TGlzdGVuZXI=" title="https://developer.android.com/reference/android/view/ViewTreeObserver.OnGlobalLayoutListener">ViewTreeObserver.OnGlobalLayoutListener<i class="fa fa-external-link"></i></span> 를 이용하여 결정되는 타이밍을 캐치할 수 있다. </p>
 <p>OnGlobalLayoutListener 는 해당 View에 변경점이 생겼을 때, 이를 콜백형태로 감지할 수 있다. 변경되는 내용에는 View 의 크기가 결정되는 것도 포함되므로 우리는 해당 콜백이 호출되었을 때 View.getHeight() 를 호출하면 정확한 높이를 얻을 수 있다.</p>
 <p>코드 레벨로는 다음과 같다.</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> viewHeight = -<span class="number">1</span>;</span><br><span class="line">    </span><br><span class="line">rootView.getViewTreeObserver().addOnGlobalLayoutListener(() -&gt; &#123;</span><br><span class="line">    <span class="keyword">int</span> currentViewHeight = rootView.getHeight();</span><br><span class="line">    <span class="keyword">if</span> (currentViewHeight &gt; viewHeight) &#123;</span><br><span class="line">        viewHeight = currentViewHeight;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
