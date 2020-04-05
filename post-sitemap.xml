@@ -8,6 +8,22 @@
     </url>
 
     <url>
+        <loc>https://vagabond95.github.io/2019/08/10/is-this-rxjava-2/</loc>
+        <lastmod>2020-04-05T13:49:06.957Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://vagabond95.github.io/2019/07/20/is-this-rxjava-1/</loc>
+        <lastmod>2020-04-05T13:44:51.414Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://vagabond95.github.io/2020/03/13/live_data_with_event_issue/</loc>
         <lastmod>2020-03-17T07:29:56.317Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -114,22 +130,6 @@
     <url>
         <loc>https://vagabond95.github.io/2018/09/21/what-is-nullaway/</loc>
         <lastmod>2019-10-13T12:48:34.998Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://vagabond95.github.io/2019/08/10/is-this-rxjava-2/</loc>
-        <lastmod>2019-10-13T12:48:24.070Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://vagabond95.github.io/2019/07/20/is-this-rxjava-1/</loc>
-        <lastmod>2019-10-13T12:48:19.111Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
