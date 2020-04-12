@@ -3,7 +3,8 @@
   <entry>
     <title>TextView 에서 ellipsize 가 적용되지 않는 이슈 (feat: autoLink 와 movementMethod)</title>
     <url>/2020/04/12/android_not_working_ellipsize_with_autolink_or_movementmethod/</url>
-    <content><![CDATA[<h1 id="TL-DR"><a href="#TL-DR" class="headerlink" title="TL;DR"></a>TL;DR</h1><ul>
+    <content><![CDATA[<p><img src="/images/cover/ellipsis_not_working_cover.jpg" alt></p>
+<h1 id="TL-DR"><a href="#TL-DR" class="headerlink" title="TL;DR"></a>TL;DR</h1><ul>
 <li>TextView 에서 autoLink 혹은 movemnetMethod 옵션을 사용할 경우 ellipsize 가 제대로 동작하지 않는다.</li>
 <li>autoLink &amp; movementMethod 혹은 ellipsize 를 커스텀하게 구현해줄 필요가 있다.</li>
 <li>API 27 기준의 TextView 로 조사를 진행하였다.</li>

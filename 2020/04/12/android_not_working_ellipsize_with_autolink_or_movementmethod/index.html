@@ -94,18 +94,20 @@
 
 
 
-  <meta name="description" content="TL;DR TextView 에서 autoLink 혹은 movemnetMethod 옵션을 사용할 경우 ellipsize 가 제대로 동작하지 않는다. autoLink &amp;amp; movementMethod 혹은 ellipsize 를 커스텀하게 구현해줄 필요가 있다. API 27 기준의 TextView 로 조사를 진행하였다.  간단해 보이는 요구 사항, 삽질의 시">
+  <meta name="description" content="TL;DR TextView 에서 autoLink 혹은 movemnetMethod 옵션을 사용할 경우 ellipsize 가 제대로 동작하지 않는다. autoLink &amp;amp; movementMethod 혹은 ellipsize 를 커스텀하게 구현해줄 필요가 있다. API 27 기준의 TextView 로 조사를 진행하였다.  간단해 보이는 요구 사항, 삽질의">
 <meta name="keywords" content="Android,TextView">
 <meta property="og:type" content="article">
 <meta property="og:title" content="TextView 에서 ellipsize 가 적용되지 않는 이슈 (feat: autoLink 와 movementMethod)">
 <meta property="og:url" content="https://vagabond95.github.io/2020/04/12/android_not_working_ellipsize_with_autolink_or_movementmethod/index.html">
 <meta property="og:site_name" content="기록은 기억을 지배한다">
-<meta property="og:description" content="TL;DR TextView 에서 autoLink 혹은 movemnetMethod 옵션을 사용할 경우 ellipsize 가 제대로 동작하지 않는다. autoLink &amp;amp; movementMethod 혹은 ellipsize 를 커스텀하게 구현해줄 필요가 있다. API 27 기준의 TextView 로 조사를 진행하였다.  간단해 보이는 요구 사항, 삽질의 시">
+<meta property="og:description" content="TL;DR TextView 에서 autoLink 혹은 movemnetMethod 옵션을 사용할 경우 ellipsize 가 제대로 동작하지 않는다. autoLink &amp;amp; movementMethod 혹은 ellipsize 를 커스텀하게 구현해줄 필요가 있다. API 27 기준의 TextView 로 조사를 진행하였다.  간단해 보이는 요구 사항, 삽질의">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-04-12T07:46:49.416Z">
+<meta property="og:image" content="https://vagabond95.github.io/images/cover/ellipsis_not_working_cover.jpg">
+<meta property="og:updated_time" content="2020-04-12T07:54:37.951Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TextView 에서 ellipsize 가 적용되지 않는 이슈 (feat: autoLink 와 movementMethod)">
-<meta name="twitter:description" content="TL;DR TextView 에서 autoLink 혹은 movemnetMethod 옵션을 사용할 경우 ellipsize 가 제대로 동작하지 않는다. autoLink &amp;amp; movementMethod 혹은 ellipsize 를 커스텀하게 구현해줄 필요가 있다. API 27 기준의 TextView 로 조사를 진행하였다.  간단해 보이는 요구 사항, 삽질의 시">
+<meta name="twitter:description" content="TL;DR TextView 에서 autoLink 혹은 movemnetMethod 옵션을 사용할 경우 ellipsize 가 제대로 동작하지 않는다. autoLink &amp;amp; movementMethod 혹은 ellipsize 를 커스텀하게 구현해줄 필요가 있다. API 27 기준의 TextView 로 조사를 진행하였다.  간단해 보이는 요구 사항, 삽질의">
+<meta name="twitter:image" content="https://vagabond95.github.io/images/cover/ellipsis_not_working_cover.jpg">
 
 
 
@@ -407,7 +409,7 @@
                 
               
 
-              <time title="Created: 2020-04-12 16:32:12 / Modified: 16:46:49" itemprop="dateCreated datePublished" datetime="2020-04-12T16:32:12+09:00">2020-04-12</time>
+              <time title="Created: 2020-04-12 16:32:12 / Modified: 16:54:37" itemprop="dateCreated datePublished" datetime="2020-04-12T16:32:12+09:00">2020-04-12</time>
             </span>
           
 
@@ -449,7 +451,8 @@
       
 
       
-        <h1 id="TL-DR"><a href="#TL-DR" class="headerlink" title="TL;DR"></a>TL;DR</h1><ul>
+        <p><img src="/images/cover/ellipsis_not_working_cover.jpg" alt></p>
+<h1 id="TL-DR"><a href="#TL-DR" class="headerlink" title="TL;DR"></a>TL;DR</h1><ul>
 <li>TextView 에서 autoLink 혹은 movemnetMethod 옵션을 사용할 경우 ellipsize 가 제대로 동작하지 않는다.</li>
 <li>autoLink &amp; movementMethod 혹은 ellipsize 를 커스텀하게 구현해줄 필요가 있다.</li>
 <li>API 27 기준의 TextView 로 조사를 진행하였다.</li>
