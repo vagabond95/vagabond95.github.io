@@ -2,20 +2,20 @@
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
     <url>
-        <loc>http://www.vagabond95.me</loc>
+        <loc>https://vagabond95.github.io</loc>
         <changefreq>daily</changefreq>
         <priority>1</priority>
     </url>
     
     <url>
-        <loc>http://www.vagabond95.me/about/</loc>
+        <loc>https://vagabond95.github.io/about/</loc>
         <lastmod>2019-12-28T15:18:52.910Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     
     <url>
-        <loc>http://www.vagabond95.me/tags/</loc>
+        <loc>https://vagabond95.github.io/tags/</loc>
         <lastmod>2019-10-13T13:17:04.282Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
