@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"vagabond95.me","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="한번도 NullPointerException (이하 NPE)를 겪어보지 않은 사람은 있을지 몰라도, 한번만 NPE 를 겪어본 사람은 없을것이다. NPE 로 인한 크래시가 나기 전까지는 그 존재를 알 수 없기 때문에 항상 Null 값 처리를 신경 쓰면서 개발을 진행해야 한다. 잊을만하면 나타나는 NPE를 바라보면서 한숨을 쉬고 있을 때쯤, 동료 개발자에게 미">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[안드로이드] Nullaway 를 활용하여 NullPointerException 예방하기">
+<meta property="og:url" content="https://vagabond95.me/2018/09/21/what-is-nullaway/index.html">
+<meta property="og:site_name" content="기록은 기억을 지배한다">
+<meta property="og:description" content="한번도 NullPointerException (이하 NPE)를 겪어보지 않은 사람은 있을지 몰라도, 한번만 NPE 를 겪어본 사람은 없을것이다. NPE 로 인한 크래시가 나기 전까지는 그 존재를 알 수 없기 때문에 항상 Null 값 처리를 신경 쓰면서 개발을 진행해야 한다. 잊을만하면 나타나는 NPE를 바라보면서 한숨을 쉬고 있을 때쯤, 동료 개발자에게 미">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-10-13T12:48:34.998Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[안드로이드] Nullaway 를 활용하여 NullPointerException 예방하기">
+<meta name="twitter:description" content="한번도 NullPointerException (이하 NPE)를 겪어보지 않은 사람은 있을지 몰라도, 한번만 NPE 를 겪어본 사람은 없을것이다. NPE 로 인한 크래시가 나기 전까지는 그 존재를 알 수 없기 때문에 항상 Null 값 처리를 신경 쓰면서 개발을 진행해야 한다. 잊을만하면 나타나는 NPE를 바라보면서 한숨을 쉬고 있을 때쯤, 동료 개발자에게 미">
+
+<link rel="canonical" href="https://vagabond95.me/2018/09/21/what-is-nullaway/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>[안드로이드] Nullaway 를 활용하여 NullPointerException 예방하기 | 기록은 기억을 지배한다</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143694036-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-143694036-1');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head> 
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">기록은 기억을 지배한다</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">I Android you</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="list fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-til">
+
+    <a href="https://progjh.gitbook.io/today-i-learned/" rel="noopener" target="_blank"><i class="fire fa-fw"></i>TIL</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://vagabond95.me/2018/09/21/what-is-nullaway/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jihoon Kim">
+      <meta itemprop="description" content="내일 잊기전에 오늘 적어두는 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="기록은 기억을 지배한다">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [안드로이드] Nullaway 를 활용하여 NullPointerException 예방하기
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2018-09-21 00:27:36" itemprop="dateCreated datePublished" datetime="2018-09-21T00:27:36+09:00">2018-09-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-10-13 21:48:34" itemprop="dateModified" datetime="2019-10-13T21:48:34+09:00">2019-10-13</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>한번도 <strong>NullPointerException</strong> (이하 NPE)를 겪어보지 않은 사람은 있을지 몰라도, 한번만 NPE 를 겪어본 사람은 없을것이다. NPE 로 인한 크래시가 나기 전까지는 그 존재를 알 수 없기 때문에 항상 Null 값 처리를 신경 쓰면서 개발을 진행해야 한다. 잊을만하면 나타나는 NPE를 바라보면서 한숨을 쉬고 있을 때쯤, 동료 개발자에게 미리 NPE 예방에 도움을 주는 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3ViZXIvTnVsbEF3YXk=" title="https://github.com/uber/NullAway">Nullaway<i class="fa fa-external-link"></i></span> 라이브러리를 소개받았다.</p>
+<p>Nullaway 는 @Nullable 어노테이션을 이용하여 <strong>Compile Time 에 Null check</strong> 검사를 수행한다. 간결하고, 강력해보인다.</p>
+<h2 id="Nullaway-세팅하기"><a href="#Nullaway-세팅하기" class="headerlink" title="Nullaway 세팅하기"></a><strong>Nullaway 세팅하기</strong></h2><p><code>gradle</code> 기반으로 가이드가 되어있고, Android / Non - Android 방식으로 나뉘는데 거의 차이가 없다. 이 글에서는 Android 방식을 기준으로 설명한다.</p>
+<p>App 모듈 Gradle 파일에 다음과 같이 추가해주면 설정이 끝난다.</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">apply <span class="string">plugin:</span> <span class="string">'net.ltgt.errorprone'</span></span><br><span class="line"></span><br><span class="line">buildscript &#123;</span><br><span class="line">  repositories &#123;</span><br><span class="line">    maven &#123;</span><br><span class="line">      url <span class="string">"https://plugins.gradle.org/m2/"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  dependencies &#123;</span><br><span class="line">    classpath <span class="string">"net.ltgt.gradle:gradle-errorprone-plugin:0.0.13"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dependencies &#123;</span><br><span class="line">  &lt;!--￼<span class="number">0</span>--&gt;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">tasks.withType(JavaCompile) &#123;</span><br><span class="line">  <span class="keyword">if</span> (!name.toLowerCase().contains(<span class="string">"test"</span>)) &#123;</span><br><span class="line">    options.compilerArgs += [</span><br><span class="line">        <span class="string">"-Xep:NullAway:ERROR"</span>,</span><br><span class="line">        <span class="string">"-XepOpt:NullAway:AnnotatedPackages=com.your.package"</span>]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Configuration</strong></p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">tasks.withType(JavaCompile) &#123;</span><br><span class="line">  <span class="keyword">if</span> (!name.toLowerCase().contains(<span class="string">"test"</span>)) &#123;</span><br><span class="line">    options.compilerArgs += [</span><br><span class="line">        <span class="string">"-Xep:NullAway:ERROR"</span>,</span><br><span class="line">        <span class="string">"-XepOpt:NullAway:AnnotatedPackages=com.your.package"</span>]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>다른 부분은 그대로 사용해도 상관없지만 해당 부분은 각 프로젝트에 맞게 수정을 해줘야 한다. Nullaway의 적용범위를 설정할 수 있다.</p>
+<p>필수로 추가해줘야 하는 부분은 <code>-XepOpt:NullAway:AnnotatedPackages</code> 옵션이다. 해당 옵션값은 Nullaway 가 검사할 패키지를 지정한다. 위 옵션값으로 지정된 패키지 및 그 하위 패키지는 Nullaway가 요구하는 @Nullable 어노테이션 처리가 모두 되어있다고 가정하며, 만약 처리가 안되어 있을 경우 빌드시 에러를 발생시킨다.</p>
+<p>그외에 자주 쓰이는 옵션은 다음과 같다.</p>
+<ul>
+<li><code>-XepOpt:NullAway:UnannotatedSubPackages</code> : Nullaway가 요구하는 어노테이션 처리가 안되어 있는 패키지를 지정한다. 해당 패키지 및 그 하위패키지는 Nullaway 검사에서 제외된다.</li>
+<li><code>-XepOpt:NullAway:ExcludedClasses</code> : Nullaway가 요구하는 어노테이션 처리가 안되어 있는 클래스를 지정한다. 해당 클래스는 Nullaway 검사에서 제외된다.</li>
+</ul>
+<p><strong>2개 이상의 패키지 혹은 클래스를 옵션값으로 주고 싶을 경우</strong></p>
+<p>같은 옵션의 값을 여러번 추가하면 될 거 같지만, 실제로는 가장 마지막에 추가된 값만 옵션에 적용되기 때문에 원하지 않는 결과가 나올 수 있다. 따라서 2개 이상의 클래스 / 패키지를 지정하고 싶을 경우에는 정규식을 이용해야 한다.</p>
+<p><em>com.project</em> 의 하위 패키지인 <em>foo</em>, <em>bar</em> 패키지를 Nullaway 검사에서 제외시키고 싶을 때</p>
+<ul>
+<li><code>&quot;-XepOpt:NullAway:UnannotatedSubPackages=com.project.(foo|bar)&quot;</code></li>
+</ul>
+<p>prefix로 <strong>test_</strong> 가 붙은 패키지들을 Nullaway 검사에서 제외시키고 싶을 때</p>
+<ul>
+<li><code>&quot;-XepOpt:NullAway:UnannotatedSubPackages=com.project.test_[a-zA-Z0-9.]*&quot;</code></li>
+</ul>
+<p>그외 자세한 설명은 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3ViZXIvTnVsbEF3YXkvd2lraS9Db25maWd1cmF0aW9u" title="https://github.com/uber/NullAway/wiki/Configuration">Docs<i class="fa fa-external-link"></i></span> 를 참고!</p>
+<h2 id="사용-방법"><a href="#사용-방법" class="headerlink" title="사용 방법"></a><strong>사용 방법</strong></h2><p>Android Support Library 에서 제공하는 <code>@Nullable</code> 어노테이션을 이용한다. Null 이 될 수 있는 필드, Null을 리턴할 수 있는 메소드에 <code>@Nullable</code>, Null 이 될 수 없는 필드, Null 을 리턴하지 않는 메소드는 <code>@NonNull</code> 을 추가해주면 된다. 아무런 어노테이션도 추가되지 않은 변수, 메소드는 @NonNull 로 인식한다. @Nullable 이 추가되어있는 필드는 항상 Null safe 체크 이후에 사용될 수 있고, @NonNull 이 추가되어 있는 필드는 Null 값이 들어올 수 없다는 것을 기본전제로 Null check 검사를 수행한다.</p>
+<p>예제</p>
+<p>아래 코드를 빌드할 경우 NonNull 타입 파라미터에 Null 이 들어갔으므로 Nullaway가 에러를 낸다.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testModel</span><span class="params">(Model model)</span> </span>&#123;</span><br><span class="line">    Log.e(<span class="string">"TEST"</span>, model.isValid());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    testModel(<span class="keyword">null</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>따라서 다음과 같이 처리해줘야 한다.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testModel</span><span class="params">(@Nullable Model model)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (model != <span class="keyword">null</span>) &#123;</span><br><span class="line">    	Log.e(<span class="string">"TEST"</span>, model.isValid());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>만약 Null check 없이 그대로 model 을 사용하려고 할 경우, 역시 에러를 낸다.</p>
+<p>Nullaway가 에러를 띄워주는 케이스는 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3ViZXIvTnVsbEF3YXkvd2lraS9FcnJvci1NZXNzYWdlcw==" title="https://github.com/uber/NullAway/wiki/Error-Messages">Error Messages<i class="fa fa-external-link"></i></span> 에 정리되어 있다.</p>
+<h2 id="실제-프로젝트에-적용해보면서-느낀-점"><a href="#실제-프로젝트에-적용해보면서-느낀-점" class="headerlink" title="실제 프로젝트에 적용해보면서 느낀 점"></a><strong>실제 프로젝트에 적용해보면서 느낀 점</strong></h2><ol>
+<li>방어코드를 잘 추가했다고 생각했음에도 처리되지 않았던 부분이 많았고, 관련 코드를 모두 수정하여 앱의 안정성을 올리는데 도움을 주었다.</li>
+<li>Nullaway 소개글에 나온 것 처럼 처리 속도가 빨라 빌드시간이 추가로 더 늘어나지는 않음.</li>
+<li>코드를 작성할 때 Nullable, NonNull 을 고려하게 된다는 점이 좋았음.</li>
+</ol>
+<p>코틀린으로 넘어가게 되면 사용하지 않아도 무방하고 자바로 계속 개발할 경우 한번 적용해보는 것을 추천한다.</p>
+<p>샘플 링크 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3ZhZ2Fib25kOTUvTnVsbEF3YXlTYW1wbGU=" title="https://github.com/vagabond95/NullAwaySample">https://github.com/vagabond95/NullAwaySample<i class="fa fa-external-link"></i></span></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"># Java</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/06/13/text_is_selectable_issue/" rel="prev" title="[안드로이드] TextView 에서 textIsSelectable와 LinkMovementMethod를 같이 사용할때 발생하는 이슈">
+      <i class="fa fa-chevron-left"></i> [안드로이드] TextView 에서 textIsSelectable와 LinkMovementMethod를 같이 사용할때 발생하는 이슈
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/07/07/2019-first-half-review/" rel="next" title="2019년 상반기 회고">
+      2019년 상반기 회고 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Nullaway-세팅하기"><span class="nav-number">1.</span> <span class="nav-text">Nullaway 세팅하기</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#사용-방법"><span class="nav-number">2.</span> <span class="nav-text">사용 방법</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#실제-프로젝트에-적용해보면서-느낀-점"><span class="nav-number">3.</span> <span class="nav-text">실제 프로젝트에 적용해보면서 느낀 점</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Jihoon Kim</p>
+  <div class="site-description" itemprop="description">내일 잊기전에 오늘 적어두는 블로그</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jihoon Kim</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  <script data-ad-client="ca-pub-5033331279793069" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+  <!-- Google AdSense end -->
+  <!-- Google AdSense start -->
+</body>
+</html>
