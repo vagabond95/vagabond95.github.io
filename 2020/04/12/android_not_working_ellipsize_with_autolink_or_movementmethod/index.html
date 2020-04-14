@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"vagabond95.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="TL;DR TextView 에서 autoLink 혹은 movemnetMethod 옵션을 사용할 경우 ellipsize 가 제대로 동작하지 않는다. autoLink &amp;amp; movementMethod 혹은 ellipsize 를 커스텀하게 구현해줄 필요가 있다. API 27 기준의 TextView 로 조사를 진행하였다.  간단해 보이는 요구 사항, 삽질의">
+<meta name="keywords" content="Android,TextView">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TextView 에서 ellipsize 가 적용되지 않는 이슈 (feat: autoLink 와 movementMethod)">
+<meta property="og:url" content="https://vagabond95.github.io/2020/04/12/android_not_working_ellipsize_with_autolink_or_movementmethod/index.html">
+<meta property="og:site_name" content="기록은 기억을 지배한다">
+<meta property="og:description" content="TL;DR TextView 에서 autoLink 혹은 movemnetMethod 옵션을 사용할 경우 ellipsize 가 제대로 동작하지 않는다. autoLink &amp;amp; movementMethod 혹은 ellipsize 를 커스텀하게 구현해줄 필요가 있다. API 27 기준의 TextView 로 조사를 진행하였다.  간단해 보이는 요구 사항, 삽질의">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://vagabond95.github.io/images/cover/ellipsis_not_working_cover.jpeg">
+<meta property="og:updated_time" content="2020-04-12T08:05:32.221Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TextView 에서 ellipsize 가 적용되지 않는 이슈 (feat: autoLink 와 movementMethod)">
+<meta name="twitter:description" content="TL;DR TextView 에서 autoLink 혹은 movemnetMethod 옵션을 사용할 경우 ellipsize 가 제대로 동작하지 않는다. autoLink &amp;amp; movementMethod 혹은 ellipsize 를 커스텀하게 구현해줄 필요가 있다. API 27 기준의 TextView 로 조사를 진행하였다.  간단해 보이는 요구 사항, 삽질의">
+<meta name="twitter:image" content="https://vagabond95.github.io/images/cover/ellipsis_not_working_cover.jpeg">
+
+<link rel="canonical" href="https://vagabond95.github.io/2020/04/12/android_not_working_ellipsize_with_autolink_or_movementmethod/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>TextView 에서 ellipsize 가 적용되지 않는 이슈 (feat: autoLink 와 movementMethod) | 기록은 기억을 지배한다</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143694036-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-143694036-1');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head> 
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">기록은 기억을 지배한다</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">I Android you</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="list fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-til">
+
+    <a href="https://progjh.gitbook.io/today-i-learned/" rel="noopener" target="_blank"><i class="fire fa-fw"></i>TIL</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://vagabond95.github.io/2020/04/12/android_not_working_ellipsize_with_autolink_or_movementmethod/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jihoon Kim">
+      <meta itemprop="description" content="내일 잊기전에 오늘 적어두는 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="기록은 기억을 지배한다">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          TextView 에서 ellipsize 가 적용되지 않는 이슈 (feat: autoLink 와 movementMethod)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-04-12 16:32:12 / Modified: 17:05:32" itemprop="dateCreated datePublished" datetime="2020-04-12T16:32:12+09:00">2020-04-12</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="/images/cover/ellipsis_not_working_cover.jpeg" alt></p>
+<h1 id="TL-DR"><a href="#TL-DR" class="headerlink" title="TL;DR"></a>TL;DR</h1><ul>
+<li>TextView 에서 autoLink 혹은 movemnetMethod 옵션을 사용할 경우 ellipsize 가 제대로 동작하지 않는다.</li>
+<li>autoLink &amp; movementMethod 혹은 ellipsize 를 커스텀하게 구현해줄 필요가 있다.</li>
+<li>API 27 기준의 TextView 로 조사를 진행하였다.</li>
+</ul>
+<h1 id="간단해-보이는-요구-사항-삽질의-시작"><a href="#간단해-보이는-요구-사항-삽질의-시작" class="headerlink" title="간단해 보이는 요구 사항, 삽질의 시작"></a>간단해 보이는 요구 사항, 삽질의 시작</h1><p>텍스트 박스의 요구사항은 다음과 같았다.</p>
+<ol>
+<li>내용은 최대 N 라인 까지만 노출 가능하다. 이후 내용은 말줄임 표시로 대체</li>
+<li>내용 중 web url 이 있을 경우 클릭 및 스타일링이 되어야하고 클릭 시, 인앱 브라우저로 이동해야한다.</li>
+</ol>
+<p>1번 사항은 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5jb20vcmVmZXJlbmNlL2FuZHJvaWQvd2lkZ2V0L1RleHRWaWV3I2F0dHJfYW5kcm9pZDptYXhMaW5lcw==" title="https://developer.android.com/reference/android/widget/TextView#attr_android:maxLines">maxLine<i class="fa fa-external-link"></i></span> 과 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5jb20vcmVmZXJlbmNlL2FuZHJvaWQvd2lkZ2V0L1RleHRWaWV3I2F0dHJfYW5kcm9pZDplbGxpcHNpemU=" title="https://developer.android.com/reference/android/widget/TextView#attr_android:ellipsize">ellipsize<i class="fa fa-external-link"></i></span> 를 이용하면 된다.</p>
+<p>2번 사항은 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5jb20vcmVmZXJlbmNlL2FuZHJvaWQvd2lkZ2V0L1RleHRWaWV3I2F0dHJfYW5kcm9pZDphdXRvTGluaw==" title="https://developer.android.com/reference/android/widget/TextView#attr_android:autoLink">autoLink<i class="fa fa-external-link"></i></span>, <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5jb20vcmVmZXJlbmNlL2FuZHJvaWQvd2lkZ2V0L1RleHRWaWV3I2F0dHJfYW5kcm9pZDp0ZXh0Q29sb3JMaW5r" title="https://developer.android.com/reference/android/widget/TextView#attr_android:textColorLink">textColorLink<i class="fa fa-external-link"></i></span>, 커스텀한 MovemetMethod 를 이용하면 된다.</p>
+<p>커스텀한 MoveMentmethod 가 필요한 이유는 TextView 에서 기본으로 사용되는 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5jb20vcmVmZXJlbmNlL2FuZHJvaWQvdGV4dC9tZXRob2QvTGlua01vdmVtZW50TWV0aG9k" title="https://developer.android.com/reference/android/text/method/LinkMovementMethod">LinkMovementMethod<i class="fa fa-external-link"></i></span> 의 경우 특정한 link 텍스트 클릭 시, 이를 감지할 수 있는 콜백을 제공하지 않고 내부에서 ACTION_VIEW intent 로 처리하기 때문이다.<br>직접 구현하기가 부담스럽다면 이런 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3Nha2V0L0JldHRlci1MaW5rLU1vdmVtZW50LU1ldGhvZA==" title="https://github.com/saket/Better-Link-Movement-Method">라이브러리<i class="fa fa-external-link"></i></span> 를 이용해도 좋다.</p>
+<p>어쨌든 안드로이드에서 기본적으로 제공하고 있는 속성을 활용하면 금방 완료가 가능할 것으로 보고 구현을 시작했다.<br>그런데… 아무리 빌드를 돌려봐도 ellipsis 가 표현되지 않는다.</p>
+<p>구글이 그럴리 없다며 내가 잘못한 부분이 없나 몇 시간째 삽질을 하다가, 결국 하나하나 옵션을 제거하면서 결과를 비교해봤고 다음과 같은 결론을 얻었다.</p>
+<ul>
+<li>autoLink 혹은 setAutoMask() 를 이용하여 autoMask 플래그를 set 해줬을 경우 ellipsize 가 제대로 동작하지 않는다.</li>
+<li>movementMethod 를 set 해줬을 경우 ellipsize 가 제대로 동작하지 않는다.</li>
+<li></li>
+</ul>
+<p>전혀 연관이 없을 것 같은 각 속성이 왜 충돌하는 것일까?</p>
+<h1 id="setText-와-autoLink-movementMethod"><a href="#setText-와-autoLink-movementMethod" class="headerlink" title="setText() 와 autoLink / movementMethod"></a>setText() 와 autoLink / movementMethod</h1><p>TextView 에 내용을 전달하기 위해서는 반드시 setText() 를 거쳐야한다. setText() 메소드 내부에서 autoLink 값과 movementMethod 가 영향을 주고 있는 부분은 없을까하여  setText() 내부 구현을 조사해봤다.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// TextView.class</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (type == BufferType.SPANNABLE || mMovement != <span class="keyword">null</span>) &#123;</span><br><span class="line">                text = mSpannableFactory.newSpannable(text);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    ...</span><br><span class="line">    </span><br><span class="line">    mText = text;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (mAutoLinkMask != <span class="number">0</span>) &#123;</span><br><span class="line">                Spannable s2;</span><br><span class="line">    </span><br><span class="line">                <span class="keyword">if</span> (type == BufferType.EDITABLE || text <span class="keyword">instanceof</span> Spannable) &#123;</span><br><span class="line">                    s2 = (Spannable) text;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    s2 = mSpannableFactory.newSpannable(text);</span><br><span class="line">                &#125;</span><br><span class="line">    ...</span><br><span class="line">    </span><br><span class="line">    mText = s2;</span><br></pre></td></tr></table></figure>
+<p>각 코드는 모두 text 를 Spannable 로 포장 해주고 있다. 이 부분을 잘 기억해 두자.</p>
+<p>autolink 는 Link 에 해당하는 내용을 스타일링 해주고, movementMethod 는 link 를 클릭 했을 때 특별한 상호작용이 이루어져야 하므로 plain text 가 아닌 spannable 로 포장 해주는 것은 어느정도 납득이 간다. 그럼 이러한 특징이 ellipsize 에 어떤 영향을 줄까?</p>
+<h1 id="ellipsize-적용-과정"><a href="#ellipsize-적용-과정" class="headerlink" title="ellipsize 적용 과정"></a>ellipsize 적용 과정</h1><p>TextView 에서 Ellipsize 과 관련된 몇가지 내용을 조사해봤다.</p>
+<ol>
+<li>TextView 의 설정이 같더라도 디스플레이 환경에 따라 실제 보이는 결과는 다를 수 있다. 그리고 실제 화면 상에 보이고 있는 TextView 에 대한 정보는 <a href="[https://developer.android.com/reference/android/text/Layout](https://developer.android.com/reference/android/text/Layout)">Layout</a> 에서 가져올 수 있다. (LinearLayout 과 같은 ViewGroup Layout 이 아니다!)</li>
+</ol>
+<p>따라서 ellisize 가 적용된 결과도 layout 을 통하여 가져와야 한다.</p>
+<ol start="2">
+<li>TextVeiw 내부에서 Layout 을 생성하는 과정에서 ellipsize 가 적용되며, 이때 mMaximumVisibleLineCount 값을 기준값으로 사용한다.</li>
+</ol>
+<p>여기까지만 봤을 때는 아직 특별한 연관성을 찾기 어렵다. Layout 을 생성하는 과정을 좀 더 살펴보자.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// TextView.class</span></span><br><span class="line">    <span class="keyword">if</span> (mText <span class="keyword">instanceof</span> Spannable) &#123;</span><br><span class="line">                result = <span class="keyword">new</span> DynamicLayout(mText, mTransformed, mTextPaint, wantWidth,</span><br><span class="line">                        alignment, mTextDir, mSpacingMult, mSpacingAdd, mIncludePad,</span><br><span class="line">                        mBreakStrategy, mHyphenationFrequency, mJustificationMode,</span><br><span class="line">                        getKeyListener() == <span class="keyword">null</span> ? effectiveEllipsize : <span class="keyword">null</span>, ellipsisWidth);</span><br></pre></td></tr></table></figure>
+
+<p>이전 단락에서 autoLink 혹은 movementMethod 를 사용했을 경우 mText 는 spannable 로 포장된다고 한 것을 떠올려 보자. 그런데 mText 가 spannable 일 경우 Layout 은 DynamicLayout 으로 생성된다. DynamincLayout 은 내부적으로 StaticLayout 을 이용하여 Text 를 렌더링하는데, <strong>이때 StaticLayout 에 mMaximumVisibleLineCount 값을 따로 설정 해주지 않는 특징이 있다</strong>. mMaximumVisibleLineCount 는 디폴트 값인 Integer.MAX_VALUE 으로 초기화 된다. 따라서 보여줄 수 있는 line 의 수가 의미상 무한대에 가까우므로 ellipsis 는 표현되지 않는다. </p>
+<h1 id="원인-정리"><a href="#원인-정리" class="headerlink" title="원인 정리"></a>원인 정리</h1><p>내용이 길었는데 원인을 정리하면 다음과 같다.</p>
+<ol>
+<li>ellipsize 는 mMaximumVisibleLineCount 값을 기준으로 노출여부가 결정된다. 이 값은 보통 maxLines 값으로 초기화 된다.</li>
+<li>autoLink or movementMethod 는 text 를 spannable 로 포장한다.</li>
+<li>text 가 spannable 하면 mMaximumVisibleLineCount 이 MAX_VALUE 인 Layout 을 생성한다. 따라서 ellipsize 가 노출되지 않는다.</li>
+</ol>
+<h1 id="해결책"><a href="#해결책" class="headerlink" title="해결책"></a>해결책</h1><p>결국 위 상황을 해결하기 위해서는 2가지 옵션이 있다.</p>
+<ol>
+<li>ellipsize 를 커스텀하게 구현한다.</li>
+<li>autoLink / movementMethod 를 커스텀하게 구현한다.</li>
+</ol>
+<p>간단해보이는 View 라도 막상 구현하다보면 생각치도 못한 엣지 케이스, 예외들이 너무 많이 발생하는 것을 경험했고 나는 이것을 유지보수 할 자신이 없었다. 그래서 최대한 기존에 구현된 내용을 이용하고자 했다.</p>
+<p>각각 ellipsize 는 실제로 영향을 받는 부분이 많았고 구현이 너무 깊숙히 숨겨져있어 외부에서 컨트롤 할 수 있는 타이밍이 없을 것 같아 보류하였고<br>autoLink / movementMethod 는 구현 내용을 살펴보니 TextView 외부에서도 처리가 가능할 것 같았다.<br>따라서 autoLink / movementMethod 를 기존 구현을 최대한 참고하여 구현해보기로 하였다.</p>
+<h2 id="autoLink-적용하기"><a href="#autoLink-적용하기" class="headerlink" title="autoLink 적용하기"></a>autoLink 적용하기</h2><p>TextView 내부에서 autoLink 가 적용되는 과정은 크게 2가지로 나눌 수 있다.</p>
+<ol>
+<li>Linkify 를 이용하여 text 에 link 스타일링</li>
+<li>조건이 충족되면 디폴트 movementMethod 를 set</li>
+</ol>
+<p>1 번 과정은 똑같이 Linkify 를 이용하여 적용하면된다.<br>2번 과정은 오히려 막아야 하므로 조건을 충족시키지 않도록 해야한다. setLinksClickable() 를 이용하여 조건 값을 설정할 수 있다.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mTextView.setLinksClickable(<span class="keyword">false</span>); <span class="comment">// 디폴트 movementMethod 를 사용하지 않겠다.</span></span><br><span class="line"></span><br><span class="line">mTextView.setText(<span class="string">"Hello https://google.com !"</span>);</span><br><span class="line">Linkify.addLinks(mTextView, Linkify.WEB_URLS);</span><br></pre></td></tr></table></figure>
+
+<h2 id="movementMethod-적용하기"><a href="#movementMethod-적용하기" class="headerlink" title="movementMethod 적용하기"></a>movementMethod 적용하기</h2><p>MovementMethod 인터페이스의 역할은 link 텍스트 클릭 이벤트를 감지하여 미리 정의된 동작을 수행하는 것이다.</p>
+<p>디폴트로 사용되는 LinkMovementMethod 의 내부 구현을 살펴보면, 텍스트 터치 시 텍스트에 Clickable 한 span 이 있는지 감지하여 onClick 콜백을 호출해준다. ClickableSpan 은 곧 link 텍스트라고 봐도 좋다.</p>
+<p>나는 link 텍스트를 감지하는 부분에 대한 구현만 그대로 가져와, 감지 했을 시 내가 넣어둔 콜백이 수행되는 커스텀 TouchListener 를 생성하여 사용하였다.<br>(LinkMovementMethod - onTouchEvent  내부 구현을 보면 어렵지 않게 힌트를 얻을 수 있을 것이다.)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mTextView.setOnTouchListener(mCustomUrlTouchHandler);</span><br></pre></td></tr></table></figure>
+
+<h1 id="결론"><a href="#결론" class="headerlink" title="결론"></a>결론</h1><p>약간의 우회를 통하여 결과적으로는 ellipsize 도 적용되고, autoLink / movementMethod 도 이용할 수 있는 구현을 완성하였다. 하지만 말 그대로 우회일뿐 언제 이슈 케이스가 발견될지 모르기에 아직은 걱정되는 부분이 많다.<br>해당 이슈가 리포트된지 꽤 오랜 시간이 지났음에도 해결되지 않아 많은 사람들이 고통을 겪고 있는 듯 하다. 일해라 구글! 😡</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Android/" rel="tag"># Android</a>
+              <a href="/tags/TextView/" rel="tag"># TextView</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/03/13/live_data_with_event_issue/" rel="prev" title="[안드로이드] MVVM 과 LiveData 조합 시 겪을 수 있는 이슈와 해결책">
+      <i class="fa fa-chevron-left"></i> [안드로이드] MVVM 과 LiveData 조합 시 겪을 수 있는 이슈와 해결책
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#TL-DR"><span class="nav-number">1.</span> <span class="nav-text">TL;DR</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#간단해-보이는-요구-사항-삽질의-시작"><span class="nav-number">2.</span> <span class="nav-text">간단해 보이는 요구 사항, 삽질의 시작</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#setText-와-autoLink-movementMethod"><span class="nav-number">3.</span> <span class="nav-text">setText() 와 autoLink / movementMethod</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ellipsize-적용-과정"><span class="nav-number">4.</span> <span class="nav-text">ellipsize 적용 과정</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#원인-정리"><span class="nav-number">5.</span> <span class="nav-text">원인 정리</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#해결책"><span class="nav-number">6.</span> <span class="nav-text">해결책</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#autoLink-적용하기"><span class="nav-number">6.1.</span> <span class="nav-text">autoLink 적용하기</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#movementMethod-적용하기"><span class="nav-number">6.2.</span> <span class="nav-text">movementMethod 적용하기</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#결론"><span class="nav-number">7.</span> <span class="nav-text">결론</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Jihoon Kim</p>
+  <div class="site-description" itemprop="description">내일 잊기전에 오늘 적어두는 블로그</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jihoon Kim</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  <script data-ad-client="ca-pub-5033331279793069" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+  <!-- Google AdSense end -->
+  <!-- Google AdSense start -->
+</body>
+</html>
