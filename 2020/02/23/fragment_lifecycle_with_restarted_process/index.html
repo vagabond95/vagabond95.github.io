@@ -17,25 +17,25 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"vagabond95.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"vagabond95.me","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="최근에도 큰 규모의 리펙토링을 진행했는데, Fragment 생명주기에 대한 지식이 부족하여 많은 이슈를 발생시켰다. 😭 이번 포스팅에서는 해당 이슈의 원인과 해결법에 대해 적어보려 한다. TL;DR 프로세스가 재 시작 될 때 Activity, Fragment 의 생명 주기 흐름이 조금 다르게 진행된다. Fragment 에서 Activity 의 데이터를">
 <meta name="keywords" content="Android,Fragment">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[안드로이드] Process 재시작 과 Fragment 생명 주기">
-<meta property="og:url" content="https://vagabond95.github.io/2020/02/23/fragment_lifecycle_with_restarted_process/index.html">
+<meta property="og:url" content="https://vagabond95.me/2020/02/23/fragment_lifecycle_with_restarted_process/index.html">
 <meta property="og:site_name" content="기록은 기억을 지배한다">
 <meta property="og:description" content="최근에도 큰 규모의 리펙토링을 진행했는데, Fragment 생명주기에 대한 지식이 부족하여 많은 이슈를 발생시켰다. 😭 이번 포스팅에서는 해당 이슈의 원인과 해결법에 대해 적어보려 한다. TL;DR 프로세스가 재 시작 될 때 Activity, Fragment 의 생명 주기 흐름이 조금 다르게 진행된다. Fragment 에서 Activity 의 데이터를">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://vagabond95.github.io/images/bike_cover.jpg">
+<meta property="og:image" content="https://vagabond95.me/images/bike_cover.jpg">
 <meta property="og:updated_time" content="2020-03-17T07:29:43.927Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[안드로이드] Process 재시작 과 Fragment 생명 주기">
 <meta name="twitter:description" content="최근에도 큰 규모의 리펙토링을 진행했는데, Fragment 생명주기에 대한 지식이 부족하여 많은 이슈를 발생시켰다. 😭 이번 포스팅에서는 해당 이슈의 원인과 해결법에 대해 적어보려 한다. TL;DR 프로세스가 재 시작 될 때 Activity, Fragment 의 생명 주기 흐름이 조금 다르게 진행된다. Fragment 에서 Activity 의 데이터를">
-<meta name="twitter:image" content="https://vagabond95.github.io/images/bike_cover.jpg">
+<meta name="twitter:image" content="https://vagabond95.me/images/bike_cover.jpg">
 
-<link rel="canonical" href="https://vagabond95.github.io/2020/02/23/fragment_lifecycle_with_restarted_process/">
+<link rel="canonical" href="https://vagabond95.me/2020/02/23/fragment_lifecycle_with_restarted_process/">
 
 
 <script id="page-configurations">
@@ -201,7 +201,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://vagabond95.github.io/2020/02/23/fragment_lifecycle_with_restarted_process/">
+    <link itemprop="mainEntityOfPage" href="https://vagabond95.me/2020/02/23/fragment_lifecycle_with_restarted_process/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">

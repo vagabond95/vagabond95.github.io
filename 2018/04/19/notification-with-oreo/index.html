@@ -17,14 +17,14 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"vagabond95.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"vagabond95.me","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="들어가며안드로이드에서 제공하는 알림(Notification) 은 강력한 기능들을 제공하고 있다. 그리고 매번 API 버전이 올라갈 때마다 빈번하게 Update 가 되는 녀석이기 때문에 계속해서 주시하고 있어야하는 놈이기도 하다. 그동안 아무생각없이 copy &amp;amp; paste 만 하면서 사용하고 있던 스스로를 돌아보며 다시한번 알림의 전반적인 사용방법에">
 <meta name="keywords" content="Android">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[안드로이드] API 26, Oreo Notification 대응기">
-<meta property="og:url" content="https://vagabond95.github.io/2018/04/19/notification-with-oreo/index.html">
+<meta property="og:url" content="https://vagabond95.me/2018/04/19/notification-with-oreo/index.html">
 <meta property="og:site_name" content="기록은 기억을 지배한다">
 <meta property="og:description" content="들어가며안드로이드에서 제공하는 알림(Notification) 은 강력한 기능들을 제공하고 있다. 그리고 매번 API 버전이 올라갈 때마다 빈번하게 Update 가 되는 녀석이기 때문에 계속해서 주시하고 있어야하는 놈이기도 하다. 그동안 아무생각없이 copy &amp;amp; paste 만 하면서 사용하고 있던 스스로를 돌아보며 다시한번 알림의 전반적인 사용방법에">
 <meta property="og:locale" content="en">
@@ -35,7 +35,7 @@
 <meta name="twitter:description" content="들어가며안드로이드에서 제공하는 알림(Notification) 은 강력한 기능들을 제공하고 있다. 그리고 매번 API 버전이 올라갈 때마다 빈번하게 Update 가 되는 녀석이기 때문에 계속해서 주시하고 있어야하는 놈이기도 하다. 그동안 아무생각없이 copy &amp;amp; paste 만 하면서 사용하고 있던 스스로를 돌아보며 다시한번 알림의 전반적인 사용방법에">
 <meta name="twitter:image" content="https://user-images.githubusercontent.com/27072782/60758428-7c512a80-a051-11e9-9fa2-ed4b67fbb7f8.jpg">
 
-<link rel="canonical" href="https://vagabond95.github.io/2018/04/19/notification-with-oreo/">
+<link rel="canonical" href="https://vagabond95.me/2018/04/19/notification-with-oreo/">
 
 
 <script id="page-configurations">
@@ -201,7 +201,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://vagabond95.github.io/2018/04/19/notification-with-oreo/">
+    <link itemprop="mainEntityOfPage" href="https://vagabond95.me/2018/04/19/notification-with-oreo/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">

@@ -17,14 +17,14 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"vagabond95.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"vagabond95.me","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="RxJava 의 큰 장점 중 하나는 무엇이든 Observable 소스로 추상화하고, 이를 제공되는 Operation을 이용하여 손쉽게 가공할 수 있다는 점이다. 안드로이드 개발 중 가장 흔하게 접할 수 있는 케이스로는 Retrofit - RxJava 조합을 이용한 API 통신이 있다.  기본적인 API 콜 코드 1234MyService.fetchUserDa">
 <meta name="keywords" content="Android,RxJava">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[안드로이드] 그런 Rx Java 로 괜찮은가  2 - Mulitple API, 병렬 처리 (flatMap, merge, zip)">
-<meta property="og:url" content="https://vagabond95.github.io/2019/08/10/is-this-rxjava-2/index.html">
+<meta property="og:url" content="https://vagabond95.me/2019/08/10/is-this-rxjava-2/index.html">
 <meta property="og:site_name" content="기록은 기억을 지배한다">
 <meta property="og:description" content="RxJava 의 큰 장점 중 하나는 무엇이든 Observable 소스로 추상화하고, 이를 제공되는 Operation을 이용하여 손쉽게 가공할 수 있다는 점이다. 안드로이드 개발 중 가장 흔하게 접할 수 있는 케이스로는 Retrofit - RxJava 조합을 이용한 API 통신이 있다.  기본적인 API 콜 코드 1234MyService.fetchUserDa">
 <meta property="og:locale" content="en">
@@ -33,7 +33,7 @@
 <meta name="twitter:title" content="[안드로이드] 그런 Rx Java 로 괜찮은가  2 - Mulitple API, 병렬 처리 (flatMap, merge, zip)">
 <meta name="twitter:description" content="RxJava 의 큰 장점 중 하나는 무엇이든 Observable 소스로 추상화하고, 이를 제공되는 Operation을 이용하여 손쉽게 가공할 수 있다는 점이다. 안드로이드 개발 중 가장 흔하게 접할 수 있는 케이스로는 Retrofit - RxJava 조합을 이용한 API 통신이 있다.  기본적인 API 콜 코드 1234MyService.fetchUserDa">
 
-<link rel="canonical" href="https://vagabond95.github.io/2019/08/10/is-this-rxjava-2/">
+<link rel="canonical" href="https://vagabond95.me/2019/08/10/is-this-rxjava-2/">
 
 
 <script id="page-configurations">
@@ -199,7 +199,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://vagabond95.github.io/2019/08/10/is-this-rxjava-2/">
+    <link itemprop="mainEntityOfPage" href="https://vagabond95.me/2019/08/10/is-this-rxjava-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">

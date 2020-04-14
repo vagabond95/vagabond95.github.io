@@ -17,14 +17,14 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"vagabond95.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"vagabond95.me","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="이번 글에서는 데이터 중심 클래스의 정의와 단점을 알아보고, 이를 해결하기 위한 방법으로 캡슐화와 응집도/결합도에 대한 완전한 이해를 얻어가는 것이 목적이다. 데이터 중심으로 설계된 클래스이전글 내용을 살펴보면 객체지향 애플리케이션을 구현하는 것은 각 객체가 책임을 수행하며 서로간의 협력을 통해 공동체를 구축한다는 것을 의미한다. 즉, 중요한 것은 객체가">
 <meta name="keywords" content="OOP,Book">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[도서] 오브젝트 정리 Chapter 4 (캡슐화, 응집도, 결합도)">
-<meta property="og:url" content="https://vagabond95.github.io/2019/10/20/object-book-4/index.html">
+<meta property="og:url" content="https://vagabond95.me/2019/10/20/object-book-4/index.html">
 <meta property="og:site_name" content="기록은 기억을 지배한다">
 <meta property="og:description" content="이번 글에서는 데이터 중심 클래스의 정의와 단점을 알아보고, 이를 해결하기 위한 방법으로 캡슐화와 응집도/결합도에 대한 완전한 이해를 얻어가는 것이 목적이다. 데이터 중심으로 설계된 클래스이전글 내용을 살펴보면 객체지향 애플리케이션을 구현하는 것은 각 객체가 책임을 수행하며 서로간의 협력을 통해 공동체를 구축한다는 것을 의미한다. 즉, 중요한 것은 객체가">
 <meta property="og:locale" content="en">
@@ -33,7 +33,7 @@
 <meta name="twitter:title" content="[도서] 오브젝트 정리 Chapter 4 (캡슐화, 응집도, 결합도)">
 <meta name="twitter:description" content="이번 글에서는 데이터 중심 클래스의 정의와 단점을 알아보고, 이를 해결하기 위한 방법으로 캡슐화와 응집도/결합도에 대한 완전한 이해를 얻어가는 것이 목적이다. 데이터 중심으로 설계된 클래스이전글 내용을 살펴보면 객체지향 애플리케이션을 구현하는 것은 각 객체가 책임을 수행하며 서로간의 협력을 통해 공동체를 구축한다는 것을 의미한다. 즉, 중요한 것은 객체가">
 
-<link rel="canonical" href="https://vagabond95.github.io/2019/10/20/object-book-4/">
+<link rel="canonical" href="https://vagabond95.me/2019/10/20/object-book-4/">
 
 
 <script id="page-configurations">
@@ -199,7 +199,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://vagabond95.github.io/2019/10/20/object-book-4/">
+    <link itemprop="mainEntityOfPage" href="https://vagabond95.me/2019/10/20/object-book-4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
