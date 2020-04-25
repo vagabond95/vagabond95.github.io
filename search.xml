@@ -1,7 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>TextView 에서 ellipsize 가 적용되지 않는 이슈 (feat: autoLink 와 movementMethod)</title>
+    <title>NextStep 리뷰어 활동을 마무리 하며</title>
+    <url>/2020/04/25/nextstep_reviewer_review/</url>
+    <content><![CDATA[<p>작년 하반기에 Nextstep 의 <a href="https://vagabond95.me/2019/11/23/nextstep-class-review/">클린코드 교육과정을 참여</a>하며 배웠던 내용을 바탕으로 많은 성장을 할 수 있었다. 좋은 수업이라며 주위에 열심히 홍보를 하던 찰나, 과정을 직접 운영하고 계시는 박재성님으로부터 코드 리뷰어 활동을 제안 받게 되었다. </p>
+<p>코드 리뷰어로 활동할 수 있는 실력이 안될 것 같아 고민이 되었지만, 재성님의 격려와 좋은 경험을 쌓을 수 있는 기회라고 생각이 되어 제안을 수락하였다. </p>
+<p>리뷰어 활동은 약 한달간 진행되었고 그 과정속에서 깨달은 것이 많아 개인적인 정리 및 기록 차원에서 글을 남긴다.</p>
+<h1 id="코드-리뷰를-진행하며"><a href="#코드-리뷰를-진행하며" class="headerlink" title="코드 리뷰를 진행하며"></a>코드 리뷰를 진행하며</h1><p>처음 리뷰를 진행할 때는 생각 이상으로 많은 시간과 에너지가 소모되었다. 회사 업무를 마치고 또 코드를 봐야하는 압박감도 있었고, 각자 다른 스타일의 코드를 꼼꼼히 확인 하고 적절한 피드백이 무엇일지 고민하고 공부해야했기 때문이다. 또한 리뷰를 마쳐야 리뷰이가 다음 단계를 진행하기 수월하기 때문에 코드가 올라오는데로 최대한 빠르게 피드백을 줄 수 있도록 신경을 써야했다. 따라서 초반에는 시간적 여유가 별로 없다보니 특별한 체계없이 정해진 리뷰의 양을 채워나갔던 것 같다.<br>점점 시간이 흐를 수록 나름의 체계가 생기고 속도가 붙어 초반보단 여유가 생겼다. 이때 나 스스로의 리뷰 방식/관점에 대해 점검해보며 아래과 같은 기준을 세우고 리뷰를 진행했다. </p>
+<h2 id="1-모호한-지식은-모호한-답변을-남긴다"><a href="#1-모호한-지식은-모호한-답변을-남긴다" class="headerlink" title="1. 모호한 지식은 모호한 답변을 남긴다."></a>1. 모호한 지식은 모호한 답변을 남긴다.</h2><p>특정 내용에 대하여 피드백을 할 때마다 굉장히 모호하게 답변을 남기고 있는 것을 깨달았다. 해당 내용에 대한 정확한 지식이 없다는 신호라고 느꼈다. 이런 수준에서는 좋은 피드백을 줄 수 없을 것 같아 잠시 리뷰를 중단했다. 이후 책과 검색을 통해 좀 더 깊게 공부하고 부족해 보이는 부분을 채워나갔다. 내가 어떤 주제에 대하여 막연히만 알고 있었는지 깨닫는 좋은 순간이었다. 어느정도 정리 및 공부가 끝났다고 생각되면 다시 리뷰를 진행했고 이후에도 비슷한 주제가 나올 경우 위와 같은 과정을 반복하였다.</p>
+<h2 id="2-모든-코드에는-근거가-있어야한다"><a href="#2-모든-코드에는-근거가-있어야한다" class="headerlink" title="2. 모든 코드에는 근거가 있어야한다."></a>2. 모든 코드에는 근거가 있어야한다.</h2><p>리뷰를 진행하다보면 특정 상황에서 관습적으로 굳어진듯한 구현을 발견할때가 있다. 이러한 코드를 발견하면 피드백을 남길 때 구현에 대한 가이드 외에도 집요하게😈어떤 구현 의도를 가지고 작성했는지 물어보곤 했다.<br>관습적인 구현은 대게 큰 고민 없이 이루어지는 경우가 많다. 하지만 모든 코드는 명확한 근거가 있어야한다고 생각한다. 만약 스스로 세운 근거가 틀리더라도 큰 상관이 없다. 나중에 잘못된 방향임을 깨닫더라도 어떤 부분을 놓쳤는지 비교가 가능하기 때문이다. 특히 나같은 경우 스스로 세운 근거가 틀렸음을 깨달았을 때 더 많이 성장하는 것을 경험했기 때문에 이 부분을 특히 집중했다. </p>
+<h2 id="3-나의-피드백보다-더-좋은-방향은-항상-있을-수-있다"><a href="#3-나의-피드백보다-더-좋은-방향은-항상-있을-수-있다" class="headerlink" title="3. 나의 피드백보다 더 좋은 방향은 항상 있을 수 있다."></a>3. 나의 피드백보다 더 좋은 방향은 항상 있을 수 있다.</h2><p>미션의 요구사항이 간단할 때는 리뷰이의 구현 방향이 대부분 비슷하게 수렴하고 이에 대한 베스트 케이스도 어느정도 정해져있다. 그래서 피드백으로 가이드를 남기는 것도 비교적 수월하다. 그러나 점점 미션의 요구사항이 복잡하고 어려워질 수록 다양한 접근 방식이 나타나기 시작한다. 이때 나 또한 결국 가지고 있는 지식과 경험 내에서 답변할 수 밖에 없는 한계점이 있기 때문에 항상 내가 남긴 피드백보다 더 좋은 방향이 있을 수 있다는 마음가짐으로 리뷰에 임했다.<br>실제로 다양한 방식으로 풀 수 있는 부분에 대하여 피드백을 남기면 리뷰이에게 종종 문의가 들어왔다. 이때 나는 피드백을 남긴 의도를 최대한 자세히 남겼다. 그리고 리뷰이의 의도 역시 물어본 후 각각 비교하여 장/단점을 생각해보고, 목표를 이루기 위해서 무엇을 취할 수 있을지/버려야할 지 논의했다. 이러한 과정 또한 나의 생각을 정리하고 공부하는 계기가 되어 오히려 내가 스스로 많이 배울 수 있는 좋은 거름이 되었다. 👏</p>
+<p><img src="/images/next_step_reviewer.png" alt><br>(기억에 남았던 논의 과정, 지금 다시 보니 답변 내용 중 아쉬운 부분이 보인다. 😭)</p>
+<h1 id="코드리뷰도-결국은"><a href="#코드리뷰도-결국은" class="headerlink" title="코드리뷰도 결국은.."></a>코드리뷰도 결국은..</h1><p>코드 리뷰도 결국은 <strong>사람과의 커뮤니케이션</strong>이다. 또한 사람은 각기 다른 커뮤니케이션 스타일을 가지고 있다. 그래서 소프트 스킬이 어렵다고 생각한다. 논의를 주고 받다보면 각 리뷰이분의 스타일을 대략적으로 파악하고, 이에 맞게 커뮤니케이션 방식을 조금씩 바꿔가며 진행해보려 노력했다.<br>소프트 스킬을 연습할 수 있는 기회는 흔치 않다고 생각되어 이부분에 대해 적지 않게 신경썼던 기억이 난다.</p>
+<h1 id="가장-많이-드렸던-피드백들"><a href="#가장-많이-드렸던-피드백들" class="headerlink" title="가장 많이 드렸던 피드백들"></a>가장 많이 드렸던 피드백들</h1><p>리뷰를 하다보면 공통으로 피드백을 많이 남기는 내용이 있었다. 정리를 해보니 다음과 같다.</p>
+<h2 id="이-객체가-알아야할-정보가-맞을까요"><a href="#이-객체가-알아야할-정보가-맞을까요" class="headerlink" title="이 객체가 알아야할 정보가 맞을까요?"></a>이 객체가 알아야할 정보가 맞을까요?</h2><p> → 클래스가 존재해야할 이유는 하나이다. <a href="https://en.wikipedia.org/wiki/Single-responsibility_principle" target="_blank" rel="noopener">SRP</a>를 잘 지켰는지  확인했다.</p>
+<h2 id="이-코드는-다른-객체에서-스스로-수행할-수-있지-않을까요"><a href="#이-코드는-다른-객체에서-스스로-수행할-수-있지-않을까요" class="headerlink" title="이 코드는 다른 객체에서 스스로 수행할 수 있지 않을까요?"></a>이 코드는 다른 객체에서 스스로 수행할 수 있지 않을까요?</h2><p>→ 객체 상태를 꺼내와서 연산을 수행하지 말고 상태를 알고 있는 객체에 명령할 것, 객체의 응집도 측면에서 확인했다.</p>
+<h2 id="이-메소드의-네이밍을-좀-더-구체적으로-지어볼-수-있을까요-좀-더-구현-내용을-숨겨볼-수-있을까요"><a href="#이-메소드의-네이밍을-좀-더-구체적으로-지어볼-수-있을까요-좀-더-구현-내용을-숨겨볼-수-있을까요" class="headerlink" title="이 메소드의 네이밍을 좀 더 구체적으로 지어볼 수 있을까요? / 좀 더 구현 내용을 숨겨볼 수 있을까요?"></a>이 메소드의 네이밍을 좀 더 구체적으로 지어볼 수 있을까요? / 좀 더 구현 내용을 숨겨볼 수 있을까요?</h2><p>→ 아마 리뷰이분들 입장에서는 가장 짜증나는(?) 피드백이지 않았을까.ㅎㅎ 어떤 메소드는 이름을 자세히 짓고, 어떤 메소드는 좀 더 추상적으로 지으라니..🤬🤬</p>
+<p>나는 <strong>SRP</strong> 와 <strong>캡슐화</strong>의 관점에서 피드백을 진행했다.</p>
+<h3 id="1-좀-더-구체적으로-지어볼-수-있을까요"><a href="#1-좀-더-구체적으로-지어볼-수-있을까요" class="headerlink" title="(1) 좀 더 구체적으로 지어볼 수 있을까요?"></a>(1) 좀 더 구체적으로 지어볼 수 있을까요?</h3><blockquote>
+<p>메소드는 하나의 일만을 수행해야 한다. 그리고 수행하는 일을 드러낼 수 있다.</p>
+</blockquote>
+<p>위 규칙을 지킨다면 이름이 모호한 메소드는 수행하는 일이 명확히 드러나도록 표현할 수 있다.</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">user.get() <span class="comment">// (X) 수행하는 일이 명확히 나타나지 않는다. </span></span><br><span class="line">user.getName() <span class="comment">// (O) 무슨일을 수행하는지 알 수 있다.</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-좀-더-구현-내용을-숨겨볼-수-있을까요"><a href="#2-좀-더-구현-내용을-숨겨볼-수-있을까요" class="headerlink" title="(2) 좀 더 구현 내용을 숨겨볼 수 있을까요?"></a>(2) 좀 더 구현 내용을 숨겨볼 수 있을까요?</h3><blockquote>
+<p>캡슐화란 변경 가능성이 높은 부분을 객체 내부로 숨기는 추상화 기법이다.</p>
+</blockquote>
+<p><a href="http://www.yes24.com/Product/Goods/74219491" target="_blank" rel="noopener">오브젝트</a>에서는 변경할 수 있는 모든 것을 캡슐화하라고 이야기 한다.<br>(관련 내용에 대하여 과거에 <a href="https://vagabond95.me/2019/10/20/object-book-4/">정리했던 글</a>이 있다.)</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">winnerNumber.getRankWithAnotherNumber(number) <span class="comment">// (X) 전달되는 파라미터에 대한 정보가 드러난다.</span></span><br></pre></td></tr></table></figure>
+<p>위와 같은 메소드의 네이밍은 전달되는 인자에 대한 정보가 메소드에 그대로 드러나 있다. 파라미터가 드러나면 어느정도 가독성은 확보할 수 있을지도 모른다. 그러나 파라미터에 대한 <strong>변경</strong>은 꽤나 빈번하게 발생하는 일이며, 그때마다 해당 메소드의 이름은 변경되어야 할 것이다. 즉, 변경에 취약하다.</p>
+<p>그렇다면 어디까지 추상화해야 할까? 메소드에서 변경되지 않는 것이 딱 하나 있다. 바로 메소드가 수행하는 일이다. 따라서 메소드가 수행하는 일만 드러내는 것이 변경에 좀 더 유연한 네이밍이라고 생각되어 피드백을 남겼었다. (1) 번 내용과도 같이 생각해볼만한 부분이다. </p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">winnerNumber.getRank(number) <span class="comment">// (O) 수행하는 일만을 명시한다.</span></span><br></pre></td></tr></table></figure>
+
+<p>요 내용은 개인적으로 고민이 있는 부분이라 다른 의견도 들어보고 싶다. 🤔</p>
+<h1 id="동시에-성장하는-경험"><a href="#동시에-성장하는-경험" class="headerlink" title="동시에 성장하는 경험"></a>동시에 성장하는 경험</h1><p>내가 알고 있는 지식을 누군가에게 설명해줄 때 가장 공부가 많이 되는 경험을 해본적이 있을 것이다. 코드 리뷰를 진행하면서 비슷한 경험을 했다. 내가 피드백을 제시하기 위해선 근거가 있어야하고 이를 위해서는 탄탄한 지식과 좋은 레퍼런스가 있어야 하기에 엄청나게 공부를 할 수 밖에 없다. 특히 날카로운 질문이 들어올 때, 질문의 주제가 내가 막연하게 알고 있는 내용일 경우 바로 바닥이 나타났기에 더욱 열심히 찾아보고 공부했다. 그래서 과정이 점점 진행될 수록 리뷰이와 내가 동시에 성장을 하는 것을 경험을 했다.</p>
+<h1 id="마무리하며"><a href="#마무리하며" class="headerlink" title="마무리하며"></a>마무리하며</h1><p>엄청난 열정으로 구현을 진행하고 논의를 나눈 리뷰이분들, 자신의 리뷰과정을 공유하여 다양한 관점으로 볼 수 있게 해준 리뷰어분들, 중간중간 어려움이 있을 때마다 아낌없는 조언을 주신 재성님에게 다시 한번 감사드린다. 🙏<br>NextStep 에서는 클린코드 과정외에도 다양한 주제의 강의가 진행되고 있으니 관심이 있다면 <a href="https://edu.nextstep.camp/" target="_blank" rel="noopener">클릭</a>!</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>[안드로이드] TextView 에서 ellipsize 가 적용되지 않는 이슈 with autoLink & movementMethod</title>
     <url>/2020/04/12/android_not_working_ellipsize_with_autolink_or_movementmethod/</url>
     <content><![CDATA[<p><img src="/images/cover/ellipsis_not_working_cover.jpeg" alt></p>
 <h1 id="TL-DR"><a href="#TL-DR" class="headerlink" title="TL;DR"></a>TL;DR</h1><ul>
@@ -14,9 +51,9 @@
 <li>내용은 최대 N 라인 까지만 노출 가능하다. 이후 내용은 말줄임 표시로 대체</li>
 <li>내용 중 web url 이 있을 경우 클릭 및 스타일링이 되어야하고 클릭 시, 인앱 브라우저로 이동해야한다.</li>
 </ol>
-<p>1번 사항은 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5jb20vcmVmZXJlbmNlL2FuZHJvaWQvd2lkZ2V0L1RleHRWaWV3I2F0dHJfYW5kcm9pZDptYXhMaW5lcw==" title="https://developer.android.com/reference/android/widget/TextView#attr_android:maxLines">maxLine<i class="fa fa-external-link"></i></span> 과 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5jb20vcmVmZXJlbmNlL2FuZHJvaWQvd2lkZ2V0L1RleHRWaWV3I2F0dHJfYW5kcm9pZDplbGxpcHNpemU=" title="https://developer.android.com/reference/android/widget/TextView#attr_android:ellipsize">ellipsize<i class="fa fa-external-link"></i></span> 를 이용하면 된다.</p>
-<p>2번 사항은 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5jb20vcmVmZXJlbmNlL2FuZHJvaWQvd2lkZ2V0L1RleHRWaWV3I2F0dHJfYW5kcm9pZDphdXRvTGluaw==" title="https://developer.android.com/reference/android/widget/TextView#attr_android:autoLink">autoLink<i class="fa fa-external-link"></i></span>, <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5jb20vcmVmZXJlbmNlL2FuZHJvaWQvd2lkZ2V0L1RleHRWaWV3I2F0dHJfYW5kcm9pZDp0ZXh0Q29sb3JMaW5r" title="https://developer.android.com/reference/android/widget/TextView#attr_android:textColorLink">textColorLink<i class="fa fa-external-link"></i></span>, 커스텀한 MovemetMethod 를 이용하면 된다.</p>
-<p>커스텀한 MoveMentmethod 가 필요한 이유는 TextView 에서 기본으로 사용되는 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5jb20vcmVmZXJlbmNlL2FuZHJvaWQvdGV4dC9tZXRob2QvTGlua01vdmVtZW50TWV0aG9k" title="https://developer.android.com/reference/android/text/method/LinkMovementMethod">LinkMovementMethod<i class="fa fa-external-link"></i></span> 의 경우 특정한 link 텍스트 클릭 시, 이를 감지할 수 있는 콜백을 제공하지 않고 내부에서 ACTION_VIEW intent 로 처리하기 때문이다.<br>직접 구현하기가 부담스럽다면 이런 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3Nha2V0L0JldHRlci1MaW5rLU1vdmVtZW50LU1ldGhvZA==" title="https://github.com/saket/Better-Link-Movement-Method">라이브러리<i class="fa fa-external-link"></i></span> 를 이용해도 좋다.</p>
+<p>1번 사항은 <a href="https://developer.android.com/reference/android/widget/TextView#attr_android:maxLines" target="_blank" rel="noopener">maxLine</a> 과 <a href="https://developer.android.com/reference/android/widget/TextView#attr_android:ellipsize" target="_blank" rel="noopener">ellipsize</a> 를 이용하면 된다.</p>
+<p>2번 사항은 <a href="https://developer.android.com/reference/android/widget/TextView#attr_android:autoLink" target="_blank" rel="noopener">autoLink</a>, <a href="https://developer.android.com/reference/android/widget/TextView#attr_android:textColorLink" target="_blank" rel="noopener">textColorLink</a>, 커스텀한 MovemetMethod 를 이용하면 된다.</p>
+<p>커스텀한 MoveMentmethod 가 필요한 이유는 TextView 에서 기본으로 사용되는 <a href="https://developer.android.com/reference/android/text/method/LinkMovementMethod" target="_blank" rel="noopener">LinkMovementMethod</a> 의 경우 특정한 link 텍스트 클릭 시, 이를 감지할 수 있는 콜백을 제공하지 않고 내부에서 ACTION_VIEW intent 로 처리하기 때문이다.<br>직접 구현하기가 부담스럽다면 이런 <a href="https://github.com/saket/Better-Link-Movement-Method" target="_blank" rel="noopener">라이브러리</a> 를 이용해도 좋다.</p>
 <p>어쨌든 안드로이드에서 기본적으로 제공하고 있는 속성을 활용하면 금방 완료가 가능할 것으로 보고 구현을 시작했다.<br>그런데… 아무리 빌드를 돌려봐도 ellipsis 가 표현되지 않는다.</p>
 <p>구글이 그럴리 없다며 내가 잘못한 부분이 없나 몇 시간째 삽질을 하다가, 결국 하나하나 옵션을 제거하면서 결과를 비교해봤고 다음과 같은 결론을 얻었다.</p>
 <ul>
@@ -100,7 +137,7 @@
 
 <h1 id="LiveData-의-한계와-대안점"><a href="#LiveData-의-한계와-대안점" class="headerlink" title="LiveData 의 한계와 대안점"></a>LiveData 의 한계와 대안점</h1><p>앞서 언급했듯이 이벤트를 전달하는 것은 구현 자유도가 높은 편이다. </p>
 <p>RxJava 를 이용해도 되고, LiveData 혹은 Custom 하게 Obeserver 패턴 구현체를 써도 상관 없다.  하지만 RxJava 나 Custom Observer 를 구현하면 라이프사이클을 계속 신경써줄수 밖에 없기 때문에 보통은 LiveData 를 선택한다. </p>
-<p>그래도 애매할 때는 여러 레퍼런스를 참고해보며 힌트를 얻어보자. 구글에서 운영하고 있는 공식 repo 인 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9pb3NjaGVk" title="https://github.com/google/iosched">Goolge IO app<i class="fa fa-external-link"></i></span> 과 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FuZHJvaWQvYXJjaGl0ZWN0dXJlLXNhbXBsZXM=" title="https://github.com/android/architecture-samples">Architecture Sample<i class="fa fa-external-link"></i></span> 를 살펴보자.</p>
+<p>그래도 애매할 때는 여러 레퍼런스를 참고해보며 힌트를 얻어보자. 구글에서 운영하고 있는 공식 repo 인 <a href="https://github.com/google/iosched" target="_blank" rel="noopener">Goolge IO app</a> 과 <a href="https://github.com/android/architecture-samples" target="_blank" rel="noopener">Architecture Sample</a> 를 살펴보자.</p>
 <h2 id="변형된-형태의-LiveData"><a href="#변형된-형태의-LiveData" class="headerlink" title="변형된 형태의 LiveData"></a>변형된 형태의 LiveData</h2><p>각 repo 는 LiveData 를 이용하여 아래와 같이 이벤트 흐름을 처리하고 있다.</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Google IO repo</span></span><br><span class="line"><span class="keyword">private</span> val _navigateToSignInDialogAction = MutableLiveData&lt;Event&lt;Unit&gt;&gt;()</span><br><span class="line">val navigateToSignInDialogAction: LiveData&lt;Event&lt;Unit&gt;&gt;</span><br><span class="line">    get() = _navigateToSignInDialogAction</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> val _navigateToSignOutDialogAction = MutableLiveData&lt;Event&lt;Unit&gt;&gt;()</span><br><span class="line">val navigateToSignOutDialogAction: LiveData&lt;Event&lt;Unit&gt;&gt;</span><br><span class="line">    get() = _navigateToSignOutDialogAction</span><br><span class="line"></span><br><span class="line"><span class="comment">// Artictecture sample repo</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> SingleLiveEvent&lt;Void&gt; mEditTaskCommand = <span class="keyword">new</span> SingleLiveEvent&lt;&gt;();</span><br></pre></td></tr></table></figure>
 
@@ -113,7 +150,7 @@
 <li>래핑된 Observer 는 <strong>onChanged 콜백이 여러번 호출되는 것을 막는다.</strong></li>
 </ol>
 <p>구글은 왜 이러한 처리를 거쳐서 LiveData 를 사용했을까? 이유는 LiveData 내부 구조에 있다.</p>
-<h2 id="LiveData-는-데이터를-위해-만들어-졌다"><a href="#LiveData-는-데이터를-위해-만들어-졌다" class="headerlink" title="LiveData 는 데이터를 위해 만들어 졌다."></a>LiveData 는 데이터를 위해 만들어 졌다.</h2><p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5jb20vdG9waWMvbGlicmFyaWVzL2FyY2hpdGVjdHVyZS9saXZlZGF0YT9obD1lbg==" title="https://developer.android.com/topic/libraries/architecture/livedata?hl=en">docs<i class="fa fa-external-link"></i></span> 에서는 LiveData 를 다음과 같이 정의하고 있다.</p>
+<h2 id="LiveData-는-데이터를-위해-만들어-졌다"><a href="#LiveData-는-데이터를-위해-만들어-졌다" class="headerlink" title="LiveData 는 데이터를 위해 만들어 졌다."></a>LiveData 는 데이터를 위해 만들어 졌다.</h2><p><a href="https://developer.android.com/topic/libraries/architecture/livedata?hl=en" target="_blank" rel="noopener">docs</a> 에서는 LiveData 를 다음과 같이 정의하고 있다.</p>
 <blockquote>
 <p>LiveData is an observable data holder class</p>
 </blockquote>
@@ -142,7 +179,7 @@
 <p><img src="/images/google_search_live_twice.png" alt></p>
 <h1 id="그럼-무엇을-선택해야할까"><a href="#그럼-무엇을-선택해야할까" class="headerlink" title="그럼 무엇을 선택해야할까?"></a>그럼 무엇을 선택해야할까?</h1><p>위와 같은 이유로 인해 LiveData 를 이벤트 전달로 사용하기 위해서, onChanged 콜백이 여러번 호출되는 것을 막는 변형구조가 탄생하게 되었다. </p>
 <p>그럼 이벤트 전달을 할때는 무엇을 선택하는 것이 좋을까? 진행하고 있는 프로젝트 상황이 각자 다르기에 꼭 하나를 추천하기는 어려울 것 같다. 다만, 현재 진행하고 있는 프로젝트에서 SingleLiveData 와 커스텀 LiveEvent 를 섞어서 사용하고 있으므로 사용해보면서 느낀점을 정리해보면서 마무리하고자 한다.</p>
-<h2 id="SingleLiveEvent"><a href="#SingleLiveEvent" class="headerlink" title="SingleLiveEvent"></a>SingleLiveEvent</h2><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FuZHJvaWQvYXJjaGl0ZWN0dXJlLXNhbXBsZXMvYmxvYi9kZXYtdG9kby1tdnZtLWxpdmUvdG9kb2FwcC9hcHAvc3JjL21haW4vamF2YS9jb20vZXhhbXBsZS9hbmRyb2lkL2FyY2hpdGVjdHVyZS9ibHVlcHJpbnRzL3RvZG9hcHAvU2luZ2xlTGl2ZUV2ZW50LmphdmE=" title="https://github.com/android/architecture-samples/blob/dev-todo-mvvm-live/todoapp/app/src/main/java/com/example/android/architecture/blueprints/todoapp/SingleLiveEvent.java">코드<i class="fa fa-external-link"></i></span> 및 <span class="exturl" data-url="aHR0cHM6Ly9wcm9hbmRyb2lkZGV2LmNvbS9zaW5nbGVsaXZlZXZlbnQtdG8taGVscC15b3Utd29yay13aXRoLWxpdmVkYXRhLWFuZC1ldmVudHMtNWFjNTE5OTg5Yzcw" title="https://proandroiddev.com/singleliveevent-to-help-you-work-with-livedata-and-events-5ac519989c70">관련 포스트<i class="fa fa-external-link"></i></span>를 참고하면 금방 이해할 수 있을거라 생각한다.</p>
+<h2 id="SingleLiveEvent"><a href="#SingleLiveEvent" class="headerlink" title="SingleLiveEvent"></a>SingleLiveEvent</h2><p><a href="https://github.com/android/architecture-samples/blob/dev-todo-mvvm-live/todoapp/app/src/main/java/com/example/android/architecture/blueprints/todoapp/SingleLiveEvent.java" target="_blank" rel="noopener">코드</a> 및 <a href="https://proandroiddev.com/singleliveevent-to-help-you-work-with-livedata-and-events-5ac519989c70" target="_blank" rel="noopener">관련 포스트</a>를 참고하면 금방 이해할 수 있을거라 생각한다.</p>
 <p>구조는 단순하다. MutableLiveData 를 상속받아, 명시적으로 setValue 를 호출했을 때만 데이터가 전달되도록 flag 를 걸어주었다.</p>
 <ul>
 <li>장점은 MutableLiveData 를 상속받았기 때문에 기본적으로 메모리 관리나 LifeCycle 변경에 따른 처리를 따로 해줄필요가 없다. 사용방법도 기존의 LiveData 사용하듯이 쓰면 된다.</li>
@@ -171,7 +208,7 @@
 <p>그런데 더 중요한 문제는 약속이 깨졌다는 이유로 그 위에 새롭게 약속이 깨진 코드를 짜고 있다는 것이었다. 깨진 약속 위에 새로운 약속을 세우는 것이 당장은 어렵고, 신경쓸게 더 많기 때문이다. 일정이 임박할 수록 ‘나중에 고쳐야지’ 라는 마법의 문장을 남발하며 깨진 코드 위에 깨진 코드를 얹는 유혹에 빠진다. </p>
 <p>그 나중은 돌아오지 않는 걸 알고 있으니… 지금부터라도 점진적으로 약속을 지키다보면 언젠가는 눈에 띄는 개선이 이루어져 있지 않을까? 🤔</p>
 <h1 id="로우-레벨-지식의-기계적-반응"><a href="#로우-레벨-지식의-기계적-반응" class="headerlink" title="로우 레벨 지식의 기계적 반응"></a>로우 레벨 지식의 기계적 반응</h1><p>자주 반복해서 겪는 이슈, 자주 사용되는 속성 값, 기본적인 API 사용법 등 로우한 레벨의 지식을 기계적으로 체화시켜놓으면 더 높은 레벨에 대한 고민과 설계를 할 수 있는 여유를 확보할 수 있다. 어차피 검색하면 다 나온다고 하지만 이건 굉장히 중요한 포인트라고 생각한다.</p>
-<p><strong>내가 하루에 쏟을 수 있는 집중력과 에너지는 명확한 한계가 있기 때문이다.</strong> 그렇다고 docs 를 전부 외우려는 것은 아니고, 반복되는 내용들은 필요할 때 빠르게 참고할 수 있도록 짧게 정리하고 있다. 👉🏻 <span class="exturl" data-url="aHR0cHM6Ly9wcm9namguZ2l0Ym9vay5pby90b2RheS1pLWxlYXJuZWQv" title="https://progjh.gitbook.io/today-i-learned/">TIL<i class="fa fa-external-link"></i></span> 한번 내용을 정리한 후, 여러번 참고하다보면 내 머리속에 나름의 인덱스가 생겨 나중에는 관련 토픽만 보면 자동으로 떠오르는 효과가 있었다. 😮</p>
+<p><strong>내가 하루에 쏟을 수 있는 집중력과 에너지는 명확한 한계가 있기 때문이다.</strong> 그렇다고 docs 를 전부 외우려는 것은 아니고, 반복되는 내용들은 필요할 때 빠르게 참고할 수 있도록 짧게 정리하고 있다. 👉🏻 <a href="https://progjh.gitbook.io/today-i-learned/" target="_blank" rel="noopener">TIL</a> 한번 내용을 정리한 후, 여러번 참고하다보면 내 머리속에 나름의 인덱스가 생겨 나중에는 관련 토픽만 보면 자동으로 떠오르는 효과가 있었다. 😮</p>
 <h1 id="좀-더-개발로…"><a href="#좀-더-개발로…" class="headerlink" title="좀 더 개발로…"></a>좀 더 개발로…</h1><h2 id="상속은-신중히-사용하자"><a href="#상속은-신중히-사용하자" class="headerlink" title="상속은 신중히 사용하자"></a>상속은 신중히 사용하자</h2><p>레거시 코드를 처리할 때도 가장 골치가 아픈 케이스는 상속과 엮인 것이다. 바뀐 스펙에 대한 도메인이 상위 클래스에 엮여있다? 그런데 그 클래스가 BaseActivity 이다? 상속받는 클래스를 찍어보니 100개를 우습게 넘어간다. 사이드 이펙트를 예측할 수 없으니 함부로 건드릴수가 없고, 간단한 스펙에도 많은 시간과 에너지가 소모된다.</p>
 <p>이펙티브 자바에서도 지적했지만 <strong>상위 클래스는 상속받는 하위 클래스를 예측할 수 없다. 그리고 계속해서 변경사항이 생긴다.</strong> 하위 클래스는 점점 더 쌓여가는데 호환성때문에 변경은 점점더 악순환에 빠지게 된다.</p>
 <p>상속이 필요한 순간이 분명히 있다. 사용할 때는 꼭 신중히 상위 클래스의 코드를 작성하고, 의도를 명확히 밝혀주는 것이 좋다. </p>
@@ -306,7 +343,37 @@ E/lifeCycle: Fragment onActivityCreated</code></pre><p>….!!!</p>
     <url>/2019/12/22/2019-second-half-review/</url>
     <content><![CDATA[<p>이직 후 정신없는 하반기를 보냈다. 기대 이상의 성취를 얻은 부분도 있고, 아예 시도조차 못한 부분도 있었다. 스스로 회고하며 기억에 남을 만한 일들을 정리했다.</p>
 <h1 id="개발"><a href="#개발" class="headerlink" title="개발"></a>개발</h1><h2 id="의도를-드러내는-코드-짜기"><a href="#의도를-드러내는-코드-짜기" class="headerlink" title="의도를 드러내는 코드 짜기"></a>의도를 드러내는 코드 짜기</h2><p>우리의 기억력은 빈약하고 왜곡되기 쉽다. 복잡한 비즈니스 로직과 히스토리를 반년 뒤에도 기억할리가 없기 때문에 주섬주섬 주석을 달지만, 이마저도 나중에 보면 이해하기 어려울 때가 많다.</p>
-<p>결국은 코드 자체를 통하여 의도를 드러내는 것이 가장 이상적인 형태이다. 이를 실천하기 위해 많은 고민과 노력이 동반 되었고, 특히 하반기에 수강했던 <a href="https://vagabond95.github.io/2019/11/23/nextstep-class-review/">NextStep 과정</a>이 아주 큰 도움이 되었다.</p>
+<p>결국은 코드 자체를 통하여 의도를 드러내는 것이 가장 이상적인 형태이다. 이를 실천하기 위해 많은 고민과 노력이 동반 되었고, 특히 하반기에 수강했던 <a href="https://vagabond95.github.io/2019/11/23/nextstep-class-review/" target="_blank" rel="noopener">NextStep 과정</a>이 아주 큰 도움이 되었다.</p>
+<h2 id="예외-처리와-Stateless-한-코드-짜기"><a href="#예외-처리와-Stateless-한-코드-짜기" class="headerlink" title="예외 처리와 Stateless 한 코드 짜기"></a>예외 처리와 Stateless 한 코드 짜기</h2><p>‘설마 이 상황이 발생하겠어?’ 라는 마음가짐으로 코드를 짜면 항상 그 부분에서 문제가 발생하게 되는 것을 피부로 겪었다. 많은 사용자 수와 그에 대응되는 수많은 환경을 고려했을 때, 발생할 수 없는 상황은 없다고 생각하는 것이 옳다. 발생할 수 있는 모든 예외 상황에 대한 가드 처리가 필요하며, 너무 많은 가드 처리는 가독성을 떨어트릴 수 있으므로 언어/코드 레벨에서 사전에 방지할 수 있는 방법은 없는지 많은 고민을 했다. 최근까지 도달한 결론은 꼭 필요한 상태(State)가 아니면 사용하지 않는 방향으로 하여 관리포인트와 사이드 이펙트를 줄여나가자는 것으로 마무리 했다.</p>
+<h2 id="아무리-강조해도-지나치지-않은-커뮤니케이션"><a href="#아무리-강조해도-지나치지-않은-커뮤니케이션" class="headerlink" title="아무리 강조해도 지나치지 않은 커뮤니케이션"></a>아무리 강조해도 지나치지 않은 커뮤니케이션</h2><p>개발자라고 해서 항상 주어진 업무 시간 전부를 개발에 쓰기는 어렵다. 정기적/비정기적인 커뮤니케이션 구간이 항상 존재하기 때문이다. 피할 수 없는 일이라면 잘하고 싶다. 잘하기 위해 다음과 같은 노력을 했다.</p>
+<h3 id="커뮤니케이션-대상에-대한-공통된-합의"><a href="#커뮤니케이션-대상에-대한-공통된-합의" class="headerlink" title="커뮤니케이션 대상에 대한 공통된 합의"></a>커뮤니케이션 대상에 대한 공통된 합의</h3><p>같은 개념을 얘기하는 데 다른 언어가 사용되고, 같은 언어를 사용하는데 다른 개념(혹은 구현)으로 설명될 때가 많았다. 이러한 불일치를 보정하는 과정이 발생할 때마다 진행의 병목이 생기고 커뮤니케이션 비용이 높아지는 것이 부담되기 시작했다. 그래서 이를 내가 할 수 있는 일들을 하나씩 진행해봤다. </p>
+<p>1) 기본적으로 커뮤니케이션 시작 전에 이야기하고자 하는 목적과 대상을 한번 더 체크 했다. (ex/ 저는 A 의 B 부분에 대해 논의해야하는 것으로 알고 있는데 맞을까요~?) 이렇게 하면 초기 리소스는 조금 더 들 수 있지만 이미 커뮤니케이션이 어느정도 진행된 후 보정하는 것보다는 훨씬 나은 결과를 얻었다. 매번 이 방식을 고수하다보니, 나중에는 먼저 얘기를 꺼내주시는 분들도 생겼다!</p>
+<p>2) 팀장님에게 좀 더 정기적인 코드 리뷰 시간 확보를 요청했다. 이 일정은 개념/구현에 대한 논의를 거쳐 통일된 방향으로 나아가는 시간이 되었고, 이 이후 팀원간 커뮤니케이션 속도가 빨라졌을 뿐만아니라 구현에 대한 통일성도 얻어갈 수 있었다.</p>
+<h3 id="설득의-기술"><a href="#설득의-기술" class="headerlink" title="설득의 기술"></a>설득의 기술</h3><p>기획서에서는 한 줄 분량의 내용인데 수많은 클래스를 고쳐야 한다거나 IOS 에서는 쉽지만 Android 에서는 구현 복잡도가 큰 구현 사항이 넘어올 때가 있다. 모든 요구사항을 다 처리해주는 슈퍼 개발자가 되고 싶지만… 아직 그럴 실력도 안되고 개발 기간도 제한되어 있기 때문에 결국 설득을 위한 커뮤니케이션을 피할 수 없었다. </p>
+<p>복잡한 내부 히스토리와 예외 상황이 존재하기는 하나, 기본적으로 내 전략은 다음과 같았다.</p>
+<ul>
+<li>개발과 관련된 내용을 배제하고 최대한 이해하기 쉽게 상황과 이유를 설명한다.</li>
+<li>구현하지 못하는 내용에 대한 대체 옵션을 제시한다.</li>
+</ul>
+<p>전략을 실제 대화로 구성하면 다음과 같다.</p>
+<p>“A 스펙은 비슷한 행동을 수행하는 다른 화면에도 영향이 가기 때문에 이번 버전에 일괄적으로 적용하기는 조금 어려울 것 같아요. 다만, 범위를 B 까지만 한다면 가능할 것 같은데 이렇게 진행하는 것은 어떨 까요?”</p>
+<p>결국 개발팀에서는 할 수 없는 나름의 이유가 있고, 다른팀에서는 해야하는 나름의 이유가 있기 때문에 무조건 받아줄수도, 무조건 거절할 수 도 없기 때문에 위와 같은 절충안을 생각했다. 그리 어려운 방식은 아니였지만 설득의 성공률은 굉장했다!</p>
+<h1 id="개발-외"><a href="#개발-외" class="headerlink" title="개발 외"></a>개발 외</h1><h2 id="운동은-장기-레이스로"><a href="#운동은-장기-레이스로" class="headerlink" title="운동은 장기 레이스로"></a>운동은 장기 레이스로</h2><p>주짓수에 본격적으로 재미를 붙히기 시작했을 때, 대회에 출전하여 수상해보고 싶은 욕심이 생겼다. 준비 기간이 짧아 몸의 신호를 무시하고 무리하게 운동을 진행했는데 결국 출전 직전에 큰 부상을 겪게 되었다. 손목에 힘을 주기 어려울 만큼 통증이 심해서 주짓수는 물론이고 운동 자체를 몇 달간 쉬게 되었다. 운동을 못하니 체력이 급속도로 떨어지고, 스트레스 해소가 되지않아 멘탈에도 많은 영향을 주었다. </p>
+<p>다행히 지금은 많이 회복되어 퇴근 후 가볍게 헬스를 하고 있다. 운동을 다시 시작하니 점차 몸의 활력이 돌아옴을 느낀다. 결국 운동은 죽기 전까지 꾸준히 필요하다. 지치지 않는 장기 레이스를 잘 수행할 수 있도록 적절한 페이스 조절이 필요함을 실감했다.</p>
+<h2 id="의도적인-휴식과-충전"><a href="#의도적인-휴식과-충전" class="headerlink" title="의도적인 휴식과 충전"></a>의도적인 휴식과 충전</h2><p>학습과 성장에 대한 열망을 넘어 강박 수준까지 가다보니 기습적으로 찾아오는 무기력함과 매너리즘에 속절없이 당했던 순간이 많았다. 이를 방지하기 위해 의도적으로 쉬면서 재충전하는 시간을 만들려고 노력했는데 아, 의도적으로 쉬려고 하는 것도 참 쉽지 않음을 느꼈다. 특히, 하고싶은 것을 하면서 보내는 시간 자체가 계속해서 뒤쳐지고 있다는 느낌이 들어서 이를 떨쳐 내는 것이 쉽지 않았다.</p>
+<p>그래도 의식적으로 노력하여 시간을 제법 확보 했고, 나름 알차게 사용했다고 생각된다. 특히 올 하반기에는 경제와 관련된 많은 책을 읽으며 새로운 분야로 발을 내딛는 재미를 느꼈고, 비슷한 관심사를 가진 사람들이 모인 독서 모임을 신청하여 다양한 사람들의 삶을 엿보는 시간도 가지게 되었다. 운동도 이러한 시간의 연장선이라고 볼 수 있다. </p>
+<p>무엇을 하든 유연하게 균형을 맞추는 일이 참 중요하다고 생각한다. 너무 뻣뻣하면 부러지기 쉽다.</p>
+]]></content>
+      <tags>
+        <tag>Review</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2019년 하반기 회고</title>
+    <url>/2019/12/22/2019-second-half-review%20copy/</url>
+    <content><![CDATA[<p>이직 후 정신없는 하반기를 보냈다. 기대 이상의 성취를 얻은 부분도 있고, 아예 시도조차 못한 부분도 있었다. 스스로 회고하며 기억에 남을 만한 일들을 정리했다.</p>
+<h1 id="개발"><a href="#개발" class="headerlink" title="개발"></a>개발</h1><h2 id="의도를-드러내는-코드-짜기"><a href="#의도를-드러내는-코드-짜기" class="headerlink" title="의도를 드러내는 코드 짜기"></a>의도를 드러내는 코드 짜기</h2><p>우리의 기억력은 빈약하고 왜곡되기 쉽다. 복잡한 비즈니스 로직과 히스토리를 반년 뒤에도 기억할리가 없기 때문에 주섬주섬 주석을 달지만, 이마저도 나중에 보면 이해하기 어려울 때가 많다.</p>
+<p>결국은 코드 자체를 통하여 의도를 드러내는 것이 가장 이상적인 형태이다. 이를 실천하기 위해 많은 고민과 노력이 동반 되었고, 특히 하반기에 수강했던 <a href="https://vagabond95.github.io/2019/11/23/nextstep-class-review/" target="_blank" rel="noopener">NextStep 과정</a>이 아주 큰 도움이 되었다.</p>
 <h2 id="예외-처리와-Stateless-한-코드-짜기"><a href="#예외-처리와-Stateless-한-코드-짜기" class="headerlink" title="예외 처리와 Stateless 한 코드 짜기"></a>예외 처리와 Stateless 한 코드 짜기</h2><p>‘설마 이 상황이 발생하겠어?’ 라는 마음가짐으로 코드를 짜면 항상 그 부분에서 문제가 발생하게 되는 것을 피부로 겪었다. 많은 사용자 수와 그에 대응되는 수많은 환경을 고려했을 때, 발생할 수 없는 상황은 없다고 생각하는 것이 옳다. 발생할 수 있는 모든 예외 상황에 대한 가드 처리가 필요하며, 너무 많은 가드 처리는 가독성을 떨어트릴 수 있으므로 언어/코드 레벨에서 사전에 방지할 수 있는 방법은 없는지 많은 고민을 했다. 최근까지 도달한 결론은 꼭 필요한 상태(State)가 아니면 사용하지 않는 방향으로 하여 관리포인트와 사이드 이펙트를 줄여나가자는 것으로 마무리 했다.</p>
 <h2 id="아무리-강조해도-지나치지-않은-커뮤니케이션"><a href="#아무리-강조해도-지나치지-않은-커뮤니케이션" class="headerlink" title="아무리 강조해도 지나치지 않은 커뮤니케이션"></a>아무리 강조해도 지나치지 않은 커뮤니케이션</h2><p>개발자라고 해서 항상 주어진 업무 시간 전부를 개발에 쓰기는 어렵다. 정기적/비정기적인 커뮤니케이션 구간이 항상 존재하기 때문이다. 피할 수 없는 일이라면 잘하고 싶다. 잘하기 위해 다음과 같은 노력을 했다.</p>
 <h3 id="커뮤니케이션-대상에-대한-공통된-합의"><a href="#커뮤니케이션-대상에-대한-공통된-합의" class="headerlink" title="커뮤니케이션 대상에 대한 공통된 합의"></a>커뮤니케이션 대상에 대한 공통된 합의</h3><p>같은 개념을 얘기하는 데 다른 언어가 사용되고, 같은 언어를 사용하는데 다른 개념(혹은 구현)으로 설명될 때가 많았다. 이러한 불일치를 보정하는 과정이 발생할 때마다 진행의 병목이 생기고 커뮤니케이션 비용이 높아지는 것이 부담되기 시작했다. 그래서 이를 내가 할 수 있는 일들을 하나씩 진행해봤다. </p>
@@ -403,7 +470,7 @@ E/lifeCycle: Fragment onActivityCreated</code></pre><p>….!!!</p>
 </ul>
 <h1 id="마무리-하며"><a href="#마무리-하며" class="headerlink" title="마무리 하며"></a>마무리 하며</h1><p>이 수업 과정을 마쳤다고 해서 TDD, Clean Code, Refactoring 의 종착점에 도달했다고 얘기할 수는 없다. 오히려 이제 시작이라고, 나아가야 한다고, 출발선에 세워 주는 느낌이다. 달려가는 과정 속에서는 분명히 많은 어려움이 따라오겠지만 이제라도 올바른 레이스를 시작할 수 있게 된 것에 감사함을 느낀다.  글을 마무리하고, 미처 끝내지 못한 과제를 하러 다시 달려야겠다. 🤟</p>
 <p>항상 열정적으로 강의를 진행해주신 재성님, 매번 디테일한 리뷰와 함께 함께 고민을 나누어 주셨던 리뷰어분들께 감사드린다.</p>
-<p><strong>link :</strong> <span class="exturl" data-url="aHR0cHM6Ly9lZHUubmV4dHN0ZXAuY2FtcC8=" title="https://edu.nextstep.camp/">https://edu.nextstep.camp/<i class="fa fa-external-link"></i></span> </p>
+<p><strong>link :</strong> <a href="https://edu.nextstep.camp/" target="_blank" rel="noopener">https://edu.nextstep.camp/</a> </p>
 <p>다음 기수의 강의가 열리기 전에 미리 대기 신청을 할 수 있으므로, 관심이 있으면 클릭!</p>
 ]]></content>
       <tags>
@@ -468,7 +535,7 @@ A - X - E&apos; - F&apos; - G&apos; - H&apos;</code></pre><p><strong>번외</str
     <title>[도서] 오브젝트 정리 Chapter 4 (캡슐화, 응집도, 결합도)</title>
     <url>/2019/10/20/object-book-4/</url>
     <content><![CDATA[<p>이번 글에서는 데이터 중심 클래스의 정의와 단점을 알아보고, 이를 해결하기 위한 방법으로 캡슐화와 응집도/결합도에 대한 완전한 이해를 얻어가는 것이 목적이다.</p>
-<h1 id="데이터-중심으로-설계된-클래스"><a href="#데이터-중심으로-설계된-클래스" class="headerlink" title="데이터 중심으로 설계된 클래스"></a>데이터 중심으로 설계된 클래스</h1><p><a href="https://vagabond95.github.io/2019/10/13/object-book-1-3/">이전글</a> 내용을 살펴보면 객체지향 애플리케이션을 구현하는 것은 각 객체가 책임을 수행하며 서로간의 협력을 통해 공동체를 구축한다는 것을 의미한다. 즉, 중요한 것은 객체가 다른 객체와 <strong>협력하는 방법</strong>이며, 각 객체가 내부에 어떤 상태를 가지고 관리하는 지에 대한 것은 부가적인 문제일 뿐이다.  </p>
+<h1 id="데이터-중심으로-설계된-클래스"><a href="#데이터-중심으로-설계된-클래스" class="headerlink" title="데이터 중심으로 설계된 클래스"></a>데이터 중심으로 설계된 클래스</h1><p><a href="https://vagabond95.github.io/2019/10/13/object-book-1-3/" target="_blank" rel="noopener">이전글</a> 내용을 살펴보면 객체지향 애플리케이션을 구현하는 것은 각 객체가 책임을 수행하며 서로간의 협력을 통해 공동체를 구축한다는 것을 의미한다. 즉, 중요한 것은 객체가 다른 객체와 <strong>협력하는 방법</strong>이며, 각 객체가 내부에 어떤 상태를 가지고 관리하는 지에 대한 것은 부가적인 문제일 뿐이다.  </p>
 <p>그러나, 우리가 일반적으로 클래스를 설계하는 과정은 어떨까? </p>
 <ol>
 <li>처음부터 객체간의 협력과 책임에 대해 고민하는 것은 머리아프다.</li>
@@ -592,7 +659,7 @@ public class Movie {
     <title>[안드로이드] targetSdkVersion, compileSdkVersion, minSdkVersion 이란 무엇인가?</title>
     <url>/2019/09/20/android-api-version-manage/</url>
     <content><![CDATA[<p>보통 프로젝트를 새롭게 세팅 할경우, targetSdkVersion / compileSdkVersion / minSdkVersion 를 각각 지정할 수 있다. 세팅 이후에는 크게 건드릴 일이 없기에 평소에는 크게 신경쓰이지 않는 값이다. </p>
-<p>그런데… <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXJzLWtyLmdvb2dsZWJsb2cuY29tLzIwMTgvMDEvaW1wcm92aW5nLWFwcC1zZWN1cml0eS1hbmQtcGVyZm9ybWFuY2Utb24tZ29vZ2xlLXBsYXkuaHRtbA==" title="https://developers-kr.googleblog.com/2018/01/improving-app-security-and-performance-on-google-play.html">새로운 Google Play 방침<i class="fa fa-external-link"></i></span> 에 따르면  <strong>play store 에 등록되어 있는 앱을 업데이트 하거나, 새로 앱을 등록 할 경우 정해진 <code>targetSdkVersion</code> 을 만족해야 한다.</strong> 평소에 어렴풋하게 의미를 알고 있었는데 항상 헷갈려서 이번 기회에 정리 해보기로 했다.</p>
+<p>그런데… <a href="https://developers-kr.googleblog.com/2018/01/improving-app-security-and-performance-on-google-play.html" target="_blank" rel="noopener">새로운 Google Play 방침</a> 에 따르면  <strong>play store 에 등록되어 있는 앱을 업데이트 하거나, 새로 앱을 등록 할 경우 정해진 <code>targetSdkVersion</code> 을 만족해야 한다.</strong> 평소에 어렴풋하게 의미를 알고 있었는데 항상 헷갈려서 이번 기회에 정리 해보기로 했다.</p>
 <p>targetSdkVersion 뿐만 아니라 compileSdkVersion, minSdkVersion  모두 <strong>안드로이드 API 버전</strong>과 관련된 값이므로 묶어서 한번에 다룰 예정이다.</p>
 <hr>
 <h1 id="targetSdkVersion"><a href="#targetSdkVersion" class="headerlink" title="targetSdkVersion"></a>targetSdkVersion</h1><p><strong>앱이 기기에서 동작할 때 사용되는 Android API 버전을 의미한다. (런타임)</strong> 따라서 실제 앱 동작에 영향을 주게 되므로 신중히 올려야 한다. 이때 기기의 Android OS API 버전과 혼동하여 헷갈리기 쉬우므로 각 케이스별로 분리하여 살펴보자.</p>
@@ -632,7 +699,7 @@ public class Movie {
 <p>특히 알림 기능(Notification) 의 경우 특정 버전 이상에서만 되는 기능들이 굉장히 많은데 이를 모두 분기 처리하다보면 실제 로직을 파악하기 쉽지 않다. </p>
 <p>개발자 입장에서는 minSdkVersion 값이 높을 수록 대응할 버전이 줄어드로 피로도가 적으므로, 앱의 minSdkVersion 이 높은 것이 회사 복지라는 우스갯소리도 있다. (우리도 조금만 더 올렸으면 좋겠다..)</p>
 <p>그래도 보통 최대한 많은 고객에게 앱을 제공하기 위해 대부분 회사는 커버러지 99.8% ~ 99.9% 에 포함되는 버전까지는 대응하는 것으로 알고 있다.</p>
-<h2 id="SupportLibrary"><a href="#SupportLibrary" class="headerlink" title="SupportLibrary"></a>SupportLibrary</h2><p>위에서 살펴본 것 처럼 하위 호환성을 유지하기 위한 분기문으로 인해, 점점 코드의 가독성이 떨어지는 상황을 필연적으로 맞이하게 된다. 안드로이드에서는 다음 문제를 해결하기 위해 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5jb20vdG9waWMvbGlicmFyaWVzL3N1cHBvcnQtbGlicmFyeQ==" title="https://developer.android.com/topic/libraries/support-library">SupportLibrary<i class="fa fa-external-link"></i></span> 라는 대안을 내놓게 되었다.</p>
+<h2 id="SupportLibrary"><a href="#SupportLibrary" class="headerlink" title="SupportLibrary"></a>SupportLibrary</h2><p>위에서 살펴본 것 처럼 하위 호환성을 유지하기 위한 분기문으로 인해, 점점 코드의 가독성이 떨어지는 상황을 필연적으로 맞이하게 된다. 안드로이드에서는 다음 문제를 해결하기 위해 <a href="https://developer.android.com/topic/libraries/support-library" target="_blank" rel="noopener">SupportLibrary</a> 라는 대안을 내놓게 되었다.</p>
 <p>서포트 라이브러리는 내부적으로 버전에 대한 분기 처리가 되어있어, 별도의 추가 작업없이 바로 기능을 수행하는 코드를 작성하면 된다.</p>
 ]]></content>
       <tags>
@@ -649,10 +716,10 @@ public class Movie {
 <li>Keyboard 가 올라왔을 때, Keyboard 가 가리고 있는 부분을 제외한 화면의 높이를 구한다.</li>
 <li>1번 값 - 2번 값 = Keyboard Height</li>
 </ol>
-<h1 id="구현"><a href="#구현" class="headerlink" title="구현"></a>구현</h1><p>화면이라는 단어는 자체는 매우 추상적이다. 위 원리의 핵심은 화면의 높이를 구하는 것이므로 코드 레벨의 사전 정의가 필요해보인다.<br>해당 포스트에서는 안드로이드에서 제공하고 있는 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5jb20vcmVmZXJlbmNlL2FuZHJvaWQvdmlldy9WaWV3" title="https://developer.android.com/reference/android/view/View">View<i class="fa fa-external-link"></i></span> 클래스를 화면으로 정의했다. 그 이유는 높이를 구하는 과정에서 활용할 수 있는 API 가 모두 View 에서 제공되기 때문이다.</p>
+<h1 id="구현"><a href="#구현" class="headerlink" title="구현"></a>구현</h1><p>화면이라는 단어는 자체는 매우 추상적이다. 위 원리의 핵심은 화면의 높이를 구하는 것이므로 코드 레벨의 사전 정의가 필요해보인다.<br>해당 포스트에서는 안드로이드에서 제공하고 있는 <a href="https://developer.android.com/reference/android/view/View" target="_blank" rel="noopener">View</a> 클래스를 화면으로 정의했다. 그 이유는 높이를 구하는 과정에서 활용할 수 있는 API 가 모두 View 에서 제공되기 때문이다.</p>
 <hr>
 <h2 id="1-화면의-높이를-구한다"><a href="#1-화면의-높이를-구한다" class="headerlink" title="1. 화면의 높이를 구한다."></a>1. 화면의 높이를 구한다.</h2><p>View 는 getHeight() 메소드를 제공하기 때문에, 높이를 알아는 것이 어렵지 않다. 문제는 getHeight() 를 통해 얻어온 높이가 해당 View 의 정확한 높이라고 보장할 수 없다. 왜냐하면 View 의 높이는 초기화되자마자 결정되는 것이 아니라 일련의 측정 단계를 거쳐 결정이 되는데, 그 단계가 끝나기 전에 getHeight() 를 호출했을수도 있기 때문이다.</p>
-<p>따라서 정확한 View 의 높이를 알기 위해서는 View 의 크기가 결정된 이후에 getHeight() 를 호출해야 한다.<br>View 에서 제공하는 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5jb20vcmVmZXJlbmNlL2FuZHJvaWQvdmlldy9WaWV3VHJlZU9ic2VydmVyLk9uR2xvYmFsTGF5b3V0TGlzdGVuZXI=" title="https://developer.android.com/reference/android/view/ViewTreeObserver.OnGlobalLayoutListener">ViewTreeObserver.OnGlobalLayoutListener<i class="fa fa-external-link"></i></span> 를 이용하면 결정되는 타이밍을 캐치할 수 있다. </p>
+<p>따라서 정확한 View 의 높이를 알기 위해서는 View 의 크기가 결정된 이후에 getHeight() 를 호출해야 한다.<br>View 에서 제공하는 <a href="https://developer.android.com/reference/android/view/ViewTreeObserver.OnGlobalLayoutListener" target="_blank" rel="noopener">ViewTreeObserver.OnGlobalLayoutListener</a> 를 이용하면 결정되는 타이밍을 캐치할 수 있다. </p>
 <p>OnGlobalLayoutListener 는 해당 View에 변경점이 생겼을 때, 이를 콜백형태로 감지할 수 있다. 변경되는 내용에는 View 의 크기가 결정되는 것도 포함되므로 우리는 해당 콜백이 호출되었을 때 View.getHeight() 를 호출하면 정확한 높이를 얻을 수 있다.</p>
 <p>코드 레벨로는 다음과 같다.</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> viewHeight = -<span class="number">1</span>;</span><br><span class="line">    </span><br><span class="line">rootView.getViewTreeObserver().addOnGlobalLayoutListener(() -&gt; &#123;</span><br><span class="line">    <span class="keyword">int</span> currentViewHeight = rootView.getHeight();</span><br><span class="line">    <span class="keyword">if</span> (currentViewHeight &gt; viewHeight) &#123;</span><br><span class="line">        viewHeight = currentViewHeight;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
@@ -663,7 +730,7 @@ public class Movie {
 <li>Keyboard 가 언제 올라왔는지 감지</li>
 <li>현재 화면상에 보여지고 있는 영역의 높이 구하기</li>
 </ol>
-<h3 id="1-Keyboard-가-언제-올라왔는지-감지"><a href="#1-Keyboard-가-언제-올라왔는지-감지" class="headerlink" title="(1) Keyboard 가 언제 올라왔는지 감지"></a>(1) Keyboard 가 언제 올라왔는지 감지</h3><p>1단계는 다시 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5jb20vcmVmZXJlbmNlL2FuZHJvaWQvdmlldy9WaWV3VHJlZU9ic2VydmVyLk9uR2xvYmFsTGF5b3V0TGlzdGVuZXI=" title="https://developer.android.com/reference/android/view/ViewTreeObserver.OnGlobalLayoutListener">ViewTreeObserver.OnGlobalLayoutListener<i class="fa fa-external-link"></i></span> 를 이용하여 진행할 수 있다.</p>
+<h3 id="1-Keyboard-가-언제-올라왔는지-감지"><a href="#1-Keyboard-가-언제-올라왔는지-감지" class="headerlink" title="(1) Keyboard 가 언제 올라왔는지 감지"></a>(1) Keyboard 가 언제 올라왔는지 감지</h3><p>1단계는 다시 <a href="https://developer.android.com/reference/android/view/ViewTreeObserver.OnGlobalLayoutListener" target="_blank" rel="noopener">ViewTreeObserver.OnGlobalLayoutListener</a> 를 이용하여 진행할 수 있다.</p>
 <p>Keyboard 의 활성화/비활성화를 감지하는 아이디어는 다음과 같다.</p>
 <ol>
 <li>(SoftInputMode 값에 따라 다르지만) 일반적으로 Keyboard 가 올라오면 Keyboard 의 크기만큼 화면의 높이가 줄어들게 된다.</li>
@@ -672,13 +739,13 @@ public class Movie {
 </ol>
 <p>View 를 이용할 수 있는 것은 알았다. 그럼 우리는 <strong>어떤 View 를 이용하여 위 과정을 진행해야할까?</strong></p>
 <h4 id="1-Activity-의-RootLayout-을-이용한다"><a href="#1-Activity-의-RootLayout-을-이용한다" class="headerlink" title="1) Activity 의 RootLayout 을 이용한다."></a>1) Activity 의 RootLayout 을 이용한다.</h4><p>가장 무난하고 쉬운 선택이다. Acitivity 의 Xml 에서 root level 에 있는 layout 을 View 로 이용하는 방법이다. 실제로도 대부분의 케이스에서는 잘 동작한다.</p>
-<p>하지만 이 방법은 치명적인 단점이 존재한다. Activity 의 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5jb20vZ3VpZGUvdG9waWNzL21hbmlmZXN0L2FjdGl2aXR5LWVsZW1lbnQjd3NvZnQ=" title="https://developer.android.com/guide/topics/manifest/activity-element#wsoft">windowSoftInputMode<i class="fa fa-external-link"></i></span> 옵션 값에따라 정상적으로 동작하지 않을 수 있다는 것이다.</p>
+<p>하지만 이 방법은 치명적인 단점이 존재한다. Activity 의 <a href="https://developer.android.com/guide/topics/manifest/activity-element#wsoft" target="_blank" rel="noopener">windowSoftInputMode</a> 옵션 값에따라 정상적으로 동작하지 않을 수 있다는 것이다.</p>
 <p>windowSoftInputMode 옵션은 가상 Keyboard 와 Activity 의 상호작용을 지정하는 옵션인데, ‘AdjustNothing’ 와 같은 일부 옵션값은 <strong>Keyboard 가 올라와도 Activity Height 의 변화가 없기 때문에</strong> 두번째 단계를 수행할 수 없다. 따라서 Acitivity 의 windowSoftInputMode 값에 따라 동일한 결과를 보장받지 못하기 때문에, 범용적으로 활용되기 어렵다.</p>
 <h4 id="2-PopupWindow-를-이용한다"><a href="#2-PopupWindow-를-이용한다" class="headerlink" title="2) PopupWindow 를 이용한다."></a>2) PopupWindow 를 이용한다.</h4><p>좀 더 개선된 선택지이다. </p>
 <p>PopupWindow 는 고유의 SoftInputMode 을 별도로 지정할 수 있다. 따라서 Acitivity windowSoftInputMode 옵션이 무엇이든 영향을 받지 않고, 독립적으로 활용이 가능하다. 따라서 RootLayout 을 이용하는 1번 방식의 단점을 보완할 수 있다.</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">KeyboardObserver</span> <span class="keyword">extends</span> <span class="title">PopupWindow</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">initialize</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">            setSoftInputMode(SOFT_INPUT_ADJUST_RESIZE | SOFT_INPUT_STATE_ALWAYS_VISIBLE);</span><br><span class="line">            setInputMethodMode(PopupWindow.INPUT_METHOD_NEEDED);</span><br><span class="line">    </span><br><span class="line">            ...</span><br><span class="line">    </span><br><span class="line">            rootView.getViewTreeObserver().addOnGlobalLayoutListener(() -&gt; &#123;</span><br><span class="line">                ...</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="2-현재-화면상에-보여지고-있는-영역의-높이-구하기"><a href="#2-현재-화면상에-보여지고-있는-영역의-높이-구하기" class="headerlink" title="(2) 현재 화면상에 보여지고 있는 영역의 높이 구하기"></a>(2) 현재 화면상에 보여지고 있는 영역의 높이 구하기</h3><p>2단계는 View 에서 제공하는 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5jb20vcmVmZXJlbmNlL2FuZHJvaWQvdmlldy9WaWV3Lmh0bWwjZ2V0V2luZG93VmlzaWJsZURpc3BsYXlGcmFtZShhbmRyb2lkLmdyYXBoaWNzLlJlY3Qp" title="https://developer.android.com/reference/android/view/View.html#getWindowVisibleDisplayFrame(android.graphics.Rect)">View.getWindowVisibleDisplayFrame()<i class="fa fa-external-link"></i></span> 를 활용하여 진행할 수 있다.</p>
+<h3 id="2-현재-화면상에-보여지고-있는-영역의-높이-구하기"><a href="#2-현재-화면상에-보여지고-있는-영역의-높이-구하기" class="headerlink" title="(2) 현재 화면상에 보여지고 있는 영역의 높이 구하기"></a>(2) 현재 화면상에 보여지고 있는 영역의 높이 구하기</h3><p>2단계는 View 에서 제공하는 <a href="https://developer.android.com/reference/android/view/View.html#getWindowVisibleDisplayFrame(android.graphics.Rect)" target="_blank" rel="noopener">View.getWindowVisibleDisplayFrame()</a> 를 활용하여 진행할 수 있다.</p>
 <p>getWindowVisibleDisplayFrame(rect) 메소드는<br>해당 View 를 그리고 있는 window 를 기준으로, <strong>현재 보여지고 있는 영역의 크기를 반환한다</strong>. 따라서, Keyboard가 올라왔을 때 해당 메소드를 호출할 경우 Keyboard로 인하여 가려진 영역을 제외한 화면의 높이를 얻을 수 있다.</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Rect visibleFrameSize = <span class="keyword">new</span> Rect();</span><br><span class="line">view.getWindowVisibleDisplayFrame(visibleFrameSize);</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> visibleFrameHeight = visibleFrameSize.bottom - visibleFrameSize.top;</span><br></pre></td></tr></table></figure>
 
@@ -829,7 +896,7 @@ public class Movie {
     <title>2019년 상반기 회고</title>
     <url>/2019/07/07/2019-first-half-review/</url>
     <content><![CDATA[<p>상반기에 많은 일들이 있었던 것 같은데 막상 적으려니까 잘 떠오르지 않아 당황스러웠다. 이래서 평소에 기록을 해두는 습관을 형성 해두는 것이 중요한 것 같다.</p>
-<h1 id="이직"><a href="#이직" class="headerlink" title="이직"></a>이직</h1><p>1년 4개월 동안 다니던 회사를 뒤로하고 첫 이직을 했다. <span class="exturl" data-url="aHR0cHM6Ly96b3lpLmNv" title="https://zoyi.co">조이<i class="fa fa-external-link"></i></span>에서 개발자를 시작한 것은 정말 현명한 선택이었다. 입사 전과는 비교할 수 없을 만큼 많이 배우고 성장하는 시간을 보냈다. 그렇게 좋은 환경이었음에도 불구하고 이직을 하게 된 계기는 단순했다. 내 사고가 어느 한 방향으로 굳기 전에 새로운 변화를 맞이하여 자극을 주고 싶었고, 구체적인 자극으로서 좀 더 많은 유저가 사용하는 큰 스케일의 프로젝트를 개발 해보고 싶었다. 목표가 생기자 퇴근 후 새벽까지 이직 공부를 하며 여러 곳에 지원을 했고 결과적으로 <strong>NAVER</strong>에 입사를 하게 되었다.</p>
+<h1 id="이직"><a href="#이직" class="headerlink" title="이직"></a>이직</h1><p>1년 4개월 동안 다니던 회사를 뒤로하고 첫 이직을 했다. <a href="https://zoyi.co" target="_blank" rel="noopener">조이</a>에서 개발자를 시작한 것은 정말 현명한 선택이었다. 입사 전과는 비교할 수 없을 만큼 많이 배우고 성장하는 시간을 보냈다. 그렇게 좋은 환경이었음에도 불구하고 이직을 하게 된 계기는 단순했다. 내 사고가 어느 한 방향으로 굳기 전에 새로운 변화를 맞이하여 자극을 주고 싶었고, 구체적인 자극으로서 좀 더 많은 유저가 사용하는 큰 스케일의 프로젝트를 개발 해보고 싶었다. 목표가 생기자 퇴근 후 새벽까지 이직 공부를 하며 여러 곳에 지원을 했고 결과적으로 <strong>NAVER</strong>에 입사를 하게 되었다.</p>
 <p>사실 업무와 이직 준비를 동시에 하는 기간은 정신적으로나 육체적으로나 정말 힘들었고 포기하고 싶었던 순간이 많았다. 하지만 결과적으로 그 시간을 겪으면서 현재 내 수준을 정확히 점검할 수 있었고 당시에 정리했던 공부 내용들이 지금까지도 개발하면서 아주 큰 도움이 되고 있다. 이직할 생각이 없더라도 정기적으로 면접을 보는 경험이 좋다는 얘기가 이런 맥락에서 였나 싶었다.</p>
 <p>네이버 내에서 맡게 된 서비스는 ‘네이버 카페’ 다. 사실 입사 전에 네이버 카페를 자주 쓰는 편이 아니었어서(…) 실 사용자수가 어느정도 인지 감이 없었는데, 생각했던 수치보다 10배나 높았다! 아주 많은 자극을 받게 될 것 같다. 👏  또한 개인적으로 인복이 정말 많다고 생각되는 것이, 전 회사 그리고 현재에도 정말 좋은 팀과 동료 들을 만나게 되었다. 특히 시니어분들이 보여주시는 모습은 나중에 내가 그 위치로 올라갔을 때 꼭 닮고 싶은 부분이었다. 현재는 입사 프로젝트를 마치고 작은 테스크부터 점차 수행 해나가고 있으며, 빨리 새로운 환경에 적응을 마치고 깃헙에 많은 잔디를 심고 싶다.</p>
 <h1 id="개발"><a href="#개발" class="headerlink" title="개발"></a>개발</h1><p>작년 한해는 RxJava, Dagger, Clean Architecture, 함수형 프로그래밍 등 특정 기술 영역을 익히는데 관심과 시간을 투자 했다면 올해 초부터는 기본기를 좀 더 다지는 한 해를 보내고 있다. 개발을 막 시작하던 때에는 기술만 도입하면 모든 문제가 해결될 것 처럼 보였지만 역시 은탄환은 없었다. 좀 더 복잡하고 어려운 스펙, 난해한 이슈들을 맞이할수록 결국에는 기본 영역 레벨로 내려가 고민을 하게 된다. 그리고 그러한 상황들을 맞이할 때마다 내 부실한 지식과 한계를 명확히 느꼈다. 동료 개발자와 기초적인 지식과 관련하여 커뮤니케이션을 할 때, 잘 모르는 내용 이었지만 일단 아는 척을 하고 집에 가서 그 내용을 찾아볼 때는 부끄러움과 약간의 분함(?)도 찾아왔다. 위와 같은 경험을 한 뒤로는 각 분야의 기초 서적들을 구입해 퇴근 후 틈틈히 공부하고 그 내용을 노션에 정리하기 시작했다.</p>
@@ -863,7 +930,7 @@ public class Movie {
   <entry>
     <title>[안드로이드] Nullaway 를 활용하여 NullPointerException 예방하기</title>
     <url>/2018/09/21/what-is-nullaway/</url>
-    <content><![CDATA[<p>한번도 <strong>NullPointerException</strong> (이하 NPE)를 겪어보지 않은 사람은 있을지 몰라도, 한번만 NPE 를 겪어본 사람은 없을것이다. NPE 로 인한 크래시가 나기 전까지는 그 존재를 알 수 없기 때문에 항상 Null 값 처리를 신경 쓰면서 개발을 진행해야 한다. 잊을만하면 나타나는 NPE를 바라보면서 한숨을 쉬고 있을 때쯤, 동료 개발자에게 미리 NPE 예방에 도움을 주는 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3ViZXIvTnVsbEF3YXk=" title="https://github.com/uber/NullAway">Nullaway<i class="fa fa-external-link"></i></span> 라이브러리를 소개받았다.</p>
+    <content><![CDATA[<p>한번도 <strong>NullPointerException</strong> (이하 NPE)를 겪어보지 않은 사람은 있을지 몰라도, 한번만 NPE 를 겪어본 사람은 없을것이다. NPE 로 인한 크래시가 나기 전까지는 그 존재를 알 수 없기 때문에 항상 Null 값 처리를 신경 쓰면서 개발을 진행해야 한다. 잊을만하면 나타나는 NPE를 바라보면서 한숨을 쉬고 있을 때쯤, 동료 개발자에게 미리 NPE 예방에 도움을 주는 <a href="https://github.com/uber/NullAway" target="_blank" rel="noopener">Nullaway</a> 라이브러리를 소개받았다.</p>
 <p>Nullaway 는 @Nullable 어노테이션을 이용하여 <strong>Compile Time 에 Null check</strong> 검사를 수행한다. 간결하고, 강력해보인다.</p>
 <h2 id="Nullaway-세팅하기"><a href="#Nullaway-세팅하기" class="headerlink" title="Nullaway 세팅하기"></a><strong>Nullaway 세팅하기</strong></h2><p><code>gradle</code> 기반으로 가이드가 되어있고, Android / Non - Android 방식으로 나뉘는데 거의 차이가 없다. 이 글에서는 Android 방식을 기준으로 설명한다.</p>
 <p>App 모듈 Gradle 파일에 다음과 같이 추가해주면 설정이 끝난다.</p>
@@ -889,7 +956,7 @@ public class Movie {
 <ul>
 <li><code>&quot;-XepOpt:NullAway:UnannotatedSubPackages=com.project.test_[a-zA-Z0-9.]*&quot;</code></li>
 </ul>
-<p>그외 자세한 설명은 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3ViZXIvTnVsbEF3YXkvd2lraS9Db25maWd1cmF0aW9u" title="https://github.com/uber/NullAway/wiki/Configuration">Docs<i class="fa fa-external-link"></i></span> 를 참고!</p>
+<p>그외 자세한 설명은 <a href="https://github.com/uber/NullAway/wiki/Configuration" target="_blank" rel="noopener">Docs</a> 를 참고!</p>
 <h2 id="사용-방법"><a href="#사용-방법" class="headerlink" title="사용 방법"></a><strong>사용 방법</strong></h2><p>Android Support Library 에서 제공하는 <code>@Nullable</code> 어노테이션을 이용한다. Null 이 될 수 있는 필드, Null을 리턴할 수 있는 메소드에 <code>@Nullable</code>, Null 이 될 수 없는 필드, Null 을 리턴하지 않는 메소드는 <code>@NonNull</code> 을 추가해주면 된다. 아무런 어노테이션도 추가되지 않은 변수, 메소드는 @NonNull 로 인식한다. @Nullable 이 추가되어있는 필드는 항상 Null safe 체크 이후에 사용될 수 있고, @NonNull 이 추가되어 있는 필드는 Null 값이 들어올 수 없다는 것을 기본전제로 Null check 검사를 수행한다.</p>
 <p>예제</p>
 <p>아래 코드를 빌드할 경우 NonNull 타입 파라미터에 Null 이 들어갔으므로 Nullaway가 에러를 낸다.</p>
@@ -900,14 +967,14 @@ public class Movie {
 
 
 <p>만약 Null check 없이 그대로 model 을 사용하려고 할 경우, 역시 에러를 낸다.</p>
-<p>Nullaway가 에러를 띄워주는 케이스는 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3ViZXIvTnVsbEF3YXkvd2lraS9FcnJvci1NZXNzYWdlcw==" title="https://github.com/uber/NullAway/wiki/Error-Messages">Error Messages<i class="fa fa-external-link"></i></span> 에 정리되어 있다.</p>
+<p>Nullaway가 에러를 띄워주는 케이스는 <a href="https://github.com/uber/NullAway/wiki/Error-Messages" target="_blank" rel="noopener">Error Messages</a> 에 정리되어 있다.</p>
 <h2 id="실제-프로젝트에-적용해보면서-느낀-점"><a href="#실제-프로젝트에-적용해보면서-느낀-점" class="headerlink" title="실제 프로젝트에 적용해보면서 느낀 점"></a><strong>실제 프로젝트에 적용해보면서 느낀 점</strong></h2><ol>
 <li>방어코드를 잘 추가했다고 생각했음에도 처리되지 않았던 부분이 많았고, 관련 코드를 모두 수정하여 앱의 안정성을 올리는데 도움을 주었다.</li>
 <li>Nullaway 소개글에 나온 것 처럼 처리 속도가 빨라 빌드시간이 추가로 더 늘어나지는 않음.</li>
 <li>코드를 작성할 때 Nullable, NonNull 을 고려하게 된다는 점이 좋았음.</li>
 </ol>
 <p>코틀린으로 넘어가게 되면 사용하지 않아도 무방하고 자바로 계속 개발할 경우 한번 적용해보는 것을 추천한다.</p>
-<p>샘플 링크 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3ZhZ2Fib25kOTUvTnVsbEF3YXlTYW1wbGU=" title="https://github.com/vagabond95/NullAwaySample">https://github.com/vagabond95/NullAwaySample<i class="fa fa-external-link"></i></span></p>
+<p>샘플 링크 <a href="https://github.com/vagabond95/NullAwaySample" target="_blank" rel="noopener">https://github.com/vagabond95/NullAwaySample</a></p>
 ]]></content>
       <tags>
         <tag>Java</tag>
@@ -924,7 +991,7 @@ public class Movie {
        at android.text.SpannableString.setSpan(SpannableString.java:46)
        at android.text.Selection.setSelection(Selection.java:76)
        at android.widget.TextView.semSetSelection(TextView.java:13203)</code></pre><p>코딩을 할 때 신경써서 범위를 지정하지 않을 경우 종종 겪는 에러였는데, 디버깅을 해도 해당 부분은 모두 예외처리가 잘 되어있어 원인을 쉽게 찾을 수 없었다.</p>
-<h2 id="해결"><a href="#해결" class="headerlink" title="해결"></a><strong>해결</strong></h2><p>그러던 중 우연히 재현 조건을 찾게 되었고, 조건은 TextView 에서 특정 텍스트를 복사하려고 드래그를 시도할 때 랜덤하게 크래시가 발생했다. 복사 기능은 TextView 의 <code>textIsSelectable</code> 옵션을 활용하여 제공하고 있었기 때문에, ‘textIsSelectable’ 과 ‘IndexOutOfBoundsException’ 키워드를 엮어 내용을 찾아보니 <span class="exturl" data-url="aHR0cHM6Ly9zdGFja292ZXJmbG93LmNvbS9xdWVzdGlvbnMvMTU4MzYzMDYvY2FuLWEtdGV4dHZpZXctYmUtc2VsZWN0YWJsZS1hbmQtY29udGFpbi1saW5rcw==" title="https://stackoverflow.com/questions/15836306/can-a-textview-be-selectable-and-contain-links">힌트가 될만한 정보<i class="fa fa-external-link"></i></span> 를 얻을 수 있었다.</p>
+<h2 id="해결"><a href="#해결" class="headerlink" title="해결"></a><strong>해결</strong></h2><p>그러던 중 우연히 재현 조건을 찾게 되었고, 조건은 TextView 에서 특정 텍스트를 복사하려고 드래그를 시도할 때 랜덤하게 크래시가 발생했다. 복사 기능은 TextView 의 <code>textIsSelectable</code> 옵션을 활용하여 제공하고 있었기 때문에, ‘textIsSelectable’ 과 ‘IndexOutOfBoundsException’ 키워드를 엮어 내용을 찾아보니 <a href="https://stackoverflow.com/questions/15836306/can-a-textview-be-selectable-and-contain-links" target="_blank" rel="noopener">힌트가 될만한 정보</a> 를 얻을 수 있었다.</p>
 <p>내용인즉, <code>textIsSelectable</code> 옵션과 <code>LinkMovementMethod</code> 를 같이 사용했을 때 의도하지 않은 결과가 나올 수 있다는 것이었다. <strong><code>LinkMovementMethod</code> 는 안드로이드에서 제공하는 녀석이어서 원인이 될 것이라고 생각하지 못했다.</strong> 우리 프로젝트에서도 <code>textIsSelectable</code> 옵션이 적용된 TextView 에서 <code>LinkMovementMethod</code> 를 같이 사용하고 있었기에, 혹시나 하는 마음으로 위 내용을 참고하여 CustomMovementMethod 만든 후 적용시켜봤다. 그리고 다시 테스트를 반복하여 시도해본 결과 더이상 크래시가 발생하지 않았다.</p>
 <h2 id="정확한-원인은"><a href="#정확한-원인은" class="headerlink" title="정확한 원인은?"></a><strong>정확한 원인은?</strong></h2><p>버그를 해결하고 나서 위 문제가 발생한 원인을 다시 생각해 봤다.</p>
 <ol>
@@ -960,13 +1027,13 @@ public class Movie {
 <h2 id="TL-DR"><a href="#TL-DR" class="headerlink" title="TL; DR"></a><strong>TL; DR</strong></h2><p>오레오에서 알림 대응은 피할 수 없다. 미대응시 작동 X 😱</p>
 <h2 id="오레오대응-더이상은-피할-수-없다"><a href="#오레오대응-더이상은-피할-수-없다" class="headerlink" title="오레오대응.. 더이상은 피할 수 없다?"></a><strong>오레오대응.. 더이상은 피할 수 없다?</strong></h2><p>아직 비교적 최신 버전인 오레오 대응을 굳이 처음부터 다르는 이유는 다음과 같다.</p>
 <ol>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXJzLWtyLmdvb2dsZWJsb2cuY29tLzIwMTgvMDEvaW1wcm92aW5nLWFwcC1zZWN1cml0eS1hbmQtcGVyZm9ybWFuY2Utb24tZ29vZ2xlLXBsYXkuaHRtbA==" title="https://developers-kr.googleblog.com/2018/01/improving-app-security-and-performance-on-google-play.html">새로운 Google Play 방침<i class="fa fa-external-link"></i></span> 에 따르면  play store 에 등록되어 있는 앱을 업데이트 하거나, 새로 앱을 등록 할 경우 <code>targetSdkVersion &gt;= 26</code> 을 만족해야 한다. 따라서 오레오(8.0) 대응을 피할 수 없게 되었다.</p>
+<li><p><a href="https://developers-kr.googleblog.com/2018/01/improving-app-security-and-performance-on-google-play.html" target="_blank" rel="noopener">새로운 Google Play 방침</a> 에 따르면  play store 에 등록되어 있는 앱을 업데이트 하거나, 새로 앱을 등록 할 경우 <code>targetSdkVersion &gt;= 26</code> 을 만족해야 한다. 따라서 오레오(8.0) 대응을 피할 수 없게 되었다.</p>
 <p> 2018년 하반기 부터</p>
 </li>
 <li><p>오레오 여러 변경 사항 중 특히 신경써줘야 할 부분은 알림(Notification) 에 대한 변경사항인데, 이를 반영하지 않을 경우 <strong>알림이 오지않는 치명적인 상황이 발생한다.</strong></p>
 </li>
 </ol>
-<h2 id="NotifcationChannel-의-등장"><a href="#NotifcationChannel-의-등장" class="headerlink" title="NotifcationChannel 의 등장"></a><strong>NotifcationChannel 의 등장</strong></h2><p>우리가 처리해줘야하는 부분은 오레오에서 새롭게 등장한 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5jb20vdHJhaW5pbmcvbm90aWZ5LXVzZXIvY2hhbm5lbHM=" title="https://developer.android.com/training/notify-user/channels">NotificationChannel<i class="fa fa-external-link"></i></span> 과 관련되어있다. 왜 google 은 이 녀석에 대한 처리를 강제했을까? 다음 상황을 살펴보면 그 이유를 짐작할 수 있다.</p>
+<h2 id="NotifcationChannel-의-등장"><a href="#NotifcationChannel-의-등장" class="headerlink" title="NotifcationChannel 의 등장"></a><strong>NotifcationChannel 의 등장</strong></h2><p>우리가 처리해줘야하는 부분은 오레오에서 새롭게 등장한 <a href="https://developer.android.com/training/notify-user/channels" target="_blank" rel="noopener">NotificationChannel</a> 과 관련되어있다. 왜 google 은 이 녀석에 대한 처리를 강제했을까? 다음 상황을 살펴보면 그 이유를 짐작할 수 있다.</p>
 <p>나는 스마트폰에 알림이 쌓여있는 걸 좋아하지 않아서, 보통 대부분 앱의 알림을 꺼놓는다. 하지만 그때 아쉬운 점이 하나 있었는데, 확인하고 싶은 일부 알림 역시 받을 수 없다는 것이었다.</p>
 <p>Android 7.1 (API level 25) 이하 버전에서는 모든 알림이 하나로 묶여 관리됐기 때문에 위의 아쉬운 점을 해결할 수 없었고 이에 대한 대안으로 오레오에서 NotificationChannel 이 새롭게 추가되었다.</p>
 <img src="https://user-images.githubusercontent.com/27072782/60758428-7c512a80-a051-11e9-9fa2-ed4b67fbb7f8.jpg" class="notification_channel" width="200" height="120" title="notification_channel">
@@ -994,7 +1061,7 @@ public class Movie {
 <ul>
 <li>id : 각 채널을 구분할 수 있는 unique 한 값</li>
 <li>name : 유저에게 표시되는 채널 이름</li>
-<li>importance : 알림에 대한 중요도이며 이 값에 따라 알림의 동작이 달라진다. API 25 이하버전에서 사용되던 notification priority 개념과 동일. 각 importance 값에 따른 동작의 차이는 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5jb20vdHJhaW5pbmcvbm90aWZ5LXVzZXIvY2hhbm5lbHMjaW1wb3J0YW5jZQ==" title="https://developer.android.com/training/notify-user/channels#importance">importance level<i class="fa fa-external-link"></i></span>에 잘 나와있다.</li>
+<li>importance : 알림에 대한 중요도이며 이 값에 따라 알림의 동작이 달라진다. API 25 이하버전에서 사용되던 notification priority 개념과 동일. 각 importance 값에 따른 동작의 차이는 <a href="https://developer.android.com/training/notify-user/channels#importance" target="_blank" rel="noopener">importance level</a>에 잘 나와있다.</li>
 <li>description : 채널에 대한 설명, 특정 채널 설정 창에서 표기됨</li>
 </ul>
 <h3 id="Notification-builder-생성-및-channel-id-등록"><a href="#Notification-builder-생성-및-channel-id-등록" class="headerlink" title="Notification builder 생성 및 channel id 등록"></a><strong>Notification builder 생성 및 channel id 등록</strong></h3><pre><code>NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context, channelId);

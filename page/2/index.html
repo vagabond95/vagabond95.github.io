@@ -196,6 +196,234 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://vagabond95.me/2019/10/20/object-book-4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jihoon Kim">
+      <meta itemprop="description" content="내일 잊기전에 오늘 적어두는 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="기록은 기억을 지배한다">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/10/20/object-book-4/" class="post-title-link" itemprop="url">[도서] 오브젝트 정리 Chapter 4 (캡슐화, 응집도, 결합도)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-10-20 15:09:37" itemprop="dateCreated datePublished" datetime="2019-10-20T15:09:37+09:00">2019-10-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-11-03 18:14:10" itemprop="dateModified" datetime="2019-11-03T18:14:10+09:00">2019-11-03</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>이번 글에서는 데이터 중심 클래스의 정의와 단점을 알아보고, 이를 해결하기 위한 방법으로 캡슐화와 응집도/결합도에 대한 완전한 이해를 얻어가는 것이 목적이다.</p>
+<h1 id="데이터-중심으로-설계된-클래스"><a href="#데이터-중심으로-설계된-클래스" class="headerlink" title="데이터 중심으로 설계된 클래스"></a>데이터 중심으로 설계된 클래스</h1><p><a href="https://vagabond95.github.io/2019/10/13/object-book-1-3/" target="_blank" rel="noopener">이전글</a> 내용을 살펴보면 객체지향 애플리케이션을 구현하는 것은 각 객체가 책임을 수행하며 서로간의 협력을 통해 공동체를 구축한다는 것을 의미한다. 즉, 중요한 것은 객체가 다른 객체와 <strong>협력하는 방법</strong>이며, 각 객체가 내부에 어떤 상태를 가지고 관리하는 지에 대한 것은 부가적인 문제일 뿐이다.  </p>
+<p>그러나, 우리가 일반적으로 클래스를 설계하는 과정은 어떨까? </p>
+<ol>
+<li>처음부터 객체간의 협력과 책임에 대해 고민하는 것은 머리아프다.</li>
+<li>따라서 우선 클래스에 어떤 데이터가 들어가야할지 결정한다.</li>
+<li>또한 어떤 상황에서도 객체가 사용될 수 있게 최대한 많은 getter/setter 를 추가한다.  </li>
+</ol>
+<p>이러한 설계방식을 <strong>데이터 중심 설계</strong> (혹자는 추측에 의한 설계전략)라고 부르며, 데이터 중심 설계는 객체의 외부가 아닌 내부에 초점을 맞추게 된다. </p>
+<p>데이터 중심 클래스의 객체는 단순한 데이터의 집합일 뿐이다. 따라서 제공되는 메소드는 과도한 접근자와 수정자 뿐이며, 이 데이터를 사용하여 로직을 수행하는 일은 별도의 객체에서 수행하게 된다. 이로 인하여 객체의 인터페이스에 내부 구현이 노출되고, 인터페이스를 이용하여 협력하는 또다른 객체 역시 데이터 중심 클래스의 내부구현에 종속되게 된다. (캡슐화가 이루어지지 않음) 문제는 <strong>객체의 내부 구현은 언제든 변화가 생길 수 있다는 점</strong>이다. 따라서 데이터 중심의 설계는 변화가 발생했을 때 협력하는 모든 객체가 영향을 받게되므로 변화에 매우 취약한  설계방식 이다. </p>
+<h1 id="캡슐화-응집도-결합도"><a href="#캡슐화-응집도-결합도" class="headerlink" title="캡슐화, 응집도, 결합도"></a>캡슐화, 응집도, 결합도</h1><p>좋은 객체지향 설계의 척도를 이야기할 때 빠지지 않고 등장하는 얘기들이 있다. 캡슐화가 잘되어야한다. 높은 응집도와 낮은 결합도를 가져야한다. 귀에 못박히도록 들었으나 해당 문장이 가지고 있는 진정한 의미를 이해하고 있었다고 단언할 수 있을까?</p>
+<h2 id="캡슐화"><a href="#캡슐화" class="headerlink" title="캡슐화"></a>캡슐화</h2><p>캡슐화가 무엇일까? 라고 질문하면 “객체 내부 구현을 외부로부터 감추는 것이다.” 라고 쉽게 얘기할 수 있다. 구현레벨에서는 접근 제한자를 이용하여 맴버변수를 숨기고 getter/setter 를 구성하며 캡슐화가 적용된 코드라고 얘기하곤 한다.</p>
+<p>안타깝게도 위 내용은 캡슐화의 본질을 온전히 이해하고 있지 못하고 있다. 캡슐화는 분명 내부구현을 외부로부터 감추는 것이 맞다. 하지만 중요한 것은 <strong>왜 감추느냐</strong>는 것이다. 위에서 얘기한 데이터 중심의 설계방식을 살펴보면 그 이유를 알 수 있다. 캡슐화를 통해 감추는 이유는 내부구현을 숨김으로 인하여 내부구현의 변화가 발생하더라도 협력하는 <strong>외부 객체에 변화의 영향이 퍼져나가지 않도록 막기 위함</strong>이다. </p>
+<p>너무 당연한 얘기일까? 그렇다면 다시 질문해보자. 접근제한자로 변수를 숨기고 getter/setter 를 통해 접근 및 조작하는 것은 캡슐화가 이루어진 것이라고 할 수 있을까? 캡슐화를 한 것은 맞다. 이러한 방식을 데이터 캡슐화라고 부른다. 그러나 데이터 캡슐화만으로는 캡슐화의 목적을 달성하지 못한다. getter 가 제공된다는 것은 필연적으로 어떤 로직을 수행하기 위해 해당 데이터가 필요하다는 의미이며, 그 로직은 또다른 객체에서 수행될 수 밖에없다. 그리고 만약 getter 의 return type 이 바뀐다면? 또다른 객체 역시 내용을 변경할 수 밖에 없다. 이러한 케이스를 <strong>객체의 내부구현이 드러난다</strong>고 표현한다.  캡슐화의 목적은 내부구현을 숨기는 것인데, 데이터 캡슐화만으로는 내부구현이 드러나게 되는 아이러니한 상황이 발생하는 것이다. (내부구현은 return type 뿐만 아니라 parameter, method 자체 로도 드러날 수 있다.)</p>
+<pre><code>// 캡슐화의 목적이 이루어지지 않은 클래스
+public class Movie {
+    private String title;
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+}</code></pre><p>자, 데이터를 숨기는 것만으로는 캡슐화의 목적이 달성될 수 없음을 알았다. 그렇다면 어떤 수준까지 해야할까? 책에서는 다음과 같이 얘기하고 있다.</p>
+<blockquote>
+<p>다시한번 강조하지만 캡슐화란 변할 수 있는 어떤 것이라도 감추는 것이다. 그것이 속성의 타입이건, 할인 정책의 종류건 상관없이 내부 구현의 변경으로 인해 외부가 객체가 영향을 받는다면 캡슐화를 위반한 것이다.</p>
+</blockquote>
+<p>변경될 수 있는 모든 것을 감추는 것, 그것만이 캡슐화의 목적에 다다를 수 있다. 그리고 이러한 규칙은 협력을 잘 구성하고 책임을 스스로 수행할 수 있도록 구성하면 자연스레 지켜지게 된다. 즉 캡슐화를 하기 위해 일련의 작업들을 수행하는 것이 아니라, 객체지향 프로그래밍의 규칙을 지키다보면 자연스럽게 캡슐화가 보장되어가는 형태가 된다.</p>
+<p>그래도 역시 이해하기에 모호한 부분이 있다. 그래서 캡슐화가 잘 되었는지 파악할 수 있는 기준들을 소개하고자 한다.</p>
+<h2 id="응집도와-결합도"><a href="#응집도와-결합도" class="headerlink" title="응집도와 결합도"></a>응집도와 결합도</h2><p>응집도와 결합도는 소프트웨어품질을 측정하기 위한 기준이지만 캡슐화의 정도를 측정할때도 유용하게 활용될 수 있다. 객체지향 관점에서 각 개념은 다음과 같이 풀어내고 있다.</p>
+<ul>
+<li><strong>응집도</strong>는 클래스/객체에 얼마나 관련 높은 책임이 할당되었는지를 나타낸다.</li>
+<li><strong>결합도</strong>는 클래스/객체가 협력에 필요한 적절한 수준의 관계만 유지하고 있는지 나타낸다.</li>
+</ul>
+<p>… 객체지향을 오해하기 쉬운 이유는 이러한 애매하고 추상적인 개념들을 명확하게 이해하기가 어렵기 때문이라고 생각한다.</p>
+<p>처음으로 돌아가 생각해보자. 좋은 설계란 무엇인가? 변경하기 쉬운 설계이다. 그리고 높은 응집도와 낮은 결합도를 가졌을 때 우리는 좋은 설계라고 부르곤한다. 따라서 각 개념은 결국 <strong>변경</strong>과 관련이 있다는 얘기가 된다. 변경의 관점에서 다시한번 각 개념을 살펴보자.</p>
+<p>어플리케이션에 여러 모듈(객체)가 있을 때</p>
+<ul>
+<li><p><strong>(변경의 관점에서) 응집도</strong>는 변경이 발생했을 때 어플리케이션내에서 변경이 발생하는 정도를 의미한다. 예를들어 특정 기능에 대한 변경이 있을때 대해 하나의 모듈만 변경된다면 응집도가 높고, 다수의 모듈이 함께 변경돼야하면 응집도가 낮다고 할 수 있다.</p>
+<p>  응집도가 낮다면 하나의 변경점에 대해 다수 모듈의 변경이 동반되기 때문에 변경에 부담이 생기기 시작한다.</p>
+</li>
+<li><p><strong>(변경의 관점에서) 결합도</strong>는 하나의 모듈에서 변경이 발생했을 때, 다른 모듈의 변경을 요구하는 정도를 의미한다. 예를들어 하나의 모듈을 수정했을 때 함께 변경해야하는 모듈의 수가 많을 수록 결합도가 높다고 할 수 있다.</p>
+<p>  결합도가 높다면 모듈의 내부구현이 변경되었을 때 영향을 받는 모듈 수가 많으므로 변경에 부담이 생기기 시작한다.</p>
+</li>
+</ul>
+<p>위 개념을 잘 이해했다면 왜 높은 응집도와 낮은 결합도가 충족된 것이 좋은 설계인것인지 알 수 있을 것이다.</p>
+<p>위에서 살펴본 데이터 중심설계는 낮은 응집도와 높은 결합도를 가진 객체를 양산하기 쉬운 방식인데 이유는 다음과 같다.</p>
+<p>응집도 개념에서 살펴보면, 객체의 클래스가 데이터를 중심으로 설계되었으므로 해당 객체의 책임은 데이터를 조작하고 내뱉는 것 그 이상도 이하도 아니다. 즉 데이터를 제공하는 객체가 스스로 일을 처리하지 못하므로, 로직을 수행하는 객체가 이를 수행하게 된다. 문제는 로직을 수행하는 객체가 또다른 데이터를 제공하는 객체를 맡기 시작할 경우 해당 객체의 책임은 점점 비대해지고 둘중 한쪽에서만 변경이 발생해도 필연적으로 같이 영향을 받게 된다. 하나의 클래스에서 변경이 발생했는데 전혀 연관이 없을 것같은 부분에서 사이드 이펙트가 발생하는 케이스가 대표적으로 각 클래스의 응집도가 낮은 상황이다.</p>
+<p>결합도 개념에서 살펴보면, 마찬가지로 데이터를 제공하는 객체가 스스로 일을 처리하지 못하므로 해당 데이터를 다른 객체에서 처리하게 된다. 만약 해당 객체의 데이터가 변경될 경우 (parameter, type) 데이터를 사용하는 모든 객체에게 변화의 영향이 퍼지게 된다.</p>
+<p>결국 내용을 돌아보면 다시 객체의 책임과 협력으로 귀결된다. 다음 글에서는 어떻게 객체에 책임을 잘 할당할 수 있는지에 대해 알아보자.</p>
+<h1 id="결론"><a href="#결론" class="headerlink" title="결론"></a>결론</h1><ul>
+<li>우리는 데이터 중심의 설계를 하고있었을 확률이 높다.</li>
+<li>캡슐화의 진정한 목적을 항상 기억하자.</li>
+<li>코드를 변경하기 어렵다면 응집도/결합도 정도를 점검해보자.</li>
+<li>결국 좋은 설계란 <strong>변경하기 쉬운</strong> 설계다.</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://vagabond95.me/2019/10/13/object-book-1-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jihoon Kim">
+      <meta itemprop="description" content="내일 잊기전에 오늘 적어두는 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="기록은 기억을 지배한다">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/10/13/object-book-1-3/" class="post-title-link" itemprop="url">[도서] 오브젝트 정리 Chapter 1 - 3</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-10-13 17:45:35 / Modified: 22:17:59" itemprop="dateCreated datePublished" datetime="2019-10-13T17:45:35+09:00">2019-10-13</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>변경은 언제든 찾아올 수 있다. 변경은 피할 수 없다. 이러한 사실을 깨달은 사람들은 변경에 유연하게 대응할 수 있는 방법을 고민해왔고 이에 다영한 해결법이 제시되었다. 이번에 다루게 될 객체지향 프로그래밍도 그 중 하나라고 할 수 있다. </p>
+<p>객체지향 프로그래밍. 익숙하지만 제대로 이해하고 활용하고 있다고 얘기하기는 어려운 그런 녀석이었다. Java 를 사용하면 객체지향일까? 클래스 개념을 활용하면 객체지향일까? 안타깝게도 Java 내에서 class 를 사용해도 얼마든지 절차지향적인 코드가 나올 수 있고, 실제로도 그런 코드를 많이 양산해왔다. 객체지향적인 설계에 대한 고민이 깊어질때 즘 ‘객체지향의 사실과 오해’ 책으로 알게된 조영호님의 신간이 나왔음을 들었고 ‘오브젝트’ 책을 읽기 시작했다. 이번 포스팅은 챕터 1 ~ 3 을 읽고 정리하는 내용으로 채웠다.</p>
+<h1 id="객체간의-협력과-책임-설계-레벨"><a href="#객체간의-협력과-책임-설계-레벨" class="headerlink" title="객체간의 협력과 책임 (설계 레벨)"></a>객체간의 협력과 책임 (설계 레벨)</h1><blockquote>
+<p>OOP 설계의 핵심은 협력을 구성하기 위해 적절한 객체를 찾고 적절한 책임을 할당하는 과정에서 드러난다. 클래스와 상속은 객체들의 책임과 협력이 어느 정도 자리를 잡은 후에 사용할 수 있는 구현 메커니즘일 뿐이다.</p>
+</blockquote>
+<h2 id="잘못된-방식"><a href="#잘못된-방식" class="headerlink" title="잘못된 방식"></a>잘못된 방식</h2><p>OOP 를 막 입문하면 가장 흔하게 하는 실수가 객체의 행동이 아닌 상태에 초점을 맞추는 것이다. 객체의 상태를 먼저 결정하고, 상태에 필요한 행동을 결정한다. 이런 방식은 객체의 내부 구현이 객체의 퍼블릭 인터페이스에 노출되도록 만들기 때문에 캡슐화를 저해한다. 또한 객체의 내부 구현은 언제든 바뀔 수 있기 때문에 결국 외부에 변화가 전파된다.</p>
+<h2 id="객체지향-관점에서-객체의-구성-방식"><a href="#객체지향-관점에서-객체의-구성-방식" class="headerlink" title="객체지향 관점에서 객체의 구성 방식"></a>객체지향 관점에서 객체의 구성 방식</h2><p>→ 객체는 어떤 협력을 참여하는가</p>
+<p>→ 협력을 위해서 어떤 행동을 해야하는가</p>
+<p>→ 행동하기 위해서 어떤 상태를 가져야하는가</p>
+<h3 id="1-객체간의-협력과-수행해야할-책임을-파악할-것"><a href="#1-객체간의-협력과-수행해야할-책임을-파악할-것" class="headerlink" title="1. 객체간의 협력과 수행해야할 책임을 파악할 것"></a>1. 객체간의 협력과 수행해야할 책임을 파악할 것</h3><blockquote>
+<p>어플리케이션안에 어떤 객체가 필요하다면 그 이유는 단 하나여야 한다. 객체가 어떤 협력에 참여하고 있기 때문이다. 그리고 객체가 협력에 참여할 수 있는 이유는 협력에 필요한 적절한 행동을 보유하고 있기 때문이다.</p>
+</blockquote>
+<p>객체가 책임을 할당하는 데 필요한 메세지를 먼저 식별하고, 메세지를 처리할 객체를 나중에 선택하는 것이 중요하다. 이런 방식으로 객체를 구성할 경우 다음과 같은 이점이 있다.</p>
+<ol>
+<li>객체가 최소한의 퍼블릭 인터페이스를 가질 수 있게 된다.</li>
+<li>객체의 퍼블릭 인터페이스는 무엇을 하는지만 나타낼 뿐, 어떻게 수행하는지가 노출되지 않는다.</li>
+</ol>
+<h3 id="2-책임을-수행하기-위해-필요한-상태-및-내부-구현-정의"><a href="#2-책임을-수행하기-위해-필요한-상태-및-내부-구현-정의" class="headerlink" title="2. 책임을 수행하기 위해 필요한 상태 및 내부 구현 정의"></a>2. 책임을 수행하기 위해 필요한 상태 및 내부 구현 정의</h3><p>객체의 퍼블릭 인터페이스가 정해졌다면, 다음으로는 퍼블릭 인터페이스로 들어온 요청을 객체 스스로 처리할 수 있도록 구성해야한다. 즉, 내부 구현 및 내부 구현에 필요한 상태의 정의가 필요하다. 객체의 상태는 그 객체가 행동을 수행하는 데 필요한 정보가 무엇인지로 결정된다. 객체는 자신의 상태를 스스로 결정하고 관리하는 자율적인 존재이기 때문이다.</p>
+<p>협력관계속에서 다른 객체에게 무엇을 제공해야 하고 다른 객체로부터 무엇을 얻어야 하는지를 고민해야만 훌륭한 책임을 수확할 수 있다.</p>
+<h3 id="3-책임을-조합하여-역할을-정의"><a href="#3-책임을-조합하여-역할을-정의" class="headerlink" title="3. 책임을 조합하여 역할을 정의"></a>3. 책임을 조합하여 역할을 정의</h3><p>어느정도 객체의 책임이 정의되었다면 객체의 역할을 정의할 수 있다. 코드레벨에서는 Java 기준으로 ‘interface, abstract class 를 구현한다.’ 라고도 얘기할 수 있다. 객체의 역할을 정의해주는 것이 중요한 이유는 동일한 협력을 수행하는 객체들을 추상화할 수 있기 때문이다. 협력관계가 역할이라는 추상화된 형태로 묶일 경우 당연히 변화에도 대응하기 쉬워진다. 책에서는 객체의 역할에 대해 다음과 같이 비유했다.</p>
+<ul>
+<li>서로 다른 배우들(객체)이 동일한 배역(역할)을 연기할 수 있다.</li>
+<li>하나의 배우(객체)가 서로 다른 배역(역할)을 연기할 수 있다.</li>
+</ul>
+<p>협력이라는 문맥 안에서 역할은 특정한 협력에 참여해서 책임을 수행하는 객체의 일부다. 역할은 객체의 구조나 상태에 의해 정의될 수 없으며, 시스템의 문맥 안에서 무엇을 하는지에 의해서만 정의될 수 있음을 주의해야한다. </p>
+<p>번외로, 오직 한 종류의 객체만 협력에 참여하는 상황에서 역할이라는 개념을 고려하는 것이 유용할까? 역할이라는 개념을 생략하고 직접 객체를 이용해 협력을 설계하는 것이 더 좋지 않을까? 라는 궁금증이 생길 수 있다. 책에서 내린 결론은 다음과 같다.</p>
+<p>“협력에 적합한 책임을 수행하는 대상이 한 종류라면, 간단하게 객체를 이용하면 된다. 만약 여러 종류의 객체가 협력에 이용될 수 있다면 협력의 대상은 역할이 될 것이다.</p>
+<p><strong>하지만 설계 초반에는 적절한 책임과 협력의 큰 그림을 탐색하는 것이 가장 중요한 목표여야 하고 역할과 객체를 명확하게 구분하는 것은 그렇게 중요하지는 않다는 것이다.</strong>“</p>
+<p>즉, 상황에 맞게 역할(추상화된 형태) 혹은 객체 (구체적인 형태)를 잘 선택해서 사용하되, 어차피 바뀔 수 있는 내용이므로 설계 초기에는 크게 신경쓰지 않아도 된다고 이야기 하고 있다.</p>
+<h1 id="객체-지향-구현-기법-구현-레벨"><a href="#객체-지향-구현-기법-구현-레벨" class="headerlink" title="객체 지향 구현 기법 (구현 레벨)"></a>객체 지향 구현 기법 (구현 레벨)</h1><h2 id="캡슐화"><a href="#캡슐화" class="headerlink" title="캡슐화"></a>캡슐화</h2><p>클래스를 구현하거나 개발된 클래스를 사용할 때 가장 중요한 것은 클래스의 경계를 구분 짓는 것이다. 데이터와 기능을 객체 내부로 함께 묶는 것을 <strong>캡슐화</strong>라고 한다.캡슐화 된 객체는 상태는 숨기고 행동만 public 인터페이스로 공개한다.</p>
+<p>객체의 외부와 내부를 구분하면 클래스를 사용하는 입장에서 알아야할 지식의 양이 줄어들고, 클래스 구현자는 내부 구현을 변경할 수 있는 폭이 넓어진다.</p>
+<h2 id="다형성"><a href="#다형성" class="headerlink" title="다형성"></a>다형성</h2><p>객체를 추상화된 형태로 제공할 수 있다. 추상화가 유연한 설계를 가능하게 하는 이유는 설계가 구체적인 상황에 결합되는 것을 방지하기 때문이다. (구체적인 상황은 항상 변경된다.) </p>
+<p>주의할 점은 다형성을 이용하여 설계를 유연하게 가져갈수록 코드를 이해하고 디버깅하기는 점점 더 어려워진다. 무조건 유연한 설계도, 무조건 읽기 쉬운 코드도 정답이 아니다.</p>
+<h2 id="상속"><a href="#상속" class="headerlink" title="상속"></a>상속</h2><p>상속이 가치있는 이유는 부모 클래스가 제공하는 모든 인터페이스를 자식 클래스가 물려받을 수 있기 때문이다. (다형성 - 업캐스팅의 활용)</p>
+<p>주의할 점으로 상속은 객체지향 프로그래밍에서 코드를 재사용하기 위해 널리 사용되는 되지만 두가지 관점에서 설계에 안좋은 영향을 미친다. (이펙티브 자바에서도 동일한 내용의 챕터가 존재한다.) ****</p>
+<p>구현의 재사용성으로 이용된 상속은 변경에 취약하고, 부모클래스의 캡슐화를 깨기때문에 지양해야한다. 따라서 상속의 사용 목적은 구현의 재사용보다 인터페이스를 재사용하는 것에 초점을 맞춰야 한다. </p>
+<p>하지만 실제 개발시에는 상속을 통해 내부 구현을 재사용해야할 일이 생기기 마련이다. 따라서 상황에 맞게 적절히 활용하는 지혜가 요구된다.</p>
+<p>상황별로 권장되는 방법은 다음과 같다.</p>
+<ul>
+<li>구현내용 재사용 X, 다형성 활용 O : interface (Java)</li>
+<li>구현내용 재사용 O, 다형성 활용 O : abstract class (Java)</li>
+<li>구현내용 재사용 O, 다형성 활용 X : composition (디자인 패턴)</li>
+</ul>
+<h1 id="설계의-트레이드-오프"><a href="#설계의-트레이드-오프" class="headerlink" title="설계의 트레이드 오프"></a>설계의 트레이드 오프</h1><ul>
+<li>어떤 기능을 설계하는 방법은 한가지 이상일 수 있다.</li>
+<li>동일한 기능을 한 가지 이상의 방법으로 설계할 수 있기 때문에 결국 설계는 트레이트 오프의 산물이다. 어떤 경우에도 모든 상황을 만족시킬 수 있는 설계를 만들 수는 없다.</li>
+</ul>
+<p>구현과 관련된 모든 것들이 트레이드 오프의 대상이 될 수 있다. 작성하는 모든 코드에는 합당한 이유가 있어야 한다. 비록 아주 사소한 결정이더라도 트레이드 오프를 통해 얻어진 결론과 그렇지 않은 결론 사이의 차이는 크다.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://vagabond95.me/2019/09/20/android-api-version-manage/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -242,7 +470,7 @@
 
       
           <p>보통 프로젝트를 새롭게 세팅 할경우, targetSdkVersion / compileSdkVersion / minSdkVersion 를 각각 지정할 수 있다. 세팅 이후에는 크게 건드릴 일이 없기에 평소에는 크게 신경쓰이지 않는 값이다. </p>
-<p>그런데… <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXJzLWtyLmdvb2dsZWJsb2cuY29tLzIwMTgvMDEvaW1wcm92aW5nLWFwcC1zZWN1cml0eS1hbmQtcGVyZm9ybWFuY2Utb24tZ29vZ2xlLXBsYXkuaHRtbA==" title="https://developers-kr.googleblog.com/2018/01/improving-app-security-and-performance-on-google-play.html">새로운 Google Play 방침<i class="fa fa-external-link"></i></span> 에 따르면  <strong>play store 에 등록되어 있는 앱을 업데이트 하거나, 새로 앱을 등록 할 경우 정해진 <code>targetSdkVersion</code> 을 만족해야 한다.</strong> 평소에 어렴풋하게 의미를 알고 있었는데 항상 헷갈려서 이번 기회에 정리 해보기로 했다.</p>
+<p>그런데… <a href="https://developers-kr.googleblog.com/2018/01/improving-app-security-and-performance-on-google-play.html" target="_blank" rel="noopener">새로운 Google Play 방침</a> 에 따르면  <strong>play store 에 등록되어 있는 앱을 업데이트 하거나, 새로 앱을 등록 할 경우 정해진 <code>targetSdkVersion</code> 을 만족해야 한다.</strong> 평소에 어렴풋하게 의미를 알고 있었는데 항상 헷갈려서 이번 기회에 정리 해보기로 했다.</p>
 <p>targetSdkVersion 뿐만 아니라 compileSdkVersion, minSdkVersion  모두 <strong>안드로이드 API 버전</strong>과 관련된 값이므로 묶어서 한번에 다룰 예정이다.</p>
 <hr>
 <h1 id="targetSdkVersion"><a href="#targetSdkVersion" class="headerlink" title="targetSdkVersion"></a>targetSdkVersion</h1><p><strong>앱이 기기에서 동작할 때 사용되는 Android API 버전을 의미한다. (런타임)</strong> 따라서 실제 앱 동작에 영향을 주게 되므로 신중히 올려야 한다. 이때 기기의 Android OS API 버전과 혼동하여 헷갈리기 쉬우므로 각 케이스별로 분리하여 살펴보자.</p>
@@ -282,7 +510,7 @@
 <p>특히 알림 기능(Notification) 의 경우 특정 버전 이상에서만 되는 기능들이 굉장히 많은데 이를 모두 분기 처리하다보면 실제 로직을 파악하기 쉽지 않다. </p>
 <p>개발자 입장에서는 minSdkVersion 값이 높을 수록 대응할 버전이 줄어드로 피로도가 적으므로, 앱의 minSdkVersion 이 높은 것이 회사 복지라는 우스갯소리도 있다. (우리도 조금만 더 올렸으면 좋겠다..)</p>
 <p>그래도 보통 최대한 많은 고객에게 앱을 제공하기 위해 대부분 회사는 커버러지 99.8% ~ 99.9% 에 포함되는 버전까지는 대응하는 것으로 알고 있다.</p>
-<h2 id="SupportLibrary"><a href="#SupportLibrary" class="headerlink" title="SupportLibrary"></a>SupportLibrary</h2><p>위에서 살펴본 것 처럼 하위 호환성을 유지하기 위한 분기문으로 인해, 점점 코드의 가독성이 떨어지는 상황을 필연적으로 맞이하게 된다. 안드로이드에서는 다음 문제를 해결하기 위해 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5jb20vdG9waWMvbGlicmFyaWVzL3N1cHBvcnQtbGlicmFyeQ==" title="https://developer.android.com/topic/libraries/support-library">SupportLibrary<i class="fa fa-external-link"></i></span> 라는 대안을 내놓게 되었다.</p>
+<h2 id="SupportLibrary"><a href="#SupportLibrary" class="headerlink" title="SupportLibrary"></a>SupportLibrary</h2><p>위에서 살펴본 것 처럼 하위 호환성을 유지하기 위한 분기문으로 인해, 점점 코드의 가독성이 떨어지는 상황을 필연적으로 맞이하게 된다. 안드로이드에서는 다음 문제를 해결하기 위해 <a href="https://developer.android.com/topic/libraries/support-library" target="_blank" rel="noopener">SupportLibrary</a> 라는 대안을 내놓게 되었다.</p>
 <p>서포트 라이브러리는 내부적으로 버전에 대한 분기 처리가 되어있어, 별도의 추가 작업없이 바로 기능을 수행하는 코드를 작성하면 된다.</p>
 
       
@@ -355,10 +583,10 @@
 <li>Keyboard 가 올라왔을 때, Keyboard 가 가리고 있는 부분을 제외한 화면의 높이를 구한다.</li>
 <li>1번 값 - 2번 값 = Keyboard Height</li>
 </ol>
-<h1 id="구현"><a href="#구현" class="headerlink" title="구현"></a>구현</h1><p>화면이라는 단어는 자체는 매우 추상적이다. 위 원리의 핵심은 화면의 높이를 구하는 것이므로 코드 레벨의 사전 정의가 필요해보인다.<br>해당 포스트에서는 안드로이드에서 제공하고 있는 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5jb20vcmVmZXJlbmNlL2FuZHJvaWQvdmlldy9WaWV3" title="https://developer.android.com/reference/android/view/View">View<i class="fa fa-external-link"></i></span> 클래스를 화면으로 정의했다. 그 이유는 높이를 구하는 과정에서 활용할 수 있는 API 가 모두 View 에서 제공되기 때문이다.</p>
+<h1 id="구현"><a href="#구현" class="headerlink" title="구현"></a>구현</h1><p>화면이라는 단어는 자체는 매우 추상적이다. 위 원리의 핵심은 화면의 높이를 구하는 것이므로 코드 레벨의 사전 정의가 필요해보인다.<br>해당 포스트에서는 안드로이드에서 제공하고 있는 <a href="https://developer.android.com/reference/android/view/View" target="_blank" rel="noopener">View</a> 클래스를 화면으로 정의했다. 그 이유는 높이를 구하는 과정에서 활용할 수 있는 API 가 모두 View 에서 제공되기 때문이다.</p>
 <hr>
 <h2 id="1-화면의-높이를-구한다"><a href="#1-화면의-높이를-구한다" class="headerlink" title="1. 화면의 높이를 구한다."></a>1. 화면의 높이를 구한다.</h2><p>View 는 getHeight() 메소드를 제공하기 때문에, 높이를 알아는 것이 어렵지 않다. 문제는 getHeight() 를 통해 얻어온 높이가 해당 View 의 정확한 높이라고 보장할 수 없다. 왜냐하면 View 의 높이는 초기화되자마자 결정되는 것이 아니라 일련의 측정 단계를 거쳐 결정이 되는데, 그 단계가 끝나기 전에 getHeight() 를 호출했을수도 있기 때문이다.</p>
-<p>따라서 정확한 View 의 높이를 알기 위해서는 View 의 크기가 결정된 이후에 getHeight() 를 호출해야 한다.<br>View 에서 제공하는 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5jb20vcmVmZXJlbmNlL2FuZHJvaWQvdmlldy9WaWV3VHJlZU9ic2VydmVyLk9uR2xvYmFsTGF5b3V0TGlzdGVuZXI=" title="https://developer.android.com/reference/android/view/ViewTreeObserver.OnGlobalLayoutListener">ViewTreeObserver.OnGlobalLayoutListener<i class="fa fa-external-link"></i></span> 를 이용하면 결정되는 타이밍을 캐치할 수 있다. </p>
+<p>따라서 정확한 View 의 높이를 알기 위해서는 View 의 크기가 결정된 이후에 getHeight() 를 호출해야 한다.<br>View 에서 제공하는 <a href="https://developer.android.com/reference/android/view/ViewTreeObserver.OnGlobalLayoutListener" target="_blank" rel="noopener">ViewTreeObserver.OnGlobalLayoutListener</a> 를 이용하면 결정되는 타이밍을 캐치할 수 있다. </p>
 <p>OnGlobalLayoutListener 는 해당 View에 변경점이 생겼을 때, 이를 콜백형태로 감지할 수 있다. 변경되는 내용에는 View 의 크기가 결정되는 것도 포함되므로 우리는 해당 콜백이 호출되었을 때 View.getHeight() 를 호출하면 정확한 높이를 얻을 수 있다.</p>
 <p>코드 레벨로는 다음과 같다.</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> viewHeight = -<span class="number">1</span>;</span><br><span class="line">    </span><br><span class="line">rootView.getViewTreeObserver().addOnGlobalLayoutListener(() -&gt; &#123;</span><br><span class="line">    <span class="keyword">int</span> currentViewHeight = rootView.getHeight();</span><br><span class="line">    <span class="keyword">if</span> (currentViewHeight &gt; viewHeight) &#123;</span><br><span class="line">        viewHeight = currentViewHeight;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
@@ -369,7 +597,7 @@
 <li>Keyboard 가 언제 올라왔는지 감지</li>
 <li>현재 화면상에 보여지고 있는 영역의 높이 구하기</li>
 </ol>
-<h3 id="1-Keyboard-가-언제-올라왔는지-감지"><a href="#1-Keyboard-가-언제-올라왔는지-감지" class="headerlink" title="(1) Keyboard 가 언제 올라왔는지 감지"></a>(1) Keyboard 가 언제 올라왔는지 감지</h3><p>1단계는 다시 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5jb20vcmVmZXJlbmNlL2FuZHJvaWQvdmlldy9WaWV3VHJlZU9ic2VydmVyLk9uR2xvYmFsTGF5b3V0TGlzdGVuZXI=" title="https://developer.android.com/reference/android/view/ViewTreeObserver.OnGlobalLayoutListener">ViewTreeObserver.OnGlobalLayoutListener<i class="fa fa-external-link"></i></span> 를 이용하여 진행할 수 있다.</p>
+<h3 id="1-Keyboard-가-언제-올라왔는지-감지"><a href="#1-Keyboard-가-언제-올라왔는지-감지" class="headerlink" title="(1) Keyboard 가 언제 올라왔는지 감지"></a>(1) Keyboard 가 언제 올라왔는지 감지</h3><p>1단계는 다시 <a href="https://developer.android.com/reference/android/view/ViewTreeObserver.OnGlobalLayoutListener" target="_blank" rel="noopener">ViewTreeObserver.OnGlobalLayoutListener</a> 를 이용하여 진행할 수 있다.</p>
 <p>Keyboard 의 활성화/비활성화를 감지하는 아이디어는 다음과 같다.</p>
 <ol>
 <li>(SoftInputMode 값에 따라 다르지만) 일반적으로 Keyboard 가 올라오면 Keyboard 의 크기만큼 화면의 높이가 줄어들게 된다.</li>
@@ -378,13 +606,13 @@
 </ol>
 <p>View 를 이용할 수 있는 것은 알았다. 그럼 우리는 <strong>어떤 View 를 이용하여 위 과정을 진행해야할까?</strong></p>
 <h4 id="1-Activity-의-RootLayout-을-이용한다"><a href="#1-Activity-의-RootLayout-을-이용한다" class="headerlink" title="1) Activity 의 RootLayout 을 이용한다."></a>1) Activity 의 RootLayout 을 이용한다.</h4><p>가장 무난하고 쉬운 선택이다. Acitivity 의 Xml 에서 root level 에 있는 layout 을 View 로 이용하는 방법이다. 실제로도 대부분의 케이스에서는 잘 동작한다.</p>
-<p>하지만 이 방법은 치명적인 단점이 존재한다. Activity 의 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5jb20vZ3VpZGUvdG9waWNzL21hbmlmZXN0L2FjdGl2aXR5LWVsZW1lbnQjd3NvZnQ=" title="https://developer.android.com/guide/topics/manifest/activity-element#wsoft">windowSoftInputMode<i class="fa fa-external-link"></i></span> 옵션 값에따라 정상적으로 동작하지 않을 수 있다는 것이다.</p>
+<p>하지만 이 방법은 치명적인 단점이 존재한다. Activity 의 <a href="https://developer.android.com/guide/topics/manifest/activity-element#wsoft" target="_blank" rel="noopener">windowSoftInputMode</a> 옵션 값에따라 정상적으로 동작하지 않을 수 있다는 것이다.</p>
 <p>windowSoftInputMode 옵션은 가상 Keyboard 와 Activity 의 상호작용을 지정하는 옵션인데, ‘AdjustNothing’ 와 같은 일부 옵션값은 <strong>Keyboard 가 올라와도 Activity Height 의 변화가 없기 때문에</strong> 두번째 단계를 수행할 수 없다. 따라서 Acitivity 의 windowSoftInputMode 값에 따라 동일한 결과를 보장받지 못하기 때문에, 범용적으로 활용되기 어렵다.</p>
 <h4 id="2-PopupWindow-를-이용한다"><a href="#2-PopupWindow-를-이용한다" class="headerlink" title="2) PopupWindow 를 이용한다."></a>2) PopupWindow 를 이용한다.</h4><p>좀 더 개선된 선택지이다. </p>
 <p>PopupWindow 는 고유의 SoftInputMode 을 별도로 지정할 수 있다. 따라서 Acitivity windowSoftInputMode 옵션이 무엇이든 영향을 받지 않고, 독립적으로 활용이 가능하다. 따라서 RootLayout 을 이용하는 1번 방식의 단점을 보완할 수 있다.</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">KeyboardObserver</span> <span class="keyword">extends</span> <span class="title">PopupWindow</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">initialize</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">            setSoftInputMode(SOFT_INPUT_ADJUST_RESIZE | SOFT_INPUT_STATE_ALWAYS_VISIBLE);</span><br><span class="line">            setInputMethodMode(PopupWindow.INPUT_METHOD_NEEDED);</span><br><span class="line">    </span><br><span class="line">            ...</span><br><span class="line">    </span><br><span class="line">            rootView.getViewTreeObserver().addOnGlobalLayoutListener(() -&gt; &#123;</span><br><span class="line">                ...</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="2-현재-화면상에-보여지고-있는-영역의-높이-구하기"><a href="#2-현재-화면상에-보여지고-있는-영역의-높이-구하기" class="headerlink" title="(2) 현재 화면상에 보여지고 있는 영역의 높이 구하기"></a>(2) 현재 화면상에 보여지고 있는 영역의 높이 구하기</h3><p>2단계는 View 에서 제공하는 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5jb20vcmVmZXJlbmNlL2FuZHJvaWQvdmlldy9WaWV3Lmh0bWwjZ2V0V2luZG93VmlzaWJsZURpc3BsYXlGcmFtZShhbmRyb2lkLmdyYXBoaWNzLlJlY3Qp" title="https://developer.android.com/reference/android/view/View.html#getWindowVisibleDisplayFrame(android.graphics.Rect)">View.getWindowVisibleDisplayFrame()<i class="fa fa-external-link"></i></span> 를 활용하여 진행할 수 있다.</p>
+<h3 id="2-현재-화면상에-보여지고-있는-영역의-높이-구하기"><a href="#2-현재-화면상에-보여지고-있는-영역의-높이-구하기" class="headerlink" title="(2) 현재 화면상에 보여지고 있는 영역의 높이 구하기"></a>(2) 현재 화면상에 보여지고 있는 영역의 높이 구하기</h3><p>2단계는 View 에서 제공하는 <a href="https://developer.android.com/reference/android/view/View.html#getWindowVisibleDisplayFrame(android.graphics.Rect)" target="_blank" rel="noopener">View.getWindowVisibleDisplayFrame()</a> 를 활용하여 진행할 수 있다.</p>
 <p>getWindowVisibleDisplayFrame(rect) 메소드는<br>해당 View 를 그리고 있는 window 를 기준으로, <strong>현재 보여지고 있는 영역의 크기를 반환한다</strong>. 따라서, Keyboard가 올라왔을 때 해당 메소드를 호출할 경우 Keyboard로 인하여 가려진 영역을 제외한 화면의 높이를 얻을 수 있다.</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Rect visibleFrameSize = <span class="keyword">new</span> Rect();</span><br><span class="line">view.getWindowVisibleDisplayFrame(visibleFrameSize);</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> visibleFrameHeight = visibleFrameSize.bottom - visibleFrameSize.top;</span><br></pre></td></tr></table></figure>
 
@@ -701,7 +929,7 @@
 
       
           <p>상반기에 많은 일들이 있었던 것 같은데 막상 적으려니까 잘 떠오르지 않아 당황스러웠다. 이래서 평소에 기록을 해두는 습관을 형성 해두는 것이 중요한 것 같다.</p>
-<h1 id="이직"><a href="#이직" class="headerlink" title="이직"></a>이직</h1><p>1년 4개월 동안 다니던 회사를 뒤로하고 첫 이직을 했다. <span class="exturl" data-url="aHR0cHM6Ly96b3lpLmNv" title="https://zoyi.co">조이<i class="fa fa-external-link"></i></span>에서 개발자를 시작한 것은 정말 현명한 선택이었다. 입사 전과는 비교할 수 없을 만큼 많이 배우고 성장하는 시간을 보냈다. 그렇게 좋은 환경이었음에도 불구하고 이직을 하게 된 계기는 단순했다. 내 사고가 어느 한 방향으로 굳기 전에 새로운 변화를 맞이하여 자극을 주고 싶었고, 구체적인 자극으로서 좀 더 많은 유저가 사용하는 큰 스케일의 프로젝트를 개발 해보고 싶었다. 목표가 생기자 퇴근 후 새벽까지 이직 공부를 하며 여러 곳에 지원을 했고 결과적으로 <strong>NAVER</strong>에 입사를 하게 되었다.</p>
+<h1 id="이직"><a href="#이직" class="headerlink" title="이직"></a>이직</h1><p>1년 4개월 동안 다니던 회사를 뒤로하고 첫 이직을 했다. <a href="https://zoyi.co" target="_blank" rel="noopener">조이</a>에서 개발자를 시작한 것은 정말 현명한 선택이었다. 입사 전과는 비교할 수 없을 만큼 많이 배우고 성장하는 시간을 보냈다. 그렇게 좋은 환경이었음에도 불구하고 이직을 하게 된 계기는 단순했다. 내 사고가 어느 한 방향으로 굳기 전에 새로운 변화를 맞이하여 자극을 주고 싶었고, 구체적인 자극으로서 좀 더 많은 유저가 사용하는 큰 스케일의 프로젝트를 개발 해보고 싶었다. 목표가 생기자 퇴근 후 새벽까지 이직 공부를 하며 여러 곳에 지원을 했고 결과적으로 <strong>NAVER</strong>에 입사를 하게 되었다.</p>
 <p>사실 업무와 이직 준비를 동시에 하는 기간은 정신적으로나 육체적으로나 정말 힘들었고 포기하고 싶었던 순간이 많았다. 하지만 결과적으로 그 시간을 겪으면서 현재 내 수준을 정확히 점검할 수 있었고 당시에 정리했던 공부 내용들이 지금까지도 개발하면서 아주 큰 도움이 되고 있다. 이직할 생각이 없더라도 정기적으로 면접을 보는 경험이 좋다는 얘기가 이런 맥락에서 였나 싶었다.</p>
 <p>네이버 내에서 맡게 된 서비스는 ‘네이버 카페’ 다. 사실 입사 전에 네이버 카페를 자주 쓰는 편이 아니었어서(…) 실 사용자수가 어느정도 인지 감이 없었는데, 생각했던 수치보다 10배나 높았다! 아주 많은 자극을 받게 될 것 같다. 👏  또한 개인적으로 인복이 정말 많다고 생각되는 것이, 전 회사 그리고 현재에도 정말 좋은 팀과 동료 들을 만나게 되었다. 특히 시니어분들이 보여주시는 모습은 나중에 내가 그 위치로 올라갔을 때 꼭 닮고 싶은 부분이었다. 현재는 입사 프로젝트를 마치고 작은 테스크부터 점차 수행 해나가고 있으며, 빨리 새로운 환경에 적응을 마치고 깃헙에 많은 잔디를 심고 싶다.</p>
 <h1 id="개발"><a href="#개발" class="headerlink" title="개발"></a>개발</h1><p>작년 한해는 RxJava, Dagger, Clean Architecture, 함수형 프로그래밍 등 특정 기술 영역을 익히는데 관심과 시간을 투자 했다면 올해 초부터는 기본기를 좀 더 다지는 한 해를 보내고 있다. 개발을 막 시작하던 때에는 기술만 도입하면 모든 문제가 해결될 것 처럼 보였지만 역시 은탄환은 없었다. 좀 더 복잡하고 어려운 스펙, 난해한 이슈들을 맞이할수록 결국에는 기본 영역 레벨로 내려가 고민을 하게 된다. 그리고 그러한 상황들을 맞이할 때마다 내 부실한 지식과 한계를 명확히 느꼈다. 동료 개발자와 기초적인 지식과 관련하여 커뮤니케이션을 할 때, 잘 모르는 내용 이었지만 일단 아는 척을 하고 집에 가서 그 내용을 찾아볼 때는 부끄러움과 약간의 분함(?)도 찾아왔다. 위와 같은 경험을 한 뒤로는 각 분야의 기초 서적들을 구입해 퇴근 후 틈틈히 공부하고 그 내용을 노션에 정리하기 시작했다.</p>
@@ -791,7 +1019,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>한번도 <strong>NullPointerException</strong> (이하 NPE)를 겪어보지 않은 사람은 있을지 몰라도, 한번만 NPE 를 겪어본 사람은 없을것이다. NPE 로 인한 크래시가 나기 전까지는 그 존재를 알 수 없기 때문에 항상 Null 값 처리를 신경 쓰면서 개발을 진행해야 한다. 잊을만하면 나타나는 NPE를 바라보면서 한숨을 쉬고 있을 때쯤, 동료 개발자에게 미리 NPE 예방에 도움을 주는 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3ViZXIvTnVsbEF3YXk=" title="https://github.com/uber/NullAway">Nullaway<i class="fa fa-external-link"></i></span> 라이브러리를 소개받았다.</p>
+          <p>한번도 <strong>NullPointerException</strong> (이하 NPE)를 겪어보지 않은 사람은 있을지 몰라도, 한번만 NPE 를 겪어본 사람은 없을것이다. NPE 로 인한 크래시가 나기 전까지는 그 존재를 알 수 없기 때문에 항상 Null 값 처리를 신경 쓰면서 개발을 진행해야 한다. 잊을만하면 나타나는 NPE를 바라보면서 한숨을 쉬고 있을 때쯤, 동료 개발자에게 미리 NPE 예방에 도움을 주는 <a href="https://github.com/uber/NullAway" target="_blank" rel="noopener">Nullaway</a> 라이브러리를 소개받았다.</p>
 <p>Nullaway 는 @Nullable 어노테이션을 이용하여 <strong>Compile Time 에 Null check</strong> 검사를 수행한다. 간결하고, 강력해보인다.</p>
 <h2 id="Nullaway-세팅하기"><a href="#Nullaway-세팅하기" class="headerlink" title="Nullaway 세팅하기"></a><strong>Nullaway 세팅하기</strong></h2><p><code>gradle</code> 기반으로 가이드가 되어있고, Android / Non - Android 방식으로 나뉘는데 거의 차이가 없다. 이 글에서는 Android 방식을 기준으로 설명한다.</p>
 <p>App 모듈 Gradle 파일에 다음과 같이 추가해주면 설정이 끝난다.</p>
@@ -817,7 +1045,7 @@
 <ul>
 <li><code>&quot;-XepOpt:NullAway:UnannotatedSubPackages=com.project.test_[a-zA-Z0-9.]*&quot;</code></li>
 </ul>
-<p>그외 자세한 설명은 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3ViZXIvTnVsbEF3YXkvd2lraS9Db25maWd1cmF0aW9u" title="https://github.com/uber/NullAway/wiki/Configuration">Docs<i class="fa fa-external-link"></i></span> 를 참고!</p>
+<p>그외 자세한 설명은 <a href="https://github.com/uber/NullAway/wiki/Configuration" target="_blank" rel="noopener">Docs</a> 를 참고!</p>
 <h2 id="사용-방법"><a href="#사용-방법" class="headerlink" title="사용 방법"></a><strong>사용 방법</strong></h2><p>Android Support Library 에서 제공하는 <code>@Nullable</code> 어노테이션을 이용한다. Null 이 될 수 있는 필드, Null을 리턴할 수 있는 메소드에 <code>@Nullable</code>, Null 이 될 수 없는 필드, Null 을 리턴하지 않는 메소드는 <code>@NonNull</code> 을 추가해주면 된다. 아무런 어노테이션도 추가되지 않은 변수, 메소드는 @NonNull 로 인식한다. @Nullable 이 추가되어있는 필드는 항상 Null safe 체크 이후에 사용될 수 있고, @NonNull 이 추가되어 있는 필드는 Null 값이 들어올 수 없다는 것을 기본전제로 Null check 검사를 수행한다.</p>
 <p>예제</p>
 <p>아래 코드를 빌드할 경우 NonNull 타입 파라미터에 Null 이 들어갔으므로 Nullaway가 에러를 낸다.</p>
@@ -828,14 +1056,14 @@
 
 
 <p>만약 Null check 없이 그대로 model 을 사용하려고 할 경우, 역시 에러를 낸다.</p>
-<p>Nullaway가 에러를 띄워주는 케이스는 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3ViZXIvTnVsbEF3YXkvd2lraS9FcnJvci1NZXNzYWdlcw==" title="https://github.com/uber/NullAway/wiki/Error-Messages">Error Messages<i class="fa fa-external-link"></i></span> 에 정리되어 있다.</p>
+<p>Nullaway가 에러를 띄워주는 케이스는 <a href="https://github.com/uber/NullAway/wiki/Error-Messages" target="_blank" rel="noopener">Error Messages</a> 에 정리되어 있다.</p>
 <h2 id="실제-프로젝트에-적용해보면서-느낀-점"><a href="#실제-프로젝트에-적용해보면서-느낀-점" class="headerlink" title="실제 프로젝트에 적용해보면서 느낀 점"></a><strong>실제 프로젝트에 적용해보면서 느낀 점</strong></h2><ol>
 <li>방어코드를 잘 추가했다고 생각했음에도 처리되지 않았던 부분이 많았고, 관련 코드를 모두 수정하여 앱의 안정성을 올리는데 도움을 주었다.</li>
 <li>Nullaway 소개글에 나온 것 처럼 처리 속도가 빨라 빌드시간이 추가로 더 늘어나지는 않음.</li>
 <li>코드를 작성할 때 Nullable, NonNull 을 고려하게 된다는 점이 좋았음.</li>
 </ol>
 <p>코틀린으로 넘어가게 되면 사용하지 않아도 무방하고 자바로 계속 개발할 경우 한번 적용해보는 것을 추천한다.</p>
-<p>샘플 링크 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3ZhZ2Fib25kOTUvTnVsbEF3YXlTYW1wbGU=" title="https://github.com/vagabond95/NullAwaySample">https://github.com/vagabond95/NullAwaySample<i class="fa fa-external-link"></i></span></p>
+<p>샘플 링크 <a href="https://github.com/vagabond95/NullAwaySample" target="_blank" rel="noopener">https://github.com/vagabond95/NullAwaySample</a></p>
 
       
     </div>
@@ -908,7 +1136,7 @@
        at android.text.SpannableString.setSpan(SpannableString.java:46)
        at android.text.Selection.setSelection(Selection.java:76)
        at android.widget.TextView.semSetSelection(TextView.java:13203)</code></pre><p>코딩을 할 때 신경써서 범위를 지정하지 않을 경우 종종 겪는 에러였는데, 디버깅을 해도 해당 부분은 모두 예외처리가 잘 되어있어 원인을 쉽게 찾을 수 없었다.</p>
-<h2 id="해결"><a href="#해결" class="headerlink" title="해결"></a><strong>해결</strong></h2><p>그러던 중 우연히 재현 조건을 찾게 되었고, 조건은 TextView 에서 특정 텍스트를 복사하려고 드래그를 시도할 때 랜덤하게 크래시가 발생했다. 복사 기능은 TextView 의 <code>textIsSelectable</code> 옵션을 활용하여 제공하고 있었기 때문에, ‘textIsSelectable’ 과 ‘IndexOutOfBoundsException’ 키워드를 엮어 내용을 찾아보니 <span class="exturl" data-url="aHR0cHM6Ly9zdGFja292ZXJmbG93LmNvbS9xdWVzdGlvbnMvMTU4MzYzMDYvY2FuLWEtdGV4dHZpZXctYmUtc2VsZWN0YWJsZS1hbmQtY29udGFpbi1saW5rcw==" title="https://stackoverflow.com/questions/15836306/can-a-textview-be-selectable-and-contain-links">힌트가 될만한 정보<i class="fa fa-external-link"></i></span> 를 얻을 수 있었다.</p>
+<h2 id="해결"><a href="#해결" class="headerlink" title="해결"></a><strong>해결</strong></h2><p>그러던 중 우연히 재현 조건을 찾게 되었고, 조건은 TextView 에서 특정 텍스트를 복사하려고 드래그를 시도할 때 랜덤하게 크래시가 발생했다. 복사 기능은 TextView 의 <code>textIsSelectable</code> 옵션을 활용하여 제공하고 있었기 때문에, ‘textIsSelectable’ 과 ‘IndexOutOfBoundsException’ 키워드를 엮어 내용을 찾아보니 <a href="https://stackoverflow.com/questions/15836306/can-a-textview-be-selectable-and-contain-links" target="_blank" rel="noopener">힌트가 될만한 정보</a> 를 얻을 수 있었다.</p>
 <p>내용인즉, <code>textIsSelectable</code> 옵션과 <code>LinkMovementMethod</code> 를 같이 사용했을 때 의도하지 않은 결과가 나올 수 있다는 것이었다. <strong><code>LinkMovementMethod</code> 는 안드로이드에서 제공하는 녀석이어서 원인이 될 것이라고 생각하지 못했다.</strong> 우리 프로젝트에서도 <code>textIsSelectable</code> 옵션이 적용된 TextView 에서 <code>LinkMovementMethod</code> 를 같이 사용하고 있었기에, 혹시나 하는 마음으로 위 내용을 참고하여 CustomMovementMethod 만든 후 적용시켜봤다. 그리고 다시 테스트를 반복하여 시도해본 결과 더이상 크래시가 발생하지 않았다.</p>
 <h2 id="정확한-원인은"><a href="#정확한-원인은" class="headerlink" title="정확한 원인은?"></a><strong>정확한 원인은?</strong></h2><p>버그를 해결하고 나서 위 문제가 발생한 원인을 다시 생각해 봤다.</p>
 <ol>
@@ -1000,13 +1228,13 @@
 <h2 id="TL-DR"><a href="#TL-DR" class="headerlink" title="TL; DR"></a><strong>TL; DR</strong></h2><p>오레오에서 알림 대응은 피할 수 없다. 미대응시 작동 X 😱</p>
 <h2 id="오레오대응-더이상은-피할-수-없다"><a href="#오레오대응-더이상은-피할-수-없다" class="headerlink" title="오레오대응.. 더이상은 피할 수 없다?"></a><strong>오레오대응.. 더이상은 피할 수 없다?</strong></h2><p>아직 비교적 최신 버전인 오레오 대응을 굳이 처음부터 다르는 이유는 다음과 같다.</p>
 <ol>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXJzLWtyLmdvb2dsZWJsb2cuY29tLzIwMTgvMDEvaW1wcm92aW5nLWFwcC1zZWN1cml0eS1hbmQtcGVyZm9ybWFuY2Utb24tZ29vZ2xlLXBsYXkuaHRtbA==" title="https://developers-kr.googleblog.com/2018/01/improving-app-security-and-performance-on-google-play.html">새로운 Google Play 방침<i class="fa fa-external-link"></i></span> 에 따르면  play store 에 등록되어 있는 앱을 업데이트 하거나, 새로 앱을 등록 할 경우 <code>targetSdkVersion &gt;= 26</code> 을 만족해야 한다. 따라서 오레오(8.0) 대응을 피할 수 없게 되었다.</p>
+<li><p><a href="https://developers-kr.googleblog.com/2018/01/improving-app-security-and-performance-on-google-play.html" target="_blank" rel="noopener">새로운 Google Play 방침</a> 에 따르면  play store 에 등록되어 있는 앱을 업데이트 하거나, 새로 앱을 등록 할 경우 <code>targetSdkVersion &gt;= 26</code> 을 만족해야 한다. 따라서 오레오(8.0) 대응을 피할 수 없게 되었다.</p>
 <p> 2018년 하반기 부터</p>
 </li>
 <li><p>오레오 여러 변경 사항 중 특히 신경써줘야 할 부분은 알림(Notification) 에 대한 변경사항인데, 이를 반영하지 않을 경우 <strong>알림이 오지않는 치명적인 상황이 발생한다.</strong></p>
 </li>
 </ol>
-<h2 id="NotifcationChannel-의-등장"><a href="#NotifcationChannel-의-등장" class="headerlink" title="NotifcationChannel 의 등장"></a><strong>NotifcationChannel 의 등장</strong></h2><p>우리가 처리해줘야하는 부분은 오레오에서 새롭게 등장한 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5jb20vdHJhaW5pbmcvbm90aWZ5LXVzZXIvY2hhbm5lbHM=" title="https://developer.android.com/training/notify-user/channels">NotificationChannel<i class="fa fa-external-link"></i></span> 과 관련되어있다. 왜 google 은 이 녀석에 대한 처리를 강제했을까? 다음 상황을 살펴보면 그 이유를 짐작할 수 있다.</p>
+<h2 id="NotifcationChannel-의-등장"><a href="#NotifcationChannel-의-등장" class="headerlink" title="NotifcationChannel 의 등장"></a><strong>NotifcationChannel 의 등장</strong></h2><p>우리가 처리해줘야하는 부분은 오레오에서 새롭게 등장한 <a href="https://developer.android.com/training/notify-user/channels" target="_blank" rel="noopener">NotificationChannel</a> 과 관련되어있다. 왜 google 은 이 녀석에 대한 처리를 강제했을까? 다음 상황을 살펴보면 그 이유를 짐작할 수 있다.</p>
 <p>나는 스마트폰에 알림이 쌓여있는 걸 좋아하지 않아서, 보통 대부분 앱의 알림을 꺼놓는다. 하지만 그때 아쉬운 점이 하나 있었는데, 확인하고 싶은 일부 알림 역시 받을 수 없다는 것이었다.</p>
 <p>Android 7.1 (API level 25) 이하 버전에서는 모든 알림이 하나로 묶여 관리됐기 때문에 위의 아쉬운 점을 해결할 수 없었고 이에 대한 대안으로 오레오에서 NotificationChannel 이 새롭게 추가되었다.</p>
 <img src="https://user-images.githubusercontent.com/27072782/60758428-7c512a80-a051-11e9-9fa2-ed4b67fbb7f8.jpg" class="notification_channel" width="200" height="120" title="notification_channel">
@@ -1034,7 +1262,7 @@
 <ul>
 <li>id : 각 채널을 구분할 수 있는 unique 한 값</li>
 <li>name : 유저에게 표시되는 채널 이름</li>
-<li>importance : 알림에 대한 중요도이며 이 값에 따라 알림의 동작이 달라진다. API 25 이하버전에서 사용되던 notification priority 개념과 동일. 각 importance 값에 따른 동작의 차이는 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5jb20vdHJhaW5pbmcvbm90aWZ5LXVzZXIvY2hhbm5lbHMjaW1wb3J0YW5jZQ==" title="https://developer.android.com/training/notify-user/channels#importance">importance level<i class="fa fa-external-link"></i></span>에 잘 나와있다.</li>
+<li>importance : 알림에 대한 중요도이며 이 값에 따라 알림의 동작이 달라진다. API 25 이하버전에서 사용되던 notification priority 개념과 동일. 각 importance 값에 따른 동작의 차이는 <a href="https://developer.android.com/training/notify-user/channels#importance" target="_blank" rel="noopener">importance level</a>에 잘 나와있다.</li>
 <li>description : 채널에 대한 설명, 특정 채널 설정 창에서 표기됨</li>
 </ul>
 <h3 id="Notification-builder-생성-및-channel-id-등록"><a href="#Notification-builder-생성-및-channel-id-등록" class="headerlink" title="Notification builder 생성 및 channel id 등록"></a><strong>Notification builder 생성 및 channel id 등록</strong></h3><pre><code>NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context, channelId);
@@ -1184,7 +1412,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

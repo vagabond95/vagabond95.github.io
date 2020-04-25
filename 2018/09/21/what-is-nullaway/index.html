@@ -243,7 +243,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>한번도 <strong>NullPointerException</strong> (이하 NPE)를 겪어보지 않은 사람은 있을지 몰라도, 한번만 NPE 를 겪어본 사람은 없을것이다. NPE 로 인한 크래시가 나기 전까지는 그 존재를 알 수 없기 때문에 항상 Null 값 처리를 신경 쓰면서 개발을 진행해야 한다. 잊을만하면 나타나는 NPE를 바라보면서 한숨을 쉬고 있을 때쯤, 동료 개발자에게 미리 NPE 예방에 도움을 주는 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3ViZXIvTnVsbEF3YXk=" title="https://github.com/uber/NullAway">Nullaway<i class="fa fa-external-link"></i></span> 라이브러리를 소개받았다.</p>
+        <p>한번도 <strong>NullPointerException</strong> (이하 NPE)를 겪어보지 않은 사람은 있을지 몰라도, 한번만 NPE 를 겪어본 사람은 없을것이다. NPE 로 인한 크래시가 나기 전까지는 그 존재를 알 수 없기 때문에 항상 Null 값 처리를 신경 쓰면서 개발을 진행해야 한다. 잊을만하면 나타나는 NPE를 바라보면서 한숨을 쉬고 있을 때쯤, 동료 개발자에게 미리 NPE 예방에 도움을 주는 <a href="https://github.com/uber/NullAway" target="_blank" rel="noopener">Nullaway</a> 라이브러리를 소개받았다.</p>
 <p>Nullaway 는 @Nullable 어노테이션을 이용하여 <strong>Compile Time 에 Null check</strong> 검사를 수행한다. 간결하고, 강력해보인다.</p>
 <h2 id="Nullaway-세팅하기"><a href="#Nullaway-세팅하기" class="headerlink" title="Nullaway 세팅하기"></a><strong>Nullaway 세팅하기</strong></h2><p><code>gradle</code> 기반으로 가이드가 되어있고, Android / Non - Android 방식으로 나뉘는데 거의 차이가 없다. 이 글에서는 Android 방식을 기준으로 설명한다.</p>
 <p>App 모듈 Gradle 파일에 다음과 같이 추가해주면 설정이 끝난다.</p>
@@ -269,7 +269,7 @@
 <ul>
 <li><code>&quot;-XepOpt:NullAway:UnannotatedSubPackages=com.project.test_[a-zA-Z0-9.]*&quot;</code></li>
 </ul>
-<p>그외 자세한 설명은 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3ViZXIvTnVsbEF3YXkvd2lraS9Db25maWd1cmF0aW9u" title="https://github.com/uber/NullAway/wiki/Configuration">Docs<i class="fa fa-external-link"></i></span> 를 참고!</p>
+<p>그외 자세한 설명은 <a href="https://github.com/uber/NullAway/wiki/Configuration" target="_blank" rel="noopener">Docs</a> 를 참고!</p>
 <h2 id="사용-방법"><a href="#사용-방법" class="headerlink" title="사용 방법"></a><strong>사용 방법</strong></h2><p>Android Support Library 에서 제공하는 <code>@Nullable</code> 어노테이션을 이용한다. Null 이 될 수 있는 필드, Null을 리턴할 수 있는 메소드에 <code>@Nullable</code>, Null 이 될 수 없는 필드, Null 을 리턴하지 않는 메소드는 <code>@NonNull</code> 을 추가해주면 된다. 아무런 어노테이션도 추가되지 않은 변수, 메소드는 @NonNull 로 인식한다. @Nullable 이 추가되어있는 필드는 항상 Null safe 체크 이후에 사용될 수 있고, @NonNull 이 추가되어 있는 필드는 Null 값이 들어올 수 없다는 것을 기본전제로 Null check 검사를 수행한다.</p>
 <p>예제</p>
 <p>아래 코드를 빌드할 경우 NonNull 타입 파라미터에 Null 이 들어갔으므로 Nullaway가 에러를 낸다.</p>
@@ -280,14 +280,14 @@
 
 
 <p>만약 Null check 없이 그대로 model 을 사용하려고 할 경우, 역시 에러를 낸다.</p>
-<p>Nullaway가 에러를 띄워주는 케이스는 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3ViZXIvTnVsbEF3YXkvd2lraS9FcnJvci1NZXNzYWdlcw==" title="https://github.com/uber/NullAway/wiki/Error-Messages">Error Messages<i class="fa fa-external-link"></i></span> 에 정리되어 있다.</p>
+<p>Nullaway가 에러를 띄워주는 케이스는 <a href="https://github.com/uber/NullAway/wiki/Error-Messages" target="_blank" rel="noopener">Error Messages</a> 에 정리되어 있다.</p>
 <h2 id="실제-프로젝트에-적용해보면서-느낀-점"><a href="#실제-프로젝트에-적용해보면서-느낀-점" class="headerlink" title="실제 프로젝트에 적용해보면서 느낀 점"></a><strong>실제 프로젝트에 적용해보면서 느낀 점</strong></h2><ol>
 <li>방어코드를 잘 추가했다고 생각했음에도 처리되지 않았던 부분이 많았고, 관련 코드를 모두 수정하여 앱의 안정성을 올리는데 도움을 주었다.</li>
 <li>Nullaway 소개글에 나온 것 처럼 처리 속도가 빨라 빌드시간이 추가로 더 늘어나지는 않음.</li>
 <li>코드를 작성할 때 Nullable, NonNull 을 고려하게 된다는 점이 좋았음.</li>
 </ol>
 <p>코틀린으로 넘어가게 되면 사용하지 않아도 무방하고 자바로 계속 개발할 경우 한번 적용해보는 것을 추천한다.</p>
-<p>샘플 링크 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3ZhZ2Fib25kOTUvTnVsbEF3YXlTYW1wbGU=" title="https://github.com/vagabond95/NullAwaySample">https://github.com/vagabond95/NullAwaySample<i class="fa fa-external-link"></i></span></p>
+<p>샘플 링크 <a href="https://github.com/vagabond95/NullAwaySample" target="_blank" rel="noopener">https://github.com/vagabond95/NullAwaySample</a></p>
 
     </div>
 
@@ -385,7 +385,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

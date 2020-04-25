@@ -269,7 +269,7 @@
 
 <h1 id="LiveData-의-한계와-대안점"><a href="#LiveData-의-한계와-대안점" class="headerlink" title="LiveData 의 한계와 대안점"></a>LiveData 의 한계와 대안점</h1><p>앞서 언급했듯이 이벤트를 전달하는 것은 구현 자유도가 높은 편이다. </p>
 <p>RxJava 를 이용해도 되고, LiveData 혹은 Custom 하게 Obeserver 패턴 구현체를 써도 상관 없다.  하지만 RxJava 나 Custom Observer 를 구현하면 라이프사이클을 계속 신경써줄수 밖에 없기 때문에 보통은 LiveData 를 선택한다. </p>
-<p>그래도 애매할 때는 여러 레퍼런스를 참고해보며 힌트를 얻어보자. 구글에서 운영하고 있는 공식 repo 인 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9pb3NjaGVk" title="https://github.com/google/iosched">Goolge IO app<i class="fa fa-external-link"></i></span> 과 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FuZHJvaWQvYXJjaGl0ZWN0dXJlLXNhbXBsZXM=" title="https://github.com/android/architecture-samples">Architecture Sample<i class="fa fa-external-link"></i></span> 를 살펴보자.</p>
+<p>그래도 애매할 때는 여러 레퍼런스를 참고해보며 힌트를 얻어보자. 구글에서 운영하고 있는 공식 repo 인 <a href="https://github.com/google/iosched" target="_blank" rel="noopener">Goolge IO app</a> 과 <a href="https://github.com/android/architecture-samples" target="_blank" rel="noopener">Architecture Sample</a> 를 살펴보자.</p>
 <h2 id="변형된-형태의-LiveData"><a href="#변형된-형태의-LiveData" class="headerlink" title="변형된 형태의 LiveData"></a>변형된 형태의 LiveData</h2><p>각 repo 는 LiveData 를 이용하여 아래와 같이 이벤트 흐름을 처리하고 있다.</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Google IO repo</span></span><br><span class="line"><span class="keyword">private</span> val _navigateToSignInDialogAction = MutableLiveData&lt;Event&lt;Unit&gt;&gt;()</span><br><span class="line">val navigateToSignInDialogAction: LiveData&lt;Event&lt;Unit&gt;&gt;</span><br><span class="line">    get() = _navigateToSignInDialogAction</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> val _navigateToSignOutDialogAction = MutableLiveData&lt;Event&lt;Unit&gt;&gt;()</span><br><span class="line">val navigateToSignOutDialogAction: LiveData&lt;Event&lt;Unit&gt;&gt;</span><br><span class="line">    get() = _navigateToSignOutDialogAction</span><br><span class="line"></span><br><span class="line"><span class="comment">// Artictecture sample repo</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> SingleLiveEvent&lt;Void&gt; mEditTaskCommand = <span class="keyword">new</span> SingleLiveEvent&lt;&gt;();</span><br></pre></td></tr></table></figure>
 
@@ -282,7 +282,7 @@
 <li>래핑된 Observer 는 <strong>onChanged 콜백이 여러번 호출되는 것을 막는다.</strong></li>
 </ol>
 <p>구글은 왜 이러한 처리를 거쳐서 LiveData 를 사용했을까? 이유는 LiveData 내부 구조에 있다.</p>
-<h2 id="LiveData-는-데이터를-위해-만들어-졌다"><a href="#LiveData-는-데이터를-위해-만들어-졌다" class="headerlink" title="LiveData 는 데이터를 위해 만들어 졌다."></a>LiveData 는 데이터를 위해 만들어 졌다.</h2><p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5jb20vdG9waWMvbGlicmFyaWVzL2FyY2hpdGVjdHVyZS9saXZlZGF0YT9obD1lbg==" title="https://developer.android.com/topic/libraries/architecture/livedata?hl=en">docs<i class="fa fa-external-link"></i></span> 에서는 LiveData 를 다음과 같이 정의하고 있다.</p>
+<h2 id="LiveData-는-데이터를-위해-만들어-졌다"><a href="#LiveData-는-데이터를-위해-만들어-졌다" class="headerlink" title="LiveData 는 데이터를 위해 만들어 졌다."></a>LiveData 는 데이터를 위해 만들어 졌다.</h2><p><a href="https://developer.android.com/topic/libraries/architecture/livedata?hl=en" target="_blank" rel="noopener">docs</a> 에서는 LiveData 를 다음과 같이 정의하고 있다.</p>
 <blockquote>
 <p>LiveData is an observable data holder class</p>
 </blockquote>
@@ -311,7 +311,7 @@
 <p><img src="/images/google_search_live_twice.png" alt></p>
 <h1 id="그럼-무엇을-선택해야할까"><a href="#그럼-무엇을-선택해야할까" class="headerlink" title="그럼 무엇을 선택해야할까?"></a>그럼 무엇을 선택해야할까?</h1><p>위와 같은 이유로 인해 LiveData 를 이벤트 전달로 사용하기 위해서, onChanged 콜백이 여러번 호출되는 것을 막는 변형구조가 탄생하게 되었다. </p>
 <p>그럼 이벤트 전달을 할때는 무엇을 선택하는 것이 좋을까? 진행하고 있는 프로젝트 상황이 각자 다르기에 꼭 하나를 추천하기는 어려울 것 같다. 다만, 현재 진행하고 있는 프로젝트에서 SingleLiveData 와 커스텀 LiveEvent 를 섞어서 사용하고 있으므로 사용해보면서 느낀점을 정리해보면서 마무리하고자 한다.</p>
-<h2 id="SingleLiveEvent"><a href="#SingleLiveEvent" class="headerlink" title="SingleLiveEvent"></a>SingleLiveEvent</h2><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FuZHJvaWQvYXJjaGl0ZWN0dXJlLXNhbXBsZXMvYmxvYi9kZXYtdG9kby1tdnZtLWxpdmUvdG9kb2FwcC9hcHAvc3JjL21haW4vamF2YS9jb20vZXhhbXBsZS9hbmRyb2lkL2FyY2hpdGVjdHVyZS9ibHVlcHJpbnRzL3RvZG9hcHAvU2luZ2xlTGl2ZUV2ZW50LmphdmE=" title="https://github.com/android/architecture-samples/blob/dev-todo-mvvm-live/todoapp/app/src/main/java/com/example/android/architecture/blueprints/todoapp/SingleLiveEvent.java">코드<i class="fa fa-external-link"></i></span> 및 <span class="exturl" data-url="aHR0cHM6Ly9wcm9hbmRyb2lkZGV2LmNvbS9zaW5nbGVsaXZlZXZlbnQtdG8taGVscC15b3Utd29yay13aXRoLWxpdmVkYXRhLWFuZC1ldmVudHMtNWFjNTE5OTg5Yzcw" title="https://proandroiddev.com/singleliveevent-to-help-you-work-with-livedata-and-events-5ac519989c70">관련 포스트<i class="fa fa-external-link"></i></span>를 참고하면 금방 이해할 수 있을거라 생각한다.</p>
+<h2 id="SingleLiveEvent"><a href="#SingleLiveEvent" class="headerlink" title="SingleLiveEvent"></a>SingleLiveEvent</h2><p><a href="https://github.com/android/architecture-samples/blob/dev-todo-mvvm-live/todoapp/app/src/main/java/com/example/android/architecture/blueprints/todoapp/SingleLiveEvent.java" target="_blank" rel="noopener">코드</a> 및 <a href="https://proandroiddev.com/singleliveevent-to-help-you-work-with-livedata-and-events-5ac519989c70" target="_blank" rel="noopener">관련 포스트</a>를 참고하면 금방 이해할 수 있을거라 생각한다.</p>
 <p>구조는 단순하다. MutableLiveData 를 상속받아, 명시적으로 setValue 를 호출했을 때만 데이터가 전달되도록 flag 를 걸어주었다.</p>
 <ul>
 <li>장점은 MutableLiveData 를 상속받았기 때문에 기본적으로 메모리 관리나 LifeCycle 변경에 따른 처리를 따로 해줄필요가 없다. 사용방법도 기존의 LiveData 사용하듯이 쓰면 된다.</li>
@@ -346,8 +346,8 @@
       <i class="fa fa-chevron-left"></i> 2월의 성장기
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/04/12/android_not_working_ellipsize_with_autolink_or_movementmethod/" rel="next" title="TextView 에서 ellipsize 가 적용되지 않는 이슈 (feat: autoLink 와 movementMethod)">
-      TextView 에서 ellipsize 가 적용되지 않는 이슈 (feat: autoLink 와 movementMethod) <i class="fa fa-chevron-right"></i>
+    <a href="/2020/04/12/android_not_working_ellipsize_with_autolink_or_movementmethod/" rel="next" title="[안드로이드] TextView 에서 ellipsize 가 적용되지 않는 이슈 with autoLink & movementMethod">
+      [안드로이드] TextView 에서 ellipsize 가 적용되지 않는 이슈 with autoLink & movementMethod <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -421,7 +421,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

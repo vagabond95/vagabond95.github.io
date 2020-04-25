@@ -254,13 +254,13 @@
 <h2 id="TL-DR"><a href="#TL-DR" class="headerlink" title="TL; DR"></a><strong>TL; DR</strong></h2><p>오레오에서 알림 대응은 피할 수 없다. 미대응시 작동 X 😱</p>
 <h2 id="오레오대응-더이상은-피할-수-없다"><a href="#오레오대응-더이상은-피할-수-없다" class="headerlink" title="오레오대응.. 더이상은 피할 수 없다?"></a><strong>오레오대응.. 더이상은 피할 수 없다?</strong></h2><p>아직 비교적 최신 버전인 오레오 대응을 굳이 처음부터 다르는 이유는 다음과 같다.</p>
 <ol>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXJzLWtyLmdvb2dsZWJsb2cuY29tLzIwMTgvMDEvaW1wcm92aW5nLWFwcC1zZWN1cml0eS1hbmQtcGVyZm9ybWFuY2Utb24tZ29vZ2xlLXBsYXkuaHRtbA==" title="https://developers-kr.googleblog.com/2018/01/improving-app-security-and-performance-on-google-play.html">새로운 Google Play 방침<i class="fa fa-external-link"></i></span> 에 따르면  play store 에 등록되어 있는 앱을 업데이트 하거나, 새로 앱을 등록 할 경우 <code>targetSdkVersion &gt;= 26</code> 을 만족해야 한다. 따라서 오레오(8.0) 대응을 피할 수 없게 되었다.</p>
+<li><p><a href="https://developers-kr.googleblog.com/2018/01/improving-app-security-and-performance-on-google-play.html" target="_blank" rel="noopener">새로운 Google Play 방침</a> 에 따르면  play store 에 등록되어 있는 앱을 업데이트 하거나, 새로 앱을 등록 할 경우 <code>targetSdkVersion &gt;= 26</code> 을 만족해야 한다. 따라서 오레오(8.0) 대응을 피할 수 없게 되었다.</p>
 <p> 2018년 하반기 부터</p>
 </li>
 <li><p>오레오 여러 변경 사항 중 특히 신경써줘야 할 부분은 알림(Notification) 에 대한 변경사항인데, 이를 반영하지 않을 경우 <strong>알림이 오지않는 치명적인 상황이 발생한다.</strong></p>
 </li>
 </ol>
-<h2 id="NotifcationChannel-의-등장"><a href="#NotifcationChannel-의-등장" class="headerlink" title="NotifcationChannel 의 등장"></a><strong>NotifcationChannel 의 등장</strong></h2><p>우리가 처리해줘야하는 부분은 오레오에서 새롭게 등장한 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5jb20vdHJhaW5pbmcvbm90aWZ5LXVzZXIvY2hhbm5lbHM=" title="https://developer.android.com/training/notify-user/channels">NotificationChannel<i class="fa fa-external-link"></i></span> 과 관련되어있다. 왜 google 은 이 녀석에 대한 처리를 강제했을까? 다음 상황을 살펴보면 그 이유를 짐작할 수 있다.</p>
+<h2 id="NotifcationChannel-의-등장"><a href="#NotifcationChannel-의-등장" class="headerlink" title="NotifcationChannel 의 등장"></a><strong>NotifcationChannel 의 등장</strong></h2><p>우리가 처리해줘야하는 부분은 오레오에서 새롭게 등장한 <a href="https://developer.android.com/training/notify-user/channels" target="_blank" rel="noopener">NotificationChannel</a> 과 관련되어있다. 왜 google 은 이 녀석에 대한 처리를 강제했을까? 다음 상황을 살펴보면 그 이유를 짐작할 수 있다.</p>
 <p>나는 스마트폰에 알림이 쌓여있는 걸 좋아하지 않아서, 보통 대부분 앱의 알림을 꺼놓는다. 하지만 그때 아쉬운 점이 하나 있었는데, 확인하고 싶은 일부 알림 역시 받을 수 없다는 것이었다.</p>
 <p>Android 7.1 (API level 25) 이하 버전에서는 모든 알림이 하나로 묶여 관리됐기 때문에 위의 아쉬운 점을 해결할 수 없었고 이에 대한 대안으로 오레오에서 NotificationChannel 이 새롭게 추가되었다.</p>
 <img src="https://user-images.githubusercontent.com/27072782/60758428-7c512a80-a051-11e9-9fa2-ed4b67fbb7f8.jpg" class="notification_channel" width="200" height="120" title="notification_channel">
@@ -288,7 +288,7 @@
 <ul>
 <li>id : 각 채널을 구분할 수 있는 unique 한 값</li>
 <li>name : 유저에게 표시되는 채널 이름</li>
-<li>importance : 알림에 대한 중요도이며 이 값에 따라 알림의 동작이 달라진다. API 25 이하버전에서 사용되던 notification priority 개념과 동일. 각 importance 값에 따른 동작의 차이는 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5jb20vdHJhaW5pbmcvbm90aWZ5LXVzZXIvY2hhbm5lbHMjaW1wb3J0YW5jZQ==" title="https://developer.android.com/training/notify-user/channels#importance">importance level<i class="fa fa-external-link"></i></span>에 잘 나와있다.</li>
+<li>importance : 알림에 대한 중요도이며 이 값에 따라 알림의 동작이 달라진다. API 25 이하버전에서 사용되던 notification priority 개념과 동일. 각 importance 값에 따른 동작의 차이는 <a href="https://developer.android.com/training/notify-user/channels#importance" target="_blank" rel="noopener">importance level</a>에 잘 나와있다.</li>
 <li>description : 채널에 대한 설명, 특정 채널 설정 창에서 표기됨</li>
 </ul>
 <h3 id="Notification-builder-생성-및-channel-id-등록"><a href="#Notification-builder-생성-및-channel-id-등록" class="headerlink" title="Notification builder 생성 및 channel id 등록"></a><strong>Notification builder 생성 및 channel id 등록</strong></h3><pre><code>NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context, channelId);
@@ -448,7 +448,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

@@ -196,6 +196,96 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://vagabond95.me/2020/04/25/nextstep_reviewer_review/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jihoon Kim">
+      <meta itemprop="description" content="내일 잊기전에 오늘 적어두는 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="기록은 기억을 지배한다">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/25/nextstep_reviewer_review/" class="post-title-link" itemprop="url">NextStep 리뷰어 활동을 마무리 하며</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-04-25 12:14:09 / Modified: 21:35:38" itemprop="dateCreated datePublished" datetime="2020-04-25T12:14:09+09:00">2020-04-25</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>작년 하반기에 Nextstep 의 <a href="https://vagabond95.me/2019/11/23/nextstep-class-review/">클린코드 교육과정을 참여</a>하며 배웠던 내용을 바탕으로 많은 성장을 할 수 있었다. 좋은 수업이라며 주위에 열심히 홍보를 하던 찰나, 과정을 직접 운영하고 계시는 박재성님으로부터 코드 리뷰어 활동을 제안 받게 되었다. </p>
+<p>코드 리뷰어로 활동할 수 있는 실력이 안될 것 같아 고민이 되었지만, 재성님의 격려와 좋은 경험을 쌓을 수 있는 기회라고 생각이 되어 제안을 수락하였다. </p>
+<p>리뷰어 활동은 약 한달간 진행되었고 그 과정속에서 깨달은 것이 많아 개인적인 정리 및 기록 차원에서 글을 남긴다.</p>
+<h1 id="코드-리뷰를-진행하며"><a href="#코드-리뷰를-진행하며" class="headerlink" title="코드 리뷰를 진행하며"></a>코드 리뷰를 진행하며</h1><p>처음 리뷰를 진행할 때는 생각 이상으로 많은 시간과 에너지가 소모되었다. 회사 업무를 마치고 또 코드를 봐야하는 압박감도 있었고, 각자 다른 스타일의 코드를 꼼꼼히 확인 하고 적절한 피드백이 무엇일지 고민하고 공부해야했기 때문이다. 또한 리뷰를 마쳐야 리뷰이가 다음 단계를 진행하기 수월하기 때문에 코드가 올라오는데로 최대한 빠르게 피드백을 줄 수 있도록 신경을 써야했다. 따라서 초반에는 시간적 여유가 별로 없다보니 특별한 체계없이 정해진 리뷰의 양을 채워나갔던 것 같다.<br>점점 시간이 흐를 수록 나름의 체계가 생기고 속도가 붙어 초반보단 여유가 생겼다. 이때 나 스스로의 리뷰 방식/관점에 대해 점검해보며 아래과 같은 기준을 세우고 리뷰를 진행했다. </p>
+<h2 id="1-모호한-지식은-모호한-답변을-남긴다"><a href="#1-모호한-지식은-모호한-답변을-남긴다" class="headerlink" title="1. 모호한 지식은 모호한 답변을 남긴다."></a>1. 모호한 지식은 모호한 답변을 남긴다.</h2><p>특정 내용에 대하여 피드백을 할 때마다 굉장히 모호하게 답변을 남기고 있는 것을 깨달았다. 해당 내용에 대한 정확한 지식이 없다는 신호라고 느꼈다. 이런 수준에서는 좋은 피드백을 줄 수 없을 것 같아 잠시 리뷰를 중단했다. 이후 책과 검색을 통해 좀 더 깊게 공부하고 부족해 보이는 부분을 채워나갔다. 내가 어떤 주제에 대하여 막연히만 알고 있었는지 깨닫는 좋은 순간이었다. 어느정도 정리 및 공부가 끝났다고 생각되면 다시 리뷰를 진행했고 이후에도 비슷한 주제가 나올 경우 위와 같은 과정을 반복하였다.</p>
+<h2 id="2-모든-코드에는-근거가-있어야한다"><a href="#2-모든-코드에는-근거가-있어야한다" class="headerlink" title="2. 모든 코드에는 근거가 있어야한다."></a>2. 모든 코드에는 근거가 있어야한다.</h2><p>리뷰를 진행하다보면 특정 상황에서 관습적으로 굳어진듯한 구현을 발견할때가 있다. 이러한 코드를 발견하면 피드백을 남길 때 구현에 대한 가이드 외에도 집요하게😈어떤 구현 의도를 가지고 작성했는지 물어보곤 했다.<br>관습적인 구현은 대게 큰 고민 없이 이루어지는 경우가 많다. 하지만 모든 코드는 명확한 근거가 있어야한다고 생각한다. 만약 스스로 세운 근거가 틀리더라도 큰 상관이 없다. 나중에 잘못된 방향임을 깨닫더라도 어떤 부분을 놓쳤는지 비교가 가능하기 때문이다. 특히 나같은 경우 스스로 세운 근거가 틀렸음을 깨달았을 때 더 많이 성장하는 것을 경험했기 때문에 이 부분을 특히 집중했다. </p>
+<h2 id="3-나의-피드백보다-더-좋은-방향은-항상-있을-수-있다"><a href="#3-나의-피드백보다-더-좋은-방향은-항상-있을-수-있다" class="headerlink" title="3. 나의 피드백보다 더 좋은 방향은 항상 있을 수 있다."></a>3. 나의 피드백보다 더 좋은 방향은 항상 있을 수 있다.</h2><p>미션의 요구사항이 간단할 때는 리뷰이의 구현 방향이 대부분 비슷하게 수렴하고 이에 대한 베스트 케이스도 어느정도 정해져있다. 그래서 피드백으로 가이드를 남기는 것도 비교적 수월하다. 그러나 점점 미션의 요구사항이 복잡하고 어려워질 수록 다양한 접근 방식이 나타나기 시작한다. 이때 나 또한 결국 가지고 있는 지식과 경험 내에서 답변할 수 밖에 없는 한계점이 있기 때문에 항상 내가 남긴 피드백보다 더 좋은 방향이 있을 수 있다는 마음가짐으로 리뷰에 임했다.<br>실제로 다양한 방식으로 풀 수 있는 부분에 대하여 피드백을 남기면 리뷰이에게 종종 문의가 들어왔다. 이때 나는 피드백을 남긴 의도를 최대한 자세히 남겼다. 그리고 리뷰이의 의도 역시 물어본 후 각각 비교하여 장/단점을 생각해보고, 목표를 이루기 위해서 무엇을 취할 수 있을지/버려야할 지 논의했다. 이러한 과정 또한 나의 생각을 정리하고 공부하는 계기가 되어 오히려 내가 스스로 많이 배울 수 있는 좋은 거름이 되었다. 👏</p>
+<p><img src="/images/next_step_reviewer.png" alt><br>(기억에 남았던 논의 과정, 지금 다시 보니 답변 내용 중 아쉬운 부분이 보인다. 😭)</p>
+<h1 id="코드리뷰도-결국은"><a href="#코드리뷰도-결국은" class="headerlink" title="코드리뷰도 결국은.."></a>코드리뷰도 결국은..</h1><p>코드 리뷰도 결국은 <strong>사람과의 커뮤니케이션</strong>이다. 또한 사람은 각기 다른 커뮤니케이션 스타일을 가지고 있다. 그래서 소프트 스킬이 어렵다고 생각한다. 논의를 주고 받다보면 각 리뷰이분의 스타일을 대략적으로 파악하고, 이에 맞게 커뮤니케이션 방식을 조금씩 바꿔가며 진행해보려 노력했다.<br>소프트 스킬을 연습할 수 있는 기회는 흔치 않다고 생각되어 이부분에 대해 적지 않게 신경썼던 기억이 난다.</p>
+<h1 id="가장-많이-드렸던-피드백들"><a href="#가장-많이-드렸던-피드백들" class="headerlink" title="가장 많이 드렸던 피드백들"></a>가장 많이 드렸던 피드백들</h1><p>리뷰를 하다보면 공통으로 피드백을 많이 남기는 내용이 있었다. 정리를 해보니 다음과 같다.</p>
+<h2 id="이-객체가-알아야할-정보가-맞을까요"><a href="#이-객체가-알아야할-정보가-맞을까요" class="headerlink" title="이 객체가 알아야할 정보가 맞을까요?"></a>이 객체가 알아야할 정보가 맞을까요?</h2><p> → 클래스가 존재해야할 이유는 하나이다. <a href="https://en.wikipedia.org/wiki/Single-responsibility_principle" target="_blank" rel="noopener">SRP</a>를 잘 지켰는지  확인했다.</p>
+<h2 id="이-코드는-다른-객체에서-스스로-수행할-수-있지-않을까요"><a href="#이-코드는-다른-객체에서-스스로-수행할-수-있지-않을까요" class="headerlink" title="이 코드는 다른 객체에서 스스로 수행할 수 있지 않을까요?"></a>이 코드는 다른 객체에서 스스로 수행할 수 있지 않을까요?</h2><p>→ 객체 상태를 꺼내와서 연산을 수행하지 말고 상태를 알고 있는 객체에 명령할 것, 객체의 응집도 측면에서 확인했다.</p>
+<h2 id="이-메소드의-네이밍을-좀-더-구체적으로-지어볼-수-있을까요-좀-더-구현-내용을-숨겨볼-수-있을까요"><a href="#이-메소드의-네이밍을-좀-더-구체적으로-지어볼-수-있을까요-좀-더-구현-내용을-숨겨볼-수-있을까요" class="headerlink" title="이 메소드의 네이밍을 좀 더 구체적으로 지어볼 수 있을까요? / 좀 더 구현 내용을 숨겨볼 수 있을까요?"></a>이 메소드의 네이밍을 좀 더 구체적으로 지어볼 수 있을까요? / 좀 더 구현 내용을 숨겨볼 수 있을까요?</h2><p>→ 아마 리뷰이분들 입장에서는 가장 짜증나는(?) 피드백이지 않았을까.ㅎㅎ 어떤 메소드는 이름을 자세히 짓고, 어떤 메소드는 좀 더 추상적으로 지으라니..🤬🤬</p>
+<p>나는 <strong>SRP</strong> 와 <strong>캡슐화</strong>의 관점에서 피드백을 진행했다.</p>
+<h3 id="1-좀-더-구체적으로-지어볼-수-있을까요"><a href="#1-좀-더-구체적으로-지어볼-수-있을까요" class="headerlink" title="(1) 좀 더 구체적으로 지어볼 수 있을까요?"></a>(1) 좀 더 구체적으로 지어볼 수 있을까요?</h3><blockquote>
+<p>메소드는 하나의 일만을 수행해야 한다. 그리고 수행하는 일을 드러낼 수 있다.</p>
+</blockquote>
+<p>위 규칙을 지킨다면 이름이 모호한 메소드는 수행하는 일이 명확히 드러나도록 표현할 수 있다.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">user.get() <span class="comment">// (X) 수행하는 일이 명확히 나타나지 않는다. </span></span><br><span class="line">user.getName() <span class="comment">// (O) 무슨일을 수행하는지 알 수 있다.</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-좀-더-구현-내용을-숨겨볼-수-있을까요"><a href="#2-좀-더-구현-내용을-숨겨볼-수-있을까요" class="headerlink" title="(2) 좀 더 구현 내용을 숨겨볼 수 있을까요?"></a>(2) 좀 더 구현 내용을 숨겨볼 수 있을까요?</h3><blockquote>
+<p>캡슐화란 변경 가능성이 높은 부분을 객체 내부로 숨기는 추상화 기법이다.</p>
+</blockquote>
+<p><a href="http://www.yes24.com/Product/Goods/74219491" target="_blank" rel="noopener">오브젝트</a>에서는 변경할 수 있는 모든 것을 캡슐화하라고 이야기 한다.<br>(관련 내용에 대하여 과거에 <a href="https://vagabond95.me/2019/10/20/object-book-4/">정리했던 글</a>이 있다.)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">winnerNumber.getRankWithAnotherNumber(number) <span class="comment">// (X) 전달되는 파라미터에 대한 정보가 드러난다.</span></span><br></pre></td></tr></table></figure>
+<p>위와 같은 메소드의 네이밍은 전달되는 인자에 대한 정보가 메소드에 그대로 드러나 있다. 파라미터가 드러나면 어느정도 가독성은 확보할 수 있을지도 모른다. 그러나 파라미터에 대한 <strong>변경</strong>은 꽤나 빈번하게 발생하는 일이며, 그때마다 해당 메소드의 이름은 변경되어야 할 것이다. 즉, 변경에 취약하다.</p>
+<p>그렇다면 어디까지 추상화해야 할까? 메소드에서 변경되지 않는 것이 딱 하나 있다. 바로 메소드가 수행하는 일이다. 따라서 메소드가 수행하는 일만 드러내는 것이 변경에 좀 더 유연한 네이밍이라고 생각되어 피드백을 남겼었다. (1) 번 내용과도 같이 생각해볼만한 부분이다. </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">winnerNumber.getRank(number) <span class="comment">// (O) 수행하는 일만을 명시한다.</span></span><br></pre></td></tr></table></figure>
+
+<p>요 내용은 개인적으로 고민이 있는 부분이라 다른 의견도 들어보고 싶다. 🤔</p>
+<h1 id="동시에-성장하는-경험"><a href="#동시에-성장하는-경험" class="headerlink" title="동시에 성장하는 경험"></a>동시에 성장하는 경험</h1><p>내가 알고 있는 지식을 누군가에게 설명해줄 때 가장 공부가 많이 되는 경험을 해본적이 있을 것이다. 코드 리뷰를 진행하면서 비슷한 경험을 했다. 내가 피드백을 제시하기 위해선 근거가 있어야하고 이를 위해서는 탄탄한 지식과 좋은 레퍼런스가 있어야 하기에 엄청나게 공부를 할 수 밖에 없다. 특히 날카로운 질문이 들어올 때, 질문의 주제가 내가 막연하게 알고 있는 내용일 경우 바로 바닥이 나타났기에 더욱 열심히 찾아보고 공부했다. 그래서 과정이 점점 진행될 수록 리뷰이와 내가 동시에 성장을 하는 것을 경험을 했다.</p>
+<h1 id="마무리하며"><a href="#마무리하며" class="headerlink" title="마무리하며"></a>마무리하며</h1><p>엄청난 열정으로 구현을 진행하고 논의를 나눈 리뷰이분들, 자신의 리뷰과정을 공유하여 다양한 관점으로 볼 수 있게 해준 리뷰어분들, 중간중간 어려움이 있을 때마다 아낌없는 조언을 주신 재성님에게 다시 한번 감사드린다. 🙏<br>NextStep 에서는 클린코드 과정외에도 다양한 주제의 강의가 진행되고 있으니 관심이 있다면 <a href="https://edu.nextstep.camp/" target="_blank" rel="noopener">클릭</a>!</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://vagabond95.me/2020/04/12/android_not_working_ellipsize_with_autolink_or_movementmethod/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -210,7 +300,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/04/12/android_not_working_ellipsize_with_autolink_or_movementmethod/" class="post-title-link" itemprop="url">TextView 에서 ellipsize 가 적용되지 않는 이슈 (feat: autoLink 와 movementMethod)</a>
+            <a href="/2020/04/12/android_not_working_ellipsize_with_autolink_or_movementmethod/" class="post-title-link" itemprop="url">[안드로이드] TextView 에서 ellipsize 가 적용되지 않는 이슈 with autoLink & movementMethod</a>
         </h2>
 
         <div class="post-meta">
@@ -219,10 +309,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-04-12 16:32:12 / Modified: 17:05:32" itemprop="dateCreated datePublished" datetime="2020-04-12T16:32:12+09:00">2020-04-12</time>
+              <time title="Created: 2020-04-12 16:32:12" itemprop="dateCreated datePublished" datetime="2020-04-12T16:32:12+09:00">2020-04-12</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-04-25 19:40:21" itemprop="dateModified" datetime="2020-04-25T19:40:21+09:00">2020-04-25</time>
+              </span>
 
           
 
@@ -246,9 +342,9 @@
 <li>내용은 최대 N 라인 까지만 노출 가능하다. 이후 내용은 말줄임 표시로 대체</li>
 <li>내용 중 web url 이 있을 경우 클릭 및 스타일링이 되어야하고 클릭 시, 인앱 브라우저로 이동해야한다.</li>
 </ol>
-<p>1번 사항은 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5jb20vcmVmZXJlbmNlL2FuZHJvaWQvd2lkZ2V0L1RleHRWaWV3I2F0dHJfYW5kcm9pZDptYXhMaW5lcw==" title="https://developer.android.com/reference/android/widget/TextView#attr_android:maxLines">maxLine<i class="fa fa-external-link"></i></span> 과 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5jb20vcmVmZXJlbmNlL2FuZHJvaWQvd2lkZ2V0L1RleHRWaWV3I2F0dHJfYW5kcm9pZDplbGxpcHNpemU=" title="https://developer.android.com/reference/android/widget/TextView#attr_android:ellipsize">ellipsize<i class="fa fa-external-link"></i></span> 를 이용하면 된다.</p>
-<p>2번 사항은 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5jb20vcmVmZXJlbmNlL2FuZHJvaWQvd2lkZ2V0L1RleHRWaWV3I2F0dHJfYW5kcm9pZDphdXRvTGluaw==" title="https://developer.android.com/reference/android/widget/TextView#attr_android:autoLink">autoLink<i class="fa fa-external-link"></i></span>, <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5jb20vcmVmZXJlbmNlL2FuZHJvaWQvd2lkZ2V0L1RleHRWaWV3I2F0dHJfYW5kcm9pZDp0ZXh0Q29sb3JMaW5r" title="https://developer.android.com/reference/android/widget/TextView#attr_android:textColorLink">textColorLink<i class="fa fa-external-link"></i></span>, 커스텀한 MovemetMethod 를 이용하면 된다.</p>
-<p>커스텀한 MoveMentmethod 가 필요한 이유는 TextView 에서 기본으로 사용되는 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5jb20vcmVmZXJlbmNlL2FuZHJvaWQvdGV4dC9tZXRob2QvTGlua01vdmVtZW50TWV0aG9k" title="https://developer.android.com/reference/android/text/method/LinkMovementMethod">LinkMovementMethod<i class="fa fa-external-link"></i></span> 의 경우 특정한 link 텍스트 클릭 시, 이를 감지할 수 있는 콜백을 제공하지 않고 내부에서 ACTION_VIEW intent 로 처리하기 때문이다.<br>직접 구현하기가 부담스럽다면 이런 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3Nha2V0L0JldHRlci1MaW5rLU1vdmVtZW50LU1ldGhvZA==" title="https://github.com/saket/Better-Link-Movement-Method">라이브러리<i class="fa fa-external-link"></i></span> 를 이용해도 좋다.</p>
+<p>1번 사항은 <a href="https://developer.android.com/reference/android/widget/TextView#attr_android:maxLines" target="_blank" rel="noopener">maxLine</a> 과 <a href="https://developer.android.com/reference/android/widget/TextView#attr_android:ellipsize" target="_blank" rel="noopener">ellipsize</a> 를 이용하면 된다.</p>
+<p>2번 사항은 <a href="https://developer.android.com/reference/android/widget/TextView#attr_android:autoLink" target="_blank" rel="noopener">autoLink</a>, <a href="https://developer.android.com/reference/android/widget/TextView#attr_android:textColorLink" target="_blank" rel="noopener">textColorLink</a>, 커스텀한 MovemetMethod 를 이용하면 된다.</p>
+<p>커스텀한 MoveMentmethod 가 필요한 이유는 TextView 에서 기본으로 사용되는 <a href="https://developer.android.com/reference/android/text/method/LinkMovementMethod" target="_blank" rel="noopener">LinkMovementMethod</a> 의 경우 특정한 link 텍스트 클릭 시, 이를 감지할 수 있는 콜백을 제공하지 않고 내부에서 ACTION_VIEW intent 로 처리하기 때문이다.<br>직접 구현하기가 부담스럽다면 이런 <a href="https://github.com/saket/Better-Link-Movement-Method" target="_blank" rel="noopener">라이브러리</a> 를 이용해도 좋다.</p>
 <p>어쨌든 안드로이드에서 기본적으로 제공하고 있는 속성을 활용하면 금방 완료가 가능할 것으로 보고 구현을 시작했다.<br>그런데… 아무리 빌드를 돌려봐도 ellipsis 가 표현되지 않는다.</p>
 <p>구글이 그럴리 없다며 내가 잘못한 부분이 없나 몇 시간째 삽질을 하다가, 결국 하나하나 옵션을 제거하면서 결과를 비교해봤고 다음과 같은 결론을 얻었다.</p>
 <ul>
@@ -387,7 +483,7 @@
 
 <h1 id="LiveData-의-한계와-대안점"><a href="#LiveData-의-한계와-대안점" class="headerlink" title="LiveData 의 한계와 대안점"></a>LiveData 의 한계와 대안점</h1><p>앞서 언급했듯이 이벤트를 전달하는 것은 구현 자유도가 높은 편이다. </p>
 <p>RxJava 를 이용해도 되고, LiveData 혹은 Custom 하게 Obeserver 패턴 구현체를 써도 상관 없다.  하지만 RxJava 나 Custom Observer 를 구현하면 라이프사이클을 계속 신경써줄수 밖에 없기 때문에 보통은 LiveData 를 선택한다. </p>
-<p>그래도 애매할 때는 여러 레퍼런스를 참고해보며 힌트를 얻어보자. 구글에서 운영하고 있는 공식 repo 인 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9pb3NjaGVk" title="https://github.com/google/iosched">Goolge IO app<i class="fa fa-external-link"></i></span> 과 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FuZHJvaWQvYXJjaGl0ZWN0dXJlLXNhbXBsZXM=" title="https://github.com/android/architecture-samples">Architecture Sample<i class="fa fa-external-link"></i></span> 를 살펴보자.</p>
+<p>그래도 애매할 때는 여러 레퍼런스를 참고해보며 힌트를 얻어보자. 구글에서 운영하고 있는 공식 repo 인 <a href="https://github.com/google/iosched" target="_blank" rel="noopener">Goolge IO app</a> 과 <a href="https://github.com/android/architecture-samples" target="_blank" rel="noopener">Architecture Sample</a> 를 살펴보자.</p>
 <h2 id="변형된-형태의-LiveData"><a href="#변형된-형태의-LiveData" class="headerlink" title="변형된 형태의 LiveData"></a>변형된 형태의 LiveData</h2><p>각 repo 는 LiveData 를 이용하여 아래와 같이 이벤트 흐름을 처리하고 있다.</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Google IO repo</span></span><br><span class="line"><span class="keyword">private</span> val _navigateToSignInDialogAction = MutableLiveData&lt;Event&lt;Unit&gt;&gt;()</span><br><span class="line">val navigateToSignInDialogAction: LiveData&lt;Event&lt;Unit&gt;&gt;</span><br><span class="line">    get() = _navigateToSignInDialogAction</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> val _navigateToSignOutDialogAction = MutableLiveData&lt;Event&lt;Unit&gt;&gt;()</span><br><span class="line">val navigateToSignOutDialogAction: LiveData&lt;Event&lt;Unit&gt;&gt;</span><br><span class="line">    get() = _navigateToSignOutDialogAction</span><br><span class="line"></span><br><span class="line"><span class="comment">// Artictecture sample repo</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> SingleLiveEvent&lt;Void&gt; mEditTaskCommand = <span class="keyword">new</span> SingleLiveEvent&lt;&gt;();</span><br></pre></td></tr></table></figure>
 
@@ -400,7 +496,7 @@
 <li>래핑된 Observer 는 <strong>onChanged 콜백이 여러번 호출되는 것을 막는다.</strong></li>
 </ol>
 <p>구글은 왜 이러한 처리를 거쳐서 LiveData 를 사용했을까? 이유는 LiveData 내부 구조에 있다.</p>
-<h2 id="LiveData-는-데이터를-위해-만들어-졌다"><a href="#LiveData-는-데이터를-위해-만들어-졌다" class="headerlink" title="LiveData 는 데이터를 위해 만들어 졌다."></a>LiveData 는 데이터를 위해 만들어 졌다.</h2><p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5jb20vdG9waWMvbGlicmFyaWVzL2FyY2hpdGVjdHVyZS9saXZlZGF0YT9obD1lbg==" title="https://developer.android.com/topic/libraries/architecture/livedata?hl=en">docs<i class="fa fa-external-link"></i></span> 에서는 LiveData 를 다음과 같이 정의하고 있다.</p>
+<h2 id="LiveData-는-데이터를-위해-만들어-졌다"><a href="#LiveData-는-데이터를-위해-만들어-졌다" class="headerlink" title="LiveData 는 데이터를 위해 만들어 졌다."></a>LiveData 는 데이터를 위해 만들어 졌다.</h2><p><a href="https://developer.android.com/topic/libraries/architecture/livedata?hl=en" target="_blank" rel="noopener">docs</a> 에서는 LiveData 를 다음과 같이 정의하고 있다.</p>
 <blockquote>
 <p>LiveData is an observable data holder class</p>
 </blockquote>
@@ -429,7 +525,7 @@
 <p><img src="/images/google_search_live_twice.png" alt></p>
 <h1 id="그럼-무엇을-선택해야할까"><a href="#그럼-무엇을-선택해야할까" class="headerlink" title="그럼 무엇을 선택해야할까?"></a>그럼 무엇을 선택해야할까?</h1><p>위와 같은 이유로 인해 LiveData 를 이벤트 전달로 사용하기 위해서, onChanged 콜백이 여러번 호출되는 것을 막는 변형구조가 탄생하게 되었다. </p>
 <p>그럼 이벤트 전달을 할때는 무엇을 선택하는 것이 좋을까? 진행하고 있는 프로젝트 상황이 각자 다르기에 꼭 하나를 추천하기는 어려울 것 같다. 다만, 현재 진행하고 있는 프로젝트에서 SingleLiveData 와 커스텀 LiveEvent 를 섞어서 사용하고 있으므로 사용해보면서 느낀점을 정리해보면서 마무리하고자 한다.</p>
-<h2 id="SingleLiveEvent"><a href="#SingleLiveEvent" class="headerlink" title="SingleLiveEvent"></a>SingleLiveEvent</h2><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FuZHJvaWQvYXJjaGl0ZWN0dXJlLXNhbXBsZXMvYmxvYi9kZXYtdG9kby1tdnZtLWxpdmUvdG9kb2FwcC9hcHAvc3JjL21haW4vamF2YS9jb20vZXhhbXBsZS9hbmRyb2lkL2FyY2hpdGVjdHVyZS9ibHVlcHJpbnRzL3RvZG9hcHAvU2luZ2xlTGl2ZUV2ZW50LmphdmE=" title="https://github.com/android/architecture-samples/blob/dev-todo-mvvm-live/todoapp/app/src/main/java/com/example/android/architecture/blueprints/todoapp/SingleLiveEvent.java">코드<i class="fa fa-external-link"></i></span> 및 <span class="exturl" data-url="aHR0cHM6Ly9wcm9hbmRyb2lkZGV2LmNvbS9zaW5nbGVsaXZlZXZlbnQtdG8taGVscC15b3Utd29yay13aXRoLWxpdmVkYXRhLWFuZC1ldmVudHMtNWFjNTE5OTg5Yzcw" title="https://proandroiddev.com/singleliveevent-to-help-you-work-with-livedata-and-events-5ac519989c70">관련 포스트<i class="fa fa-external-link"></i></span>를 참고하면 금방 이해할 수 있을거라 생각한다.</p>
+<h2 id="SingleLiveEvent"><a href="#SingleLiveEvent" class="headerlink" title="SingleLiveEvent"></a>SingleLiveEvent</h2><p><a href="https://github.com/android/architecture-samples/blob/dev-todo-mvvm-live/todoapp/app/src/main/java/com/example/android/architecture/blueprints/todoapp/SingleLiveEvent.java" target="_blank" rel="noopener">코드</a> 및 <a href="https://proandroiddev.com/singleliveevent-to-help-you-work-with-livedata-and-events-5ac519989c70" target="_blank" rel="noopener">관련 포스트</a>를 참고하면 금방 이해할 수 있을거라 생각한다.</p>
 <p>구조는 단순하다. MutableLiveData 를 상속받아, 명시적으로 setValue 를 호출했을 때만 데이터가 전달되도록 flag 를 걸어주었다.</p>
 <ul>
 <li>장점은 MutableLiveData 를 상속받았기 때문에 기본적으로 메모리 관리나 LifeCycle 변경에 따른 처리를 따로 해줄필요가 없다. 사용방법도 기존의 LiveData 사용하듯이 쓰면 된다.</li>
@@ -514,7 +610,7 @@
 <p>그런데 더 중요한 문제는 약속이 깨졌다는 이유로 그 위에 새롭게 약속이 깨진 코드를 짜고 있다는 것이었다. 깨진 약속 위에 새로운 약속을 세우는 것이 당장은 어렵고, 신경쓸게 더 많기 때문이다. 일정이 임박할 수록 ‘나중에 고쳐야지’ 라는 마법의 문장을 남발하며 깨진 코드 위에 깨진 코드를 얹는 유혹에 빠진다. </p>
 <p>그 나중은 돌아오지 않는 걸 알고 있으니… 지금부터라도 점진적으로 약속을 지키다보면 언젠가는 눈에 띄는 개선이 이루어져 있지 않을까? 🤔</p>
 <h1 id="로우-레벨-지식의-기계적-반응"><a href="#로우-레벨-지식의-기계적-반응" class="headerlink" title="로우 레벨 지식의 기계적 반응"></a>로우 레벨 지식의 기계적 반응</h1><p>자주 반복해서 겪는 이슈, 자주 사용되는 속성 값, 기본적인 API 사용법 등 로우한 레벨의 지식을 기계적으로 체화시켜놓으면 더 높은 레벨에 대한 고민과 설계를 할 수 있는 여유를 확보할 수 있다. 어차피 검색하면 다 나온다고 하지만 이건 굉장히 중요한 포인트라고 생각한다.</p>
-<p><strong>내가 하루에 쏟을 수 있는 집중력과 에너지는 명확한 한계가 있기 때문이다.</strong> 그렇다고 docs 를 전부 외우려는 것은 아니고, 반복되는 내용들은 필요할 때 빠르게 참고할 수 있도록 짧게 정리하고 있다. 👉🏻 <span class="exturl" data-url="aHR0cHM6Ly9wcm9namguZ2l0Ym9vay5pby90b2RheS1pLWxlYXJuZWQv" title="https://progjh.gitbook.io/today-i-learned/">TIL<i class="fa fa-external-link"></i></span> 한번 내용을 정리한 후, 여러번 참고하다보면 내 머리속에 나름의 인덱스가 생겨 나중에는 관련 토픽만 보면 자동으로 떠오르는 효과가 있었다. 😮</p>
+<p><strong>내가 하루에 쏟을 수 있는 집중력과 에너지는 명확한 한계가 있기 때문이다.</strong> 그렇다고 docs 를 전부 외우려는 것은 아니고, 반복되는 내용들은 필요할 때 빠르게 참고할 수 있도록 짧게 정리하고 있다. 👉🏻 <a href="https://progjh.gitbook.io/today-i-learned/" target="_blank" rel="noopener">TIL</a> 한번 내용을 정리한 후, 여러번 참고하다보면 내 머리속에 나름의 인덱스가 생겨 나중에는 관련 토픽만 보면 자동으로 떠오르는 효과가 있었다. 😮</p>
 <h1 id="좀-더-개발로…"><a href="#좀-더-개발로…" class="headerlink" title="좀 더 개발로…"></a>좀 더 개발로…</h1><h2 id="상속은-신중히-사용하자"><a href="#상속은-신중히-사용하자" class="headerlink" title="상속은 신중히 사용하자"></a>상속은 신중히 사용하자</h2><p>레거시 코드를 처리할 때도 가장 골치가 아픈 케이스는 상속과 엮인 것이다. 바뀐 스펙에 대한 도메인이 상위 클래스에 엮여있다? 그런데 그 클래스가 BaseActivity 이다? 상속받는 클래스를 찍어보니 100개를 우습게 넘어간다. 사이드 이펙트를 예측할 수 없으니 함부로 건드릴수가 없고, 간단한 스펙에도 많은 시간과 에너지가 소모된다.</p>
 <p>이펙티브 자바에서도 지적했지만 <strong>상위 클래스는 상속받는 하위 클래스를 예측할 수 없다. 그리고 계속해서 변경사항이 생긴다.</strong> 하위 클래스는 점점 더 쌓여가는데 호환성때문에 변경은 점점더 악순환에 빠지게 된다.</p>
 <p>상속이 필요한 순간이 분명히 있다. 사용할 때는 꼭 신중히 상위 클래스의 코드를 작성하고, 의도를 명확히 밝혀주는 것이 좋다. </p>
@@ -816,7 +912,93 @@ E/lifeCycle: Fragment onActivityCreated</code></pre><p>….!!!</p>
       
           <p>이직 후 정신없는 하반기를 보냈다. 기대 이상의 성취를 얻은 부분도 있고, 아예 시도조차 못한 부분도 있었다. 스스로 회고하며 기억에 남을 만한 일들을 정리했다.</p>
 <h1 id="개발"><a href="#개발" class="headerlink" title="개발"></a>개발</h1><h2 id="의도를-드러내는-코드-짜기"><a href="#의도를-드러내는-코드-짜기" class="headerlink" title="의도를 드러내는 코드 짜기"></a>의도를 드러내는 코드 짜기</h2><p>우리의 기억력은 빈약하고 왜곡되기 쉽다. 복잡한 비즈니스 로직과 히스토리를 반년 뒤에도 기억할리가 없기 때문에 주섬주섬 주석을 달지만, 이마저도 나중에 보면 이해하기 어려울 때가 많다.</p>
-<p>결국은 코드 자체를 통하여 의도를 드러내는 것이 가장 이상적인 형태이다. 이를 실천하기 위해 많은 고민과 노력이 동반 되었고, 특히 하반기에 수강했던 <a href="https://vagabond95.github.io/2019/11/23/nextstep-class-review/">NextStep 과정</a>이 아주 큰 도움이 되었다.</p>
+<p>결국은 코드 자체를 통하여 의도를 드러내는 것이 가장 이상적인 형태이다. 이를 실천하기 위해 많은 고민과 노력이 동반 되었고, 특히 하반기에 수강했던 <a href="https://vagabond95.github.io/2019/11/23/nextstep-class-review/" target="_blank" rel="noopener">NextStep 과정</a>이 아주 큰 도움이 되었다.</p>
+<h2 id="예외-처리와-Stateless-한-코드-짜기"><a href="#예외-처리와-Stateless-한-코드-짜기" class="headerlink" title="예외 처리와 Stateless 한 코드 짜기"></a>예외 처리와 Stateless 한 코드 짜기</h2><p>‘설마 이 상황이 발생하겠어?’ 라는 마음가짐으로 코드를 짜면 항상 그 부분에서 문제가 발생하게 되는 것을 피부로 겪었다. 많은 사용자 수와 그에 대응되는 수많은 환경을 고려했을 때, 발생할 수 없는 상황은 없다고 생각하는 것이 옳다. 발생할 수 있는 모든 예외 상황에 대한 가드 처리가 필요하며, 너무 많은 가드 처리는 가독성을 떨어트릴 수 있으므로 언어/코드 레벨에서 사전에 방지할 수 있는 방법은 없는지 많은 고민을 했다. 최근까지 도달한 결론은 꼭 필요한 상태(State)가 아니면 사용하지 않는 방향으로 하여 관리포인트와 사이드 이펙트를 줄여나가자는 것으로 마무리 했다.</p>
+<h2 id="아무리-강조해도-지나치지-않은-커뮤니케이션"><a href="#아무리-강조해도-지나치지-않은-커뮤니케이션" class="headerlink" title="아무리 강조해도 지나치지 않은 커뮤니케이션"></a>아무리 강조해도 지나치지 않은 커뮤니케이션</h2><p>개발자라고 해서 항상 주어진 업무 시간 전부를 개발에 쓰기는 어렵다. 정기적/비정기적인 커뮤니케이션 구간이 항상 존재하기 때문이다. 피할 수 없는 일이라면 잘하고 싶다. 잘하기 위해 다음과 같은 노력을 했다.</p>
+<h3 id="커뮤니케이션-대상에-대한-공통된-합의"><a href="#커뮤니케이션-대상에-대한-공통된-합의" class="headerlink" title="커뮤니케이션 대상에 대한 공통된 합의"></a>커뮤니케이션 대상에 대한 공통된 합의</h3><p>같은 개념을 얘기하는 데 다른 언어가 사용되고, 같은 언어를 사용하는데 다른 개념(혹은 구현)으로 설명될 때가 많았다. 이러한 불일치를 보정하는 과정이 발생할 때마다 진행의 병목이 생기고 커뮤니케이션 비용이 높아지는 것이 부담되기 시작했다. 그래서 이를 내가 할 수 있는 일들을 하나씩 진행해봤다. </p>
+<p>1) 기본적으로 커뮤니케이션 시작 전에 이야기하고자 하는 목적과 대상을 한번 더 체크 했다. (ex/ 저는 A 의 B 부분에 대해 논의해야하는 것으로 알고 있는데 맞을까요~?) 이렇게 하면 초기 리소스는 조금 더 들 수 있지만 이미 커뮤니케이션이 어느정도 진행된 후 보정하는 것보다는 훨씬 나은 결과를 얻었다. 매번 이 방식을 고수하다보니, 나중에는 먼저 얘기를 꺼내주시는 분들도 생겼다!</p>
+<p>2) 팀장님에게 좀 더 정기적인 코드 리뷰 시간 확보를 요청했다. 이 일정은 개념/구현에 대한 논의를 거쳐 통일된 방향으로 나아가는 시간이 되었고, 이 이후 팀원간 커뮤니케이션 속도가 빨라졌을 뿐만아니라 구현에 대한 통일성도 얻어갈 수 있었다.</p>
+<h3 id="설득의-기술"><a href="#설득의-기술" class="headerlink" title="설득의 기술"></a>설득의 기술</h3><p>기획서에서는 한 줄 분량의 내용인데 수많은 클래스를 고쳐야 한다거나 IOS 에서는 쉽지만 Android 에서는 구현 복잡도가 큰 구현 사항이 넘어올 때가 있다. 모든 요구사항을 다 처리해주는 슈퍼 개발자가 되고 싶지만… 아직 그럴 실력도 안되고 개발 기간도 제한되어 있기 때문에 결국 설득을 위한 커뮤니케이션을 피할 수 없었다. </p>
+<p>복잡한 내부 히스토리와 예외 상황이 존재하기는 하나, 기본적으로 내 전략은 다음과 같았다.</p>
+<ul>
+<li>개발과 관련된 내용을 배제하고 최대한 이해하기 쉽게 상황과 이유를 설명한다.</li>
+<li>구현하지 못하는 내용에 대한 대체 옵션을 제시한다.</li>
+</ul>
+<p>전략을 실제 대화로 구성하면 다음과 같다.</p>
+<p>“A 스펙은 비슷한 행동을 수행하는 다른 화면에도 영향이 가기 때문에 이번 버전에 일괄적으로 적용하기는 조금 어려울 것 같아요. 다만, 범위를 B 까지만 한다면 가능할 것 같은데 이렇게 진행하는 것은 어떨 까요?”</p>
+<p>결국 개발팀에서는 할 수 없는 나름의 이유가 있고, 다른팀에서는 해야하는 나름의 이유가 있기 때문에 무조건 받아줄수도, 무조건 거절할 수 도 없기 때문에 위와 같은 절충안을 생각했다. 그리 어려운 방식은 아니였지만 설득의 성공률은 굉장했다!</p>
+<h1 id="개발-외"><a href="#개발-외" class="headerlink" title="개발 외"></a>개발 외</h1><h2 id="운동은-장기-레이스로"><a href="#운동은-장기-레이스로" class="headerlink" title="운동은 장기 레이스로"></a>운동은 장기 레이스로</h2><p>주짓수에 본격적으로 재미를 붙히기 시작했을 때, 대회에 출전하여 수상해보고 싶은 욕심이 생겼다. 준비 기간이 짧아 몸의 신호를 무시하고 무리하게 운동을 진행했는데 결국 출전 직전에 큰 부상을 겪게 되었다. 손목에 힘을 주기 어려울 만큼 통증이 심해서 주짓수는 물론이고 운동 자체를 몇 달간 쉬게 되었다. 운동을 못하니 체력이 급속도로 떨어지고, 스트레스 해소가 되지않아 멘탈에도 많은 영향을 주었다. </p>
+<p>다행히 지금은 많이 회복되어 퇴근 후 가볍게 헬스를 하고 있다. 운동을 다시 시작하니 점차 몸의 활력이 돌아옴을 느낀다. 결국 운동은 죽기 전까지 꾸준히 필요하다. 지치지 않는 장기 레이스를 잘 수행할 수 있도록 적절한 페이스 조절이 필요함을 실감했다.</p>
+<h2 id="의도적인-휴식과-충전"><a href="#의도적인-휴식과-충전" class="headerlink" title="의도적인 휴식과 충전"></a>의도적인 휴식과 충전</h2><p>학습과 성장에 대한 열망을 넘어 강박 수준까지 가다보니 기습적으로 찾아오는 무기력함과 매너리즘에 속절없이 당했던 순간이 많았다. 이를 방지하기 위해 의도적으로 쉬면서 재충전하는 시간을 만들려고 노력했는데 아, 의도적으로 쉬려고 하는 것도 참 쉽지 않음을 느꼈다. 특히, 하고싶은 것을 하면서 보내는 시간 자체가 계속해서 뒤쳐지고 있다는 느낌이 들어서 이를 떨쳐 내는 것이 쉽지 않았다.</p>
+<p>그래도 의식적으로 노력하여 시간을 제법 확보 했고, 나름 알차게 사용했다고 생각된다. 특히 올 하반기에는 경제와 관련된 많은 책을 읽으며 새로운 분야로 발을 내딛는 재미를 느꼈고, 비슷한 관심사를 가진 사람들이 모인 독서 모임을 신청하여 다양한 사람들의 삶을 엿보는 시간도 가지게 되었다. 운동도 이러한 시간의 연장선이라고 볼 수 있다. </p>
+<p>무엇을 하든 유연하게 균형을 맞추는 일이 참 중요하다고 생각한다. 너무 뻣뻣하면 부러지기 쉽다.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://vagabond95.me/2019/12/22/2019-second-half-review copy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jihoon Kim">
+      <meta itemprop="description" content="내일 잊기전에 오늘 적어두는 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="기록은 기억을 지배한다">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/22/2019-second-half-review copy/" class="post-title-link" itemprop="url">2019년 하반기 회고</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-12-22 20:43:22" itemprop="dateCreated datePublished" datetime="2019-12-22T20:43:22+09:00">2019-12-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-12-29 13:46:50" itemprop="dateModified" datetime="2019-12-29T13:46:50+09:00">2019-12-29</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>이직 후 정신없는 하반기를 보냈다. 기대 이상의 성취를 얻은 부분도 있고, 아예 시도조차 못한 부분도 있었다. 스스로 회고하며 기억에 남을 만한 일들을 정리했다.</p>
+<h1 id="개발"><a href="#개발" class="headerlink" title="개발"></a>개발</h1><h2 id="의도를-드러내는-코드-짜기"><a href="#의도를-드러내는-코드-짜기" class="headerlink" title="의도를 드러내는 코드 짜기"></a>의도를 드러내는 코드 짜기</h2><p>우리의 기억력은 빈약하고 왜곡되기 쉽다. 복잡한 비즈니스 로직과 히스토리를 반년 뒤에도 기억할리가 없기 때문에 주섬주섬 주석을 달지만, 이마저도 나중에 보면 이해하기 어려울 때가 많다.</p>
+<p>결국은 코드 자체를 통하여 의도를 드러내는 것이 가장 이상적인 형태이다. 이를 실천하기 위해 많은 고민과 노력이 동반 되었고, 특히 하반기에 수강했던 <a href="https://vagabond95.github.io/2019/11/23/nextstep-class-review/" target="_blank" rel="noopener">NextStep 과정</a>이 아주 큰 도움이 되었다.</p>
 <h2 id="예외-처리와-Stateless-한-코드-짜기"><a href="#예외-처리와-Stateless-한-코드-짜기" class="headerlink" title="예외 처리와 Stateless 한 코드 짜기"></a>예외 처리와 Stateless 한 코드 짜기</h2><p>‘설마 이 상황이 발생하겠어?’ 라는 마음가짐으로 코드를 짜면 항상 그 부분에서 문제가 발생하게 되는 것을 피부로 겪었다. 많은 사용자 수와 그에 대응되는 수많은 환경을 고려했을 때, 발생할 수 없는 상황은 없다고 생각하는 것이 옳다. 발생할 수 있는 모든 예외 상황에 대한 가드 처리가 필요하며, 너무 많은 가드 처리는 가독성을 떨어트릴 수 있으므로 언어/코드 레벨에서 사전에 방지할 수 있는 방법은 없는지 많은 고민을 했다. 최근까지 도달한 결론은 꼭 필요한 상태(State)가 아니면 사용하지 않는 방향으로 하여 관리포인트와 사이드 이펙트를 줄여나가자는 것으로 마무리 했다.</p>
 <h2 id="아무리-강조해도-지나치지-않은-커뮤니케이션"><a href="#아무리-강조해도-지나치지-않은-커뮤니케이션" class="headerlink" title="아무리 강조해도 지나치지 않은 커뮤니케이션"></a>아무리 강조해도 지나치지 않은 커뮤니케이션</h2><p>개발자라고 해서 항상 주어진 업무 시간 전부를 개발에 쓰기는 어렵다. 정기적/비정기적인 커뮤니케이션 구간이 항상 존재하기 때문이다. 피할 수 없는 일이라면 잘하고 싶다. 잘하기 위해 다음과 같은 노력을 했다.</p>
 <h3 id="커뮤니케이션-대상에-대한-공통된-합의"><a href="#커뮤니케이션-대상에-대한-공통된-합의" class="headerlink" title="커뮤니케이션 대상에 대한 공통된 합의"></a>커뮤니케이션 대상에 대한 공통된 합의</h3><p>같은 개념을 얘기하는 데 다른 언어가 사용되고, 같은 언어를 사용하는데 다른 개념(혹은 구현)으로 설명될 때가 많았다. 이러한 불일치를 보정하는 과정이 발생할 때마다 진행의 병목이 생기고 커뮤니케이션 비용이 높아지는 것이 부담되기 시작했다. 그래서 이를 내가 할 수 있는 일들을 하나씩 진행해봤다. </p>
@@ -969,7 +1151,7 @@ E/lifeCycle: Fragment onActivityCreated</code></pre><p>….!!!</p>
 </ul>
 <h1 id="마무리-하며"><a href="#마무리-하며" class="headerlink" title="마무리 하며"></a>마무리 하며</h1><p>이 수업 과정을 마쳤다고 해서 TDD, Clean Code, Refactoring 의 종착점에 도달했다고 얘기할 수는 없다. 오히려 이제 시작이라고, 나아가야 한다고, 출발선에 세워 주는 느낌이다. 달려가는 과정 속에서는 분명히 많은 어려움이 따라오겠지만 이제라도 올바른 레이스를 시작할 수 있게 된 것에 감사함을 느낀다.  글을 마무리하고, 미처 끝내지 못한 과제를 하러 다시 달려야겠다. 🤟</p>
 <p>항상 열정적으로 강의를 진행해주신 재성님, 매번 디테일한 리뷰와 함께 함께 고민을 나누어 주셨던 리뷰어분들께 감사드린다.</p>
-<p><strong>link :</strong> <span class="exturl" data-url="aHR0cHM6Ly9lZHUubmV4dHN0ZXAuY2FtcC8=" title="https://edu.nextstep.camp/">https://edu.nextstep.camp/<i class="fa fa-external-link"></i></span> </p>
+<p><strong>link :</strong> <a href="https://edu.nextstep.camp/" target="_blank" rel="noopener">https://edu.nextstep.camp/</a> </p>
 <p>다음 기수의 강의가 열리기 전에 미리 대기 신청을 할 수 있으므로, 관심이 있으면 클릭!</p>
 
       
@@ -1093,234 +1275,6 @@ A - X - E&apos; - F&apos; - G&apos; - H&apos;</code></pre><p><strong>번외</str
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://vagabond95.me/2019/10/20/object-book-4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Jihoon Kim">
-      <meta itemprop="description" content="내일 잊기전에 오늘 적어두는 블로그">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="기록은 기억을 지배한다">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/20/object-book-4/" class="post-title-link" itemprop="url">[도서] 오브젝트 정리 Chapter 4 (캡슐화, 응집도, 결합도)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-10-20 15:09:37" itemprop="dateCreated datePublished" datetime="2019-10-20T15:09:37+09:00">2019-10-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-11-03 18:14:10" itemprop="dateModified" datetime="2019-11-03T18:14:10+09:00">2019-11-03</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>이번 글에서는 데이터 중심 클래스의 정의와 단점을 알아보고, 이를 해결하기 위한 방법으로 캡슐화와 응집도/결합도에 대한 완전한 이해를 얻어가는 것이 목적이다.</p>
-<h1 id="데이터-중심으로-설계된-클래스"><a href="#데이터-중심으로-설계된-클래스" class="headerlink" title="데이터 중심으로 설계된 클래스"></a>데이터 중심으로 설계된 클래스</h1><p><a href="https://vagabond95.github.io/2019/10/13/object-book-1-3/">이전글</a> 내용을 살펴보면 객체지향 애플리케이션을 구현하는 것은 각 객체가 책임을 수행하며 서로간의 협력을 통해 공동체를 구축한다는 것을 의미한다. 즉, 중요한 것은 객체가 다른 객체와 <strong>협력하는 방법</strong>이며, 각 객체가 내부에 어떤 상태를 가지고 관리하는 지에 대한 것은 부가적인 문제일 뿐이다.  </p>
-<p>그러나, 우리가 일반적으로 클래스를 설계하는 과정은 어떨까? </p>
-<ol>
-<li>처음부터 객체간의 협력과 책임에 대해 고민하는 것은 머리아프다.</li>
-<li>따라서 우선 클래스에 어떤 데이터가 들어가야할지 결정한다.</li>
-<li>또한 어떤 상황에서도 객체가 사용될 수 있게 최대한 많은 getter/setter 를 추가한다.  </li>
-</ol>
-<p>이러한 설계방식을 <strong>데이터 중심 설계</strong> (혹자는 추측에 의한 설계전략)라고 부르며, 데이터 중심 설계는 객체의 외부가 아닌 내부에 초점을 맞추게 된다. </p>
-<p>데이터 중심 클래스의 객체는 단순한 데이터의 집합일 뿐이다. 따라서 제공되는 메소드는 과도한 접근자와 수정자 뿐이며, 이 데이터를 사용하여 로직을 수행하는 일은 별도의 객체에서 수행하게 된다. 이로 인하여 객체의 인터페이스에 내부 구현이 노출되고, 인터페이스를 이용하여 협력하는 또다른 객체 역시 데이터 중심 클래스의 내부구현에 종속되게 된다. (캡슐화가 이루어지지 않음) 문제는 <strong>객체의 내부 구현은 언제든 변화가 생길 수 있다는 점</strong>이다. 따라서 데이터 중심의 설계는 변화가 발생했을 때 협력하는 모든 객체가 영향을 받게되므로 변화에 매우 취약한  설계방식 이다. </p>
-<h1 id="캡슐화-응집도-결합도"><a href="#캡슐화-응집도-결합도" class="headerlink" title="캡슐화, 응집도, 결합도"></a>캡슐화, 응집도, 결합도</h1><p>좋은 객체지향 설계의 척도를 이야기할 때 빠지지 않고 등장하는 얘기들이 있다. 캡슐화가 잘되어야한다. 높은 응집도와 낮은 결합도를 가져야한다. 귀에 못박히도록 들었으나 해당 문장이 가지고 있는 진정한 의미를 이해하고 있었다고 단언할 수 있을까?</p>
-<h2 id="캡슐화"><a href="#캡슐화" class="headerlink" title="캡슐화"></a>캡슐화</h2><p>캡슐화가 무엇일까? 라고 질문하면 “객체 내부 구현을 외부로부터 감추는 것이다.” 라고 쉽게 얘기할 수 있다. 구현레벨에서는 접근 제한자를 이용하여 맴버변수를 숨기고 getter/setter 를 구성하며 캡슐화가 적용된 코드라고 얘기하곤 한다.</p>
-<p>안타깝게도 위 내용은 캡슐화의 본질을 온전히 이해하고 있지 못하고 있다. 캡슐화는 분명 내부구현을 외부로부터 감추는 것이 맞다. 하지만 중요한 것은 <strong>왜 감추느냐</strong>는 것이다. 위에서 얘기한 데이터 중심의 설계방식을 살펴보면 그 이유를 알 수 있다. 캡슐화를 통해 감추는 이유는 내부구현을 숨김으로 인하여 내부구현의 변화가 발생하더라도 협력하는 <strong>외부 객체에 변화의 영향이 퍼져나가지 않도록 막기 위함</strong>이다. </p>
-<p>너무 당연한 얘기일까? 그렇다면 다시 질문해보자. 접근제한자로 변수를 숨기고 getter/setter 를 통해 접근 및 조작하는 것은 캡슐화가 이루어진 것이라고 할 수 있을까? 캡슐화를 한 것은 맞다. 이러한 방식을 데이터 캡슐화라고 부른다. 그러나 데이터 캡슐화만으로는 캡슐화의 목적을 달성하지 못한다. getter 가 제공된다는 것은 필연적으로 어떤 로직을 수행하기 위해 해당 데이터가 필요하다는 의미이며, 그 로직은 또다른 객체에서 수행될 수 밖에없다. 그리고 만약 getter 의 return type 이 바뀐다면? 또다른 객체 역시 내용을 변경할 수 밖에 없다. 이러한 케이스를 <strong>객체의 내부구현이 드러난다</strong>고 표현한다.  캡슐화의 목적은 내부구현을 숨기는 것인데, 데이터 캡슐화만으로는 내부구현이 드러나게 되는 아이러니한 상황이 발생하는 것이다. (내부구현은 return type 뿐만 아니라 parameter, method 자체 로도 드러날 수 있다.)</p>
-<pre><code>// 캡슐화의 목적이 이루어지지 않은 클래스
-public class Movie {
-    private String title;
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-}</code></pre><p>자, 데이터를 숨기는 것만으로는 캡슐화의 목적이 달성될 수 없음을 알았다. 그렇다면 어떤 수준까지 해야할까? 책에서는 다음과 같이 얘기하고 있다.</p>
-<blockquote>
-<p>다시한번 강조하지만 캡슐화란 변할 수 있는 어떤 것이라도 감추는 것이다. 그것이 속성의 타입이건, 할인 정책의 종류건 상관없이 내부 구현의 변경으로 인해 외부가 객체가 영향을 받는다면 캡슐화를 위반한 것이다.</p>
-</blockquote>
-<p>변경될 수 있는 모든 것을 감추는 것, 그것만이 캡슐화의 목적에 다다를 수 있다. 그리고 이러한 규칙은 협력을 잘 구성하고 책임을 스스로 수행할 수 있도록 구성하면 자연스레 지켜지게 된다. 즉 캡슐화를 하기 위해 일련의 작업들을 수행하는 것이 아니라, 객체지향 프로그래밍의 규칙을 지키다보면 자연스럽게 캡슐화가 보장되어가는 형태가 된다.</p>
-<p>그래도 역시 이해하기에 모호한 부분이 있다. 그래서 캡슐화가 잘 되었는지 파악할 수 있는 기준들을 소개하고자 한다.</p>
-<h2 id="응집도와-결합도"><a href="#응집도와-결합도" class="headerlink" title="응집도와 결합도"></a>응집도와 결합도</h2><p>응집도와 결합도는 소프트웨어품질을 측정하기 위한 기준이지만 캡슐화의 정도를 측정할때도 유용하게 활용될 수 있다. 객체지향 관점에서 각 개념은 다음과 같이 풀어내고 있다.</p>
-<ul>
-<li><strong>응집도</strong>는 클래스/객체에 얼마나 관련 높은 책임이 할당되었는지를 나타낸다.</li>
-<li><strong>결합도</strong>는 클래스/객체가 협력에 필요한 적절한 수준의 관계만 유지하고 있는지 나타낸다.</li>
-</ul>
-<p>… 객체지향을 오해하기 쉬운 이유는 이러한 애매하고 추상적인 개념들을 명확하게 이해하기가 어렵기 때문이라고 생각한다.</p>
-<p>처음으로 돌아가 생각해보자. 좋은 설계란 무엇인가? 변경하기 쉬운 설계이다. 그리고 높은 응집도와 낮은 결합도를 가졌을 때 우리는 좋은 설계라고 부르곤한다. 따라서 각 개념은 결국 <strong>변경</strong>과 관련이 있다는 얘기가 된다. 변경의 관점에서 다시한번 각 개념을 살펴보자.</p>
-<p>어플리케이션에 여러 모듈(객체)가 있을 때</p>
-<ul>
-<li><p><strong>(변경의 관점에서) 응집도</strong>는 변경이 발생했을 때 어플리케이션내에서 변경이 발생하는 정도를 의미한다. 예를들어 특정 기능에 대한 변경이 있을때 대해 하나의 모듈만 변경된다면 응집도가 높고, 다수의 모듈이 함께 변경돼야하면 응집도가 낮다고 할 수 있다.</p>
-<p>  응집도가 낮다면 하나의 변경점에 대해 다수 모듈의 변경이 동반되기 때문에 변경에 부담이 생기기 시작한다.</p>
-</li>
-<li><p><strong>(변경의 관점에서) 결합도</strong>는 하나의 모듈에서 변경이 발생했을 때, 다른 모듈의 변경을 요구하는 정도를 의미한다. 예를들어 하나의 모듈을 수정했을 때 함께 변경해야하는 모듈의 수가 많을 수록 결합도가 높다고 할 수 있다.</p>
-<p>  결합도가 높다면 모듈의 내부구현이 변경되었을 때 영향을 받는 모듈 수가 많으므로 변경에 부담이 생기기 시작한다.</p>
-</li>
-</ul>
-<p>위 개념을 잘 이해했다면 왜 높은 응집도와 낮은 결합도가 충족된 것이 좋은 설계인것인지 알 수 있을 것이다.</p>
-<p>위에서 살펴본 데이터 중심설계는 낮은 응집도와 높은 결합도를 가진 객체를 양산하기 쉬운 방식인데 이유는 다음과 같다.</p>
-<p>응집도 개념에서 살펴보면, 객체의 클래스가 데이터를 중심으로 설계되었으므로 해당 객체의 책임은 데이터를 조작하고 내뱉는 것 그 이상도 이하도 아니다. 즉 데이터를 제공하는 객체가 스스로 일을 처리하지 못하므로, 로직을 수행하는 객체가 이를 수행하게 된다. 문제는 로직을 수행하는 객체가 또다른 데이터를 제공하는 객체를 맡기 시작할 경우 해당 객체의 책임은 점점 비대해지고 둘중 한쪽에서만 변경이 발생해도 필연적으로 같이 영향을 받게 된다. 하나의 클래스에서 변경이 발생했는데 전혀 연관이 없을 것같은 부분에서 사이드 이펙트가 발생하는 케이스가 대표적으로 각 클래스의 응집도가 낮은 상황이다.</p>
-<p>결합도 개념에서 살펴보면, 마찬가지로 데이터를 제공하는 객체가 스스로 일을 처리하지 못하므로 해당 데이터를 다른 객체에서 처리하게 된다. 만약 해당 객체의 데이터가 변경될 경우 (parameter, type) 데이터를 사용하는 모든 객체에게 변화의 영향이 퍼지게 된다.</p>
-<p>결국 내용을 돌아보면 다시 객체의 책임과 협력으로 귀결된다. 다음 글에서는 어떻게 객체에 책임을 잘 할당할 수 있는지에 대해 알아보자.</p>
-<h1 id="결론"><a href="#결론" class="headerlink" title="결론"></a>결론</h1><ul>
-<li>우리는 데이터 중심의 설계를 하고있었을 확률이 높다.</li>
-<li>캡슐화의 진정한 목적을 항상 기억하자.</li>
-<li>코드를 변경하기 어렵다면 응집도/결합도 정도를 점검해보자.</li>
-<li>결국 좋은 설계란 <strong>변경하기 쉬운</strong> 설계다.</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://vagabond95.me/2019/10/13/object-book-1-3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Jihoon Kim">
-      <meta itemprop="description" content="내일 잊기전에 오늘 적어두는 블로그">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="기록은 기억을 지배한다">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/13/object-book-1-3/" class="post-title-link" itemprop="url">[도서] 오브젝트 정리 Chapter 1 - 3</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-10-13 17:45:35 / Modified: 22:17:59" itemprop="dateCreated datePublished" datetime="2019-10-13T17:45:35+09:00">2019-10-13</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>변경은 언제든 찾아올 수 있다. 변경은 피할 수 없다. 이러한 사실을 깨달은 사람들은 변경에 유연하게 대응할 수 있는 방법을 고민해왔고 이에 다영한 해결법이 제시되었다. 이번에 다루게 될 객체지향 프로그래밍도 그 중 하나라고 할 수 있다. </p>
-<p>객체지향 프로그래밍. 익숙하지만 제대로 이해하고 활용하고 있다고 얘기하기는 어려운 그런 녀석이었다. Java 를 사용하면 객체지향일까? 클래스 개념을 활용하면 객체지향일까? 안타깝게도 Java 내에서 class 를 사용해도 얼마든지 절차지향적인 코드가 나올 수 있고, 실제로도 그런 코드를 많이 양산해왔다. 객체지향적인 설계에 대한 고민이 깊어질때 즘 ‘객체지향의 사실과 오해’ 책으로 알게된 조영호님의 신간이 나왔음을 들었고 ‘오브젝트’ 책을 읽기 시작했다. 이번 포스팅은 챕터 1 ~ 3 을 읽고 정리하는 내용으로 채웠다.</p>
-<h1 id="객체간의-협력과-책임-설계-레벨"><a href="#객체간의-협력과-책임-설계-레벨" class="headerlink" title="객체간의 협력과 책임 (설계 레벨)"></a>객체간의 협력과 책임 (설계 레벨)</h1><blockquote>
-<p>OOP 설계의 핵심은 협력을 구성하기 위해 적절한 객체를 찾고 적절한 책임을 할당하는 과정에서 드러난다. 클래스와 상속은 객체들의 책임과 협력이 어느 정도 자리를 잡은 후에 사용할 수 있는 구현 메커니즘일 뿐이다.</p>
-</blockquote>
-<h2 id="잘못된-방식"><a href="#잘못된-방식" class="headerlink" title="잘못된 방식"></a>잘못된 방식</h2><p>OOP 를 막 입문하면 가장 흔하게 하는 실수가 객체의 행동이 아닌 상태에 초점을 맞추는 것이다. 객체의 상태를 먼저 결정하고, 상태에 필요한 행동을 결정한다. 이런 방식은 객체의 내부 구현이 객체의 퍼블릭 인터페이스에 노출되도록 만들기 때문에 캡슐화를 저해한다. 또한 객체의 내부 구현은 언제든 바뀔 수 있기 때문에 결국 외부에 변화가 전파된다.</p>
-<h2 id="객체지향-관점에서-객체의-구성-방식"><a href="#객체지향-관점에서-객체의-구성-방식" class="headerlink" title="객체지향 관점에서 객체의 구성 방식"></a>객체지향 관점에서 객체의 구성 방식</h2><p>→ 객체는 어떤 협력을 참여하는가</p>
-<p>→ 협력을 위해서 어떤 행동을 해야하는가</p>
-<p>→ 행동하기 위해서 어떤 상태를 가져야하는가</p>
-<h3 id="1-객체간의-협력과-수행해야할-책임을-파악할-것"><a href="#1-객체간의-협력과-수행해야할-책임을-파악할-것" class="headerlink" title="1. 객체간의 협력과 수행해야할 책임을 파악할 것"></a>1. 객체간의 협력과 수행해야할 책임을 파악할 것</h3><blockquote>
-<p>어플리케이션안에 어떤 객체가 필요하다면 그 이유는 단 하나여야 한다. 객체가 어떤 협력에 참여하고 있기 때문이다. 그리고 객체가 협력에 참여할 수 있는 이유는 협력에 필요한 적절한 행동을 보유하고 있기 때문이다.</p>
-</blockquote>
-<p>객체가 책임을 할당하는 데 필요한 메세지를 먼저 식별하고, 메세지를 처리할 객체를 나중에 선택하는 것이 중요하다. 이런 방식으로 객체를 구성할 경우 다음과 같은 이점이 있다.</p>
-<ol>
-<li>객체가 최소한의 퍼블릭 인터페이스를 가질 수 있게 된다.</li>
-<li>객체의 퍼블릭 인터페이스는 무엇을 하는지만 나타낼 뿐, 어떻게 수행하는지가 노출되지 않는다.</li>
-</ol>
-<h3 id="2-책임을-수행하기-위해-필요한-상태-및-내부-구현-정의"><a href="#2-책임을-수행하기-위해-필요한-상태-및-내부-구현-정의" class="headerlink" title="2. 책임을 수행하기 위해 필요한 상태 및 내부 구현 정의"></a>2. 책임을 수행하기 위해 필요한 상태 및 내부 구현 정의</h3><p>객체의 퍼블릭 인터페이스가 정해졌다면, 다음으로는 퍼블릭 인터페이스로 들어온 요청을 객체 스스로 처리할 수 있도록 구성해야한다. 즉, 내부 구현 및 내부 구현에 필요한 상태의 정의가 필요하다. 객체의 상태는 그 객체가 행동을 수행하는 데 필요한 정보가 무엇인지로 결정된다. 객체는 자신의 상태를 스스로 결정하고 관리하는 자율적인 존재이기 때문이다.</p>
-<p>협력관계속에서 다른 객체에게 무엇을 제공해야 하고 다른 객체로부터 무엇을 얻어야 하는지를 고민해야만 훌륭한 책임을 수확할 수 있다.</p>
-<h3 id="3-책임을-조합하여-역할을-정의"><a href="#3-책임을-조합하여-역할을-정의" class="headerlink" title="3. 책임을 조합하여 역할을 정의"></a>3. 책임을 조합하여 역할을 정의</h3><p>어느정도 객체의 책임이 정의되었다면 객체의 역할을 정의할 수 있다. 코드레벨에서는 Java 기준으로 ‘interface, abstract class 를 구현한다.’ 라고도 얘기할 수 있다. 객체의 역할을 정의해주는 것이 중요한 이유는 동일한 협력을 수행하는 객체들을 추상화할 수 있기 때문이다. 협력관계가 역할이라는 추상화된 형태로 묶일 경우 당연히 변화에도 대응하기 쉬워진다. 책에서는 객체의 역할에 대해 다음과 같이 비유했다.</p>
-<ul>
-<li>서로 다른 배우들(객체)이 동일한 배역(역할)을 연기할 수 있다.</li>
-<li>하나의 배우(객체)가 서로 다른 배역(역할)을 연기할 수 있다.</li>
-</ul>
-<p>협력이라는 문맥 안에서 역할은 특정한 협력에 참여해서 책임을 수행하는 객체의 일부다. 역할은 객체의 구조나 상태에 의해 정의될 수 없으며, 시스템의 문맥 안에서 무엇을 하는지에 의해서만 정의될 수 있음을 주의해야한다. </p>
-<p>번외로, 오직 한 종류의 객체만 협력에 참여하는 상황에서 역할이라는 개념을 고려하는 것이 유용할까? 역할이라는 개념을 생략하고 직접 객체를 이용해 협력을 설계하는 것이 더 좋지 않을까? 라는 궁금증이 생길 수 있다. 책에서 내린 결론은 다음과 같다.</p>
-<p>“협력에 적합한 책임을 수행하는 대상이 한 종류라면, 간단하게 객체를 이용하면 된다. 만약 여러 종류의 객체가 협력에 이용될 수 있다면 협력의 대상은 역할이 될 것이다.</p>
-<p><strong>하지만 설계 초반에는 적절한 책임과 협력의 큰 그림을 탐색하는 것이 가장 중요한 목표여야 하고 역할과 객체를 명확하게 구분하는 것은 그렇게 중요하지는 않다는 것이다.</strong>“</p>
-<p>즉, 상황에 맞게 역할(추상화된 형태) 혹은 객체 (구체적인 형태)를 잘 선택해서 사용하되, 어차피 바뀔 수 있는 내용이므로 설계 초기에는 크게 신경쓰지 않아도 된다고 이야기 하고 있다.</p>
-<h1 id="객체-지향-구현-기법-구현-레벨"><a href="#객체-지향-구현-기법-구현-레벨" class="headerlink" title="객체 지향 구현 기법 (구현 레벨)"></a>객체 지향 구현 기법 (구현 레벨)</h1><h2 id="캡슐화"><a href="#캡슐화" class="headerlink" title="캡슐화"></a>캡슐화</h2><p>클래스를 구현하거나 개발된 클래스를 사용할 때 가장 중요한 것은 클래스의 경계를 구분 짓는 것이다. 데이터와 기능을 객체 내부로 함께 묶는 것을 <strong>캡슐화</strong>라고 한다.캡슐화 된 객체는 상태는 숨기고 행동만 public 인터페이스로 공개한다.</p>
-<p>객체의 외부와 내부를 구분하면 클래스를 사용하는 입장에서 알아야할 지식의 양이 줄어들고, 클래스 구현자는 내부 구현을 변경할 수 있는 폭이 넓어진다.</p>
-<h2 id="다형성"><a href="#다형성" class="headerlink" title="다형성"></a>다형성</h2><p>객체를 추상화된 형태로 제공할 수 있다. 추상화가 유연한 설계를 가능하게 하는 이유는 설계가 구체적인 상황에 결합되는 것을 방지하기 때문이다. (구체적인 상황은 항상 변경된다.) </p>
-<p>주의할 점은 다형성을 이용하여 설계를 유연하게 가져갈수록 코드를 이해하고 디버깅하기는 점점 더 어려워진다. 무조건 유연한 설계도, 무조건 읽기 쉬운 코드도 정답이 아니다.</p>
-<h2 id="상속"><a href="#상속" class="headerlink" title="상속"></a>상속</h2><p>상속이 가치있는 이유는 부모 클래스가 제공하는 모든 인터페이스를 자식 클래스가 물려받을 수 있기 때문이다. (다형성 - 업캐스팅의 활용)</p>
-<p>주의할 점으로 상속은 객체지향 프로그래밍에서 코드를 재사용하기 위해 널리 사용되는 되지만 두가지 관점에서 설계에 안좋은 영향을 미친다. (이펙티브 자바에서도 동일한 내용의 챕터가 존재한다.) ****</p>
-<p>구현의 재사용성으로 이용된 상속은 변경에 취약하고, 부모클래스의 캡슐화를 깨기때문에 지양해야한다. 따라서 상속의 사용 목적은 구현의 재사용보다 인터페이스를 재사용하는 것에 초점을 맞춰야 한다. </p>
-<p>하지만 실제 개발시에는 상속을 통해 내부 구현을 재사용해야할 일이 생기기 마련이다. 따라서 상황에 맞게 적절히 활용하는 지혜가 요구된다.</p>
-<p>상황별로 권장되는 방법은 다음과 같다.</p>
-<ul>
-<li>구현내용 재사용 X, 다형성 활용 O : interface (Java)</li>
-<li>구현내용 재사용 O, 다형성 활용 O : abstract class (Java)</li>
-<li>구현내용 재사용 O, 다형성 활용 X : composition (디자인 패턴)</li>
-</ul>
-<h1 id="설계의-트레이드-오프"><a href="#설계의-트레이드-오프" class="headerlink" title="설계의 트레이드 오프"></a>설계의 트레이드 오프</h1><ul>
-<li>어떤 기능을 설계하는 방법은 한가지 이상일 수 있다.</li>
-<li>동일한 기능을 한 가지 이상의 방법으로 설계할 수 있기 때문에 결국 설계는 트레이트 오프의 산물이다. 어떤 경우에도 모든 상황을 만족시킬 수 있는 설계를 만들 수는 없다.</li>
-</ul>
-<p>구현과 관련된 모든 것들이 트레이드 오프의 대상이 될 수 있다. 작성하는 모든 코드에는 합당한 이유가 있어야 한다. 비록 아주 사소한 결정이더라도 트레이드 오프를 통해 얻어진 결론과 그렇지 않은 결론 사이의 차이는 크다.</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1390,7 +1344,7 @@ public class Movie {
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
