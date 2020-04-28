@@ -951,92 +951,6 @@ E/lifeCycle: Fragment onActivityCreated</code></pre><p>….!!!</p>
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://vagabond95.me/2019/12/22/2019-second-half-review copy/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Jihoon Kim">
-      <meta itemprop="description" content="내일 잊기전에 오늘 적어두는 블로그">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="기록은 기억을 지배한다">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/12/22/2019-second-half-review copy/" class="post-title-link" itemprop="url">2019년 하반기 회고</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-12-22 20:43:22" itemprop="dateCreated datePublished" datetime="2019-12-22T20:43:22+09:00">2019-12-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-12-29 13:46:50" itemprop="dateModified" datetime="2019-12-29T13:46:50+09:00">2019-12-29</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>이직 후 정신없는 하반기를 보냈다. 기대 이상의 성취를 얻은 부분도 있고, 아예 시도조차 못한 부분도 있었다. 스스로 회고하며 기억에 남을 만한 일들을 정리했다.</p>
-<h1 id="개발"><a href="#개발" class="headerlink" title="개발"></a>개발</h1><h2 id="의도를-드러내는-코드-짜기"><a href="#의도를-드러내는-코드-짜기" class="headerlink" title="의도를 드러내는 코드 짜기"></a>의도를 드러내는 코드 짜기</h2><p>우리의 기억력은 빈약하고 왜곡되기 쉽다. 복잡한 비즈니스 로직과 히스토리를 반년 뒤에도 기억할리가 없기 때문에 주섬주섬 주석을 달지만, 이마저도 나중에 보면 이해하기 어려울 때가 많다.</p>
-<p>결국은 코드 자체를 통하여 의도를 드러내는 것이 가장 이상적인 형태이다. 이를 실천하기 위해 많은 고민과 노력이 동반 되었고, 특히 하반기에 수강했던 <a href="https://vagabond95.github.io/2019/11/23/nextstep-class-review/" target="_blank" rel="noopener">NextStep 과정</a>이 아주 큰 도움이 되었다.</p>
-<h2 id="예외-처리와-Stateless-한-코드-짜기"><a href="#예외-처리와-Stateless-한-코드-짜기" class="headerlink" title="예외 처리와 Stateless 한 코드 짜기"></a>예외 처리와 Stateless 한 코드 짜기</h2><p>‘설마 이 상황이 발생하겠어?’ 라는 마음가짐으로 코드를 짜면 항상 그 부분에서 문제가 발생하게 되는 것을 피부로 겪었다. 많은 사용자 수와 그에 대응되는 수많은 환경을 고려했을 때, 발생할 수 없는 상황은 없다고 생각하는 것이 옳다. 발생할 수 있는 모든 예외 상황에 대한 가드 처리가 필요하며, 너무 많은 가드 처리는 가독성을 떨어트릴 수 있으므로 언어/코드 레벨에서 사전에 방지할 수 있는 방법은 없는지 많은 고민을 했다. 최근까지 도달한 결론은 꼭 필요한 상태(State)가 아니면 사용하지 않는 방향으로 하여 관리포인트와 사이드 이펙트를 줄여나가자는 것으로 마무리 했다.</p>
-<h2 id="아무리-강조해도-지나치지-않은-커뮤니케이션"><a href="#아무리-강조해도-지나치지-않은-커뮤니케이션" class="headerlink" title="아무리 강조해도 지나치지 않은 커뮤니케이션"></a>아무리 강조해도 지나치지 않은 커뮤니케이션</h2><p>개발자라고 해서 항상 주어진 업무 시간 전부를 개발에 쓰기는 어렵다. 정기적/비정기적인 커뮤니케이션 구간이 항상 존재하기 때문이다. 피할 수 없는 일이라면 잘하고 싶다. 잘하기 위해 다음과 같은 노력을 했다.</p>
-<h3 id="커뮤니케이션-대상에-대한-공통된-합의"><a href="#커뮤니케이션-대상에-대한-공통된-합의" class="headerlink" title="커뮤니케이션 대상에 대한 공통된 합의"></a>커뮤니케이션 대상에 대한 공통된 합의</h3><p>같은 개념을 얘기하는 데 다른 언어가 사용되고, 같은 언어를 사용하는데 다른 개념(혹은 구현)으로 설명될 때가 많았다. 이러한 불일치를 보정하는 과정이 발생할 때마다 진행의 병목이 생기고 커뮤니케이션 비용이 높아지는 것이 부담되기 시작했다. 그래서 이를 내가 할 수 있는 일들을 하나씩 진행해봤다. </p>
-<p>1) 기본적으로 커뮤니케이션 시작 전에 이야기하고자 하는 목적과 대상을 한번 더 체크 했다. (ex/ 저는 A 의 B 부분에 대해 논의해야하는 것으로 알고 있는데 맞을까요~?) 이렇게 하면 초기 리소스는 조금 더 들 수 있지만 이미 커뮤니케이션이 어느정도 진행된 후 보정하는 것보다는 훨씬 나은 결과를 얻었다. 매번 이 방식을 고수하다보니, 나중에는 먼저 얘기를 꺼내주시는 분들도 생겼다!</p>
-<p>2) 팀장님에게 좀 더 정기적인 코드 리뷰 시간 확보를 요청했다. 이 일정은 개념/구현에 대한 논의를 거쳐 통일된 방향으로 나아가는 시간이 되었고, 이 이후 팀원간 커뮤니케이션 속도가 빨라졌을 뿐만아니라 구현에 대한 통일성도 얻어갈 수 있었다.</p>
-<h3 id="설득의-기술"><a href="#설득의-기술" class="headerlink" title="설득의 기술"></a>설득의 기술</h3><p>기획서에서는 한 줄 분량의 내용인데 수많은 클래스를 고쳐야 한다거나 IOS 에서는 쉽지만 Android 에서는 구현 복잡도가 큰 구현 사항이 넘어올 때가 있다. 모든 요구사항을 다 처리해주는 슈퍼 개발자가 되고 싶지만… 아직 그럴 실력도 안되고 개발 기간도 제한되어 있기 때문에 결국 설득을 위한 커뮤니케이션을 피할 수 없었다. </p>
-<p>복잡한 내부 히스토리와 예외 상황이 존재하기는 하나, 기본적으로 내 전략은 다음과 같았다.</p>
-<ul>
-<li>개발과 관련된 내용을 배제하고 최대한 이해하기 쉽게 상황과 이유를 설명한다.</li>
-<li>구현하지 못하는 내용에 대한 대체 옵션을 제시한다.</li>
-</ul>
-<p>전략을 실제 대화로 구성하면 다음과 같다.</p>
-<p>“A 스펙은 비슷한 행동을 수행하는 다른 화면에도 영향이 가기 때문에 이번 버전에 일괄적으로 적용하기는 조금 어려울 것 같아요. 다만, 범위를 B 까지만 한다면 가능할 것 같은데 이렇게 진행하는 것은 어떨 까요?”</p>
-<p>결국 개발팀에서는 할 수 없는 나름의 이유가 있고, 다른팀에서는 해야하는 나름의 이유가 있기 때문에 무조건 받아줄수도, 무조건 거절할 수 도 없기 때문에 위와 같은 절충안을 생각했다. 그리 어려운 방식은 아니였지만 설득의 성공률은 굉장했다!</p>
-<h1 id="개발-외"><a href="#개발-외" class="headerlink" title="개발 외"></a>개발 외</h1><h2 id="운동은-장기-레이스로"><a href="#운동은-장기-레이스로" class="headerlink" title="운동은 장기 레이스로"></a>운동은 장기 레이스로</h2><p>주짓수에 본격적으로 재미를 붙히기 시작했을 때, 대회에 출전하여 수상해보고 싶은 욕심이 생겼다. 준비 기간이 짧아 몸의 신호를 무시하고 무리하게 운동을 진행했는데 결국 출전 직전에 큰 부상을 겪게 되었다. 손목에 힘을 주기 어려울 만큼 통증이 심해서 주짓수는 물론이고 운동 자체를 몇 달간 쉬게 되었다. 운동을 못하니 체력이 급속도로 떨어지고, 스트레스 해소가 되지않아 멘탈에도 많은 영향을 주었다. </p>
-<p>다행히 지금은 많이 회복되어 퇴근 후 가볍게 헬스를 하고 있다. 운동을 다시 시작하니 점차 몸의 활력이 돌아옴을 느낀다. 결국 운동은 죽기 전까지 꾸준히 필요하다. 지치지 않는 장기 레이스를 잘 수행할 수 있도록 적절한 페이스 조절이 필요함을 실감했다.</p>
-<h2 id="의도적인-휴식과-충전"><a href="#의도적인-휴식과-충전" class="headerlink" title="의도적인 휴식과 충전"></a>의도적인 휴식과 충전</h2><p>학습과 성장에 대한 열망을 넘어 강박 수준까지 가다보니 기습적으로 찾아오는 무기력함과 매너리즘에 속절없이 당했던 순간이 많았다. 이를 방지하기 위해 의도적으로 쉬면서 재충전하는 시간을 만들려고 노력했는데 아, 의도적으로 쉬려고 하는 것도 참 쉽지 않음을 느꼈다. 특히, 하고싶은 것을 하면서 보내는 시간 자체가 계속해서 뒤쳐지고 있다는 느낌이 들어서 이를 떨쳐 내는 것이 쉽지 않았다.</p>
-<p>그래도 의식적으로 노력하여 시간을 제법 확보 했고, 나름 알차게 사용했다고 생각된다. 특히 올 하반기에는 경제와 관련된 많은 책을 읽으며 새로운 분야로 발을 내딛는 재미를 느꼈고, 비슷한 관심사를 가진 사람들이 모인 독서 모임을 신청하여 다양한 사람들의 삶을 엿보는 시간도 가지게 되었다. 운동도 이러한 시간의 연장선이라고 볼 수 있다. </p>
-<p>무엇을 하든 유연하게 균형을 맞추는 일이 참 중요하다고 생각한다. 너무 뻣뻣하면 부러지기 쉽다.</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://vagabond95.me/2019/11/23/nextstep-class-review/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1275,6 +1189,128 @@ A - X - E&apos; - F&apos; - G&apos; - H&apos;</code></pre><p><strong>번외</str
   
   
 
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://vagabond95.me/2019/10/20/object-book-4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jihoon Kim">
+      <meta itemprop="description" content="내일 잊기전에 오늘 적어두는 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="기록은 기억을 지배한다">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/10/20/object-book-4/" class="post-title-link" itemprop="url">[도서] 오브젝트 정리 Chapter 4 (캡슐화, 응집도, 결합도)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-10-20 15:09:37" itemprop="dateCreated datePublished" datetime="2019-10-20T15:09:37+09:00">2019-10-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-11-03 18:14:10" itemprop="dateModified" datetime="2019-11-03T18:14:10+09:00">2019-11-03</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>이번 글에서는 데이터 중심 클래스의 정의와 단점을 알아보고, 이를 해결하기 위한 방법으로 캡슐화와 응집도/결합도에 대한 완전한 이해를 얻어가는 것이 목적이다.</p>
+<h1 id="데이터-중심으로-설계된-클래스"><a href="#데이터-중심으로-설계된-클래스" class="headerlink" title="데이터 중심으로 설계된 클래스"></a>데이터 중심으로 설계된 클래스</h1><p><a href="https://vagabond95.github.io/2019/10/13/object-book-1-3/" target="_blank" rel="noopener">이전글</a> 내용을 살펴보면 객체지향 애플리케이션을 구현하는 것은 각 객체가 책임을 수행하며 서로간의 협력을 통해 공동체를 구축한다는 것을 의미한다. 즉, 중요한 것은 객체가 다른 객체와 <strong>협력하는 방법</strong>이며, 각 객체가 내부에 어떤 상태를 가지고 관리하는 지에 대한 것은 부가적인 문제일 뿐이다.  </p>
+<p>그러나, 우리가 일반적으로 클래스를 설계하는 과정은 어떨까? </p>
+<ol>
+<li>처음부터 객체간의 협력과 책임에 대해 고민하는 것은 머리아프다.</li>
+<li>따라서 우선 클래스에 어떤 데이터가 들어가야할지 결정한다.</li>
+<li>또한 어떤 상황에서도 객체가 사용될 수 있게 최대한 많은 getter/setter 를 추가한다.  </li>
+</ol>
+<p>이러한 설계방식을 <strong>데이터 중심 설계</strong> (혹자는 추측에 의한 설계전략)라고 부르며, 데이터 중심 설계는 객체의 외부가 아닌 내부에 초점을 맞추게 된다. </p>
+<p>데이터 중심 클래스의 객체는 단순한 데이터의 집합일 뿐이다. 따라서 제공되는 메소드는 과도한 접근자와 수정자 뿐이며, 이 데이터를 사용하여 로직을 수행하는 일은 별도의 객체에서 수행하게 된다. 이로 인하여 객체의 인터페이스에 내부 구현이 노출되고, 인터페이스를 이용하여 협력하는 또다른 객체 역시 데이터 중심 클래스의 내부구현에 종속되게 된다. (캡슐화가 이루어지지 않음) 문제는 <strong>객체의 내부 구현은 언제든 변화가 생길 수 있다는 점</strong>이다. 따라서 데이터 중심의 설계는 변화가 발생했을 때 협력하는 모든 객체가 영향을 받게되므로 변화에 매우 취약한  설계방식 이다. </p>
+<h1 id="캡슐화-응집도-결합도"><a href="#캡슐화-응집도-결합도" class="headerlink" title="캡슐화, 응집도, 결합도"></a>캡슐화, 응집도, 결합도</h1><p>좋은 객체지향 설계의 척도를 이야기할 때 빠지지 않고 등장하는 얘기들이 있다. 캡슐화가 잘되어야한다. 높은 응집도와 낮은 결합도를 가져야한다. 귀에 못박히도록 들었으나 해당 문장이 가지고 있는 진정한 의미를 이해하고 있었다고 단언할 수 있을까?</p>
+<h2 id="캡슐화"><a href="#캡슐화" class="headerlink" title="캡슐화"></a>캡슐화</h2><p>캡슐화가 무엇일까? 라고 질문하면 “객체 내부 구현을 외부로부터 감추는 것이다.” 라고 쉽게 얘기할 수 있다. 구현레벨에서는 접근 제한자를 이용하여 맴버변수를 숨기고 getter/setter 를 구성하며 캡슐화가 적용된 코드라고 얘기하곤 한다.</p>
+<p>안타깝게도 위 내용은 캡슐화의 본질을 온전히 이해하고 있지 못하고 있다. 캡슐화는 분명 내부구현을 외부로부터 감추는 것이 맞다. 하지만 중요한 것은 <strong>왜 감추느냐</strong>는 것이다. 위에서 얘기한 데이터 중심의 설계방식을 살펴보면 그 이유를 알 수 있다. 캡슐화를 통해 감추는 이유는 내부구현을 숨김으로 인하여 내부구현의 변화가 발생하더라도 협력하는 <strong>외부 객체에 변화의 영향이 퍼져나가지 않도록 막기 위함</strong>이다. </p>
+<p>너무 당연한 얘기일까? 그렇다면 다시 질문해보자. 접근제한자로 변수를 숨기고 getter/setter 를 통해 접근 및 조작하는 것은 캡슐화가 이루어진 것이라고 할 수 있을까? 캡슐화를 한 것은 맞다. 이러한 방식을 데이터 캡슐화라고 부른다. 그러나 데이터 캡슐화만으로는 캡슐화의 목적을 달성하지 못한다. getter 가 제공된다는 것은 필연적으로 어떤 로직을 수행하기 위해 해당 데이터가 필요하다는 의미이며, 그 로직은 또다른 객체에서 수행될 수 밖에없다. 그리고 만약 getter 의 return type 이 바뀐다면? 또다른 객체 역시 내용을 변경할 수 밖에 없다. 이러한 케이스를 <strong>객체의 내부구현이 드러난다</strong>고 표현한다.  캡슐화의 목적은 내부구현을 숨기는 것인데, 데이터 캡슐화만으로는 내부구현이 드러나게 되는 아이러니한 상황이 발생하는 것이다. (내부구현은 return type 뿐만 아니라 parameter, method 자체 로도 드러날 수 있다.)</p>
+<pre><code>// 캡슐화의 목적이 이루어지지 않은 클래스
+public class Movie {
+    private String title;
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+}</code></pre><p>자, 데이터를 숨기는 것만으로는 캡슐화의 목적이 달성될 수 없음을 알았다. 그렇다면 어떤 수준까지 해야할까? 책에서는 다음과 같이 얘기하고 있다.</p>
+<blockquote>
+<p>다시한번 강조하지만 캡슐화란 변할 수 있는 어떤 것이라도 감추는 것이다. 그것이 속성의 타입이건, 할인 정책의 종류건 상관없이 내부 구현의 변경으로 인해 외부가 객체가 영향을 받는다면 캡슐화를 위반한 것이다.</p>
+</blockquote>
+<p>변경될 수 있는 모든 것을 감추는 것, 그것만이 캡슐화의 목적에 다다를 수 있다. 그리고 이러한 규칙은 협력을 잘 구성하고 책임을 스스로 수행할 수 있도록 구성하면 자연스레 지켜지게 된다. 즉 캡슐화를 하기 위해 일련의 작업들을 수행하는 것이 아니라, 객체지향 프로그래밍의 규칙을 지키다보면 자연스럽게 캡슐화가 보장되어가는 형태가 된다.</p>
+<p>그래도 역시 이해하기에 모호한 부분이 있다. 그래서 캡슐화가 잘 되었는지 파악할 수 있는 기준들을 소개하고자 한다.</p>
+<h2 id="응집도와-결합도"><a href="#응집도와-결합도" class="headerlink" title="응집도와 결합도"></a>응집도와 결합도</h2><p>응집도와 결합도는 소프트웨어품질을 측정하기 위한 기준이지만 캡슐화의 정도를 측정할때도 유용하게 활용될 수 있다. 객체지향 관점에서 각 개념은 다음과 같이 풀어내고 있다.</p>
+<ul>
+<li><strong>응집도</strong>는 클래스/객체에 얼마나 관련 높은 책임이 할당되었는지를 나타낸다.</li>
+<li><strong>결합도</strong>는 클래스/객체가 협력에 필요한 적절한 수준의 관계만 유지하고 있는지 나타낸다.</li>
+</ul>
+<p>… 객체지향을 오해하기 쉬운 이유는 이러한 애매하고 추상적인 개념들을 명확하게 이해하기가 어렵기 때문이라고 생각한다.</p>
+<p>처음으로 돌아가 생각해보자. 좋은 설계란 무엇인가? 변경하기 쉬운 설계이다. 그리고 높은 응집도와 낮은 결합도를 가졌을 때 우리는 좋은 설계라고 부르곤한다. 따라서 각 개념은 결국 <strong>변경</strong>과 관련이 있다는 얘기가 된다. 변경의 관점에서 다시한번 각 개념을 살펴보자.</p>
+<p>어플리케이션에 여러 모듈(객체)가 있을 때</p>
+<ul>
+<li><p><strong>(변경의 관점에서) 응집도</strong>는 변경이 발생했을 때 어플리케이션내에서 변경이 발생하는 정도를 의미한다. 예를들어 특정 기능에 대한 변경이 있을때 대해 하나의 모듈만 변경된다면 응집도가 높고, 다수의 모듈이 함께 변경돼야하면 응집도가 낮다고 할 수 있다.</p>
+<p>  응집도가 낮다면 하나의 변경점에 대해 다수 모듈의 변경이 동반되기 때문에 변경에 부담이 생기기 시작한다.</p>
+</li>
+<li><p><strong>(변경의 관점에서) 결합도</strong>는 하나의 모듈에서 변경이 발생했을 때, 다른 모듈의 변경을 요구하는 정도를 의미한다. 예를들어 하나의 모듈을 수정했을 때 함께 변경해야하는 모듈의 수가 많을 수록 결합도가 높다고 할 수 있다.</p>
+<p>  결합도가 높다면 모듈의 내부구현이 변경되었을 때 영향을 받는 모듈 수가 많으므로 변경에 부담이 생기기 시작한다.</p>
+</li>
+</ul>
+<p>위 개념을 잘 이해했다면 왜 높은 응집도와 낮은 결합도가 충족된 것이 좋은 설계인것인지 알 수 있을 것이다.</p>
+<p>위에서 살펴본 데이터 중심설계는 낮은 응집도와 높은 결합도를 가진 객체를 양산하기 쉬운 방식인데 이유는 다음과 같다.</p>
+<p>응집도 개념에서 살펴보면, 객체의 클래스가 데이터를 중심으로 설계되었으므로 해당 객체의 책임은 데이터를 조작하고 내뱉는 것 그 이상도 이하도 아니다. 즉 데이터를 제공하는 객체가 스스로 일을 처리하지 못하므로, 로직을 수행하는 객체가 이를 수행하게 된다. 문제는 로직을 수행하는 객체가 또다른 데이터를 제공하는 객체를 맡기 시작할 경우 해당 객체의 책임은 점점 비대해지고 둘중 한쪽에서만 변경이 발생해도 필연적으로 같이 영향을 받게 된다. 하나의 클래스에서 변경이 발생했는데 전혀 연관이 없을 것같은 부분에서 사이드 이펙트가 발생하는 케이스가 대표적으로 각 클래스의 응집도가 낮은 상황이다.</p>
+<p>결합도 개념에서 살펴보면, 마찬가지로 데이터를 제공하는 객체가 스스로 일을 처리하지 못하므로 해당 데이터를 다른 객체에서 처리하게 된다. 만약 해당 객체의 데이터가 변경될 경우 (parameter, type) 데이터를 사용하는 모든 객체에게 변화의 영향이 퍼지게 된다.</p>
+<p>결국 내용을 돌아보면 다시 객체의 책임과 협력으로 귀결된다. 다음 글에서는 어떻게 객체에 책임을 잘 할당할 수 있는지에 대해 알아보자.</p>
+<h1 id="결론"><a href="#결론" class="headerlink" title="결론"></a>결론</h1><ul>
+<li>우리는 데이터 중심의 설계를 하고있었을 확률이 높다.</li>
+<li>캡슐화의 진정한 목적을 항상 기억하자.</li>
+<li>코드를 변경하기 어렵다면 응집도/결합도 정도를 점검해보자.</li>
+<li>결국 좋은 설계란 <strong>변경하기 쉬운</strong> 설계다.</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
 
   
   <nav class="pagination">
@@ -1344,7 +1380,7 @@ A - X - E&apos; - F&apos; - G&apos; - H&apos;</code></pre><p><strong>번외</str
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-count">19</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
