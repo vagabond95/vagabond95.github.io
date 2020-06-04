@@ -23,14 +23,14 @@
   <meta name="description" content="공식 문서에서도 가이드 하는 것 처럼 이제 Android 아키텍처를 구성할 때 Repository 패턴은 기본적으로 사용 되고있다. 오늘은 Repository 패턴에 대한 간단한 정리와 사용하면서 내가 놓치고 있었던 점에 대하여 정리 해보려한다. TL;DR Repository 패턴의 궁극적인 목적은 결국 관심사의 분리다. DataSource 외에 data">
 <meta name="keywords" content="Android,DesignPattern">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[Android] Repository 패턴에 대한 고찰">
+<meta property="og:title" content="[안드로이드] Repository 패턴에 대한 고찰">
 <meta property="og:url" content="https://vagabond95.me/2020/05/24/android_repository_pattern/index.html">
 <meta property="og:site_name" content="기록은 기억을 지배한다">
 <meta property="og:description" content="공식 문서에서도 가이드 하는 것 처럼 이제 Android 아키텍처를 구성할 때 Repository 패턴은 기본적으로 사용 되고있다. 오늘은 Repository 패턴에 대한 간단한 정리와 사용하면서 내가 놓치고 있었던 점에 대하여 정리 해보려한다. TL;DR Repository 패턴의 궁극적인 목적은 결국 관심사의 분리다. DataSource 외에 data">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-05-24T06:33:11.710Z">
+<meta property="og:updated_time" content="2020-06-04T14:57:04.988Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[Android] Repository 패턴에 대한 고찰">
+<meta name="twitter:title" content="[안드로이드] Repository 패턴에 대한 고찰">
 <meta name="twitter:description" content="공식 문서에서도 가이드 하는 것 처럼 이제 Android 아키텍처를 구성할 때 Repository 패턴은 기본적으로 사용 되고있다. 오늘은 Repository 패턴에 대한 간단한 정리와 사용하면서 내가 놓치고 있었던 점에 대하여 정리 해보려한다. TL;DR Repository 패턴의 궁극적인 목적은 결국 관심사의 분리다. DataSource 외에 data">
 
 <link rel="canonical" href="https://vagabond95.me/2020/05/24/android_repository_pattern/">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>[Android] Repository 패턴에 대한 고찰 | 기록은 기억을 지배한다</title>
+  <title>[안드로이드] Repository 패턴에 대한 고찰 | 기록은 기억을 지배한다</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143694036-1"></script>
     <script>
@@ -212,7 +212,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          [Android] Repository 패턴에 대한 고찰
+          [안드로이드] Repository 패턴에 대한 고찰
         </h1>
 
         <div class="post-meta">
@@ -221,10 +221,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-05-24 15:22:30 / Modified: 15:33:11" itemprop="dateCreated datePublished" datetime="2020-05-24T15:22:30+09:00">2020-05-24</time>
+              <time title="Created: 2020-05-24 15:22:30" itemprop="dateCreated datePublished" datetime="2020-05-24T15:22:30+09:00">2020-05-24</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-06-04 23:57:04" itemprop="dateModified" datetime="2020-06-04T23:57:04+09:00">2020-06-04</time>
+              </span>
 
           
 

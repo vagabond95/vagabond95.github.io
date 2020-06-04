@@ -8,11 +8,11 @@
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>내일 잊기전에 오늘 적어두는 블로그</description>
-    <pubDate>Sun, 24 May 2020 06:33:11 GMT</pubDate>
+    <pubDate>Thu, 04 Jun 2020 14:57:04 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
-      <title>[Android] Repository 패턴에 대한 고찰</title>
+      <title>[안드로이드] Repository 패턴에 대한 고찰</title>
       <link>https://vagabond95.me/2020/05/24/android_repository_pattern/</link>
       <guid>https://vagabond95.me/2020/05/24/android_repository_pattern/</guid>
       <pubDate>Sun, 24 May 2020 06:22:30 GMT</pubDate>
