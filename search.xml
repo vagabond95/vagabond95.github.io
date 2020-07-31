@@ -3,7 +3,7 @@
   <entry>
     <title>[Java] Generic 도장깨기</title>
     <url>/2020/07/31/generic_guide/</url>
-    <content><![CDATA[<p><img src="/images/cover/generic_guide.jpg" alt><br>제네릭을 활용할 일이 많은데 겉핥기로만 알고 있다는 생각이 들어 이번 기회에 관련 내용들을 정리했다.</p>
+    <content><![CDATA[<p><img src="/images/cover/generic_guide.jpg" alt><br>제네릭을 활용할 일이 많은데 겉핥기 식으로만 알고 있다는 생각이 들어 이번 기회에 관련 내용들을 정리했다.</p>
 <h1 id="무엇인가"><a href="#무엇인가" class="headerlink" title="무엇인가?"></a>무엇인가?</h1><p>제네릭은 클래스, 인터페이스 및 메서드를 정의할 때 내부에서 사용될 type 을 parameter 로 전달할 수 있는 개념이다.</p>
 <p>간단히 아래와 같이 표현이 가능하다.</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GenericsClass</span> &lt;<span class="title">T</span>&gt; </span>&#123; &#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">GenericsInterface</span> &lt;<span class="title">T</span>&gt; </span>&#123; &#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MultiGenericsClass</span> &lt;<span class="title">K</span>, <span class="title">V</span>&gt; </span>&#123; &#125; <span class="comment">// 여러개도 가능하다!</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> &lt;T&gt; <span class="function"><span class="keyword">void</span> <span class="title">getResult</span><span class="params">(T parameter)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// do something with parameter</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
