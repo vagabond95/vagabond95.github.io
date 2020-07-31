@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"vagabond95.me","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="제네릭을 활용할 일이 많은데 겉핥기로만 알고 있다는 생각이 들어 이번 기회에 관련 내용들을 정리했다. 무엇인가?제네릭은 클래스, 인터페이스 및 메서드를 정의할 때 내부에서 사용될 type 을 parameter 로 전달할 수 있는 개념이다. 간단히 아래와 같이 표현이 가능하다. 1234567public class GenericsClass &amp;lt;T&amp;gt; &amp;">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Generic 도장깨기">
+<meta property="og:url" content="https://vagabond95.me/2020/07/31/generic_guide/index.html">
+<meta property="og:site_name" content="기록은 기억을 지배한다">
+<meta property="og:description" content="제네릭을 활용할 일이 많은데 겉핥기로만 알고 있다는 생각이 들어 이번 기회에 관련 내용들을 정리했다. 무엇인가?제네릭은 클래스, 인터페이스 및 메서드를 정의할 때 내부에서 사용될 type 을 parameter 로 전달할 수 있는 개념이다. 간단히 아래와 같이 표현이 가능하다. 1234567public class GenericsClass &amp;lt;T&amp;gt; &amp;">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://vagabond95.me/images/cover/generic_guide.jpg">
+<meta property="og:updated_time" content="2020-07-31T10:20:45.055Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Generic 도장깨기">
+<meta name="twitter:description" content="제네릭을 활용할 일이 많은데 겉핥기로만 알고 있다는 생각이 들어 이번 기회에 관련 내용들을 정리했다. 무엇인가?제네릭은 클래스, 인터페이스 및 메서드를 정의할 때 내부에서 사용될 type 을 parameter 로 전달할 수 있는 개념이다. 간단히 아래와 같이 표현이 가능하다. 1234567public class GenericsClass &amp;lt;T&amp;gt; &amp;">
+<meta name="twitter:image" content="https://vagabond95.me/images/cover/generic_guide.jpg">
+
+<link rel="canonical" href="https://vagabond95.me/2020/07/31/generic_guide/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Generic 도장깨기 | 기록은 기억을 지배한다</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143694036-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-143694036-1');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head> 
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">기록은 기억을 지배한다</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">I Android you</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="list fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-til">
+
+    <a href="https://progjh.gitbook.io/today-i-learned/" rel="noopener" target="_blank"><i class="fire fa-fw"></i>TIL</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://vagabond95.me/2020/07/31/generic_guide/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jihoon Kim">
+      <meta itemprop="description" content="내일 잊기전에 오늘 적어두는 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="기록은 기억을 지배한다">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Generic 도장깨기
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-07-31 18:04:19 / Modified: 19:20:45" itemprop="dateCreated datePublished" datetime="2020-07-31T18:04:19+09:00">2020-07-31</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="/images/cover/generic_guide.jpg" alt><br>제네릭을 활용할 일이 많은데 겉핥기로만 알고 있다는 생각이 들어 이번 기회에 관련 내용들을 정리했다.</p>
+<h1 id="무엇인가"><a href="#무엇인가" class="headerlink" title="무엇인가?"></a>무엇인가?</h1><p>제네릭은 클래스, 인터페이스 및 메서드를 정의할 때 내부에서 사용될 type 을 parameter 로 전달할 수 있는 개념이다.</p>
+<p>간단히 아래와 같이 표현이 가능하다.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GenericsClass</span> &lt;<span class="title">T</span>&gt; </span>&#123; &#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">GenericsInterface</span> &lt;<span class="title">T</span>&gt; </span>&#123; &#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MultiGenericsClass</span> &lt;<span class="title">K</span>, <span class="title">V</span>&gt; </span>&#123; &#125; <span class="comment">// 여러개도 가능하다!</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> &lt;T&gt; <span class="function"><span class="keyword">void</span> <span class="title">getResult</span><span class="params">(T parameter)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// do something with parameter</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>위 예시에서 GenericsClass, GenericsInterface 처럼 type parameter 를 전달받는 클래스 / 인터페이스를 <strong>Parameterized Types</strong> 라고 칭하기도 한다.</p>
+<h1 id="왜-사용하는가"><a href="#왜-사용하는가" class="headerlink" title="왜 사용하는가?"></a>왜 사용하는가?</h1><h2 id="사용-시-장점"><a href="#사용-시-장점" class="headerlink" title="사용 시 장점"></a>사용 시 장점</h2><ul>
+<li>컴파일 타임에 타입 체크 가능</li>
+<li>캐스팅 불필요</li>
+<li>특정 타입에 종속되지 않은 유연한 로직</li>
+</ul>
+<h2 id="사용-시-단점"><a href="#사용-시-단점" class="headerlink" title="사용 시 단점"></a>사용 시 단점</h2><p>단점이 있다면 <strong>코드의 가독성이 떨어지게 된다.</strong> 사실 이건 제네릭만의 단점이라기보다 보통 유연하고 느슨한 코드일 수록 가독성이 떨어지게 되는데 일종의 트레이드 오프라고 볼 수 있다.</p>
+<h1 id="Subtyping"><a href="#Subtyping" class="headerlink" title="Subtyping"></a>Subtyping</h1><p>자바는 is - a 관계일 경우 아래 코드가 문제없이 작동한다.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Object newData = <span class="keyword">new</span> Object();</span><br><span class="line">Integer newNumber = Integer.valueOf(<span class="number">1</span>);</span><br><span class="line">newData = newNumber;</span><br></pre></td></tr></table></figure>
+
+<p>제네릭 콜렉션에 값을 추가할 때도 마찬가지이다.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Object&gt; objects = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">object.add(<span class="number">1</span>);</span><br><span class="line">object.add(<span class="string">"name"</span>);</span><br></pre></td></tr></table></figure>
+
+<p>그러나 아래 코드는 에러가 발생한다.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Object&gt; objects = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">List&lt;Integer&gt; numbers = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">objects = numbers; <span class="comment">// compile time error</span></span><br></pre></td></tr></table></figure>
+
+<p>List&lt;Integer&gt; 는 List&lt;Object&gt; 의 <strong>서브타입이 아니기 때문이다.</strong> 이를 Invariant (무공변성, 불변성) 하다고 이야기 한다. 이에 대해서는 Type Bound 파트에서 좀 더 자세히 다뤄보자.</p>
+<p>Parameterized Type 이 기본적으로 불변성을 가지는 이유는 타입 안정성을 컴파일 타임에 보장하기 위해서이다. 만약 Parameterized Type 에 subtyping 이 허용된다고 가정해보자. 그렇게 되면 어떤 타입의 파라미터가 넘어올지 컴파일 타임에 미리 아는 것이 불가능하고, 예외 발생을 막기위해 지속적으로 타입 체크가 필요하다.  즉, 제네릭의 장점을 전혀 취할 수 없게 된다. 따라서 타입 안정성을 보장하기 위해서 Parameterized Type 은 기본적으로 Invariant 하다.</p>
+<h1 id="Type-Bound-와-Variance"><a href="#Type-Bound-와-Variance" class="headerlink" title="Type Bound 와 Variance"></a>Type Bound 와 Variance</h1><p>Computer Science 에는 Variance 라는 개념이 있다.</p>
+<blockquote>
+<p>Variance refers to how subtyping between more complex types relates to subtyping between their components.</p>
+</blockquote>
+<p>쉽게 얘기하면 element 와 element 를 포함하고 있는 컴포넌트가 있을 때 element 간의 sub type 관계가 컴포넌트간의 sub type 관계에 영향을 주는 정도를 의미한다.</p>
+<p>영향도에 따라 다음과 같이 나눌 수 있다. </p>
+<ul>
+<li>Invariant (무공변성) : T → T’ 일 때 &lt;T&gt;, &lt;T’&gt; 는 서로 별개의 타입이면 &lt;T&gt; 는 Invariant 하다.</li>
+<li>Covariant (공변성) : T→ T’ 일 때 &lt;T&gt; → &lt;T’&gt; 가 성립하면 &lt;T&gt; 는 covariant 하다.</li>
+<li>Contravariant (반공변성) : T → T’ 일 때 &lt;T&gt; ← &lt;T’&gt; 가 성립하면 &lt;T&gt; 는 contravariant 하다.</li>
+</ul>
+<p>T 는 element, &lt;T&gt; 는 element를 포함하는 컴포넌트를 의미하며 A → B 이면 <strong>A 는 B 의 서브 타입이다.</strong> 이때 서브 타입은 자바의 상속만이 아니라 더 넓은 개념인 <a href="https://en.wikipedia.org/wiki/Subtyping" target="_blank" rel="noopener">Subtyping</a> 을 의미한다.  </p>
+<p>제네릭은 Type bound 를 적용하여 parameterized type 의 Variance 를 결정할 수 있다. 화살표 방향에 유의하며 하나씩 살펴보자.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 예시 클래스</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cat</span> <span class="keyword">extends</span> <span class="title">Animal</span> </span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">KoreanShortHair</span> <span class="keyword">extends</span> <span class="title">Cat</span> </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-Unbounded-type"><a href="#1-Unbounded-type" class="headerlink" title="1. Unbounded type"></a>1. Unbounded type</h2><blockquote>
+<p>&lt;T&gt;, &lt;?&gt;</p>
+</blockquote>
+<ul>
+<li>제네릭 타입 선언 후 아무런 키워드도 붙히지 않으면 unbounded type 이다.</li>
+<li>Unbounded type 타입 파라미터로 선언된 Parameterized type 은 모든 타입 파라미터에 대해 <strong>Invariant</strong> 하다.</li>
+<li>Cat → Animal 일때 &lt;Cat&gt; 와 &lt;? extends Animal&gt; 는 서로 아무런 연관관계를 가지지 않는 각각 별개의 타입이다.</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Animal&gt; animals = <span class="keyword">new</span> ArrayList&lt;&gt;(); <span class="comment">// unbounded type parameter</span></span><br><span class="line">List&lt;Cat&gt; cats = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">animals = cats <span class="comment">// Fail, 서로 다른 타입으로 판단한다.</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-Upper-bounded-type"><a href="#2-Upper-bounded-type" class="headerlink" title="2. Upper bounded type"></a>2. Upper bounded type</h2><blockquote>
+<p>&lt;T <strong>extends</strong> Animal&gt;, &lt;? <strong>extends</strong> Animal&gt;</p>
+</blockquote>
+<ul>
+<li>Upper bounded type 은 제네릭 타입 선언 후 extends 키워드를 이용하여 구현가능하다.</li>
+<li>Upper bounded type 타입 파라미터로 선언된 Parameterized type 는 자기 자신 혹은 하위 클래스의 타입 파라미터에 대해 <strong>Covariant</strong> 하다. </li>
+<li>예를 들어 Cat → Animal 이면 &lt;Cat&gt; → &lt;? extends Animal&gt; 이다.</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">List&lt;? extends Animal&gt; animals = <span class="keyword">new</span> ArrayList&lt;&gt;(); <span class="comment">// upper bounded parameterized type</span></span><br><span class="line">List&lt;Cat&gt; cats = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">List&lt;KoreanShortHair&gt; koreanShortHairs = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">animals = cats; <span class="comment">// Ok, cats 는 animals 의 서브타입이다.</span></span><br><span class="line">animals = koreanShortHairs; <span class="comment">// Ok, koreanShortHairs 는 animals 의 서브타입이다.</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="3-Lower-bounded-type"><a href="#3-Lower-bounded-type" class="headerlink" title="3. Lower bounded type"></a>3. Lower bounded type</h2><blockquote>
+<p>&lt;T <strong>super</strong> Cat&gt;, &lt;? <strong>super</strong> Cat&gt;</p>
+</blockquote>
+<ul>
+<li>Lower bounded type 은 제네릭 타입 선언 후 super 키워드를 붙히고 원하는 타입을 적으면된다.</li>
+<li>Lower bounded type 타입 파라미터로 선언된 Parameterized type 는 자기 자신 혹은 상위 클래스의 타입 파라미터에 대해 <strong>Contravariant</strong> 하다.</li>
+<li>예를 들어 Cat → Animal 이면 &lt;? super Cat&gt; ← &lt;Animal&gt; 이다.</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Animal&gt; animals = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">List&lt;? <span class="keyword">super</span> Cat&gt; superCats = <span class="keyword">new</span> ArrayList&lt;&gt;(); <span class="comment">// lower bounded parameterized type</span></span><br><span class="line">List&lt;KoreanShortHair&gt; koreanShortHairs = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        </span><br><span class="line">cats = animals; <span class="comment">// Ok, animals 는 superCats 의 서브 타입이다.</span></span><br><span class="line">cats = koreanShortHairs; <span class="comment">// Fail, KoreanShortHair 는 Cat 의 상위클래스가 아니다.</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Multi-bound"><a href="#Multi-bound" class="headerlink" title="Multi bound"></a>Multi bound</h2><p>Upper bounded type 에 한하여 N 개의 bound 적용이 가능하다. 이때 사용되는 연산자는 <strong>&amp;</strong> 이다. 특징은 다음과 같다.</p>
+<ul>
+<li>자바는 다중 상속이 허용되지 않는다. 따라서 부모 클래스가 2개 이상일 수 없으므로 Multi bound 에서 bound 할 수 있는 클래스 타입은 0 ~ 1개 이다.</li>
+<li>위와 같은 맥락으로 인터페이스 타입은 bound 개수 제한이 없다.</li>
+<li>클래스 타입과 인터페이스 타입을 같이 사용할 경우 클래스 타입이 제일 앞에 선언되어야 한다.</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">B</span> </span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">C</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> &lt;<span class="title">T</span> <span class="keyword">extends</span> <span class="title">A</span> &amp; <span class="title">B</span> &amp; <span class="title">C</span>&gt;</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class"><span class="title">public</span> &lt;<span class="title">T</span> <span class="keyword">extends</span> <span class="title">Number</span> &amp; <span class="title">Comparable</span>&lt;? <span class="title">super</span> <span class="title">T</span>&gt;&gt; <span class="title">int</span> <span class="title">compareNumbers</span>(<span class="title">T</span> <span class="title">t1</span>, <span class="title">T</span> <span class="title">t2</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> t1.compareTo(t2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Test 클래스의 타입 파라미터 T 는 A 의 서브타입이고, B 와 C 를 구현해야한다. </p>
+<p>compareNumbers 메소드의 타입 파라미터 T 는 Number 의 서브타입이고, Comparable 를 구현해야한다. </p>
+<h2 id="어디에-활용할-수-있을까-PECS"><a href="#어디에-활용할-수-있을까-PECS" class="headerlink" title="어디에 활용할 수 있을까? (PECS)"></a>어디에 활용할 수 있을까? (PECS)</h2><p>Type bound 를 활용하면 기본 제네릭에서 한번 더 확장이 가능하므로 좀 더 유연한 코드가 될 수 있다. 하지만 어떤 케이스에서 활용해야할지 감이 잘 오지 않는다. 이를 위하여 PECS 라는 규칙이 나오게 되었다.</p>
+<p>PECS 란 Producer - extends, Consumer - super 의 약자이다. 생산자는 extends 를 소비자는 super 키워드를 활용하라는 의미이다.</p>
+<p>생산자, 소비자라는 표현이 직관적으로 와닿지 않으므로 다음과 같이 이해해도 좋다.</p>
+<blockquote>
+<p>Read - extends, Write - super</p>
+</blockquote>
+<p>왜 그런지 한번 살펴보자.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// extends</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(List&lt;? extends Animal&gt; animals)</span> </span>&#123; </span><br><span class="line">    <span class="keyword">for</span> (Animal animal : animals) &#123;</span><br><span class="line">        print(animal.toString()); <span class="comment">// OK</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">write</span><span class="params">(List&lt;? extends Animal&gt; animals)</span> </span>&#123; </span><br><span class="line">    animals.add(<span class="keyword">new</span> Animal()); <span class="comment">// compile time error</span></span><br><span class="line">    animals.add(<span class="keyword">new</span> Cat()); <span class="comment">// compile time error</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// super</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(List&lt;? <span class="keyword">super</span> Cat&gt; cats)</span> </span>&#123; </span><br><span class="line">    <span class="keyword">for</span> (Cat cat : cats) &#123;</span><br><span class="line">        print(cat.toString()); <span class="comment">// compile time error</span></span><br><span class="line">    &#125;    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">write</span><span class="params">(List&lt;? <span class="keyword">super</span> Cat&gt; cats)</span> </span>&#123; </span><br><span class="line">    cat.add(<span class="keyword">new</span> Animal()); <span class="comment">// compile time error</span></span><br><span class="line">    cat.add(<span class="keyword">new</span> KoreanShortHair()); <span class="comment">// OK</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Read - extends</strong></p>
+<ul>
+<li>read 메소드를 살펴보면 animals 의 각 element 를 Animal 타입으로 읽는 것은 문제 되지 않는다. 왜냐하면 어떠한 List 가 들어오더라도 내부 element 는 최소한 Animal 을 상속받았을 것이 보장되기 때문이다.</li>
+<li>한편 write 메소드를 살펴보면 add 를 시도할 경우 자신을 포함한 Animal 의 하위 타입을 전달했을 때 오류가 발생한다. 이유는 전달된 animals 의 element 는 animal 을 상속받은 것만 보장할뿐 구체적으로 어떤 타입인지는 알 수 없기 때문이다. 이를 허용할 경우 런타임에 타입 불일치로 오류가 발생할 수 있는 가능성이 생길 수 있다. (ex / List&lt;Cat&gt; 을 전달받았는데 Animal 객체를 추가하는 경우)</li>
+</ul>
+<p>따라서 상방으로 닫혀있는 extends 는 read 에 적합하다.</p>
+<p><strong>Write - super</strong></p>
+<ul>
+<li>write 메소드를 먼저 살펴보면 cats 는 cat 의 <strong>하위타입에 한하여</strong> 어떠한 객체든 추가가 가능하다. cats 의 element 는 Cat 의 상위 타입인 것이 보장되기 때문이다.  ( ? → Cat → ? super Cat )</li>
+<li>read 메소드를 살펴보면 이제 슬슬 감이 온다. cats 의 element 는 Cat 의 상위 타입이므로 항상 Cat 자신이라고 보장할 수 없기 때문에 Cat 이라는 타입으로 확정지어 사용할 수 없다.</li>
+</ul>
+<p>만약, read &amp; write 를 모두 하는 케이스의 경우 type bound 를 사용할 수 없다!</p>
+<h1 id="Wildcard"><a href="#Wildcard" class="headerlink" title="Wildcard"></a>Wildcard</h1><p>Type bound 파트에서 먼저 언급이 되었는데, <strong>&lt;?&gt;</strong> 와 같이 물음표를 이용하여 제네릭 타입을 표현하는 것을 와일드 카드라고 부른다. 와일드 카드는 다음과 같은 특징이 있다.</p>
+<ul>
+<li><p>어떤 타입이든 가리지 않고 전달이 가능하다.</p>
+</li>
+<li><p>제네릭 클래스의 파라미터, 제네릭 메소드의 인자 자체로는 사용이 불가능하다.</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestClass</span> &lt;?&gt; </span>&#123; &#125; <span class="comment">// 불가능</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">invokeTest</span><span class="params">(&lt;?&gt; parameter)</span> </span>&#123; &#125; <span class="comment">// 불가능</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>Type bound 에 따라 불리는 명칭이 다르다.</p>
+<ul>
+<li>&lt;?&gt; : unbounded wildcard</li>
+<li>&lt;? extends Animal&gt; : upper bounded wildcard</li>
+<li>&lt;? super Animal&gt; : lower bounded wildcard</li>
+</ul>
+<p>upper bounded wildcard, lower bounded wildcard 에 대한 얘기는 Type bound 파트에서 이미 대부분 다뤘으므로 unbounded wildcard 에 대해서만 잠깐 정리해보자.</p>
+<h2 id="lt-gt-unbounded-wildcard"><a href="#lt-gt-unbounded-wildcard" class="headerlink" title="&lt;?&gt; : unbounded wildcard"></a>&lt;?&gt; : unbounded wildcard</h2><p>unbounded wildcards 는 제네릭 계의 Object 클래스 이다.  따라서 실제 특징도 Object 와 비슷하다.</p>
+<ul>
+<li><p><strong>? 를 Object 로 바꿔서 사용하는 것이 가능하다.</strong></p>
+<p>  → unbounded wildcard type 은 컴파일 과정에서 Object 타입으로 판단하기 때문에 코드상에서 Object 로 취급하여도 오류가 발생하지 않는다. (후술할 reifiable type 이기도 하다.)</p>
+</li>
+<li><p><strong>&lt;?&gt; 는 Covariant 하다.</strong></p>
+<p>  → 모든 T에 대하여 T → ?, &lt;T&gt; → &lt;?&gt; 가 성립한다.  </p>
+<p>  &lt;사진&gt;</p>
+</li>
+</ul>
+<p>이러한 특징을 고려하여 활용할 수 있는 케이스는 크게 2가지가 있다.</p>
+<h3 id="1-Object-클래스가-제공하는-기능을-사용하여-구현-해야할-때"><a href="#1-Object-클래스가-제공하는-기능을-사용하여-구현-해야할-때" class="headerlink" title="1. Object 클래스가 제공하는 기능을 사용하여 구현 해야할 때"></a>1. Object 클래스가 제공하는 기능을 사용하여 구현 해야할 때</h3><p>Object 타입 기반의 메소드가 있다고 가정하자.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">parseString</span><span class="params">(List&lt;Object&gt; objects)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (Object object : objects) &#123;</span><br><span class="line">        print(object.toString());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>해당 메소드는 Object 타입 List 를 전달받으므로 범용성이 클 것 같지만 위에서 다룬 Variance 룰에 의하여 List&lt;Integer&gt;, List&lt;String&gt; 과 같은 Object 하위 타입 리스트를 전달할 수 없다. 이때 unbounded wildcard 를 이용하면 해결할 수 있다.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">parseString</span><span class="params">(List&lt;?&gt; objects)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (Object object : objects) &#123;</span><br><span class="line">        print(object.toString());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-타입에-의존하지-않는-로직을-수행할-때"><a href="#2-타입에-의존하지-않는-로직을-수행할-때" class="headerlink" title="2. 타입에 의존하지 않는 로직을 수행할 때"></a>2. 타입에 의존하지 않는 로직을 수행할 때</h3><p>List 의 size(), clear() 와 같이 타입이 무엇이든 상관없이 수행이 가능한 메소드들이 있다. 이럴 때 unbounded wildcard 가 사용된 parameterized type 을 사용하면 유연한 코드 작성이 가능하다.</p>
+<h1 id="Type-erasure"><a href="#Type-erasure" class="headerlink" title="Type erasure"></a>Type erasure</h1><p>자바 컴파일러는 컴파일 과정에서 제네릭에 대해 타입 소거(Type erasure)를 진행한다. 타입 소거란 타입정보를 컴파일 타임에만 유지하고, 런타임에는 삭제시켜 버리는 것인데 과거 제네릭이 없던 버전과의 하위 호환성을 위해서이다.</p>
+<p>타입소거가 이루어진 클래스는 다음과 같다.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 타입소거 전</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GenericClass</span> &lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">consume</span><span class="params">(T paramenter)</span> </span>&#123;</span><br><span class="line">        paramenter.toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 타입소거 후</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GenericClass</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">consume</span><span class="params">(Object paramenter)</span> </span>&#123;</span><br><span class="line">        paramenter.toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>컴파일러는 Unbound type 에 대하여 Object 로 바꿔버렸다. 따라서 런타임에는 해당 타입이 본래 어떤 타입이었는지 알 수 없다. 타입 소거에 대한 동작은 다음과 같다.</p>
+<ul>
+<li>Unbound type 의 경우 Object, bound type 의 경우 bound 값을 기준으로 타입을 바꾼다.</li>
+<li>필요에 따라 캐스팅 및 bridge 메소드가 추가될 수 도 있다.</li>
+</ul>
+<h2 id="Non-Reifiable-Type"><a href="#Non-Reifiable-Type" class="headerlink" title="Non-Reifiable Type"></a>Non-Reifiable Type</h2><p>런타임에 타입 정보의 유무에 따라 Reifialbe type, Non - Reifialbe type 으로 구분한다.</p>
+<ul>
+<li>Refiable type : 런타임에 타입에 대한 정보를 가지고 있다. 대표적으로 primitive, non - generic, unbounded wildcards (&lt;?&gt;) 등 이 있다.</li>
+<li>Non - Reifiable type : 런타임에 타입에 대한 정보가 없다. 대표적으로 type erasure 가 진행되는 대부분의 generic parameterized type 이 있다.</li>
+</ul>
+<p>제네릭이 가지는 한계점은 대부분 이 타입 소거라는 특징 때문에 발생할 만큼 기억해둬야할 원리다. 타입 소거로 인한 이슈를 피하기 위한 기법 super type token<a href="https://www.baeldung.com/java-super-type-tokens" target="_blank" rel="noopener">super type token</a> 이 나오기도 했다.</p>
+<h1 id="제네릭의-한계점"><a href="#제네릭의-한계점" class="headerlink" title="제네릭의 한계점"></a>제네릭의 한계점</h1><h2 id="원시값을-제네릭-타입으로-사용할-수-없다"><a href="#원시값을-제네릭-타입으로-사용할-수-없다" class="headerlink" title="원시값을 제네릭 타입으로 사용할 수 없다"></a>원시값을 제네릭 타입으로 사용할 수 없다</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">List&lt;<span class="keyword">int</span>&gt; numbers = <span class="keyword">new</span> ArrayList&lt;&gt;(); <span class="comment">// compile time error</span></span><br><span class="line">List&lt;Integer&gt; numbers = <span class="keyword">new</span> ArrayList&lt;&gt;(); <span class="comment">// Ok</span></span><br></pre></td></tr></table></figure>
+
+<p>원시값을 사용하기 위해서는 Wrapper class 를 사용해야한다. 허용되지 않는 이유가 타입소거 때문인줄 알았는데 컴파일러 구현 이슈 때문이라는 의견이 있었다. 이 부분은 좀 더 정확한 정보를 찾게 되면 다시 업데이트가 필요하다.</p>
+<h2 id="제네릭-타입의-인스턴스를-생성할-수-없다"><a href="#제네릭-타입의-인스턴스를-생성할-수-없다" class="headerlink" title="제네릭 타입의 인스턴스를 생성할 수 없다"></a>제네릭 타입의 인스턴스를 생성할 수 없다</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> &lt;E&gt; <span class="function">E <span class="title">createInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    E instnace = <span class="keyword">new</span> E(); <span class="comment">// compile time error</span></span><br><span class="line">    <span class="keyword">return</span> E;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>이유는 타입소거로 인하여 생성해야할 타입이 무엇인지 알 수 없기 때문이다. 꼭 생성이 필요할 경우 리플렉션을 이용하면 가능하다.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> &lt;E&gt; <span class="function">E <span class="title">createInstance</span><span class="params">(Class&lt;E&gt; clazz)</span> </span>&#123;</span><br><span class="line">    E instnace = clazz.newInstance(); <span class="comment">// OK</span></span><br><span class="line">    <span class="keyword">return</span> E;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Parameterized-type-을-instanceOf-로-비교할-수-없다"><a href="#Parameterized-type-을-instanceOf-로-비교할-수-없다" class="headerlink" title="Parameterized type 을 instanceOf 로 비교할 수 없다"></a>Parameterized type 을 instanceOf 로 비교할 수 없다</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Integer&gt; numberes = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        </span><br><span class="line"><span class="keyword">if</span> (numberes <span class="keyword">instanceof</span> ArrayList&lt;Integer&gt;) &#123; <span class="comment">// compile time error</span></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>타입소거의 특징으로 인해 위 코드는 컴파일 되지 않는다. 본래의 List 가 어떤 타입을 담고 있었는지 알 수 없으므로 위와 같은 코드가 무의미해지는 것이다. 예를들어 JVM 은 런타임에 ArrayList&lt;String&gt;, ArrayList&lt;Integer&gt; 를 구분하지 못한다. 하지만 방법이 아주 없는 것은 아니다. 제네릭 타입 중에 유일하게 타입소거가 되지않는 unbounded wildcard <strong>&lt;?&gt;</strong> 를 이용하면 된다.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Integer&gt; numberes = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        </span><br><span class="line"><span class="keyword">if</span> (numberes <span class="keyword">instanceof</span> ArrayList&lt;?&gt;) &#123; <span class="comment">// Ok</span></span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Parameterized-type-array-를-만들-수-없다"><a href="#Parameterized-type-array-를-만들-수-없다" class="headerlink" title="Parameterized type array 를 만들 수 없다"></a>Parameterized type array 를 만들 수 없다</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt;[] arrayOfTexts = <span class="keyword">new</span> List&lt;String&gt;[<span class="number">10</span>]; <span class="comment">// compile time error</span></span><br></pre></td></tr></table></figure>
+
+<p>위 코드는 컴파일되지 않는다. 만약 Array 를 만드는 것이 허용된다고 가정했을 때 어떤 문제가 있을지 살펴보자.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Integer&gt;[] numbers = <span class="keyword">new</span> List&lt;Integer&gt;[<span class="number">10</span>]; </span><br><span class="line">Object[] objects = numbers;</span><br><span class="line"></span><br><span class="line">objects[<span class="number">0</span>] = <span class="keyword">new</span> ArrayList&lt;Integer&gt;(); <span class="comment">// OK</span></span><br><span class="line">objects[<span class="number">1</span>] = <span class="keyword">new</span> ArrayList&lt;String&gt;(); <span class="comment">// Exception 을 던져야하지만, 런타임에 인지할 수 없음.</span></span><br></pre></td></tr></table></figure>
+
+<p>배열 초기화 과정부터 이상함을 느꼈을 수 있다. <strong>Array 는 Collection 과 다르게 기본적으로 Convariant 하다</strong>. 즉, A → B 이면 A[ ] → B[ ] 가 성립하기에 objects 를 numbers 로 초기화 하는 것이 가능하다!</p>
+<p>그 후에 순차적으로 List&lt;Integer&gt;, List&lt;String&gt; 를 각 배열원소에 초기화하는데, Array 는 런타임에 일치하지 않는 타입이 들어오면 ArrayStoreException 이 발생하므로 List&lt;Integer&gt; 로 초기화 할 때 예외가 발생해야한다. 하지만 타입소거에 의해 각 List 는 런타임에 구별되지 않으므로 예외가 발생하지 않고 초기화가 진행될 것이다. 즉, 타입이 구별되지 않아 배열의 기본동작 규칙이 깨지게 되는 것이다.<br>이러한 이유로 인해 Parameterized type array 생성은 허용되지 않는다.</p>
+<h2 id="type-parameter-의-구분으로-메소드를-overload-할-수-없다"><a href="#type-parameter-의-구분으로-메소드를-overload-할-수-없다" class="headerlink" title="type parameter 의 구분으로 메소드를 overload 할 수 없다"></a>type parameter 의 구분으로 메소드를 overload 할 수 없다</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">(List&lt;Integer&gt; numbers)</span> </span>&#123; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">(List&lt;String&gt; texts)</span> </span>&#123; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>자바로 처음 개발을 하면 제법 많이 겪어봤을 케이스이다. 위 코드에서 execute 메소드는 오버로딩 될 수 없다. 타입 소거 과정이 끝나면 모두 List 타입으로 변경되어 똑같은 메소드 시그니쳐를 가지게 되기 때문이다.</p>
+<h1 id="Naming"><a href="#Naming" class="headerlink" title="Naming"></a>Naming</h1><p>제네릭이 선언된 대부분의 클래스들이 특정 알파벳만 사용되기 때문에 이것이 문법적으로 강제되는 부분이라고 착각할 수 있지만 실제로는 어떠한 이름을 지어도 상관이 없다.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> &lt;<span class="title">SUPERGENERIC</span>&gt; </span>&#123; &#125; <span class="comment">// 이렇게 지어도 잘돌아간다.</span></span><br></pre></td></tr></table></figure>
+
+<p>다만 표준으로 사용을 권장하는 알파벳들이 있을 뿐이다. 협업의 관점에서 중요한 포인트 이므로 특별한 이유가 없다면 표준을 따르는 것이 좋다. <a href="https://docs.oracle.com/javase/tutorial/java/generics/types.html" target="_blank" rel="noopener">가이드</a></p>
+<ul>
+<li>안드로이드의 Adapater 클래스의 시그니쳐를 보면 제네릭의 의미를 강조하기 위해 표준 표기가 아닌 이름을 사용하기도 했다.</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Adapter</span>&lt;<span class="title">VH</span> <span class="keyword">extends</span> <span class="title">ViewHolder</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p><a href="https://docs.oracle.com/javase/tutorial/java/generics/" target="_blank" rel="noopener">https://docs.oracle.com/javase/tutorial/java/generics/</a><br><a href="https://dzone.com/articles/5-things-you-should-know-about-java-generics" target="_blank" rel="noopener">https://dzone.com/articles/5-things-you-should-know-about-java-generics</a></p>
+<p><a href="https://en.wikipedia.org/wiki/Covariance_and_contravariance_(computer_science)" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Covariance_and_contravariance_(computer_science)</a></p>
+<p><a href="https://en.wikipedia.org/wiki/Subtyping" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Subtyping</a></p>
+<p><a href="https://jojoldu.tistory.com/25" target="_blank" rel="noopener">https://jojoldu.tistory.com/25</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"># Java</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/07/03/about_ioc_dip_di/" rel="prev" title="IoC, DIP, DI 개념 잡기">
+      <i class="fa fa-chevron-left"></i> IoC, DIP, DI 개념 잡기
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+  <div class="utterance">
+    <script src="https://utteranc.es/client.js"
+        repo="vagabond95/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+  </div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#무엇인가"><span class="nav-number">1.</span> <span class="nav-text">무엇인가?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#왜-사용하는가"><span class="nav-number">2.</span> <span class="nav-text">왜 사용하는가?</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#사용-시-장점"><span class="nav-number">2.1.</span> <span class="nav-text">사용 시 장점</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#사용-시-단점"><span class="nav-number">2.2.</span> <span class="nav-text">사용 시 단점</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Subtyping"><span class="nav-number">3.</span> <span class="nav-text">Subtyping</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Type-Bound-와-Variance"><span class="nav-number">4.</span> <span class="nav-text">Type Bound 와 Variance</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Unbounded-type"><span class="nav-number">4.1.</span> <span class="nav-text">1. Unbounded type</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Upper-bounded-type"><span class="nav-number">4.2.</span> <span class="nav-text">2. Upper bounded type</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Lower-bounded-type"><span class="nav-number">4.3.</span> <span class="nav-text">3. Lower bounded type</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Multi-bound"><span class="nav-number">4.4.</span> <span class="nav-text">Multi bound</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#어디에-활용할-수-있을까-PECS"><span class="nav-number">4.5.</span> <span class="nav-text">어디에 활용할 수 있을까? (PECS)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Wildcard"><span class="nav-number">5.</span> <span class="nav-text">Wildcard</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#lt-gt-unbounded-wildcard"><span class="nav-number">5.1.</span> <span class="nav-text">&lt;?&gt; : unbounded wildcard</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Object-클래스가-제공하는-기능을-사용하여-구현-해야할-때"><span class="nav-number">5.1.1.</span> <span class="nav-text">1. Object 클래스가 제공하는 기능을 사용하여 구현 해야할 때</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-타입에-의존하지-않는-로직을-수행할-때"><span class="nav-number">5.1.2.</span> <span class="nav-text">2. 타입에 의존하지 않는 로직을 수행할 때</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Type-erasure"><span class="nav-number">6.</span> <span class="nav-text">Type erasure</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Non-Reifiable-Type"><span class="nav-number">6.1.</span> <span class="nav-text">Non-Reifiable Type</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#제네릭의-한계점"><span class="nav-number">7.</span> <span class="nav-text">제네릭의 한계점</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#원시값을-제네릭-타입으로-사용할-수-없다"><span class="nav-number">7.1.</span> <span class="nav-text">원시값을 제네릭 타입으로 사용할 수 없다</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#제네릭-타입의-인스턴스를-생성할-수-없다"><span class="nav-number">7.2.</span> <span class="nav-text">제네릭 타입의 인스턴스를 생성할 수 없다</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Parameterized-type-을-instanceOf-로-비교할-수-없다"><span class="nav-number">7.3.</span> <span class="nav-text">Parameterized type 을 instanceOf 로 비교할 수 없다</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Parameterized-type-array-를-만들-수-없다"><span class="nav-number">7.4.</span> <span class="nav-text">Parameterized type array 를 만들 수 없다</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#type-parameter-의-구분으로-메소드를-overload-할-수-없다"><span class="nav-number">7.5.</span> <span class="nav-text">type parameter 의 구분으로 메소드를 overload 할 수 없다</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Naming"><span class="nav-number">8.</span> <span class="nav-text">Naming</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">9.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Jihoon Kim</p>
+  <div class="site-description" itemprop="description">내일 잊기전에 오늘 적어두는 블로그</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jihoon Kim</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  <script data-ad-client="ca-pub-5033331279793069" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+  <!-- Google AdSense end -->
+  <!-- Google AdSense start -->
+</body>
+</html>
