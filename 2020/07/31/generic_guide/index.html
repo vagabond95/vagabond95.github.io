@@ -29,7 +29,7 @@
 <meta property="og:description" content="제네릭을 활용할 일이 많은데 겉핥기 식으로만 알고 있다는 생각이 들어 이번 기회에 관련 내용들을 정리했다. 무엇인가?제네릭은 클래스, 인터페이스 및 메서드를 정의할 때 내부에서 사용될 type 을 parameter 로 전달할 수 있는 개념이다. 간단히 아래와 같이 표현이 가능하다. 1234567public class GenericsClass &amp;lt;T&amp;gt">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://vagabond95.me/images/cover/generic_guide.jpg">
-<meta property="og:updated_time" content="2020-07-31T10:28:18.414Z">
+<meta property="og:updated_time" content="2020-08-16T08:06:41.845Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[Java] Generic 도장깨기">
 <meta name="twitter:description" content="제네릭을 활용할 일이 많은데 겉핥기 식으로만 알고 있다는 생각이 들어 이번 기회에 관련 내용들을 정리했다. 무엇인가?제네릭은 클래스, 인터페이스 및 메서드를 정의할 때 내부에서 사용될 type 을 parameter 로 전달할 수 있는 개념이다. 간단히 아래와 같이 표현이 가능하다. 1234567public class GenericsClass &amp;lt;T&amp;gt">
@@ -223,10 +223,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-07-31 18:04:19 / Modified: 19:28:18" itemprop="dateCreated datePublished" datetime="2020-07-31T18:04:19+09:00">2020-07-31</time>
+              <time title="Created: 2020-07-31 18:04:19" itemprop="dateCreated datePublished" datetime="2020-07-31T18:04:19+09:00">2020-07-31</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-08-16 17:06:41" itemprop="dateModified" datetime="2020-08-16T17:06:41+09:00">2020-08-16</time>
+              </span>
 
           
 
@@ -303,7 +309,7 @@
 <ul>
 <li>Lower bounded type 은 제네릭 타입 선언 후 super 키워드를 붙히고 원하는 타입을 적으면된다.</li>
 <li>Lower bounded type 타입 파라미터로 선언된 Parameterized type 는 자기 자신 혹은 상위 클래스의 타입 파라미터에 대해 <strong>Contravariant</strong> 하다.</li>
-<li>예를 들어 Cat → Animal 이면 &lt;? super Cat&gt; ← &lt;Animal&gt; 이다.</li>
+<li>예를 들어 Cat → Animal 이면 &lt;Animal&gt; → &lt;? super Cat&gt; 이다.</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Animal&gt; animals = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">List&lt;? <span class="keyword">super</span> Cat&gt; superCats = <span class="keyword">new</span> ArrayList&lt;&gt;(); <span class="comment">// lower bounded parameterized type</span></span><br><span class="line">List&lt;KoreanShortHair&gt; koreanShortHairs = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        </span><br><span class="line">cats = animals; <span class="comment">// Ok, animals 는 superCats 의 서브 타입이다.</span></span><br><span class="line">cats = koreanShortHairs; <span class="comment">// Fail, KoreanShortHair 는 Cat 의 상위클래스가 아니다.</span></span><br></pre></td></tr></table></figure>
 
@@ -386,7 +392,7 @@
 <li>Refiable type : 런타임에 타입에 대한 정보를 가지고 있다. 대표적으로 primitive, non - generic, unbounded wildcards (&lt;?&gt;) 등 이 있다.</li>
 <li>Non - Reifiable type : 런타임에 타입에 대한 정보가 없다. 대표적으로 type erasure 가 진행되는 대부분의 generic parameterized type 이 있다.</li>
 </ul>
-<p>제네릭이 가지는 한계점은 대부분 이 타입 소거라는 특징 때문에 발생할 만큼 기억해둬야할 원리다. 타입 소거로 인한 이슈를 피하기 위한 기법 super type token<a href="https://www.baeldung.com/java-super-type-tokens" target="_blank" rel="noopener">super type token</a> 이 나오기도 했다.</p>
+<p>제네릭이 가지는 한계점은 대부분 이 타입 소거라는 특징 때문에 발생할 만큼 기억해둬야할 원리다. 타입 소거로 인한 이슈를 피하기 위한 기법 <a href="https://www.baeldung.com/java-super-type-tokens" target="_blank" rel="noopener">super type token</a> 이 나오기도 했다.</p>
 <h1 id="제네릭의-한계점"><a href="#제네릭의-한계점" class="headerlink" title="제네릭의 한계점"></a>제네릭의 한계점</h1><h2 id="원시값을-제네릭-타입으로-사용할-수-없다"><a href="#원시값을-제네릭-타입으로-사용할-수-없다" class="headerlink" title="원시값을 제네릭 타입으로 사용할 수 없다"></a>원시값을 제네릭 타입으로 사용할 수 없다</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">List&lt;<span class="keyword">int</span>&gt; numbers = <span class="keyword">new</span> ArrayList&lt;&gt;(); <span class="comment">// compile time error</span></span><br><span class="line">List&lt;Integer&gt; numbers = <span class="keyword">new</span> ArrayList&lt;&gt;(); <span class="comment">// Ok</span></span><br></pre></td></tr></table></figure>
 
 <p>원시값을 사용하기 위해서는 Wrapper class 를 사용해야한다. 허용되지 않는 이유가 타입소거 때문인줄 알았는데 컴파일러 구현 이슈 때문이라는 의견이 있었다. 이 부분은 좀 더 정확한 정보를 찾게 되면 다시 업데이트가 필요하다.</p>
