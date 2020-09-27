@@ -8,6 +8,14 @@
     </url>
 
     <url>
+        <loc>https://vagabond95.me/2020/07/03/about_ioc_dip_di/</loc>
+        <lastmod>2020-09-27T04:58:16.232Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://vagabond95.me/2020/08/16/adb_starter_guide/</loc>
         <lastmod>2020-08-16T12:56:28.499Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -18,14 +26,6 @@
     <url>
         <loc>https://vagabond95.me/2020/07/31/generic_guide/</loc>
         <lastmod>2020-08-16T08:06:41.845Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://vagabond95.me/2020/07/03/about_ioc_dip_di/</loc>
-        <lastmod>2020-07-03T03:34:05.027Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
