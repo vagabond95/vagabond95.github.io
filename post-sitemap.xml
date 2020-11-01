@@ -8,6 +8,14 @@
     </url>
 
     <url>
+        <loc>https://vagabond95.me/2020/11/01/android_with_junit5/</loc>
+        <lastmod>2020-11-01T10:11:23.324Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://vagabond95.me/2020/09/28/lambda_with_effectively_final/</loc>
         <lastmod>2020-09-28T08:36:40.094Z</lastmod>
         <changefreq>weekly</changefreq>
