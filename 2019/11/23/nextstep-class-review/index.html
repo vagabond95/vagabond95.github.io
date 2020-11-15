@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"vagabond95.me","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="코드에 대한 고민, Next  Step이직 후, 오랜 기간 서비스된 앱을 개발하게 되면서 가장 자주 들었던 생각이 있다.  아, 이건 레거시 구조 때문에 더이상 건드리기가 어렵다.  사실 이미 존재하는 레거시 코드를 탓하는 것은 큰 의미가 없다. 중요한 것은 앞으로 내가 작성하는 코드 역시 이러한 레거시 코드가 될 수 있다는 것이었다. 그래서 최근부터 유지">
+<meta name="keywords" content="Review,TDD,Clean Code,Refactoring">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[후기] Next Step - 클린코드를 위한 TDD, 리팩토링 with Java 과정을 마무리 하며">
+<meta property="og:url" content="https://vagabond95.me/2019/11/23/nextstep-class-review/index.html">
+<meta property="og:site_name" content="기록은 기억을 지배한다">
+<meta property="og:description" content="코드에 대한 고민, Next  Step이직 후, 오랜 기간 서비스된 앱을 개발하게 되면서 가장 자주 들었던 생각이 있다.  아, 이건 레거시 구조 때문에 더이상 건드리기가 어렵다.  사실 이미 존재하는 레거시 코드를 탓하는 것은 큰 의미가 없다. 중요한 것은 앞으로 내가 작성하는 코드 역시 이러한 레거시 코드가 될 수 있다는 것이었다. 그래서 최근부터 유지">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://vagabond95.me/images/next-step-review/feedback.png">
+<meta property="og:updated_time" content="2019-11-24T04:04:50.395Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[후기] Next Step - 클린코드를 위한 TDD, 리팩토링 with Java 과정을 마무리 하며">
+<meta name="twitter:description" content="코드에 대한 고민, Next  Step이직 후, 오랜 기간 서비스된 앱을 개발하게 되면서 가장 자주 들었던 생각이 있다.  아, 이건 레거시 구조 때문에 더이상 건드리기가 어렵다.  사실 이미 존재하는 레거시 코드를 탓하는 것은 큰 의미가 없다. 중요한 것은 앞으로 내가 작성하는 코드 역시 이러한 레거시 코드가 될 수 있다는 것이었다. 그래서 최근부터 유지">
+<meta name="twitter:image" content="https://vagabond95.me/images/next-step-review/feedback.png">
+
+<link rel="canonical" href="https://vagabond95.me/2019/11/23/nextstep-class-review/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>[후기] Next Step - 클린코드를 위한 TDD, 리팩토링 with Java 과정을 마무리 하며 | 기록은 기억을 지배한다</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143694036-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-143694036-1');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head> 
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">기록은 기억을 지배한다</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">I Android you</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="list fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-til">
+
+    <a href="https://progjh.gitbook.io/today-i-learned/" rel="noopener" target="_blank"><i class="fire fa-fw"></i>TIL</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://vagabond95.me/2019/11/23/nextstep-class-review/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jihoon Kim">
+      <meta itemprop="description" content="내일 잊기전에 오늘 적어두는 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="기록은 기억을 지배한다">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [후기] Next Step - 클린코드를 위한 TDD, 리팩토링 with Java 과정을 마무리 하며
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-11-23 22:10:53" itemprop="dateCreated datePublished" datetime="2019-11-23T22:10:53+09:00">2019-11-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-11-24 13:04:50" itemprop="dateModified" datetime="2019-11-24T13:04:50+09:00">2019-11-24</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="코드에-대한-고민-Next-Step"><a href="#코드에-대한-고민-Next-Step" class="headerlink" title="코드에 대한 고민, Next  Step"></a>코드에 대한 고민, Next  Step</h1><p>이직 후, 오랜 기간 서비스된 앱을 개발하게 되면서 가장 자주 들었던 생각이 있다.</p>
+<blockquote>
+<p>아, 이건 레거시 구조 때문에 더이상 건드리기가 어렵다.</p>
+</blockquote>
+<p>사실 이미 존재하는 레거시 코드를 탓하는 것은 큰 의미가 없다. 중요한 것은 앞으로 내가 작성하는 코드 역시 이러한 레거시 코드가 될 수 있다는 것이었다. 그래서 최근부터 유지 보수하기 쉬운 코드란 무엇인지, 레거시는 왜 관리하기가 어려운지 고민하기 시작했고, 관련된 내용의 글과 책을 찾아보며 나름의 결론을 내고자 했었다.</p>
+<p>그러던 중 우연히 한 개발자의 글을 통해, 내가 고민하고 있는 포인트와 비슷한 내용을 다룬 강의가 있다는 것을 알게 되었고 그것이 바로 Next Step 의 강의 였다. 소개된 커리큘럼과 진행 방식을 보며, 투자할 가치가 있다고 생각되었고 바로 수강 신청을 했다.</p>
+<h1 id="의도적인-수련을-통한-학습"><a href="#의도적인-수련을-통한-학습" class="headerlink" title="의도적인 수련을 통한 학습"></a>의도적인 수련을 통한 학습</h1><p>최근 읽었던 책에서 <strong>의도적 수련</strong> 이라는 개념을 이야기하는 부분이 있었다. 내용의 핵심은, 매일 어떠한 일을 반복하더라도 이를 의도적으로 분석하고 개선하고자 하는 노력이 없으면 실력이 늘지 않는다는 것이다. 우리가 양치질을 매일 반복한다고 양치질의 전문가가 되지 않는 것처럼 말이다.</p>
+<p>그리고 Next Step 의 독특한 수업 진행 방식은 이러한 의도적 수련을 지속적으로 할 수 있도록 도와주는 형태로 이루어져 있었다.</p>
+<p>수업은 다음과 같은 루틴으로 반복된다.</p>
+<ol>
+<li>주 1회 TDD, Clean Code, Refactoring 에 대한 오프라인 강의가 이루어 진다.</li>
+<li>배운 개념을 바탕으로 해당 주차의 과제를 수행한다. </li>
+<li>과제는 단계별로 이루어져 있으며 각 단계의 요구사항을 모두 구현하면 PR 을 보내, 담당 리뷰어에게 피드백을 받는다.</li>
+<li>모든 단계의 피드백을 반영하면 해당 과제가 마무리 된다.</li>
+<li>1-4 의 과정 반복</li>
+</ol>
+<p>일반적인 강의와 가장 큰 차이점은 <strong>구현한 코드에 대한 리뷰를 받는 과정</strong>이 있다는 것이다. </p>
+<p>매번 각 과제의 단계마다 구현한 내용에 대하여 피드백을 받는다. 이때 피드백은 문제의 해답이 아니라 방향성만 제시 해주기 때문에, 스스로 생각해보고 각각의 결정에 대한 트레이드 오프를 고려하는 시간을 만들어준다. 또한 다소 추상적일 수 있는 수업 내용을 실제 코드에서 적용해 나가는 과정에서 제대로 개념을 이해하고 넘어갈 수 있었다.<br><img src="/images/next-step-review/feedback.png" alt></p>
+<p>(피드백만 잘 반영해 나가도, 어느샌가 자연스럽게 클린 코드를 바탕으로 리펙토링하고 있는 자신을 발견할 수 있다.)</p>
+<h1 id="기억에-남는-수업-내용"><a href="#기억에-남는-수업-내용" class="headerlink" title="기억에 남는 수업 내용"></a>기억에 남는 수업 내용</h1><p>수업 내용 중 기억에 많이 남았던 부분을 정리하고 이에 대한 생각들의 정리이다. (수업 내용의 일부는 미리 허락을 받고 적었다.)</p>
+<h2 id="클린코드를-지향해야-하는-이유"><a href="#클린코드를-지향해야-하는-이유" class="headerlink" title="클린코드를 지향해야 하는 이유"></a>클린코드를 지향해야 하는 이유</h2><p>우리가 클린코드를 지향 해야하는 이유는 무엇일까? </p>
+<p>이 물음은 인간은 완벽하지 않다는 개념에서 출발한다. 코드를 짠 순간은 빈틈이 없어 보이지만, 시간이 지날수록 스스로도 과거의 자신을 이해하지 못하며 관리하기 어려운 코드가 되어 버린다. 왜냐하면 인간 역시 스스로 계속 변화하는 변수이기 때문이다. 따라서 코드를 짜는 개발자를 믿을 수 없다. 믿어서는 안된다. <strong>우리는 지킬 수 있는 약속을 만들고, 이 약속을 믿어야 한다</strong>.</p>
+<p>모두가 약속에 기반하여 코드를 짜면, 설령 시간이 흘러 사람이 변했더라도 약속을 상기시키며 수월하게 관리하고 변경할 수 있다. 클린코드는 그러한 약속들이라고 생각할 수 있다.</p>
+<p>→ 너무나 공감되는 대목이었다. 코딩의 신의 강림한듯한 날에 마무리한 후 엄청난 뿌듯함을 가지고 퇴근을 했는데, 며칠 뒤에 다시 보니 너무나 복잡도가 높아 이해하기가 어려워 결국 바닥부터 다시 짰던 경험이 있다. 같은 맥락에서 팀 차원의 공용 컨벤션이나 아키텍처 구조 등을 가이드로 정하고 이를 지키려는 노력들이 중요하다고 생각한다.</p>
+<h2 id="Out-→-In-vs-In-→-Out-처음부터-완벽한-코드는-없다"><a href="#Out-→-In-vs-In-→-Out-처음부터-완벽한-코드는-없다" class="headerlink" title="Out → In vs  In → Out : 처음부터 완벽한 코드는 없다"></a>Out → In vs  In → Out : 처음부터 완벽한 코드는 없다</h2><p>어떠한 도메인에 대한 구현을 하게 될 때 우리는 다음과 같은 접근 방식 중 하나를 선택하여 구현을 할 수 있다. </p>
+<p><strong>Out → In 방식</strong></p>
+<ul>
+<li>도메인의 요구사항을 충족할 수 있을 정도로만 빠르게 구현한다.</li>
+<li>하나의 객체가 많은 역할을 수행하고 있을 수 있다.</li>
+<li>도메인 지식이 없거나 요구사항 복잡도가 높은 경우 적합하다.</li>
+</ul>
+<p><strong>In → Out 방식</strong></p>
+<ul>
+<li>도메인을 가장 단위의 객체부터 나누어 기능을 구현하고, 이를 확장해 나간다.</li>
+<li>각 객체가 수행하는 역할이 작고 명확해진다.</li>
+<li>도메인 지식이 있거나 요구사항이 단순한 경우 적합하다.</li>
+</ul>
+<p>→ 이 내용의 핵심은 어떤 방식이 더 낫다는 것이 아니라 상황에 맞게 적절하게 선택해야 한다는 것이다. 나의 경우 이러한 사실을 일찍 깨닫지 못하고, Out → In 방식이 클린 코드의 규칙들을 지키지 못하는 것 같다는 느낌이 들어서 새로운 도메인이 주어진 과제를 시작부터 In → Out 방식으로 접근했었다. 처음에는 작은 레벨 부터 객체를 확장시켜 나가면서 도메인의 요구사항을 충족하는게 어렵지 않았다. 그러나 점점 스펙이 추가 될 수록, 좋지 않는 냄새가 나는 코드가 되어져 갔다. (어? 굉장히 익숙한 상황 아닌가?) 왜냐하면 도메인 지식이 충분하지 않기 때문에 설계 과정에서 놓치는 점들이 많았기 때문이다.  결국 몇 번의 갈아엎음을 반복하면서 도메인 지식이 충분히 쌓인 후에야, 새로운 스펙이 추가 됐을 때 In - Out 방식으로 구현이 가능 해지기 시작했다. </p>
+<p>프로그래밍의 대부분이 그런 것 같다. 모든 상황에 절대적으로 적용할 수 있는 만능 키는 없다고 본다. 다만, 각각의 선택에 대한 트레이드 오프를 인지하고 있고, 그것을 토대로 상황에 맞게 선택하는 지혜가 필요하다.</p>
+<h2 id="팀내에서-어떻게-도입할-것인가"><a href="#팀내에서-어떻게-도입할-것인가" class="headerlink" title="팀내에서 어떻게 도입할 것인가?"></a>팀내에서 어떻게 도입할 것인가?</h2><p>수업 내용을 듣더라도 당장 내일부터 팀에 적용하는 것은 무리가 있을 수 있다. 우리는 어떤 전략을 취해야 하는가?</p>
+<p>사람은 감성적인 측면이 더 강하기 때문에 이성적, 논리적으로 제안하는 것보다 친분관계를 쌓고 실력에 대한 신뢰 형성 후 얘기를 나누어 보는 것이 더 승산이 있다.</p>
+<p>우선은 내가 맡은 코드부터 바꿔보는 작은 시도를 하고 성공하는 경험을 느낀다. 그렇게 작은 시도와 성공을 반복하며 범위를 넓혀 가다가 관심이 보이는 동료가 있으면 같이 이야기를 나누며 전파하고, 팀원 전체에게 전파해 나간다. 만약 이러한 과정이 실패하더라도 내 성장이 따라오기 때문에 잃는 것은 없다. 시도해 볼만한 싸움이다.</p>
+<p>→ 감성적인 측면으로 접근한다는 새로운 관점의 설득 방식이 기억에 남았다. 실제로 강력한 논리로 무장한 의견을 제시 하더라도 잘 받아 들여지지 않는 반면, 친하고 신뢰가 있는 동료의 몇 마디에 통과가 되는 상황을 본적이 있다. 전략을 성공시키기 위해서는 다양한 무기를 활용할 필요가 있다. 좋은 무기 중 하나가 되지 않을까?</p>
+<h1 id="강의를-듣기-전에…"><a href="#강의를-듣기-전에…" class="headerlink" title="강의를 듣기 전에…"></a>강의를 듣기 전에…</h1><p>내가 강의를 듣기 전에 궁금 했었던 부분의 정리이다. </p>
+<p><strong>클라이언트 개발자가 들어도 될까?</strong></p>
+<ul>
+<li><p>결론적으로는 들어도 된다. 100% 자바 베이스로 [TDD, Refactoring, Clean Code] 에 대한 내용을 학습하는 것이기 때문에 개발 스택에 상관없이 내용을 따라갈 수 있다. 나는 처음 OT 시간에, 주변에 전부 백엔드 개발자분들만 계서서 수강대상이 아닌줄 알고 혼란에 빠졌던 기억이 난다.</p>
+<p>  추가로 나는 처음 과제 진행을 할 때 기존에 익숙한 Android 스타일로 단계를 진행하다가, 관련된 피드백을 참조하여 익숙한 스타일을 깨고 다른 식으로 접근 해보기 위해 노력 했었다.</p>
+</li>
+</ul>
+<p><strong>먼저 선수 과정으로 공부해야할 것이 있을까?</strong></p>
+<ul>
+<li>git, java 가 익숙하지 않은 사람은 기본적인 개념을 익히고 가면 좋다. 물론 각 과정에서 git, java 를 깊게 다루는 것은 아니기 때문에 진행하면서 같이 익혀도 상관은 없으나, 그만큼 초반에 더 많은 시간을 투자해야한다는 것을 염두해두자.</li>
+<li>객체지향의 오해와 진실, 이펙티브 자바, 클린 코드 등의 책을 읽고 가면 좀 더 빠른 이해와 과제 진행이 되지 않을까 싶다. 그러나 권장 사항일뿐 필수는 아니다.</li>
+</ul>
+<p><strong>정말 직장 다니면서 할 수 있을까?</strong></p>
+<ul>
+<li><p>할 수 있다. 그런데 각오는 해야 한다. 퇴근 후에 지친 상태에서 과제를 진행 하는게 쉽지 않다. 하루종일 코드를 봤는데, 또 코드를 봐야 한다는 압박감도 찾아온다.</p>
+<p>  또한 뒤로 갈수록 난이도가 올라가기 때문에, 점점 더 많은 시간의 투자가 요구된다. 평일과 주말을 가리지 않고 적지않은 시간을 투자 했는데, 갈수록 한주 내에 과제를 마무리하는 것이 쉽지 않았다. (글을 쓰는 이 시점에도 아직 마무리하지 못한 과제가 남아있다. 😂)</p>
+<p>  물론 과제에 대한 마감 기한이 없고, 하나의 과제라도 확실히 내 것으로 가져가는 것이 중요하다고 하셨기 때문에 너무 무리해서 과제를 진행할 필요는 없다.</p>
+<p>  나 같은 경우 지속적으로 하기 위해 일종의 보상 체계를 구축 했는데, 퇴근 후 딱 한시간 만 온전히 내가 하고 싶은 것을 하고 자기 전까지 과제를 진행하는 방법이었다. 효과는 굉장했다!</p>
+</li>
+</ul>
+<p><strong>야근이나, 개인적인 사정으로 강의를 못듣게 되면 어떡하나?</strong></p>
+<ul>
+<li>다음 기수에서도 똑같을지 모르겠으나, 내가 수강했던 기간에는 매번 강의가 끝난 후 촬영된 영상이 제공되었다. 또한 슬랙 DM 으로 언제든 궁금한 것을 물어볼 수 있기 때문에 갑작스러운 야근이나, 개인 사정으로 듣지 못하더라도 크게 걱정할 필요는 없다.</li>
+</ul>
+<h1 id="마무리-하며"><a href="#마무리-하며" class="headerlink" title="마무리 하며"></a>마무리 하며</h1><p>이 수업 과정을 마쳤다고 해서 TDD, Clean Code, Refactoring 의 종착점에 도달했다고 얘기할 수는 없다. 오히려 이제 시작이라고, 나아가야 한다고, 출발선에 세워 주는 느낌이다. 달려가는 과정 속에서는 분명히 많은 어려움이 따라오겠지만 이제라도 올바른 레이스를 시작할 수 있게 된 것에 감사함을 느낀다.  글을 마무리하고, 미처 끝내지 못한 과제를 하러 다시 달려야겠다. 🤟</p>
+<p>항상 열정적으로 강의를 진행해주신 재성님, 매번 디테일한 리뷰와 함께 함께 고민을 나누어 주셨던 리뷰어분들께 감사드린다.</p>
+<p><strong>link :</strong> <a href="https://edu.nextstep.camp/" target="_blank" rel="noopener">https://edu.nextstep.camp/</a> </p>
+<p>다음 기수의 강의가 열리기 전에 미리 대기 신청을 할 수 있으므로, 관심이 있으면 클릭!</p>
+
+    </div>
+
+  
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Review/" rel="tag"># Review</a>
+              <a href="/tags/TDD/" rel="tag"># TDD</a>
+              <a href="/tags/Clean-Code/" rel="tag"># Clean Code</a>
+              <a href="/tags/Refactoring/" rel="tag"># Refactoring</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/11/03/git-rebase-onto/" rel="prev" title="[git] squash merge 된 branch 를 rebase 할 때 생기는 이슈 - onto 옵션의 활용">
+      <i class="fa fa-chevron-left"></i> [git] squash merge 된 branch 를 rebase 할 때 생기는 이슈 - onto 옵션의 활용
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/12/22/2019-second-half-review/" rel="next" title="2019년 하반기 회고">
+      2019년 하반기 회고 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+  <div class="utterance">
+    <script src="https://utteranc.es/client.js"
+        repo="vagabond95/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+  </div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#코드에-대한-고민-Next-Step"><span class="nav-number">1.</span> <span class="nav-text">코드에 대한 고민, Next  Step</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#의도적인-수련을-통한-학습"><span class="nav-number">2.</span> <span class="nav-text">의도적인 수련을 통한 학습</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#기억에-남는-수업-내용"><span class="nav-number">3.</span> <span class="nav-text">기억에 남는 수업 내용</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#클린코드를-지향해야-하는-이유"><span class="nav-number">3.1.</span> <span class="nav-text">클린코드를 지향해야 하는 이유</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Out-→-In-vs-In-→-Out-처음부터-완벽한-코드는-없다"><span class="nav-number">3.2.</span> <span class="nav-text">Out → In vs  In → Out : 처음부터 완벽한 코드는 없다</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#팀내에서-어떻게-도입할-것인가"><span class="nav-number">3.3.</span> <span class="nav-text">팀내에서 어떻게 도입할 것인가?</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#강의를-듣기-전에…"><span class="nav-number">4.</span> <span class="nav-text">강의를 듣기 전에…</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#마무리-하며"><span class="nav-number">5.</span> <span class="nav-text">마무리 하며</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Jihoon Kim</p>
+  <div class="site-description" itemprop="description">내일 잊기전에 오늘 적어두는 블로그</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jihoon Kim</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  <!-- Google AdSense end -->
+  <script data-ad-client="ca-pub-5033331279793069" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- Google AdSense start -->
+</body>
+</html>

@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"vagabond95.me","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="공식 문서에서도 가이드 하는 것 처럼 이제 Android 아키텍처를 구성할 때 Repository 패턴은 기본적으로 사용 되고있다. 오늘은 Repository 패턴에 대한 간단한 정리와 사용하면서 내가 놓치고 있었던 점에 대하여 정리 해보려한다. TL;DR Repository 패턴의 궁극적인 목적은 결국 관심사의 분리다. DataSource 외에 data">
+<meta name="keywords" content="Android,DesignPattern">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[안드로이드] Repository 패턴에 대한 고찰">
+<meta property="og:url" content="https://vagabond95.me/2020/05/24/android_repository_pattern/index.html">
+<meta property="og:site_name" content="기록은 기억을 지배한다">
+<meta property="og:description" content="공식 문서에서도 가이드 하는 것 처럼 이제 Android 아키텍처를 구성할 때 Repository 패턴은 기본적으로 사용 되고있다. 오늘은 Repository 패턴에 대한 간단한 정리와 사용하면서 내가 놓치고 있었던 점에 대하여 정리 해보려한다. TL;DR Repository 패턴의 궁극적인 목적은 결국 관심사의 분리다. DataSource 외에 data">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-06-04T14:57:04.988Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[안드로이드] Repository 패턴에 대한 고찰">
+<meta name="twitter:description" content="공식 문서에서도 가이드 하는 것 처럼 이제 Android 아키텍처를 구성할 때 Repository 패턴은 기본적으로 사용 되고있다. 오늘은 Repository 패턴에 대한 간단한 정리와 사용하면서 내가 놓치고 있었던 점에 대하여 정리 해보려한다. TL;DR Repository 패턴의 궁극적인 목적은 결국 관심사의 분리다. DataSource 외에 data">
+
+<link rel="canonical" href="https://vagabond95.me/2020/05/24/android_repository_pattern/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>[안드로이드] Repository 패턴에 대한 고찰 | 기록은 기억을 지배한다</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143694036-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-143694036-1');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head> 
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">기록은 기억을 지배한다</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">I Android you</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="list fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-til">
+
+    <a href="https://progjh.gitbook.io/today-i-learned/" rel="noopener" target="_blank"><i class="fire fa-fw"></i>TIL</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://vagabond95.me/2020/05/24/android_repository_pattern/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jihoon Kim">
+      <meta itemprop="description" content="내일 잊기전에 오늘 적어두는 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="기록은 기억을 지배한다">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [안드로이드] Repository 패턴에 대한 고찰
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-05-24 15:22:30" itemprop="dateCreated datePublished" datetime="2020-05-24T15:22:30+09:00">2020-05-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-06-04 23:57:04" itemprop="dateModified" datetime="2020-06-04T23:57:04+09:00">2020-06-04</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><a href="https://developer.android.com/jetpack/docs/guide?hl=ko#overview" target="_blank" rel="noopener">공식 문서</a>에서도 가이드 하는 것 처럼 이제 Android 아키텍처를 구성할 때 Repository 패턴은 기본적으로 사용 되고있다. 오늘은 Repository 패턴에 대한 간단한 정리와 사용하면서 내가 놓치고 있었던 점에 대하여 정리 해보려한다.</p>
+<h1 id="TL-DR"><a href="#TL-DR" class="headerlink" title="TL;DR"></a>TL;DR</h1><ul>
+<li>Repository 패턴의 궁극적인 목적은 결국 관심사의 분리다.</li>
+<li>DataSource 외에 data 에 대한 분리도 필요하다.</li>
+</ul>
+<h1 id="Repository-패턴을-사용하는-이유"><a href="#Repository-패턴을-사용하는-이유" class="headerlink" title="Repository 패턴을 사용하는 이유"></a>Repository 패턴을 사용하는 이유</h1><blockquote>
+<p>Repositories are classes or components that encapsulate the logic required to access data sources.</p>
+</blockquote>
+<p>Repository 는 DataSource 를 캡슐화 한다. 이점은 다음과 같다.</p>
+<ul>
+<li>하나의 도메인을 표현하는데 필요한 DataSource 가 몇 개든 client 쪽에서는 이를 알 필요가 없다.<ul>
+<li>따라서 DataSource 를 새롭게 추가하는 것도 부담이 없다.</li>
+</ul>
+</li>
+<li>DataSource 의 변경이 발생하더라도 repository 외부 layer 로 전파되지 않는다.</li>
+<li>client 는 repository 인터페이스에 의존하기 때문에 테스트 하기 용이하다.</li>
+</ul>
+<p>결국 repository 는 presentation layer 와 data layer 의 coupling 을 느슨하게 만들어준다.</p>
+<h1 id="구조"><a href="#구조" class="headerlink" title="구조"></a>구조</h1><p>Andorid 진영에서는 아래 구조를 크게 벗어나지 않는다.</p>
+<p>View → Presenter / ViewModel → <strong>Repository</strong> → DataSource (API, Local DB)</p>
+<p><strong>ViewModel</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserInformationViewModel</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">		...</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClickUserInfoButton</span><span class="params">(<span class="keyword">int</span> userId)</span> </span>&#123;</span><br><span class="line">        mUserRepository.getUser(userId)</span><br><span class="line">                .subscribeOn(Schedulers.io())</span><br><span class="line">                .observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">                .subscribe(</span><br><span class="line">                        user -&gt; &#123;</span><br><span class="line">                            <span class="comment">///</span></span><br><span class="line">                        &#125;,</span><br><span class="line">                        error -&gt; &#123;</span><br><span class="line"></span><br><span class="line">                        &#125;</span><br><span class="line">                );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Repository</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserRepository</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">		...</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Single&lt;User&gt; <span class="title">getUser</span><span class="params">(<span class="keyword">int</span> userId)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> userApi.getUser(userId);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="놓치고-있었던-점"><a href="#놓치고-있었던-점" class="headerlink" title="놓치고 있었던 점"></a>놓치고 있었던 점</h1><p>Repository 패턴 자체는 적용이 어렵지 않다. 하지만 많은 사람들이 놓치고 있는 부분이 있는데, 위 예시에서도 찾을 수 있다.</p>
+<p>바로 <strong>Repository 가 DataSource 의 데이터를 그대로 전달</strong>해준다는 점이다.</p>
+<p>위 예시를 다시한번 살펴보자. UserRepository 는 UserApi 로 부터 전달받은 User 를 별다른 처리없이 그대로 리턴하고 이를 presentation layer 에서 사용하고 있다.</p>
+<p>이것은 다음과 같은 문제점을 가지고 있다.</p>
+<ul>
+<li>back 단의 구현 이슈가 presentation layer 에 영향을 끼칠 수 있다.</li>
+<li>User 는 서버 (혹은 로컬 DB) 의 데이터베이스 테이블을 표현하는 역할을 수행하는 객체일 뿐이다.</li>
+</ul>
+<h2 id="Data-스펙이-바뀌면-presentation-layer-전반에-영향-끼치게-된다"><a href="#Data-스펙이-바뀌면-presentation-layer-전반에-영향-끼치게-된다" class="headerlink" title="Data 스펙이 바뀌면 presentation layer 전반에 영향 끼치게 된다."></a>Data 스펙이 바뀌면 presentation layer 전반에 영향 끼치게 된다.</h2><p>필드 삭제, 필드 이름 변경 등 서버가 데이터 구조를 변경하게 되면 이를 바로 참조하고 있는 다른 layer 에서도 필연적으로 변경이 발생하게 된다. </p>
+<p>예를 들어 클라쪽에서는 User 정보를 표기해야 하는데 서버에서 각기 다른 데이터의 요청을 N 번 거쳐야 한다고 생각해보자. 그럼 N 개의 데이터에 대한 변경 사항은 모두 온전히 클라에 영향을 줄 것이다. 더 중요한 점은 이렇게 복잡한 데이터 모델을 혼재하여 사용하게 되면 다른 개발자가 컨텍스트를 이해하기 매우 어려워지기 시작한다.</p>
+<h2 id="서버-혹은-로컬-DB-의-데이터베이스-테이블을-표현하는-역할을-수행하는-객체일-뿐이다"><a href="#서버-혹은-로컬-DB-의-데이터베이스-테이블을-표현하는-역할을-수행하는-객체일-뿐이다" class="headerlink" title="서버 (혹은 로컬 DB) 의 데이터베이스 테이블을 표현하는 역할을 수행하는 객체일 뿐이다."></a>서버 (혹은 로컬 DB) 의 데이터베이스 테이블을 표현하는 역할을 수행하는 객체일 뿐이다.</h2><p>같은 도메인에 대하여 클라와 서버의 용어가 통일이 되는 것이 가장 이상적이겠지만 현실세계에서는 서로 다른 용어를 사용하는 경우가 허다하다. 그럴 경우 보통은 클라이언트 코드 베이스에서 라도 서로 통일이 이루어져야 한다. 그런데 서버 데이터 구조를 그대로 가져와 사용할 경우, 팀내 도메인 용어와 실제 코드 베이스의 용어가 달라지게 되고 커뮤니케이션 리소스가 급증하게 되는 상황이 발생한다.</p>
+<p>또한 도메인의 비즈니스 로직 처리에 필요한 메소드를 생성할 시점이 왔을 때, (서버 테이블을 반영한) 객체에 추가하게 되면 해당 객체는 테이블도 표현하고, 도메인 로직도 처리하는 <a href="https://en.wikipedia.org/wiki/God_object" target="_blank" rel="noopener">God object</a> 가 될 확률이 높다.</p>
+<h3 id="한번쯤-만들어-봤을-법한-클래스"><a href="#한번쯤-만들어-봤을-법한-클래스" class="headerlink" title="한번쯤 만들어 봤을 법한 클래스.."></a>한번쯤 만들어 봤을 법한 클래스..</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">                </span><br><span class="line">    <span class="meta">@SerializedName</span>(<span class="string">"id"</span>)               </span><br><span class="line">    <span class="keyword">private</span> String id;                </span><br><span class="line">    <span class="meta">@SerializedName</span>(<span class="string">"nickname"</span>)               </span><br><span class="line">    <span class="keyword">private</span> String nickname;</span><br><span class="line">    <span class="meta">@SerializedName</span>(<span class="string">"grade"</span>)               </span><br><span class="line">    <span class="keyword">private</span> String grade;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isManager</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Grade.MANAGER == Grade.find(grade);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Repository 패턴을 사용하는 목적은 data layer 와의 coupling 을 느슨하게 하는 것인데, 다시 강한 결합이 되어버린 꼴이 되었다.</p>
+<h2 id="Mapper-를-활용하자"><a href="#Mapper-를-활용하자" class="headerlink" title="Mapper 를 활용하자"></a>Mapper 를 활용하자</h2><p>이러한 문제점을 해결하기 위하여 Mapper 를 사용할 수 있다. Mapper 란 말 그대로 테이블 객체 ↔ 도메인 모델 객체간의 mapping 을 시켜주는 유틸성 클래스를 의미한다. repository 내에서 mapper 를 활용하여 테이블 객체가 아닌 도메인 모델로 전달을 해주면 presentation layer 는 data layer 로 부터 진정한 자유를 찾을 수 있게 된다.<br><strong>Repository</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserRepository</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">		...</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Single&lt;UserDomain&gt; <span class="title">getUser</span><span class="params">(<span class="keyword">int</span> userId)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> userApi.getUser(userId).map(UserMapper::fromTable);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Mapper</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserMapper</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> UserDomain <span class="title">fromTable</span><span class="params">(User user)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> UserDomain(user.id, user.name, user.grade);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>만약 모든 모델에 대하여 보일러 플레이트 코드 처럼 Mapper 클래스를 만드는 것이 싫다면 <a href="https://github.com/modelmapper/modelmapper" target="_blank" rel="noopener">라이브러리</a> 를 활용해보는 것도 좋은 대안이다.</p>
+<h1 id="결론"><a href="#결론" class="headerlink" title="결론"></a>결론</h1><p>다양한 아키텍처, 패턴을 공부하다 보면 결국 변경하기 쉬운 구조를 만들기 위한 여러 시도들이라고 생각된다. 단순히 패턴의 단면만을 보고 큰 고민없이 사용하는 것이 아니라 그속에 담겨있는 핵심을 잘 이해하고 사용하는 것이 중요하다는 것을 다시금 깨닫게 된다.</p>
+<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref :"></a>Ref :</h2><ul>
+<li><p><a href="https://academy.realm.io/kr/posts/clean-architecture-in-android" target="_blank" rel="noopener">https://academy.realm.io/kr/posts/clean-architecture-in-android</a></p>
+</li>
+<li><p><a href="https://proandroiddev.com/the-real-repository-pattern-in-android-efba8662b754" target="_blank" rel="noopener">https://proandroiddev.com/the-real-repository-pattern-in-android-efba8662b754</a></p>
+</li>
+<li><p><a href="https://medium.com/corebuild-software/android-repository-pattern-using-rx-room-bac6c65d7385" target="_blank" rel="noopener">https://medium.com/corebuild-software/android-repository-pattern-using-rx-room-bac6c65d7385</a></p>
+</li>
+<li><p><a href="https://docs.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design" target="_blank" rel="noopener">https://docs.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design</a></p>
+</li>
+<li><p><a href="https://medium.com/@soleilstudio/object-mapping-in-android-f56935917c61" target="_blank" rel="noopener">https://medium.com/@soleilstudio/object-mapping-in-android-f56935917c61</a></p>
+</li>
+</ul>
+
+    </div>
+
+  
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Android/" rel="tag"># Android</a>
+              <a href="/tags/DesignPattern/" rel="tag"># DesignPattern</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/04/25/nextstep_reviewer_review/" rel="prev" title="NextStep 리뷰어 활동을 마무리 하며">
+      <i class="fa fa-chevron-left"></i> NextStep 리뷰어 활동을 마무리 하며
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/06/07/viewmodel_public_method/" rel="next" title="[안드로이드] ViewModel 에 대한 고찰 : public 메소드">
+      [안드로이드] ViewModel 에 대한 고찰 : public 메소드 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+  <div class="utterance">
+    <script src="https://utteranc.es/client.js"
+        repo="vagabond95/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+  </div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#TL-DR"><span class="nav-number">1.</span> <span class="nav-text">TL;DR</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Repository-패턴을-사용하는-이유"><span class="nav-number">2.</span> <span class="nav-text">Repository 패턴을 사용하는 이유</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#구조"><span class="nav-number">3.</span> <span class="nav-text">구조</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#놓치고-있었던-점"><span class="nav-number">4.</span> <span class="nav-text">놓치고 있었던 점</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-스펙이-바뀌면-presentation-layer-전반에-영향-끼치게-된다"><span class="nav-number">4.1.</span> <span class="nav-text">Data 스펙이 바뀌면 presentation layer 전반에 영향 끼치게 된다.</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#서버-혹은-로컬-DB-의-데이터베이스-테이블을-표현하는-역할을-수행하는-객체일-뿐이다"><span class="nav-number">4.2.</span> <span class="nav-text">서버 (혹은 로컬 DB) 의 데이터베이스 테이블을 표현하는 역할을 수행하는 객체일 뿐이다.</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#한번쯤-만들어-봤을-법한-클래스"><span class="nav-number">4.2.1.</span> <span class="nav-text">한번쯤 만들어 봤을 법한 클래스..</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mapper-를-활용하자"><span class="nav-number">4.3.</span> <span class="nav-text">Mapper 를 활용하자</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#결론"><span class="nav-number">5.</span> <span class="nav-text">결론</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Ref"><span class="nav-number">5.1.</span> <span class="nav-text">Ref :</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Jihoon Kim</p>
+  <div class="site-description" itemprop="description">내일 잊기전에 오늘 적어두는 블로그</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jihoon Kim</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  <!-- Google AdSense end -->
+  <script data-ad-client="ca-pub-5033331279793069" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- Google AdSense start -->
+</body>
+</html>

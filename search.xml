@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>[Android] Android with JUnit5 (번역)</title>
-    <url>//android_with_junit5/</url>
+    <url>/2020/11/01/android_with_junit5/</url>
     <content><![CDATA[<p><img src="/images/cover/junit5.png" alt></p>
 <p>본 글은 저자의 허락을 받고 해당 <a href="https://medium.com/@boonkeat/android-unit-testing-with-junit5-d1b8f9c620b6" target="_blank" rel="noopener">글</a>을 번역한 내용이다. 부족한 영어 실력으로 의역한 부분이 많아 본 저자의 의도와 다르게 작성된 부분이 있을 수 있는 점에 대해 미리 양해를 구한다.</p>
 <p>Android 진영에서 작성되는 대부분의 단위 테스트는 Android Studio 에서 제공되는 JUnit4 를 이용하여 작성된다. 이러한 테스트 케이스에 대해 우리가 직면했던 큰 문제중 하나는 <strong>가독성</strong> 이슈였다. 일반적인 프로젝트에서 단위 테스트의 개수는 1000개 혹은 그 이상을 넘기기 쉬운데, 이러한 다수의 테스트 케이스가 있을 때 이에 대한 이름을 어떻게 지을 것인지가 문제였다. 네이밍이 잘못될 경우 테스트가 실패했을 때마다 해당 테스트가 무엇을 수행하는지 알기 위해 많은 에너지를 써야하기 때문이다.</p>
@@ -93,7 +93,7 @@
   </entry>
   <entry>
     <title>[Java] lambda 와 effectively final</title>
-    <url>//lambda_with_effectively_final/</url>
+    <url>/2020/09/28/lambda_with_effectively_final/</url>
     <content><![CDATA[<p><img src="/images/cover/lambda_with_effectively_final.jpg" alt><br>자바 8에서 추가된 람다식에는 다음과 같은 규칙이 존재한다.</p>
 <ol>
 <li>람다식은 외부 block 에 있는 변수에 접근할 수 있다.</li>
@@ -176,7 +176,7 @@
   </entry>
   <entry>
     <title>[Android] adb 기본 가이드</title>
-    <url>//adb_starter_guide/</url>
+    <url>/2020/08/16/adb_starter_guide/</url>
     <content><![CDATA[<p><img src="/images/cover/adb_starter_guide.jpg" alt><br>대부분의 디버깅 작업은 안드로이드 스튜디오 내부 디버거와 프로파일러를 이용하면 진행이 가능하기 때문에 adb 의 필요성을 크게 느끼지 못했다. 그런데 간혹 스튜디오 도구만으로는 해결이 어렵거나 애매한 케이스들을 맞이할 상황이 생겼고, 깊게 파보다 보니 adb 를 이용해 디버깅 할 수 있다는 사실을 알게 되었다.</p>
 <p>사실 같은 작업을 수행한다면 커맨드 라인보다 GUI 를 선호해서 그런지 adb 와 그리 친숙하지 않았는데, 공부하다보니 제법 유용한 기능이 많아서 이번 기회에 간단히 정리를 했다.</p>
 <h1 id="시작하기-전에"><a href="#시작하기-전에" class="headerlink" title="시작하기 전에"></a>시작하기 전에</h1><p>adb 를 이용하기 전에 2가지 작업이 선행되어야 한다.</p>
@@ -242,7 +242,7 @@
   </entry>
   <entry>
     <title>[Java] Generic 도장깨기</title>
-    <url>//generic_guide/</url>
+    <url>/2020/07/31/generic_guide/</url>
     <content><![CDATA[<p><img src="/images/cover/generic_guide.jpg" alt><br>제네릭을 활용할 일이 많은데 겉핥기 식으로만 알고 있다는 생각이 들어 이번 기회에 관련 내용들을 정리했다.</p>
 <h1 id="무엇인가"><a href="#무엇인가" class="headerlink" title="무엇인가?"></a>무엇인가?</h1><p>제네릭은 클래스, 인터페이스 및 메서드를 정의할 때 내부에서 사용될 type 을 parameter 로 전달할 수 있는 개념이다.</p>
 <p>간단히 아래와 같이 표현이 가능하다.</p>
@@ -434,7 +434,7 @@
   </entry>
   <entry>
     <title>IoC, DI, DIP 개념 잡기</title>
-    <url>//about_ioc_dip_di/</url>
+    <url>/2020/07/03/about_ioc_dip_di/</url>
     <content><![CDATA[<p>IoC, DIP, DI 는 항상 혼동되는 개념이다. 각 개념을 서로 같다고 표현하는 글들도 제법 있고, 각 개념의 정의를 살펴보니 직관적으로 이해가 되지 않았다. 요즘 특히 DI 에 대한 내용이 많이 언급되고 있다고 느끼는데 정작 주장하는 문맥이 조금씩 다르다보니 스스로 답답함을 느꼈다. 제대로된 논의를 하기 위해서는 올바른 개념 정리가 필요하다고 생각되어 각 개념에 대한 정보를 모으고 정리했다. </p>
 <h1 id="무엇이-다를까"><a href="#무엇이-다를까" class="headerlink" title="무엇이 다를까?"></a>무엇이 다를까?</h1><blockquote>
 <p>To be sure, using DI or IoC with DIP tends to be more expressive, powerful and domain-aligned, but they are about different dimensions, or forces, in an overall problem. DI is about wiring, IoC is about direction, and DIP is about shape.</p>
@@ -506,7 +506,7 @@
   </entry>
   <entry>
     <title>[안드로이드] ViewModel 에 대한 고찰 : public 메소드</title>
-    <url>//viewmodel_public_method/</url>
+    <url>/2020/06/07/viewmodel_public_method/</url>
     <content><![CDATA[<p>MVVM 기반으로 프로젝트를 진행할 때 팀 내에서 가장 많은 논의가 오고 갔던 부분은 역시 ViewModel 이었다. 이번 글은 그 중 ViewModel 의 public 메소드에 대하여  적어보려 한다.</p>
 <h1 id="종류-및-구현-방식"><a href="#종류-및-구현-방식" class="headerlink" title="종류 및 구현 방식"></a>종류 및 구현 방식</h1><p>ViewModel 은 보통 세 종류의 public 메소드를 제공한다.</p>
 <ol>
@@ -550,7 +550,7 @@
   </entry>
   <entry>
     <title>[안드로이드] Repository 패턴에 대한 고찰</title>
-    <url>//android_repository_pattern/</url>
+    <url>/2020/05/24/android_repository_pattern/</url>
     <content><![CDATA[<p><a href="https://developer.android.com/jetpack/docs/guide?hl=ko#overview" target="_blank" rel="noopener">공식 문서</a>에서도 가이드 하는 것 처럼 이제 Android 아키텍처를 구성할 때 Repository 패턴은 기본적으로 사용 되고있다. 오늘은 Repository 패턴에 대한 간단한 정리와 사용하면서 내가 놓치고 있었던 점에 대하여 정리 해보려한다.</p>
 <h1 id="TL-DR"><a href="#TL-DR" class="headerlink" title="TL;DR"></a>TL;DR</h1><ul>
 <li>Repository 패턴의 궁극적인 목적은 결국 관심사의 분리다.</li>
@@ -620,7 +620,7 @@
   </entry>
   <entry>
     <title>NextStep 리뷰어 활동을 마무리 하며</title>
-    <url>//nextstep_reviewer_review/</url>
+    <url>/2020/04/25/nextstep_reviewer_review/</url>
     <content><![CDATA[<p>작년 하반기에 Nextstep 의 <a href="https://vagabond95.me/2019/11/23/nextstep-class-review/">클린코드 교육과정을 참여</a>하며 배웠던 내용을 바탕으로 많은 성장을 할 수 있었다. 좋은 수업이라며 주위에 열심히 홍보를 하던 찰나, 과정을 직접 운영하고 계시는 박재성님으로부터 코드 리뷰어 활동을 제안 받게 되었다. </p>
 <p>코드 리뷰어로 활동할 수 있는 실력이 안될 것 같아 고민이 되었지만, 재성님의 격려와 좋은 경험을 쌓을 수 있는 기회라고 생각이 되어 제안을 수락하였다. </p>
 <p>리뷰어 활동은 약 한달간 진행되었고 그 과정속에서 깨달은 것이 많아 개인적인 정리 및 기록 차원에서 글을 남긴다.</p>
@@ -660,7 +660,7 @@
   </entry>
   <entry>
     <title>[안드로이드] TextView 에서 ellipsize 가 적용되지 않는 이슈 with autoLink & movementMethod</title>
-    <url>//android_not_working_ellipsize_with_autolink_or_movementmethod/</url>
+    <url>/2020/04/12/android_not_working_ellipsize_with_autolink_or_movementmethod/</url>
     <content><![CDATA[<p><img src="/images/cover/ellipsis_not_working_cover.jpeg" alt></p>
 <h1 id="TL-DR"><a href="#TL-DR" class="headerlink" title="TL;DR"></a>TL;DR</h1><ul>
 <li>TextView 에서 autoLink 혹은 movemnetMethod 옵션을 사용할 경우 ellipsize 가 제대로 동작하지 않는다.</li>
@@ -734,7 +734,7 @@
   </entry>
   <entry>
     <title>[안드로이드] MVVM 과 LiveData 조합 시 겪을 수 있는 이슈와 해결책</title>
-    <url>//live_data_with_event_issue/</url>
+    <url>/2020/03/13/live_data_with_event_issue/</url>
     <content><![CDATA[<p><img src="/images/cover/live_data_with_event_cover.jpg" alt><br>이번 포스트에서는 MVVM 아키텍처에서 LiveData 를 사용하면서 겪었던 어려움과 여러 해결방법에 대해 적어보려한다. MVVM 에 대한 좋은 글은 이미 많이 있으므로 해당 포스트에서는 생략하고 넘어간다! </p>
 <h1 id="TL-DR"><a href="#TL-DR" class="headerlink" title="TL;DR"></a>TL;DR</h1><ul>
 <li>LiveData 는 이벤트 전달에 적합하지 않다. 약간의 변형이 필요하다.</li>
@@ -820,7 +820,7 @@
   </entry>
   <entry>
     <title>2월의 성장기</title>
-    <url>//2020-feb-review/</url>
+    <url>/2020/02/27/2020-feb-review/</url>
     <content><![CDATA[<p><img src="/images/cover/2019-feb-review-cover.png" alt><br>여유롭게 지나갈 줄 알았지만 폭풍같았던 2월이었다. 바빴던 만큼 깨달은 내용이 많아 짧게 정리했다.</p>
 <h1 id="있어야할-곳에-있는-편안함"><a href="#있어야할-곳에-있는-편안함" class="headerlink" title="있어야할 곳에 있는 편안함"></a>있어야할 곳에 있는 편안함</h1><p>최근 작업을 진행하면서 예상보다 훨씬 넓은 범위의 레거시 코드를 수정하게 되었다. 다양한 역사를 지닌 레거시를 보면 볼 수록 강력하게 떠오르는 생각이 있었다.</p>
 <p><strong>아, 코드가 있어야할 곳에 있는 것이 이렇게 중요한거구나</strong></p>
@@ -858,7 +858,7 @@
   </entry>
   <entry>
     <title>[안드로이드] Process 재시작 과 Fragment 생명 주기</title>
-    <url>//fragment_lifecycle_with_restarted_process/</url>
+    <url>/2020/02/23/fragment_lifecycle_with_restarted_process/</url>
     <content><![CDATA[<p><img src="/images/bike_cover.jpg" alt></p>
 <p>최근에도 큰 규모의 리펙토링을 진행했는데, Fragment 생명주기에 대한 지식이 부족하여 많은 이슈를 발생시켰다. 😭 이번 포스팅에서는 해당 이슈의 원인과 해결법에 대해 적어보려 한다.</p>
 <h1 id="TL-DR"><a href="#TL-DR" class="headerlink" title="TL;DR"></a>TL;DR</h1><ul>
@@ -930,7 +930,7 @@ E/lifeCycle: Fragment onActivityCreated</code></pre><p>….!!!</p>
   </entry>
   <entry>
     <title>1월의 성장기</title>
-    <url>//2020-jen-review/</url>
+    <url>/2020/01/31/2020-jen-review/</url>
     <content><![CDATA[<p>포스팅 하고 싶은 주제들은 많은데 아직 마무리를 못하여 여러개의 토막글만 남아있다..<br>그래서 바람같이 흘러갔던 1월에 느꼈던 점들을 짤막하게 정리해본다.</p>
 <p>점점 회고 블로그가 되고있다. 😂</p>
 <h1 id="목적에-집중"><a href="#목적에-집중" class="headerlink" title="목적에 집중"></a>목적에 집중</h1><p>개발 방향에 대해 논의를 하는데 의견차가 잘 좁혀지지 않을 때가 있다. 각자의 주장에 타당함이 있을 때 어떻게 해야할까?</p>
@@ -961,7 +961,7 @@ E/lifeCycle: Fragment onActivityCreated</code></pre><p>….!!!</p>
   </entry>
   <entry>
     <title>2019년 하반기 회고</title>
-    <url>//2019-second-half-review/</url>
+    <url>/2019/12/22/2019-second-half-review/</url>
     <content><![CDATA[<p>이직 후 정신없는 하반기를 보냈다. 기대 이상의 성취를 얻은 부분도 있고, 아예 시도조차 못한 부분도 있었다. 스스로 회고하며 기억에 남을 만한 일들을 정리했다.</p>
 <h1 id="개발"><a href="#개발" class="headerlink" title="개발"></a>개발</h1><h2 id="의도를-드러내는-코드-짜기"><a href="#의도를-드러내는-코드-짜기" class="headerlink" title="의도를 드러내는 코드 짜기"></a>의도를 드러내는 코드 짜기</h2><p>우리의 기억력은 빈약하고 왜곡되기 쉽다. 복잡한 비즈니스 로직과 히스토리를 반년 뒤에도 기억할리가 없기 때문에 주섬주섬 주석을 달지만, 이마저도 나중에 보면 이해하기 어려울 때가 많다.</p>
 <p>결국은 코드 자체를 통하여 의도를 드러내는 것이 가장 이상적인 형태이다. 이를 실천하기 위해 많은 고민과 노력이 동반 되었고, 특히 하반기에 수강했던 <a href="https://vagabond95.github.io/2019/11/23/nextstep-class-review/" target="_blank" rel="noopener">NextStep 과정</a>이 아주 큰 도움이 되었다.</p>
@@ -991,7 +991,7 @@ E/lifeCycle: Fragment onActivityCreated</code></pre><p>….!!!</p>
   </entry>
   <entry>
     <title>[후기] Next Step - 클린코드를 위한 TDD, 리팩토링 with Java 과정을 마무리 하며</title>
-    <url>//nextstep-class-review/</url>
+    <url>/2019/11/23/nextstep-class-review/</url>
     <content><![CDATA[<h1 id="코드에-대한-고민-Next-Step"><a href="#코드에-대한-고민-Next-Step" class="headerlink" title="코드에 대한 고민, Next  Step"></a>코드에 대한 고민, Next  Step</h1><p>이직 후, 오랜 기간 서비스된 앱을 개발하게 되면서 가장 자주 들었던 생각이 있다.</p>
 <blockquote>
 <p>아, 이건 레거시 구조 때문에 더이상 건드리기가 어렵다.</p>
@@ -1073,7 +1073,7 @@ E/lifeCycle: Fragment onActivityCreated</code></pre><p>….!!!</p>
   </entry>
   <entry>
     <title>[git] squash merge 된 branch 를 rebase 할 때 생기는 이슈 - onto 옵션의 활용</title>
-    <url>//git-rebase-onto/</url>
+    <url>/2019/11/03/git-rebase-onto/</url>
     <content><![CDATA[<h1 id="문제-상황"><a href="#문제-상황" class="headerlink" title="문제 상황"></a>문제 상황</h1><p><strong>1.초기 브랜치 상황</strong></p>
 <pre><code>// master
 A
@@ -1124,7 +1124,7 @@ A - X - E&apos; - F&apos; - G&apos; - H&apos;</code></pre><p><strong>번외</str
   </entry>
   <entry>
     <title>[도서] 오브젝트 정리 Chapter 4 (캡슐화, 응집도, 결합도)</title>
-    <url>//object-book-4/</url>
+    <url>/2019/10/20/object-book-4/</url>
     <content><![CDATA[<p>이번 글에서는 데이터 중심 클래스의 정의와 단점을 알아보고, 이를 해결하기 위한 방법으로 캡슐화와 응집도/결합도에 대한 완전한 이해를 얻어가는 것이 목적이다.</p>
 <h1 id="데이터-중심으로-설계된-클래스"><a href="#데이터-중심으로-설계된-클래스" class="headerlink" title="데이터 중심으로 설계된 클래스"></a>데이터 중심으로 설계된 클래스</h1><p><a href="https://vagabond95.github.io/2019/10/13/object-book-1-3/" target="_blank" rel="noopener">이전글</a> 내용을 살펴보면 객체지향 애플리케이션을 구현하는 것은 각 객체가 책임을 수행하며 서로간의 협력을 통해 공동체를 구축한다는 것을 의미한다. 즉, 중요한 것은 객체가 다른 객체와 <strong>협력하는 방법</strong>이며, 각 객체가 내부에 어떤 상태를 가지고 관리하는 지에 대한 것은 부가적인 문제일 뿐이다.  </p>
 <p>그러나, 우리가 일반적으로 클래스를 설계하는 과정은 어떨까? </p>
@@ -1191,7 +1191,7 @@ public class Movie {
   </entry>
   <entry>
     <title>[도서] 오브젝트 정리 Chapter 1 - 3</title>
-    <url>//object-book-1-3/</url>
+    <url>/2019/10/13/object-book-1-3/</url>
     <content><![CDATA[<p>변경은 언제든 찾아올 수 있다. 변경은 피할 수 없다. 이러한 사실을 깨달은 사람들은 변경에 유연하게 대응할 수 있는 방법을 고민해왔고 이에 다영한 해결법이 제시되었다. 이번에 다루게 될 객체지향 프로그래밍도 그 중 하나라고 할 수 있다. </p>
 <p>객체지향 프로그래밍. 익숙하지만 제대로 이해하고 활용하고 있다고 얘기하기는 어려운 그런 녀석이었다. Java 를 사용하면 객체지향일까? 클래스 개념을 활용하면 객체지향일까? 안타깝게도 Java 내에서 class 를 사용해도 얼마든지 절차지향적인 코드가 나올 수 있고, 실제로도 그런 코드를 많이 양산해왔다. 객체지향적인 설계에 대한 고민이 깊어질때 즘 ‘객체지향의 사실과 오해’ 책으로 알게된 조영호님의 신간이 나왔음을 들었고 ‘오브젝트’ 책을 읽기 시작했다. 이번 포스팅은 챕터 1 ~ 3 을 읽고 정리하는 내용으로 채웠다.</p>
 <h1 id="객체간의-협력과-책임-설계-레벨"><a href="#객체간의-협력과-책임-설계-레벨" class="headerlink" title="객체간의 협력과 책임 (설계 레벨)"></a>객체간의 협력과 책임 (설계 레벨)</h1><blockquote>
@@ -1248,7 +1248,7 @@ public class Movie {
   </entry>
   <entry>
     <title>[안드로이드] targetSdkVersion, compileSdkVersion, minSdkVersion 이란 무엇인가?</title>
-    <url>//android-api-version-manage/</url>
+    <url>/2019/09/20/android-api-version-manage/</url>
     <content><![CDATA[<p>보통 프로젝트를 새롭게 세팅 할경우, targetSdkVersion / compileSdkVersion / minSdkVersion 를 각각 지정할 수 있다. 세팅 이후에는 크게 건드릴 일이 없기에 평소에는 크게 신경쓰이지 않는 값이다. </p>
 <p>그런데… <a href="https://developers-kr.googleblog.com/2018/01/improving-app-security-and-performance-on-google-play.html" target="_blank" rel="noopener">새로운 Google Play 방침</a> 에 따르면  <strong>play store 에 등록되어 있는 앱을 업데이트 하거나, 새로 앱을 등록 할 경우 정해진 <code>targetSdkVersion</code> 을 만족해야 한다.</strong> 평소에 어렴풋하게 의미를 알고 있었는데 항상 헷갈려서 이번 기회에 정리 해보기로 했다.</p>
 <p>targetSdkVersion 뿐만 아니라 compileSdkVersion, minSdkVersion  모두 <strong>안드로이드 API 버전</strong>과 관련된 값이므로 묶어서 한번에 다룰 예정이다.</p>
@@ -1299,7 +1299,7 @@ public class Movie {
   </entry>
   <entry>
     <title>[안드로이드] 키보드 높이 구하기</title>
-    <url>//android-keyboard-height/</url>
+    <url>/2019/09/08/android-keyboard-height/</url>
     <content><![CDATA[<p><img src="/images/cover/android-keyboard-height-cover.jpg" alt><br>Android 개발을 진행하다보면 Keyboard Height 를 알고싶은 상황을 마주할 때가 있다. 하지만 안타깝게도 <strong>Android에서 Keyboard Height 를 알 수 있는 native API 는 제공되지 않는다.</strong>  따라서 약간의 편법(?)을 통해 값을 알아내야 하는데, 오늘 포스팅에서는 그 과정을 다뤄보려 한다.</p>
 <h1 id="원리"><a href="#원리" class="headerlink" title="원리"></a>원리</h1><p>Keyboard height 를 구하는 방법에 대한 다양한 접근법이 제시되고 있으나, 결국 핵심원리는 다음과 같다.</p>
 <ol>
@@ -1361,7 +1361,7 @@ public class Movie {
   </entry>
   <entry>
     <title>[안드로이드] 그런 Rx Java 로 괜찮은가  2 - Mulitple API, 병렬 처리 (flatMap, merge, zip)</title>
-    <url>//is-this-rxjava-2/</url>
+    <url>/2019/08/10/is-this-rxjava-2/</url>
     <content><![CDATA[<p>RxJava 의 큰 장점 중 하나는 무엇이든 Observable 소스로 추상화하고, 이를 제공되는 Operation을 이용하여 손쉽게 가공할 수 있다는 점이다. 안드로이드 개발 중 가장 흔하게 접할 수 있는 케이스로는 Retrofit - RxJava 조합을 이용한 API 통신이 있다. </p>
 <p>기본적인 API 콜 코드</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">MyService.fetchUserData()</span><br><span class="line">    .subscribeOn(Schedulers.io())</span><br><span class="line">    .observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">    .subscribe(user -&gt; updateViewFrom(user));</span><br></pre></td></tr></table></figure>
@@ -1428,7 +1428,7 @@ public class Movie {
   </entry>
   <entry>
     <title>[안드로이드] 그런 Rx Java 로 괜찮은가  1 - subscribeOn, observeOn</title>
-    <url>//is-this-rxjava-1/</url>
+    <url>/2019/07/20/is-this-rxjava-1/</url>
     <content><![CDATA[<p>구글은 점점 더 안드로이드 아키텍처를 리엑티브하게 구조화 하려는 움직임을 보이고 있고, Databinding, LiveData 그리고 RxJava 는 그러한 구조화 작업의 핵심 토대를 담당하고 있다. 또한 주력으로 사용되는 Retroift 부터 AAC 의 Room, Paging 에 이르기까지 많은 안드로이드 라이브러리가 RxJava 를 지원하고 있다. </p>
 <p>시대의 흐름에 따라 이제는 거의 필수가 되어버린 RxJava 이기에 더이상 미루지 못하고 활용 방법을 익히기 시작했으나 워낙 제공되는 operation 이 많고 사람들이 사용하는 스타일도 제각각 달라서 스스로 사용법을 익히기까지 많은 시행착오를 겪어야 했다. 위 시리즈는 그동안 RxJava 를 사용하면서 겪었던 경험을 바탕으로 놓치기 쉽거나, 활용했을 때 좋았던 방식들을 적어 나가는 포스트가 될 것 같다. 깊은 수준의 내용은 아니지만, 이 글들을 통해 조금이나마 삽질의 시간을 줄이고 적절하게 RxJava 를 활용하는데 도움이 되었으면 좋겠다. </p>
 <h1 id="subscribeOn-observeOn-잘-사용하고-있나"><a href="#subscribeOn-observeOn-잘-사용하고-있나" class="headerlink" title="subscribeOn, observeOn 잘 사용하고 있나?"></a>subscribeOn, observeOn 잘 사용하고 있나?</h1><h2 id="Schedular-퀴즈"><a href="#Schedular-퀴즈" class="headerlink" title="Schedular 퀴즈"></a>Schedular 퀴즈</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// # 1</span></span><br><span class="line">myService.getUsers()</span><br><span class="line">    .subscribeOn(Schedulers.io())</span><br><span class="line">    .observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">    .flatMap(Observable::fromIterable)</span><br><span class="line">    .filter(User::isMember)</span><br><span class="line">    .map(<span class="keyword">this</span>::saveToCache)</span><br><span class="line">    .toList()</span><br><span class="line">    .subscribe(View::showUser);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// # 2</span></span><br><span class="line">myService.getUsers()</span><br><span class="line">    .subscribeOn(Schedulers.io())</span><br><span class="line">    .flatMap(Observable::fromIterable)</span><br><span class="line">    .filter(User::isMember)</span><br><span class="line">    .map(<span class="keyword">this</span>::saveToCache)</span><br><span class="line">    .toList()</span><br><span class="line">    .observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">    .subscribe(View::showUser);</span><br></pre></td></tr></table></figure>
@@ -1485,7 +1485,7 @@ public class Movie {
   </entry>
   <entry>
     <title>2019년 상반기 회고</title>
-    <url>//2019-first-half-review/</url>
+    <url>/2019/07/07/2019-first-half-review/</url>
     <content><![CDATA[<p>상반기에 많은 일들이 있었던 것 같은데 막상 적으려니까 잘 떠오르지 않아 당황스러웠다. 이래서 평소에 기록을 해두는 습관을 형성 해두는 것이 중요한 것 같다.</p>
 <h1 id="이직"><a href="#이직" class="headerlink" title="이직"></a>이직</h1><p>1년 4개월 동안 다니던 회사를 뒤로하고 첫 이직을 했다. <a href="https://zoyi.co" target="_blank" rel="noopener">조이</a>에서 개발자를 시작한 것은 정말 현명한 선택이었다. 입사 전과는 비교할 수 없을 만큼 많이 배우고 성장하는 시간을 보냈다. 그렇게 좋은 환경이었음에도 불구하고 이직을 하게 된 계기는 단순했다. 내 사고가 어느 한 방향으로 굳기 전에 새로운 변화를 맞이하여 자극을 주고 싶었고, 구체적인 자극으로서 좀 더 많은 유저가 사용하는 큰 스케일의 프로젝트를 개발 해보고 싶었다. 목표가 생기자 퇴근 후 새벽까지 이직 공부를 하며 여러 곳에 지원을 했고 결과적으로 <strong>NAVER</strong>에 입사를 하게 되었다.</p>
 <p>사실 업무와 이직 준비를 동시에 하는 기간은 정신적으로나 육체적으로나 정말 힘들었고 포기하고 싶었던 순간이 많았다. 하지만 결과적으로 그 시간을 겪으면서 현재 내 수준을 정확히 점검할 수 있었고 당시에 정리했던 공부 내용들이 지금까지도 개발하면서 아주 큰 도움이 되고 있다. 이직할 생각이 없더라도 정기적으로 면접을 보는 경험이 좋다는 얘기가 이런 맥락에서 였나 싶었다.</p>
@@ -1520,7 +1520,7 @@ public class Movie {
   </entry>
   <entry>
     <title>[안드로이드] TextView 에서 textIsSelectable와 LinkMovementMethod를 같이 사용할때 발생하는 이슈</title>
-    <url>//text_is_selectable_issue/</url>
+    <url>/2018/06/13/text_is_selectable_issue/</url>
     <content><![CDATA[<h2 id="발단"><a href="#발단" class="headerlink" title="발단"></a><strong>발단</strong></h2><p>며칠 전부터 이슈트래킹 대시보드에서 아래 에러가 빈번하게 리포트되는 일을 겪었다.</p>
 <pre><code>Fatal Exception: java.lang.IndexOutOfBoundsException: setSpan (-1 ... -1) starts before 0
        at android.text.SpannableStringInternal.checkRange(SpannableStringInternal.java:442)
@@ -1555,7 +1555,7 @@ public class Movie {
   </entry>
   <entry>
     <title>[안드로이드] API 26, Oreo Notification 대응기</title>
-    <url>//notification-with-oreo/</url>
+    <url>/2018/04/19/notification-with-oreo/</url>
     <content><![CDATA[<h2 id="들어가며"><a href="#들어가며" class="headerlink" title="들어가며"></a><strong>들어가며</strong></h2><p>안드로이드에서 제공하는 알림(Notification) 은 강력한 기능들을 제공하고 있다. 그리고 매번 API 버전이 올라갈 때마다 빈번하게 Update 가 되는 녀석이기 때문에 계속해서 주시하고 있어야하는 놈이기도 하다. 그동안 아무생각없이 copy &amp; paste 만 하면서 사용하고 있던 스스로를 돌아보며 다시한번 알림의 전반적인 사용방법에 대해 정리하고자 포스트를 적었다.</p>
 <h3 id="개발-환경"><a href="#개발-환경" class="headerlink" title="개발 환경"></a><strong>개발 환경</strong></h3><ul>
 <li>supportLibrary Version - 26.1.0</li>
